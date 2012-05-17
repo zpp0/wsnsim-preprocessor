@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QStatusBar>
 #include <QLabel>
+#include <QDir>
 
 #include <QTextCodec>
 #include <QString>
@@ -52,13 +53,11 @@ MainWindow::MainWindow() :
     // путь к файлу исходных данных
     m_projectFileName = "";
 
-    QList<QString> plugins;
-    plugins += "./libRTX.so";
-    plugins += "./libscene.so";
-    plugins += "./libtimer.so";
-    
+    QDir myDir(QDir::currentPath() + "/modules");
+    QStringList plugins = myDir.entryList(QStringList() << "*.so" << "*.dll");
+
     foreach(QString plugin, plugins) {
-        QPluginLoader loader(plugin);
+        QPluginLoader loader(QDir::currentPath() + "/modules/" + plugin);
         QObject* plugin = loader.instance();
         // qDebug() << plugin;
         IModule* module = qobject_cast<IModule *>(plugin);
@@ -157,7 +156,7 @@ void MainWindow::saveXml()
 {
     // запись данных в xml
     ProjectParams projectParams;
-    projectParams.version = "0.5.5";
+    projectParams.version = "0.6.0";
     projectParams.projectInfo = m_project->getParams();
     projectParams.simulatorParams = m_simulatorParams->getParams();
 
