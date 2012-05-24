@@ -215,7 +215,11 @@ void MainWindow::saveXml()
 
     projectParams.logFiles = logs;
 
-    QLibrary projectDataLib("./libprojectData");
+    QDir myDir(QDir::currentPath());
+    QStringList projectLib = myDir.entryList(QStringList() << "*projectData.so" << "*projectData.dll");
+
+    qDebug() << projectLib << QDir::currentPath() + "/" + projectLib[0];
+    QLibrary projectDataLib(QDir::currentPath() + "/" + projectLib[0]);
     projectDataLib.load();
 
     if(!projectDataLib.isLoaded()) {
@@ -234,7 +238,12 @@ void MainWindow::saveXml()
 
 void MainWindow::loadXml()
 {
-    QLibrary projectDataLib("./libprojectData");
+    QDir myDir(QDir::currentPath());
+    QStringList projectLib = myDir.entryList(QStringList() << "*projectData.so" << "*projectData.dll");
+    // QStringList projectLib = myDir.entryList(QStringList() << "*.so" << "*.dll");
+
+    QLibrary projectDataLib(QDir::currentPath() + "/" + projectLib[0]);
+    // QLibrary projectDataLib("./libprojectData");
     projectDataLib.load();
 
     if(!projectDataLib.isLoaded()) {
