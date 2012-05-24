@@ -60,6 +60,8 @@ private:
 
     QList<IModule*> m_modules;
     QMap<QString, ParamsPage*> m_paramsPages;
+
+    QList<QString> m_logs;
     
     // версия
     static const quint16 m_version = 1;

@@ -194,11 +194,26 @@ void MainWindow::saveXml()
     
     projectParams.events = events;
 
-    LogFileInfo log;
-    log["ID"] = QString::number(0);
-    log["name"] = projectParams.simulatorParams.logFile;
-    
-    projectParams.logFiles += log;
+    QList<LogFileInfo> logs;
+    QList<QString> logFileNames;
+    int number = 0;
+    foreach(QString name, m_logs) {
+        LogFileInfo log;
+        log["ID"] = QString::number(number++);
+        log["name"] = name;
+        logFileNames += name;
+        logs += log;
+    }
+
+    QString newLog = projectParams.simulatorParams.logFile;
+    if (!logFileNames.contains(newLog)) {
+        LogFileInfo log;
+        log["ID"] = QString::number(number++);
+        log["name"] = newLog;
+        logs += log;
+    }
+
+    projectParams.logFiles = logs;
 
     QLibrary projectDataLib("./libprojectData");
     projectDataLib.load();
@@ -242,6 +257,11 @@ void MainWindow::loadXml()
     m_project->setParams(projectParams.projectInfo);
     foreach(ModuleParams moduleParams, projectParams.modulesParams)
         m_paramsPages[moduleParams.moduleName]->setParams(moduleParams.params);
+
+    m_logs.erase(m_logs.begin(), m_logs.end());
+
+    foreach(LogFileInfo logInfo, projectParams.logFiles)
+        m_logs += logInfo["name"];
 }
 
 void MainWindow::actionSave()
