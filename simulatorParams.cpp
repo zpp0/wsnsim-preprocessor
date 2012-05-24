@@ -21,3 +21,12 @@ SimulatorParams SimulatorParamsPage::getParams()
     // возвращаем результат
     return params;
 }
+
+void SimulatorParamsPage::setParams(SimulatorParams params)
+{
+    m_ui->maxTime->clear();
+    m_ui->logFile->clear();
+    
+    m_ui->maxTime->setValue(params.maxTime);
+    m_ui->logFile->setText(params.logFile);
+}

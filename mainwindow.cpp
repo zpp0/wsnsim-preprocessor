@@ -175,13 +175,14 @@ void MainWindow::saveXml()
             eventParams.eventInfo["group"] = "";
 
             quint8 eventArgID = 0;
-                
-            foreach (QString eventArg,
-                     module->interfaceInfo.events[eventName].keys()) {
+
+            QPair<QString, QString> eventArg;
+            
+            foreach (eventArg, module->interfaceInfo.events[eventName]) {
                 EventArgument argument;
                 argument["ID"] = QString::number(eventArgID);
-                argument["name"] = eventArg;
-                argument["type"] = module->interfaceInfo.events[eventName][eventArg];
+                argument["name"] = eventArg.first;
+                argument["type"] = eventArg.second;
                 eventParams.arguments += argument;
                 eventArgID++;
             }
@@ -216,6 +217,33 @@ void MainWindow::saveXml()
     pd(m_projectFileName, &errorMessage, projectParams);
 }
 
+void MainWindow::loadXml()
+{
+    QLibrary projectDataLib("./libprojectData");
+    projectDataLib.load();
+
+    if(!projectDataLib.isLoaded()) {
+        // TODO: throw good exception
+        qDebug() << "Error load library";
+        throw;
+        // return projectParams;
+    }
+
+    // FIXME: make it easy
+    typedef ProjectParams(*projectDataLoad) (QString& projectFileName, QString* errorMessage);
+    projectDataLoad pd = (projectDataLoad) projectDataLib.resolve("load");
+
+    QString errorMessage;
+    QString projectFile;
+
+    ProjectParams projectParams = pd(m_projectFileName, &errorMessage);
+
+    m_simulatorParams->setParams(projectParams.simulatorParams);
+    m_project->setParams(projectParams.projectInfo);
+    foreach(ModuleParams moduleParams, projectParams.modulesParams)
+        m_paramsPages[moduleParams.moduleName]->setParams(moduleParams.params);
+}
+
 void MainWindow::actionSave()
 {
     // нажата кнока сохранить
@@ -231,6 +259,22 @@ void MainWindow::actionSave()
 
 void MainWindow::actionOpen()
 {
+    m_projectFileName = QFileDialog::getOpenFileName(this,
+                                                     tr("Open File"),
+                                                     "", "XML Project files (*.xml)");
+
+    if (m_projectFileName != "") {
+        // TODO: спрашивать, надо ли их сохранить
+
+        // // очищаем созданные данные
+        // m_p_processes->removeProcesses();
+        // m_p_nodeTypes->removeNodeTypes();
+        
+        // загружаем данные
+        loadXml();
+        
+        // m_l_projectName->setText(m_projectFileName);
+    }
 }
 
 void MainWindow::actionSaveAs()

@@ -18,6 +18,7 @@ public:
     virtual ~SimulatorParamsPage();
 
     SimulatorParams getParams();
+    void setParams(SimulatorParams params);
     
 private:    
     Ui::SimulatorParams *m_ui;

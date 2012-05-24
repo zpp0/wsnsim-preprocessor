@@ -22,6 +22,7 @@ public:
     virtual ~ParamsPage();
 
     ModuleParams getParams();
+    void setParams(QList<ModuleParam> params);
     
 private:
     QString m_name;

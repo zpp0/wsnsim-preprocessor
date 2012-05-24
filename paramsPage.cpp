@@ -48,3 +48,12 @@ ModuleParams ParamsPage::getParams()
     // возвращаем результат
     return params;
 }
+
+void ParamsPage::setParams(QList<ModuleParam> params)
+{
+    foreach(QLineEdit* le, m_widgets.values())
+        le->clear();
+
+    foreach(ModuleParam param, params)
+        m_widgets[param.name]->setText(param.value);
+}

@@ -18,9 +18,11 @@ public:
     virtual ~ProjectInfoPage();
 
     ProjectInfo getParams();
+    void setParams(ProjectInfo params);
     
 private:    
     Ui::ProjectInfo *m_ui;
+    int m_revision;
 };
 
 #endif // PROJECTPAGE_H
