@@ -23,7 +23,7 @@ ProjectInfo ProjectInfoPage::getParams()
     params.projectTitle = m_ui->title->text();
     params.projectComment = m_ui->comment->text();
     params.keywords = m_ui->keywords->text().split(" ");
-    params.revision = m_revision++;
+    params.revision = ++m_revision;
     
     params.modified = QDateTime().toTime_t();
 
