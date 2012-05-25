@@ -3,3 +3,4 @@
 *moc_*
 *.so
 ui_*.h
+qrc*.cpp
