@@ -23,6 +23,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow();
     virtual ~MainWindow();
+
+    void loadProject(QString project);
     
 private:
 

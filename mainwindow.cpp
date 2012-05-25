@@ -292,13 +292,19 @@ void MainWindow::actionSave()
 
 void MainWindow::actionOpen()
 {
-    m_projectFileName = QFileDialog::getOpenFileName(this,
-                                                     tr("Open File"),
-                                                     "", "XML Project files (*.xml)");
+    QString projectFileName = QFileDialog::getOpenFileName(this,
+                                                           tr("Open File"),
+                                                           "", "XML Project files (*.xml)");
 
-    if (m_projectFileName != "") {
+    loadProject(projectFileName);
+}
+
+void MainWindow::loadProject(QString project)
+{
+    if (project != "") {
         // TODO: спрашивать, надо ли их сохранить
 
+        m_projectFileName = project;
         // // очищаем созданные данные
         // m_p_processes->removeProcesses();
         // m_p_nodeTypes->removeNodeTypes();
