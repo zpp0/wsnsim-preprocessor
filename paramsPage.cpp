@@ -10,15 +10,23 @@ ParamsPage::ParamsPage () :
     m_ui->setupUi (this);
 }
 
-void ParamsPage::setParams(QMap<QString, QString> params, QString name)
+void ParamsPage::setPage(QMap<QString, QString> params,
+                         QString name,
+                         QString version,
+                         QString description,
+                         QMap<QString, QString> paramDescription)
 {
     m_name = name;
     setTitle(name);
 
+    m_ui->l_description->setText(description);
+
     foreach(QString param, params.keys()) {
         QLabel* label = new QLabel(param);
         QLineEdit* paramProvider = new QLineEdit();
-        
+
+        label->setToolTip(paramDescription[param]);
+
         m_widgets[param] = paramProvider;
         
         m_paramsTypes[param] = params[param];

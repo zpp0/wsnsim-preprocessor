@@ -65,7 +65,11 @@ MainWindow::MainWindow() :
 
         if (!module->moduleInfo.params.empty()) {
             ParamsPage* moduleParams = new ParamsPage();
-            moduleParams->setParams(module->moduleInfo.params, module->moduleInfo.name);
+            moduleParams->setPage(module->moduleInfo.params,
+                                  module->moduleInfo.name,
+                                  module->moduleInfo.version,
+                                  module->moduleInfo.description,
+                                  module->moduleInfo.paramDescription);
             QTreeWidgetItem* t_scene = addTiWidget("Параметры " + module->moduleInfo.name);
         
             addPage(t_scene, moduleParams);

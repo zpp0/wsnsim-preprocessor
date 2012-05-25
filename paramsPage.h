@@ -18,7 +18,11 @@ class ParamsPage : public QGroupBox
 
 public:
     ParamsPage();
-    void setParams(QMap<QString, QString> params, QString name);
+    void setPage(QMap<QString, QString> params,
+                 QString name,
+                 QString version,
+                 QString description,
+                 QMap<QString, QString> paramDescription);
     virtual ~ParamsPage();
 
     ModuleParams getParams();
