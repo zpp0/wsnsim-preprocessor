@@ -10,6 +10,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
     if (argc == 2)
-        w.loadProject(argv[1]);
+        w.openOrCreateProject(argv[1]);
     return app.exec();
 }

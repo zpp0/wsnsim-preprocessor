@@ -24,7 +24,7 @@ public:
     MainWindow();
     virtual ~MainWindow();
 
-    void loadProject(QString project);
+    void openOrCreateProject(QString project);
     
 private:
 

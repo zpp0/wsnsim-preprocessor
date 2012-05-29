@@ -296,21 +296,22 @@ void MainWindow::actionOpen()
                                                            tr("Open File"),
                                                            "", "XML Project files (*.xml)");
 
-    loadProject(projectFileName);
+    openOrCreateProject(projectFileName);
 }
 
-void MainWindow::loadProject(QString project)
+void MainWindow::openOrCreateProject(QString project)
 {
     if (project != "") {
         // TODO: спрашивать, надо ли их сохранить
 
         m_projectFileName = project;
-        // // очищаем созданные данные
-        // m_p_processes->removeProcesses();
-        // m_p_nodeTypes->removeNodeTypes();
-        
-        // загружаем данные
-        loadXml();
+
+        QFile projectFile(m_projectFileName);
+        if (projectFile.exists())
+            // загружаем данные
+            loadXml();
+        else
+            actionSave();
         
         // m_l_projectName->setText(m_projectFileName);
     }
