@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Simulator</string>
+   <string>Preprocessor</string>
   </property>
   <property name="windowIcon">
    <iconset>
