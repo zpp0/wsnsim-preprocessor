@@ -42,9 +42,9 @@ MainWindow::MainWindow() :
     
     // создаем элементы дерева стандартных страниц
     // проект
-    m_ti_project = addTiWidget("Параметры проекта");
+    m_ti_project = addTiWidget("Проект");
     // размеры
-    m_ti_simulatorParams = addTiWidget("Параметры симулятора");
+    m_ti_simulatorParams = addTiWidget("Симулятор");
 
     // создаем стандартные страницы
     addPage(m_ti_project, m_project);
@@ -59,7 +59,7 @@ MainWindow::MainWindow() :
     foreach(QString plugin, plugins) {
         QPluginLoader loader(QDir::currentPath() + "/modules/" + plugin);
         QObject* plugin = loader.instance();
-        // qDebug() << plugin;
+        qDebug() << plugin << loader.errorString();
         IModule* module = qobject_cast<IModule *>(plugin);
         m_modules += module;
 
@@ -70,7 +70,7 @@ MainWindow::MainWindow() :
                                   module->moduleInfo.version,
                                   module->moduleInfo.description,
                                   module->moduleInfo.paramDescription);
-            QTreeWidgetItem* t_scene = addTiWidget("Параметры " + module->moduleInfo.name);
+            QTreeWidgetItem* t_scene = addTiWidget(module->moduleInfo.name);
         
             addPage(t_scene, moduleParams);
 
