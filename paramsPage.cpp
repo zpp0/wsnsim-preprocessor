@@ -24,6 +24,7 @@ void ParamsPage::setPage(QMap<QString, QString> params,
     foreach(QString param, params.keys()) {
         QLabel* label = new QLabel(param);
         QLineEdit* paramProvider = new QLineEdit();
+        paramProvider->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 
         label->setToolTip(paramDescription[param]);
 
