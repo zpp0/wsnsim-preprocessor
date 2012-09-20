@@ -53,12 +53,14 @@ private:
     ProjectInfoPage *m_project;
     // среда
     SimulatorParamsPage *m_simulatorParams;
-
+    QGroupBox *m_modulesPage;
+    
     // объекты дерева, к ним привязываюся обекты страниц
     // проект
     QTreeWidgetItem *m_ti_project;
     // среда
     QTreeWidgetItem *m_ti_simulatorParams;
+    QTreeWidgetItem *m_ti_modulesParams;
 
     QList<IModule*> m_modules;
     QMap<QString, ParamsPage*> m_paramsPages;

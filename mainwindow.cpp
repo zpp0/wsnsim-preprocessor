@@ -39,16 +39,19 @@ MainWindow::MainWindow() :
     m_project = new ProjectInfoPage();
     // среда
     m_simulatorParams = new SimulatorParamsPage();
+    m_modulesPage = new QGroupBox("Модули");
     
     // создаем элементы дерева стандартных страниц
     // проект
     m_ti_project = addTiWidget("Проект");
     // размеры
     m_ti_simulatorParams = addTiWidget("Симулятор");
+    m_ti_modulesParams = addTiWidget("Параметры модулей");
 
     // создаем стандартные страницы
     addPage(m_ti_project, m_project);
     addPage(m_ti_simulatorParams, m_simulatorParams);
+    addPage(m_ti_modulesParams, m_modulesPage);
 
     // путь к файлу исходных данных
     m_projectFileName = "";
@@ -70,7 +73,7 @@ MainWindow::MainWindow() :
                                   module->moduleInfo.version,
                                   module->moduleInfo.description,
                                   module->moduleInfo.paramDescription);
-            QTreeWidgetItem* t_scene = addTiWidget(module->moduleInfo.name);
+            QTreeWidgetItem* t_scene = addTiWidget(module->moduleInfo.name, m_ti_modulesParams);
         
             addPage(t_scene, moduleParams);
 
