@@ -15,7 +15,9 @@ SimulatorParamsPage::~SimulatorParamsPage ()
 SimulatorParams SimulatorParamsPage::getParams()
 {
     SimulatorParams params;
-    params.maxTime = m_ui->maxTime->text().toULong(); 
+
+    params.maxTime = m_ui->maxTime->text().toULong();
+    params.timeUnits = (TimeUnits)m_ui->cb_timeUnits->currentIndex();
     params.logFile = m_ui->logFile->text();
 
     // возвращаем результат
@@ -28,5 +30,6 @@ void SimulatorParamsPage::setParams(SimulatorParams params)
     m_ui->logFile->clear();
     
     m_ui->maxTime->setValue(params.maxTime);
+    m_ui->cb_timeUnits->setCurrentIndex(params.timeUnits);
     m_ui->logFile->setText(params.logFile);
 }
