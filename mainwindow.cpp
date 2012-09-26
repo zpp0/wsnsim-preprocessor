@@ -39,13 +39,13 @@ MainWindow::MainWindow() :
     m_project = new ProjectInfoPage();
     // среда
     m_simulatorParams = new SimulatorParamsPage();
-    m_modulesPage = new QGroupBox("Модули");
+    m_modulesPage = new QGroupBox("Параметры модулей");
     
     // создаем элементы дерева стандартных страниц
     // проект
-    m_ti_project = addTiWidget("Проект");
+    m_ti_project = addTiWidget("Информация о проекте");
     // размеры
-    m_ti_simulatorParams = addTiWidget("Симулятор");
+    m_ti_simulatorParams = addTiWidget("Настройки симулятора");
     m_ti_modulesParams = addTiWidget("Параметры модулей");
 
     // создаем стандартные страницы

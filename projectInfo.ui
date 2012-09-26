@@ -14,13 +14,13 @@
    <string>GroupBox</string>
   </property>
   <property name="title">
-   <string>ProjectInfo</string>
+   <string>Информация о проекте</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
    <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Author</string>
+      <string>Автор</string>
      </property>
     </widget>
    </item>
@@ -30,19 +30,12 @@
    <item row="1" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Title</string>
+      <string>Название</string>
      </property>
     </widget>
    </item>
    <item row="1" column="1">
     <widget class="QLineEdit" name="title"/>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Comment</string>
-     </property>
-    </widget>
    </item>
    <item row="2" column="1">
     <widget class="QLineEdit" name="comment"/>
@@ -50,12 +43,19 @@
    <item row="3" column="0">
     <widget class="QLabel" name="label_4">
      <property name="text">
-      <string>Keywords</string>
+      <string>Ключевые слова</string>
      </property>
     </widget>
    </item>
    <item row="3" column="1">
     <widget class="QLineEdit" name="keywords"/>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Комментарий</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

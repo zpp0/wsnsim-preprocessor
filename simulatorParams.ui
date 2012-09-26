@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>346</width>
-    <height>92</height>
+    <width>450</width>
+    <height>90</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Simulator Params</string>
   </property>
   <property name="title">
-   <string>Simulator Params</string>
+   <string>Настройки симулятора</string>
   </property>
   <layout class="QFormLayout" name="formLayout">
    <property name="fieldGrowthPolicy">
@@ -23,7 +23,7 @@
    <item row="2" column="0">
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Log File name</string>
+      <string>Файл журнала</string>
      </property>
     </widget>
    </item>
@@ -54,7 +54,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Max work time</string>
+        <string>Максимальное время работы</string>
        </property>
       </widget>
      </item>
@@ -118,7 +118,7 @@
        </item>
        <item>
         <property name="text">
-         <string>года</string>
+         <string>годы</string>
         </property>
        </item>
       </widget>
