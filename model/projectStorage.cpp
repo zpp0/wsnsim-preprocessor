@@ -76,7 +76,10 @@ void ProjectStorage::setFileName(QString value)
     LogFileInfo info;
     info["ID"] = QString::number(0);
     info["name"] = value;
-    m_project.logFiles[0] = info;
+    if (m_project.logFiles.isEmpty())
+        m_project.logFiles += info;
+    else
+        m_project.logFiles[0] = info;
 }
 
 void ProjectStorage::setAuthor(QString author)
