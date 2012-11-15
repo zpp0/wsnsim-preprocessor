@@ -4,3 +4,4 @@
 *.so
 ui_*.h
 qrc*.cpp
+.dir-locals.el*
