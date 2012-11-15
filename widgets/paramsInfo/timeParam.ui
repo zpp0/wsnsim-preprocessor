@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TimeParam</class>
+ <widget class="QFrame" name="TimeParam">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>38</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="frameShape">
+   <enum>QFrame::NoFrame</enum>
+  </property>
+  <property name="frameShadow">
+   <enum>QFrame::Raised</enum>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <item>
+    <widget class="QLabel" name="l_info">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QSpinBox" name="time">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="maximum">
+      <number>2000000000</number>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="cb_timeUnits">
+     <item>
+      <property name="text">
+       <string>микросекунды</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>миллисекунды</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>секунды</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>минуты</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>часы</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>сутки</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>недели</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>месяцы</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>годы</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
