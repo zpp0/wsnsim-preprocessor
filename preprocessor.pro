@@ -4,7 +4,7 @@ TEMPLATE = app
 QT += gui
 CONFIG += console
 INCLUDEPATH += . ../libs/projectData ../libs/moduleData
-DEPENDPATH += . model tools ui view view/modulesInfo view/paramsInfo
+DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/paramsInfo widgets
 INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/paramsInfo widgets
 
 # Input
