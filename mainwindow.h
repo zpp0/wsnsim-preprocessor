@@ -6,11 +6,12 @@
 #include <QHash>
 #include <QLabel>
 
-#include "paramsPage.h"
 #include "projectInfo.h"
+#include "paramsPage.h"
+#include "modulesPage.h"
 #include "simulatorParams.h"
 
-#include "IModule.h"
+#include "projectTree.h"
 
 namespace Ui {
     class MainWindow;
@@ -25,53 +26,26 @@ public:
     virtual ~MainWindow();
 
     void openOrCreateProject(QString project);
-    
+
+public slots:
+    void newPage(QWidget *page);
+    void switchPage(QWidget *page);
+
 private:
-
-    // добавление страницы в список страниц
-    void addPage(QString p_name, QWidget *page, QTreeWidgetItem* parent = 0);
-    void addPage(QTreeWidgetItem* ti_page, QWidget *page);
-
-    // создание элемента дерева
-    QTreeWidgetItem* addTiWidget(QString name, QTreeWidgetItem* parent = 0);
-
-    // запись данных в XML
-    void saveXml();
-    // чтение данных из XML
-    void loadXml();
-    
     Ui::MainWindow *m_ui;
-
-    // массив страниц
-    QHash <QTreeWidgetItem*, QWidget*> m_h_pages;
 
     // путь к файлу проекта
     QString m_projectFileName;
+
+    ProjectTree* m_projectTree;
 
     // стандартные страницы
     // проект
     ProjectInfoPage *m_project;
     // среда
     SimulatorParamsPage *m_simulatorParams;
-    QGroupBox *m_modulesPage;
-    
-    // объекты дерева, к ним привязываюся обекты страниц
-    // проект
-    QTreeWidgetItem *m_ti_project;
-    // среда
-    QTreeWidgetItem *m_ti_simulatorParams;
-    QTreeWidgetItem *m_ti_modulesParams;
+    ModulesPage *m_modulesPage;
 
-    QList<IModule*> m_modules;
-    QMap<QString, ParamsPage*> m_paramsPages;
-
-    QList<QString> m_logs;
-    
-    // версия
-    static const quint16 m_version = 1;
-    
-    // QUndoStack *undostack;
-    
 private slots:
     // события
     // нажата кнопка сохранить
@@ -83,9 +57,8 @@ private slots:
     // выйти
     void actionQuit();
 
-public slots:
-    // пользователь перешел на другую страницу
-    void changePage(QTreeWidgetItem *current, QTreeWidgetItem *previous);
+    // scan for modules
+    void actionScan();
 };
 
 #endif // MAINWINDOW_H
