@@ -12,7 +12,6 @@ HEADERS += model/modulesStorage.h \
            model/projectStorage.h \
            tools/moduleScanner.h \
            tools/projectScanner.h \
-           tools/types.h \
            view/mainwindow.h \
            view/modulesPage.h \
            view/paramsPage.h \
