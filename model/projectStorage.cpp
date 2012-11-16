@@ -8,13 +8,19 @@
 
 #include "projectStorage.h"
 
-void ProjectStorage::addNodes(QString nodeType, int numOfNodes)
+void ProjectStorage::addNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes)
 {
-    m_nodes[nodeType] = numOfNodes;
-    quint16 moduleID = m_modulesIDs[nodeType];
+    m_nodes[module][nodeType] = numOfNodes;
+    // quint16 moduleID = m_nodesModulesIDs[nodeType];
+    quint16 moduleID = getModuleID(module);
     m_project.simulatorParams.nodes[moduleID] = numOfNodes;
 
     emit setNodesNum(numOfNodes);
+}
+
+quint16 ProjectStorage::getModuleID(ModuleDescriptionRaw* module)
+{
+    return m_modulesID[module];
 }
 
 ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
@@ -25,7 +31,7 @@ ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
     module.fileName = moduleRaw->fileName;
     m_project.modules += module;
 
-    m_modulesIDs[moduleRaw->name] = m_newModuleID;
+    m_modulesID[moduleRaw] = m_newModuleID;
 
     QList<EventParams> events;
     QList<ModuleEventRaw> eventsRaw = moduleRaw->interface.events;
@@ -58,6 +64,13 @@ ModuleParam* ProjectStorage::addModuleParam(ModuleData* module)
     ModuleParam param;
     module->params += param;
     return &(module->params.last());
+}
+
+ModuleDependence* ProjectStorage::addModuleDependence(ModuleData* module)
+{
+    ModuleDependence dep;
+    module->dependencies += dep;
+    return &(module->dependencies.last());
 }
 
 void ProjectStorage::setMaxTime(int time)

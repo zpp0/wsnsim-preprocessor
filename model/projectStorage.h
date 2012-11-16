@@ -35,11 +35,14 @@ public:
     void setTimeUnits(TimeUnits units);
     void setFileName(QString value);
 
-    void addNodes(QString nodeType, int numOfNodes);
+    void addNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes);
     // void removeNodes(QString nodeType, int numOfNodes);
+
+    quint16 getModuleID(ModuleDescriptionRaw* module);
 
     ModuleData* addModule(ModuleDescriptionRaw* module);
     ModuleParam* addModuleParam(ModuleData* module);
+    ModuleDependence* addModuleDependence(ModuleData* module);
 
 signals:
     void setNodesNum(int num);
@@ -52,11 +55,12 @@ private:
 
     ProjectParams m_project;
     // nodeType -> nodesNum
-    QMap<QString, int> m_nodes;
-    QMap<QString, quint16> m_modulesIDs;
     quint16 m_newModuleID;
 
     QMap<quint16, QList<EventParams> > m_events;
+
+    QMap<ModuleDescriptionRaw*, QMap<QString, quint16> > m_nodes;
+    QMap<ModuleDescriptionRaw*, quint16> m_modulesID;
 
     QUuid m_uuid;
     // QList<ProjectDescriptionRaw> m_projects;
