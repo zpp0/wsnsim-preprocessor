@@ -18,6 +18,7 @@
 #include "projectStorage.h"
 
 #include "paramsPage.h"
+#include "dependenciesPage.h"
 
 namespace Ui {
     class ModulesPage;
@@ -31,8 +32,8 @@ public:
     ModulesPage(QTreeWidgetItem* treeElement = 0, ProjectTree* projectTree = 0);
     virtual ~ModulesPage();
 
-
     void clean();
+
 public slots:
     void registerModule(ModuleDescriptionRaw* module);
     void moduleScanError(QString file, QString error);
@@ -41,8 +42,11 @@ public slots:
     void moduleDisabled(ModuleDescriptionRaw* module);
 
 private:
-    void createParamsPage(ModuleDescriptionRaw* module);
+    void createParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData);
     void deleteParamsPage(ModuleDescriptionRaw* module);
+
+    void createDependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData);
+    void deleteDependenciesPage(ModuleDescriptionRaw* module);
 
     ModulesInfo* m_modulesInfo;
     QTableWidget* m_t_warnings;
@@ -51,6 +55,7 @@ private:
     QList<ModuleDescriptionRaw*> m_enabledModules;
 
     QMap<ModuleDescriptionRaw*, ParamsPage*> m_params;
+    QMap<ModuleDescriptionRaw*, DependenciesPage*> m_dependencies;
 
     QTreeWidgetItem* m_treeElement;
     ProjectTree* m_projectTree;

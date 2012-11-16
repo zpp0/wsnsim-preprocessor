@@ -52,25 +52,33 @@ void ModulesPage::moduleScanError(QString file, QString error)
 void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module)
 {
     qDebug() << "enabled" << module->name;
-    // qDebug() << "enabled";
+
     m_enabledModules += module;
-    createParamsPage(module);
+    ProjectStorage& project = ProjectStorage::instance();
+    ModuleData* moduleData = project.addModule(module);
+
+    foreach(DependenciesPage* page, m_dependencies.values())
+        moduleEnabled(module);
+
+    createParamsPage(module, moduleData);
+    createDependenciesPage(module, moduleData);
 }
 
 void ModulesPage::moduleDisabled(ModuleDescriptionRaw* module)
 {
     qDebug() << "disabled" << module->name;
+
     m_enabledModules.removeOne(module);
     deleteParamsPage(module);
+    deleteDependenciesPage(module);
+
+    foreach(DependenciesPage* page, m_dependencies.values())
+        moduleDisabled(module);
 }
 
-void ModulesPage::createParamsPage(ModuleDescriptionRaw* module)
+void ModulesPage::createParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData)
 {
-    ProjectStorage& project = ProjectStorage::instance();
-    ModuleData* moduleData = project.addModule(module);
-
     ParamsPage* paramsPage = new ParamsPage(module, moduleData);
-    // ParamsPage* paramsPage = new ParamsPage(module);
     m_params[module] = paramsPage;
 
     QTreeWidgetItem* ti_paramsPage = m_projectTree->addTiWidget(module->name, m_treeElement);
@@ -86,10 +94,30 @@ void ModulesPage::deleteParamsPage(ModuleDescriptionRaw* module)
     m_projectTree->removePage(page);
 }
 
+void ModulesPage::createDependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData)
+{
+    DependenciesPage* page = new DependenciesPage(module, moduleData);
+    m_dependencies[module] = page;
+
+    QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(module->name, m_treeElement);
+    m_projectTree->addPage(ti_page, page);
+}
+
+void ModulesPage::deleteDependenciesPage(ModuleDescriptionRaw* module)
+{
+    // TODO: check if user change params
+    DependenciesPage* page = m_dependencies[module];
+    m_dependencies.remove(module);
+
+    m_projectTree->removePage(page);
+}
+
 void ModulesPage::clean()
 {
     foreach(ModuleDescriptionRaw* module, m_enabledModules)
         deleteParamsPage(module);
+    foreach(ModuleDescriptionRaw* module, m_enabledModules)
+        deleteDependenciesPage(module);
 
     delete m_modulesInfo;
 
