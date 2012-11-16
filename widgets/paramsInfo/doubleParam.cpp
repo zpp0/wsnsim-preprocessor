@@ -9,8 +9,8 @@
 #include "doubleParam.h"
 #include "ui_doubleParam.h"
 
-ModuleParamDouble::ModuleParamDouble(ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::DoubleParam), ModuleParamGeneral(paramRaw, param)
+ModuleParamDouble::ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+    :m_ui(new Ui::DoubleParam), ModuleParamGeneral(module, paramRaw, param)
 {
     m_ui->setupUi(this);
 

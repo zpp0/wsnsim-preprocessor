@@ -9,8 +9,8 @@
 #include "boolParam.h"
 #include "ui_boolParam.h"
 
-ModuleParamBool::ModuleParamBool(ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::BoolParam), ModuleParamGeneral(paramRaw, param)
+ModuleParamBool::ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+    :m_ui(new Ui::BoolParam), ModuleParamGeneral(module, paramRaw, param)
 {
     m_ui->setupUi(this);
 

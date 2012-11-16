@@ -20,7 +20,7 @@ class ModuleParamDouble : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamDouble(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamDouble();
 
 private slots:

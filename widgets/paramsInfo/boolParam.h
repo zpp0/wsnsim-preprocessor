@@ -20,7 +20,7 @@ class ModuleParamBool : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamBool(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamBool();
 
 protected:

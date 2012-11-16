@@ -11,8 +11,8 @@
 
 #include "projectStorage.h"
 
-ModuleParamNodes::ModuleParamNodes(ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::NodesParam), ModuleParamGeneral(paramRaw, param)
+ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+    :m_ui(new Ui::NodesParam), ModuleParamGeneral(module, paramRaw, param)
 {
     m_ui->setupUi(this);
 
@@ -49,7 +49,7 @@ void ModuleParamNodes::addNodes()
     m_param->value = value;
 
     ProjectStorage& storage = ProjectStorage::instance();
-    storage.addNodes(nodeType, number);
+    storage.addNodes(m_module, nodeType, number);
 }
 
 void ModuleParamNodes::addNodeType(QString name)

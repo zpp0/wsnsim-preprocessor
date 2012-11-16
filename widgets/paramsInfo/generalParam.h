@@ -19,13 +19,14 @@ class ModuleParamGeneral : public QFrame
     Q_OBJECT
 
 public:
-    ModuleParamGeneral(ModuleParamRaw* paramRaw, ModuleParam* param)
-        :m_paramRaw(paramRaw), m_param(param) {}
+    ModuleParamGeneral(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+        :m_module(module), m_paramRaw(paramRaw), m_param(param) {}
     virtual ~ModuleParamGeneral() {}
 
 protected:
     ModuleParamRaw* m_paramRaw;
     ModuleParam* m_param;
+    ModuleDescriptionRaw* m_module;
 };
 
 #endif // GENERALPARAM_H

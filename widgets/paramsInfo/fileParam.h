@@ -20,7 +20,7 @@ class ModuleParamFile : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamFile(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamFile();
 
 protected:

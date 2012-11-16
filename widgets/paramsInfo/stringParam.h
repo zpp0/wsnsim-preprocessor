@@ -20,7 +20,7 @@ class ModuleParamString : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamString(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamString();
 
 protected:

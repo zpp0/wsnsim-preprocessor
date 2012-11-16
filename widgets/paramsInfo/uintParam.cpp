@@ -9,8 +9,8 @@
 #include "uintParam.h"
 #include "ui_intParam.h"
 
-ModuleParamUint::ModuleParamUint(ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamInt(paramRaw, param)
+ModuleParamUint::ModuleParamUint(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+    :ModuleParamInt(module, paramRaw, param)
 {
     m_ui->spinBox->setMinimum(0);
 }

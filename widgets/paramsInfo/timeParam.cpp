@@ -10,8 +10,8 @@
 #include "ui_timeParam.h"
 #include "projectParams.h"
 
-ModuleParamTime::ModuleParamTime(ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::TimeParam), ModuleParamGeneral(paramRaw, param)
+ModuleParamTime::ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+    :m_ui(new Ui::TimeParam), ModuleParamGeneral(module, paramRaw, param)
 {
     m_ui->setupUi(this);
 

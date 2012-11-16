@@ -20,7 +20,7 @@ class ModuleParamNodes : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamNodes(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamNodes();
 
 public slots:

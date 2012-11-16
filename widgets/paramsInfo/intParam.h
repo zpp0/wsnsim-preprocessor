@@ -20,7 +20,7 @@ class ModuleParamInt : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamInt(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamInt();
 
 private slots:

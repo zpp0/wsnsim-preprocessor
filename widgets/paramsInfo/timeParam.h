@@ -20,7 +20,7 @@ class ModuleParamTime : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamTime(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamTime();
 
 private slots:

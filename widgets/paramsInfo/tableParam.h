@@ -20,7 +20,7 @@ class ModuleParamTable : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamTable(ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamTable();
 
 protected:

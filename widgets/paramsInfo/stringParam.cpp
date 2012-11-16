@@ -9,8 +9,8 @@
 #include "stringParam.h"
 #include "ui_stringParam.h"
 
-ModuleParamString::ModuleParamString(ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::StringParam), ModuleParamGeneral(paramRaw, param)
+ModuleParamString::ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+    :m_ui(new Ui::StringParam), ModuleParamGeneral(module, paramRaw, param)
 {
     m_ui->setupUi(this);
 
