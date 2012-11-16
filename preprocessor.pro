@@ -16,8 +16,10 @@ HEADERS += model/modulesStorage.h \
            view/modulesPage.h \
            view/paramsPage.h \
            view/projectInfo.h \
+           view/dependenciesPage.h \
            view/simulatorParams.h \
            widgets/checkModule.h \
+           widgets/interfaceInfo.h \
            widgets/projectTree.h \
            widgets/modulesInfo/modulesInfo.h \
            widgets/paramsInfo/generalParam.h \
@@ -34,6 +36,7 @@ FORMS += view/mainwindow.ui \
          view/modulesPage.ui \
          view/paramsPage.ui \
          view/projectInfo.ui \
+         view/dependenciesPage.ui \
          view/simulatorParams.ui \
          widgets/paramsInfo/doubleParam.ui \
          widgets/paramsInfo/intParam.ui \
@@ -42,7 +45,8 @@ FORMS += view/mainwindow.ui \
          widgets/paramsInfo/nodesParam.ui \
          widgets/paramsInfo/tableParam.ui \
          widgets/paramsInfo/timeParam.ui \
-         widgets/paramsInfo/fileParam.ui
+         widgets/paramsInfo/fileParam.ui \
+         widgets/interfaceInfo.ui
 SOURCES += main.cpp \
            model/modulesStorage.cpp \
            model/projectStorage.cpp \
@@ -50,10 +54,12 @@ SOURCES += main.cpp \
            tools/projectScanner.cpp \
            view/mainwindow.cpp \
            view/modulesPage.cpp \
+           view/dependenciesPage.cpp \
            view/paramsPage.cpp \
            view/projectInfo.cpp \
            view/simulatorParams.cpp \
            widgets/checkModule.cpp \
+           widgets/interfaceInfo.cpp \
            widgets/projectTree.cpp \
            widgets/modulesInfo/modulesInfo.cpp \
            widgets/paramsInfo/doubleParam.cpp \

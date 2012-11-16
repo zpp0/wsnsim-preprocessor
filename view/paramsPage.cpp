@@ -34,32 +34,32 @@ ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData)
         ModuleParam* param = storage.addModuleParam(moduleData);
         param->name = paramRaw.name;
         param->type = paramRaw.type;
-        createParam(&paramRaw, param);
+        createParam(module, &paramRaw, param);
     }
 }
 
-bool ParamsPage::createParam(ModuleParamRaw* paramRaw, ModuleParam* moduleParam)
+bool ParamsPage::createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* moduleParam)
 {
     ModuleParamGeneral* param = NULL;
 
     if (paramRaw->type == "double")
-        param = (ModuleParamGeneral*)new ModuleParamDouble(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamDouble(module, paramRaw, moduleParam);
     if (paramRaw->type == "int")
-        param = (ModuleParamGeneral*)new ModuleParamInt(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamInt(module, paramRaw, moduleParam);
     if (paramRaw->type == "uint")
-        param = (ModuleParamGeneral*)new ModuleParamUint(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamUint(module, paramRaw, moduleParam);
     if (paramRaw->type == "string")
-        param = (ModuleParamGeneral*)new ModuleParamString(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamString(module, paramRaw, moduleParam);
     if (paramRaw->type == "file")
-        param = (ModuleParamGeneral*)new ModuleParamFile(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamFile(module, paramRaw, moduleParam);
     if (paramRaw->type == "time")
-        param = (ModuleParamGeneral*)new ModuleParamTime(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamTime(module, paramRaw, moduleParam);
     if (paramRaw->type == "nodes")
-        param = (ModuleParamGeneral*)new ModuleParamNodes(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamNodes(module, paramRaw, moduleParam);
     if (paramRaw->type == "bool")
-        param = (ModuleParamGeneral*)new ModuleParamBool(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamBool(module, paramRaw, moduleParam);
     if (paramRaw->type == "table")
-        param = (ModuleParamGeneral*)new ModuleParamTable(paramRaw, moduleParam);
+        param = (ModuleParamGeneral*)new ModuleParamTable(module, paramRaw, moduleParam);
 
     if (param != NULL) {
         m_params += param;

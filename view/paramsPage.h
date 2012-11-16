@@ -31,7 +31,7 @@ public:
     virtual ~ParamsPage();
 
 private:
-    bool createParam(ModuleParamRaw* paramRaw, ModuleParam* param);
+    bool createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
 
     ModuleDescriptionRaw* m_module;
     ModuleData* m_moduleData;
