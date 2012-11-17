@@ -26,12 +26,18 @@
    <enum>QFrame::Raised</enum>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="margin">
+    <number>5</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="g_info">
      <property name="title">
       <string/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="margin">
+       <number>5</number>
+      </property>
       <item>
        <widget class="QTableWidget" name="table">
         <attribute name="verticalHeaderVisible">

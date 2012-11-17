@@ -20,6 +20,9 @@
    <enum>QFrame::Raised</enum>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="margin">
+    <number>5</number>
+   </property>
    <item>
     <widget class="QCheckBox" name="checkBox">
      <property name="text">

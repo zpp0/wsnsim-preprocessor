@@ -17,6 +17,9 @@
    <string>Modules</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="margin">
+    <number>5</number>
+   </property>
    <item>
     <layout class="QVBoxLayout" name="vertical"/>
    </item>
