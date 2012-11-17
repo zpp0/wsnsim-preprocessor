@@ -57,6 +57,9 @@ MainWindow::MainWindow() :
     m_projectTree->addPage(ti_simulatorParams, m_simulatorParams);
     m_projectTree->addPage(ti_modulesParams, m_modulesPage);
 
+    // activate the default item
+    m_projectTree->setCurrentItem(ti_projectInfo);
+
     // путь к файлу исходных данных
     m_projectFileName = "";
 
