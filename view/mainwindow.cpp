@@ -62,6 +62,9 @@ MainWindow::MainWindow() :
 
     // путь к файлу исходных данных
     m_projectFileName = "";
+    m_l_projectFileName = new QLabel();
+
+    m_ui->statusBar->addPermanentWidget(m_l_projectFileName);
 
     // сигналы
 
@@ -162,6 +165,7 @@ void MainWindow::openOrCreateProject(QString project)
         // TODO: спрашивать, надо ли их сохранить
 
         m_projectFileName = project;
+        m_l_projectFileName->setText(project);
 
         ProjectScanner scanner;
 
@@ -205,6 +209,7 @@ void MainWindow::actionSaveAs()
 
     if (file != "") {
         m_projectFileName = file;
+        m_l_projectFileName->setText(file);
 
         // сохраняем данные в xml
         ProjectStorage& project = ProjectStorage::instance();

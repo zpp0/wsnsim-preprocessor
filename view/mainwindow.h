@@ -36,6 +36,7 @@ private:
 
     // путь к файлу проекта
     QString m_projectFileName;
+    QLabel* m_l_projectFileName;
 
     ProjectTree* m_projectTree;
 
