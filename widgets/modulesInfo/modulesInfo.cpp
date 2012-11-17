@@ -7,10 +7,9 @@
  **/
 
 #include "modulesInfo.h"
-#include "checkModule.h"
 
-ModulesInfo::ModulesInfo(QObject* parent)
-    :QTableWidget(), m_parent(parent)
+ModulesInfo::ModulesInfo(QWidget* parent)
+    :QTableWidget(parent), m_parent(parent)
 {
     // setup module table header
     m_moduleInfo << tr("Enabled")
@@ -41,11 +40,23 @@ void ModulesInfo::addModuleInfo(ModuleDescriptionRaw* module)
             m_parent, SLOT(moduleEnabled(ModuleDescriptionRaw*)));
     connect(checkModule, SIGNAL(moduleDisabled(ModuleDescriptionRaw*)),
             m_parent, SLOT(moduleDisabled(ModuleDescriptionRaw*)));
-    
+
+    m_modules[module] = checkModule;
+
     setCellWidget(rows, 0, checkModule);
 
     // FIXME: do it right
     setItem(rows, 1, new QTableWidgetItem(module->name));
     setItem(rows, 2, new QTableWidgetItem(module->type));
     setItem(rows, 3, new QTableWidgetItem(module->shortDescription));
+}
+
+void ModulesInfo::enableModuleInfo(ModuleDescriptionRaw* module)
+{
+    m_modules[module]->enabled(true);
+}
+
+void ModulesInfo::disableModuleInfo(ModuleDescriptionRaw* module)
+{
+    m_modules[module]->enabled(false);
 }

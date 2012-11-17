@@ -28,6 +28,7 @@ ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
     ModuleData module;
 
     module.moduleInfo["name"] = moduleRaw->name;
+    module.moduleInfo["ID"] = QString::number(m_newModuleID);
     module.fileName = moduleRaw->fileName;
     m_project.modules += module;
 
@@ -59,6 +60,16 @@ ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
     return &(m_project.modules.last());
 }
 
+void ProjectStorage::removeModule(ModuleData* module)
+{
+    quint16 moduleID = module->moduleInfo["ID"].toInt();
+    m_events.remove(moduleID);
+
+    for (int i = 0; i < m_project.modules.size(); i++)
+        if (module == &(m_project.modules[i]))
+            m_project.modules.removeAt(i);
+}
+
 ModuleParam* ProjectStorage::addModuleParam(ModuleData* module)
 {
     ModuleParam param;
@@ -71,6 +82,19 @@ ModuleDependence* ProjectStorage::addModuleDependence(ModuleData* module)
     ModuleDependence dep;
     module->dependencies += dep;
     return &(module->dependencies.last());
+}
+
+void ProjectStorage::addModule(ModuleData module)
+{
+    m_project.modules += module;
+    ModuleData* newModuleData = &(m_project.modules.last());
+    emit newModule(newModuleData);
+
+    for (int i = 0; i < newModuleData->params.size(); i++)
+        emit newModuleParam(newModuleData, &(newModuleData->params[i]));
+
+    for (int i = 0; i < newModuleData->dependencies.size(); i++)
+        emit newModuleDependence(newModuleData, &(newModuleData->dependencies[i]));
 }
 
 void ProjectStorage::setMaxTime(int time)

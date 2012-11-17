@@ -10,7 +10,7 @@
 
 #include "projectStorage.h"
 
-DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData)
+DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps)
     : m_ui(new Ui::DependenciesPage), m_module(module), m_moduleData(moduleData)
 {
     m_ui->setupUi(this);
@@ -18,16 +18,23 @@ DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* mod
     setTitle(m_module->name);
     m_ui->l_name->setText(m_module->name);
 
-    ProjectStorage& storage = ProjectStorage::instance();
+    if (withDeps == true) {
+        ProjectStorage& storage = ProjectStorage::instance();
 
-    foreach(ModuleDependRaw dep, module->dependencies) {
-        ModuleDependence* dependence = storage.addModuleDependence(moduleData);
-        dependence->name = dep.name;
-        dependence->type = dep.type;
+        foreach(ModuleDependRaw dep, module->dependencies) {
+            ModuleDependence* dependence = storage.addModuleDependence(moduleData);
+            dependence->name = dep.name;
+            dependence->type = dep.type;
 
-        InterfaceInfo* interface = new InterfaceInfo(module, dependence);
-        m_ui->layout->insertWidget(0, interface);
+            createDependence(module, dependence);
+        }
     }
+}
+
+void DependenciesPage::createDependence(ModuleDescriptionRaw* module, ModuleDependence* dependence)
+{
+    InterfaceInfo* interface = new InterfaceInfo(module, dependence);
+    m_ui->layout->insertWidget(0, interface);
 }
 
 void DependenciesPage::moduleEnabled(ModuleDescriptionRaw* module)

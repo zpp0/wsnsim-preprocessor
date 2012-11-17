@@ -25,11 +25,13 @@ class DependenciesPage : public QGroupBox
     Q_OBJECT
 
 public:
-    DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData);
+    DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps);
     virtual ~DependenciesPage();
 
     void moduleEnabled(ModuleDescriptionRaw* module);
     void moduleDisabled(ModuleDescriptionRaw* module);
+
+    void createDependence(ModuleDescriptionRaw* module, ModuleDependence* dependence);
 
 private:
     ModuleDescriptionRaw* m_module;

@@ -24,9 +24,9 @@ signals:
     void moduleEnabled(ModuleDescriptionRaw* module);
     void moduleDisabled(ModuleDescriptionRaw* module);
 
-private slots:
+public slots:
     void enabled(bool enable);
-    
+
 private:
     ModuleDescriptionRaw* m_module;
 };

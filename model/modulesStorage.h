@@ -24,12 +24,14 @@ public:
         return instance;
     }
 
+    ModuleDescriptionRaw* getDescription(QString Uuid);
+
 signals:
     void registerModule(ModuleDescriptionRaw* module);
-    
+
 public slots:
     void moduleScanSuccess(QString file, ModuleDescriptionRaw module);
-    
+
 private:
     ModulesStorage() {}
     ModulesStorage(ModulesStorage const&);

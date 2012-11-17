@@ -17,10 +17,15 @@ public:
     SimulatorParamsPage();
     virtual ~SimulatorParamsPage();
 
+public slots:
+    void setNewFileName(QString fileName);
+    void setNewTimeValue(int time);
+    void setNewTimeUnits(int units);
+
 private slots:
     void setFileName(QString fileName);
-    void setTimeValue(int);
-    void timeUnitsActivated(int units);
+    void setTimeValue(quint64 time);
+    void timeUnitsActivated(TimeUnits units);
 
 private:
     Ui::SimulatorParams *m_ui;

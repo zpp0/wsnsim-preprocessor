@@ -12,20 +12,26 @@
 #include <QtGui>
 
 #include "moduleParams.h"
+#include "checkModule.h"
 
 class ModulesInfo : public QTableWidget
 {
     Q_OBJECT
 
 public:
-    ModulesInfo(QObject* parent = 0);
+    ModulesInfo(QWidget* parent);
     virtual ~ModulesInfo();
 
     void addModuleInfo(ModuleDescriptionRaw* module);
 
+    void enableModuleInfo(ModuleDescriptionRaw* module);
+    void disableModuleInfo(ModuleDescriptionRaw* module);
+
 private:
     QStringList m_moduleInfo;
-    QObject* m_parent;
+    QMap<ModuleDescriptionRaw*, CheckModule*> m_modules;
+
+    QWidget* m_parent;
 };
 
 #endif // MODULESINFO_H

@@ -44,9 +44,18 @@ public:
     ModuleParam* addModuleParam(ModuleData* module);
     ModuleDependence* addModuleDependence(ModuleData* module);
 
+    void removeModule(ModuleData* module);
+
+public slots:
+    void addModule(ModuleData module);
+    // void setNodesNum(quint16 moduleID, QString nodeType, quint16 nodesNumber);
+
 signals:
     void setNodesNum(int num);
+
     void newModule(ModuleData* module);
+    void newModuleParam(ModuleData* module, ModuleParam* param);
+    void newModuleDependence(ModuleData* module, ModuleDependence* dependence);
 
 private:
     ProjectStorage() : m_newModuleID(0) {}
@@ -54,7 +63,6 @@ private:
     void operator=(ProjectStorage const&);
 
     ProjectParams m_project;
-    // nodeType -> nodesNum
     quint16 m_newModuleID;
 
     QMap<quint16, QList<EventParams> > m_events;
@@ -63,7 +71,6 @@ private:
     QMap<ModuleDescriptionRaw*, quint16> m_modulesID;
 
     QUuid m_uuid;
-    // QList<ProjectDescriptionRaw> m_projects;
 };
 
 #endif // PROJECTSSTORAGE_H

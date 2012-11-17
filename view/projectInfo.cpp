@@ -48,3 +48,23 @@ void ProjectInfoPage::setTitle(QString title)
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setTitle(title);
 }
+
+void ProjectInfoPage::setNewAuthor(QString author)
+{
+    m_ui->author->setText(author);
+}
+
+void ProjectInfoPage::setNewComment(QString comment)
+{
+    m_ui->comment->setText(comment);
+}
+
+void ProjectInfoPage::setNewKeywords(QString keywords)
+{
+    m_ui->keywords->setText(keywords);
+}
+
+void ProjectInfoPage::setNewTitle(QString title)
+{
+    m_ui->title->setText(title);
+}

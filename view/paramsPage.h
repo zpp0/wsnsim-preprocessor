@@ -27,11 +27,13 @@ class ParamsPage : public QGroupBox
     Q_OBJECT
 
 public:
-    ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData);
+    ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams);
     virtual ~ParamsPage();
 
+    void createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+
 private:
-    bool createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+
 
     ModuleDescriptionRaw* m_module;
     ModuleData* m_moduleData;

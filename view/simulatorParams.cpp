@@ -13,7 +13,7 @@ SimulatorParamsPage::SimulatorParamsPage() :
 
     connect(m_ui->maxTime, SIGNAL(valueChanged(int)),
             this, SLOT(setTimeValue(int)));
-    connect(m_ui->cb_timeUnits, SIGNAL(activated(int)),
+    connect(m_ui->cb_timeUnits, SIGNAL(currentIndexChanged(int)),
             this, SLOT(timeUnitsActivated(int)));
 }
 
@@ -22,20 +22,35 @@ SimulatorParamsPage::~SimulatorParamsPage()
     delete m_ui;
 }
 
-void SimulatorParamsPage::setTimeValue(int time)
+void SimulatorParamsPage::setTimeValue(quint64 time)
 {
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setMaxTime(time);
 }
 
-void SimulatorParamsPage::timeUnitsActivated(int units)
+void SimulatorParamsPage::timeUnitsActivated(TimeUnits units)
 {
     ProjectStorage& storage = ProjectStorage::instance();
-    storage.setTimeUnits((TimeUnits) units);
+    storage.setTimeUnits(units);
 }
 
 void SimulatorParamsPage::setFileName(QString value)
 {
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setFileName(value);
+}
+
+void SimulatorParamsPage::setNewFileName(QString fileName)
+{
+    m_ui->logFile->setText(fileName);
+}
+
+void SimulatorParamsPage::setNewTimeValue(int time)
+{
+    m_ui->maxTime->setValue(time);
+}
+
+void SimulatorParamsPage::setNewTimeUnits(int units)
+{
+    m_ui->cb_timeUnits->setCurrentIndex(units);
 }

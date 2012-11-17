@@ -20,7 +20,7 @@
 
 #include "projectStorage.h"
 
-ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData)
+ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams)
     : m_ui(new Ui::ParamsPage), m_module(module), m_moduleData(moduleData)
 {
     m_ui->setupUi(this);
@@ -28,17 +28,19 @@ ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData)
     setTitle(m_module->name);
     m_ui->l_description->setText(m_module->shortDescription);
 
-    ProjectStorage& storage = ProjectStorage::instance();
+    if (withParams == true) {
+        ProjectStorage& storage = ProjectStorage::instance();
 
-    foreach(ModuleParamRaw paramRaw, module->params) {
-        ModuleParam* param = storage.addModuleParam(moduleData);
-        param->name = paramRaw.name;
-        param->type = paramRaw.type;
-        createParam(module, &paramRaw, param);
+        foreach(ModuleParamRaw paramRaw, module->params) {
+            ModuleParam* param = storage.addModuleParam(moduleData);
+            param->name = paramRaw.name;
+            param->type = paramRaw.type;
+            createParam(module, &paramRaw, param);
+        }
     }
 }
 
-bool ParamsPage::createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* moduleParam)
+void ParamsPage::createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* moduleParam)
 {
     ModuleParamGeneral* param = NULL;
 
@@ -64,10 +66,7 @@ bool ParamsPage::createParam(ModuleDescriptionRaw* module, ModuleParamRaw* param
     if (param != NULL) {
         m_params += param;
         m_ui->paramsList->addWidget(param);
-        return true;
     }
-    else
-        return false;
 }
 
 ParamsPage::~ParamsPage()

@@ -1,33 +1,51 @@
-    // QDir myDir(QDir::currentPath());
-    // QStringList projectLib = myDir.entryList(QStringList() << "*projectData.so" << "*projectData.dll");
-    // // QStringList projectLib = myDir.entryList(QStringList() << "*.so" << "*.dll");
+/**
+ *
+ * File: projectScanner.cpp
+ * Description: API for scan projects files
+ * Author: Yarygin Alexander <yarygin.alexander@gmail.com>
+ *
+ **/
 
-    // QLibrary projectDataLib(QDir::currentPath() + "/" + projectLib[0]);
-    // // QLibrary projectDataLib("./libprojectData");
-    // projectDataLib.load();
+#include <QDir>
+#include <QString>
+#include <QStringList>
+#include <QLibrary>
 
-    // if(!projectDataLib.isLoaded()) {
-    //     // TODO: throw good exception
-    //     qDebug() << "Error load library";
-    //     throw;
-    //     // return projectParams;
-    // }
+#include "projectScanner.h"
 
-    // // FIXME: make it easy
-    // typedef ProjectParams(*projectDataLoad) (QString& projectFileName, QString* errorMessage);
-    // projectDataLoad pd = (projectDataLoad) projectDataLib.resolve("load");
+ProjectScanner::ProjectScanner(QObject* parent)
+    : QObject(parent)
+{
+}
 
-    // QString errorMessage;
-    // QString projectFile;
+void ProjectScanner::scanFile(QString& file)
+{
+    QLibrary projectDataLib("./projectData");
+    projectDataLib.load();
 
-    // ProjectParams projectParams = pd(m_projectFileName, &errorMessage);
+    if(!projectDataLib.isLoaded())
+        return;
 
-    // m_simulatorParams->setParams(projectParams.simulatorParams);
-    // m_project->setParams(projectParams.projectInfo);
-    // foreach(ModuleParams moduleParams, projectParams.modulesParams)
-    //     m_paramsPages[moduleParams.moduleName]->setParams(moduleParams.params);
+    // FIXME: make it easy
+    typedef ProjectParams(*projectDataLoad) (QString& projectFileName, QString* errorMessage);
+    projectDataLoad pd = (projectDataLoad) projectDataLib.resolve("load");
 
-    // m_logs.erase(m_logs.begin(), m_logs.end());
+    QString errorMessage;
 
-    // foreach(LogFileInfo logInfo, projectParams.logFiles)
-    //     m_logs += logInfo["name"];
+    m_project = pd(file, &errorMessage);
+
+    emit setVersion(m_project.version);
+    emit setUuid(m_project.uuid);
+
+    emit setLogFileName(m_project.simulatorParams.logFile);
+    emit setMaxTime(m_project.simulatorParams.maxTime);
+    emit setTimeUnits(m_project.simulatorParams.timeUnits);
+
+    emit setAuthor(m_project.projectInfo.projectAutor);
+    emit setComment(m_project.projectInfo.projectComment);
+    emit setKeywords(m_project.projectInfo.keywords.join(" "));
+    emit setTitle(m_project.projectInfo.projectTitle);
+
+    foreach(ModuleData module, m_project.modules)
+        emit addModule(module);
+}

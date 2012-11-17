@@ -12,6 +12,8 @@
 #include <QtGui>
 
 #include "moduleScanner.h"
+#include "projectScanner.h"
+
 #include "model/modulesStorage.h"
 
 MainWindow::MainWindow() :
@@ -63,6 +65,14 @@ MainWindow::MainWindow() :
     ModulesStorage& storage = ModulesStorage::instance();
     connect(&storage, SIGNAL(registerModule(ModuleDescriptionRaw*)),
             m_modulesPage, SLOT(registerModule(ModuleDescriptionRaw*)));
+
+    ProjectStorage& project = ProjectStorage::instance();
+    connect(&project, SIGNAL(newModule(ModuleData*)),
+            m_modulesPage, SLOT(newModule(ModuleData*)));
+    connect(&project, SIGNAL(newModuleParam(ModuleData*, ModuleParam*)),
+            m_modulesPage, SLOT(newModuleParam(ModuleData*, ModuleParam*)));
+    connect(&project, SIGNAL(newModuleDependence(ModuleData*, ModuleDependence*)),
+            m_modulesPage, SLOT(newModuleDependence(ModuleData*, ModuleDependence*)));
 
     // сигнал нажатия кнопок обрабатывает основное окно
     connect(m_ui->actionScanForModules, SIGNAL(triggered()),
@@ -146,13 +156,30 @@ void MainWindow::openOrCreateProject(QString project)
 
         m_projectFileName = project;
 
-        // TODO: implement this
-        // QFile projectFile(m_projectFileName);
-        // if (projectFile.exists())
-        //     // загружаем данные
-        //     loadXml();
-        // else
-        //     actionSave();
+        ProjectScanner scanner;
+
+        connect(&scanner, SIGNAL(setLogFileName(QString)),
+                m_simulatorParams, SLOT(setNewFileName(QString)));
+        connect(&scanner, SIGNAL(setMaxTime(int)),
+                m_simulatorParams, SLOT(setNewTimeValue(int)));
+        connect(&scanner, SIGNAL(setTimeUnits(int)),
+                m_simulatorParams, SLOT(setNewTimeUnits(int)));
+
+        connect(&scanner, SIGNAL(setAuthor(QString)),
+                m_project, SLOT(setNewAuthor(QString)));
+        connect(&scanner, SIGNAL(setComment(QString)),
+                m_project, SLOT(setNewComment(QString)));
+        connect(&scanner, SIGNAL(setKeywords(QString)),
+                m_project, SLOT(setNewKeywords(QString)));
+        connect(&scanner, SIGNAL(setTitle(QString)),
+                m_project, SLOT(setNewTitle(QString)));
+
+        ProjectStorage& project = ProjectStorage::instance();
+
+        connect(&scanner, SIGNAL(addModule(ModuleData)),
+                &project, SLOT(addModule(ModuleData)));
+
+        scanner.scanFile(m_projectFileName);
 
         // m_l_projectName->setText(m_projectFileName);
     }
