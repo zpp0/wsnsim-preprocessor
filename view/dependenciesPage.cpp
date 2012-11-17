@@ -16,7 +16,6 @@ DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* mod
     m_ui->setupUi(this);
 
     setTitle(m_module->name);
-    m_ui->l_name->setText(m_module->name);
 
     if (withDeps == true) {
         ProjectStorage& storage = ProjectStorage::instance();
