@@ -33,16 +33,14 @@ void InterfaceInfo::moduleDisabled(ModuleDescriptionRaw* module)
 
 void InterfaceInfo::isValidDependence(ModuleDescriptionRaw* module)
 {
-    // QList<ModuleFunctionRaw> functions = m_module->dependencies.functions;
-    // QList<ModuleEventRaw> events = m_module->dependencies.events;
+    if (module->type == m_dependence->type) {
+        // TODO: check for the interface compatibility
 
-    // foreach(ModuleFunctionRaw function, functions)
-        // if(module->interface.functions.contains(functions)
+        ProjectStorage& storage = ProjectStorage::instance();
+        quint16 moduleID = storage.getModuleID(module);
 
-    ProjectStorage& storage = ProjectStorage::instance();
-    quint16 moduleID = storage.getModuleID(module);
-
-    addValidDependence(module->name, moduleID);
+        addValidDependence(module->name, moduleID);
+    }
 }
 
 void InterfaceInfo::addValidDependence(QString moduleName, quint16 moduleID)

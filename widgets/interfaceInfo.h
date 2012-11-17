@@ -38,6 +38,8 @@ private:
 
     void isValidDependence(ModuleDescriptionRaw* module);
 
+    // TODO: implement this
+    // void removeDependence(QString moduleName, quint16 moduleID);
     void addValidDependence(QString moduleName, quint16 moduleID);
 
     QList<ModuleDescriptionRaw*> m_possibleDependencies;
