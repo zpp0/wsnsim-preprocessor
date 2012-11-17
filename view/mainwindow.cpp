@@ -112,7 +112,8 @@ void MainWindow::newPage(QWidget *page)
 void MainWindow::switchPage(QWidget *page)
 {
     // получаем указатель на страницу и показываем ее
-    m_ui->pages->setCurrentWidget(page);
+    if (page)
+        m_ui->pages->setCurrentWidget(page);
 }
 
 void MainWindow::actionScan()
