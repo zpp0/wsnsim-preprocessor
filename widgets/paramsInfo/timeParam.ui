@@ -44,6 +44,9 @@
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
      <property name="buttonSymbols">
       <enum>QAbstractSpinBox::NoButtons</enum>
      </property>
@@ -54,49 +57,55 @@
    </item>
    <item>
     <widget class="QComboBox" name="cb_timeUnits">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <item>
       <property name="text">
-       <string>микросекунды</string>
+       <string>microsecond(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>миллисекунды</string>
+       <string>millisecond(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>секунды</string>
+       <string>second(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>минуты</string>
+       <string>minute(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>часы</string>
+       <string>hour(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>сутки</string>
+       <string>day(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>недели</string>
+       <string>week(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>месяцы</string>
+       <string>month(s)</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>годы</string>
+       <string>year(s)</string>
       </property>
      </item>
     </widget>
