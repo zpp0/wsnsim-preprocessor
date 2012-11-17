@@ -19,6 +19,8 @@ ModulesInfo::ModulesInfo(QWidget* parent)
 
     setColumnCount(m_moduleInfo.size());
     setHorizontalHeaderLabels(m_moduleInfo);
+
+    verticalHeader()->setVisible(false);
 }
 
 ModulesInfo::~ModulesInfo()
