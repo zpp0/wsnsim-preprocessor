@@ -32,6 +32,9 @@
      <property name="text">
       <string>ModuleDescription</string>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item row="2" column="0">
