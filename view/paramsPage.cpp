@@ -28,6 +28,8 @@ ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, boo
     setTitle(m_module->name);
     m_ui->l_description->setText(m_module->shortDescription);
 
+    m_ui->paramsList->setDirection(QBoxLayout::BottomToTop);
+
     if (withParams == true) {
         ProjectStorage& storage = ProjectStorage::instance();
 
@@ -65,7 +67,7 @@ void ParamsPage::createParam(ModuleDescriptionRaw* module, ModuleParamRaw* param
 
     if (param != NULL) {
         m_params += param;
-        m_ui->paramsList->addWidget(param);
+        m_ui->paramsList->insertWidget(1, param);
     }
 }
 
