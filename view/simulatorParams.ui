@@ -6,137 +6,181 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>90</height>
+    <width>378</width>
+    <height>106</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Simulator Params</string>
   </property>
   <property name="title">
-   <string>Настройки симулятора</string>
+   <string>Simulator's settings</string>
   </property>
-  <layout class="QFormLayout" name="formLayout">
-   <property name="fieldGrowthPolicy">
-    <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="margin">
+    <number>5</number>
    </property>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_2">
+   <item row="0" column="0">
+    <widget class="QLabel" name="l_maxTime">
      <property name="text">
-      <string>Файл журнала</string>
+      <string>Maximum virtual time</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="1">
+   <item row="1" column="1" colspan="2">
     <widget class="QLineEdit" name="logFile">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QSpinBox" name="sb_nodes">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frame">
+      <bool>true</bool>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::NoButtons</enum>
+     </property>
+     <property name="maximum">
+      <number>999999</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QComboBox" name="cb_timeUnits">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="minimumSize">
-      <size>
-       <width>233</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>233</width>
-       <height>20</height>
-      </size>
+     <item>
+      <property name="text">
+       <string>microsecond(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>millisecond(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>second(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>minute(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>hour(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>day(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>week(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>month(s)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>year(s)</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="l_nodes">
+     <property name="text">
+      <string>Nodes total</string>
      </property>
     </widget>
    </item>
-   <item row="0" column="0" colspan="2">
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>Максимальное время работы</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QSpinBox" name="maxTime">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="buttonSymbols">
-        <enum>QAbstractSpinBox::NoButtons</enum>
-       </property>
-       <property name="maximum">
-        <number>2000000000</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QComboBox" name="cb_timeUnits">
-       <item>
-        <property name="text">
-         <string>микросекунды</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>миллисекунды</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>секунды</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>минуты</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>часы</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>сутки</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>недели</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>месяцы</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>годы</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
+   <item row="1" column="0">
+    <widget class="QLabel" name="l_logFile">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Log file name</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QSpinBox" name="maxTime">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+     </property>
+     <property name="buttonSymbols">
+      <enum>QAbstractSpinBox::UpDownArrows</enum>
+     </property>
+     <property name="maximum">
+      <number>2000000000</number>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="3">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

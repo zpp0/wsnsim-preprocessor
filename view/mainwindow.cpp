@@ -74,6 +74,9 @@ MainWindow::MainWindow() :
     connect(&project, SIGNAL(newModuleDependence(ModuleData*, ModuleDependence*)),
             m_modulesPage, SLOT(newModuleDependence(ModuleData*, ModuleDependence*)));
 
+    connect(&project, SIGNAL(setNodesNum(int)),
+            m_simulatorParams, SLOT(setNodesTotal(int)));
+
     // сигнал нажатия кнопок обрабатывает основное окно
     connect(m_ui->actionScanForModules, SIGNAL(triggered()),
             this, SLOT(actionScan()));

@@ -21,11 +21,12 @@ public slots:
     void setNewFileName(QString fileName);
     void setNewTimeValue(int time);
     void setNewTimeUnits(int units);
+    void setNodesTotal(int number);
 
 private slots:
     void setFileName(QString fileName);
-    void setTimeValue(quint64 time);
-    void timeUnitsActivated(TimeUnits units);
+    void setTimeValue(int time);
+    void timeUnitsActivated(int units);
 
 private:
     Ui::SimulatorParams *m_ui;

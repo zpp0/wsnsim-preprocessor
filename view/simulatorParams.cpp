@@ -22,22 +22,27 @@ SimulatorParamsPage::~SimulatorParamsPage()
     delete m_ui;
 }
 
-void SimulatorParamsPage::setTimeValue(quint64 time)
+void SimulatorParamsPage::setTimeValue(int time)
 {
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setMaxTime(time);
 }
 
-void SimulatorParamsPage::timeUnitsActivated(TimeUnits units)
+void SimulatorParamsPage::timeUnitsActivated(int units)
 {
     ProjectStorage& storage = ProjectStorage::instance();
-    storage.setTimeUnits(units);
+    storage.setTimeUnits((TimeUnits)units);
 }
 
 void SimulatorParamsPage::setFileName(QString value)
 {
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setFileName(value);
+}
+
+void SimulatorParamsPage::setNodesTotal(int number)
+{
+    m_ui->sb_nodes->setValue(number);
 }
 
 void SimulatorParamsPage::setNewFileName(QString fileName)
