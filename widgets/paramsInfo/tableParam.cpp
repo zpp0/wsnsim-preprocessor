@@ -32,7 +32,9 @@ ModuleParamTable::ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw*
 
     m_ui->table->setColumnCount(columns);
     m_ui->table->setHorizontalHeaderLabels(columnsNames);
+
     m_ui->table->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    m_ui->table->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     ProjectStorage& storage = ProjectStorage::instance();
     connect (&storage, SIGNAL(setNodesNum(int)),

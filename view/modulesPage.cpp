@@ -24,10 +24,14 @@ ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
     warningInfo << tr("File")
                 << tr("Error");
 
-    m_t_warnings =  new QTableWidget();
+    m_t_warnings = new QTableWidget();
     m_t_warnings->setColumnCount(warningInfo.size());
     m_t_warnings->setHorizontalHeaderLabels(warningInfo);
 
+    m_t_warnings->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    m_t_warnings->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
+    m_t_warnings->setVisible(false);
     m_ui->vertical->addWidget(m_t_warnings);
 
     m_paramsTreeElement = m_projectTree->addTiWidget(tr("Params"), m_selfTreeElement);
@@ -47,6 +51,9 @@ void ModulesPage::registerModule(ModuleDescriptionRaw* module)
 
 void ModulesPage::moduleScanError(QString file, QString error)
 {
+    if (!m_t_warnings->isVisible())
+        m_t_warnings->setVisible(true);
+
     int rows = m_t_warnings->rowCount();
     m_t_warnings->insertRow(rows);
 

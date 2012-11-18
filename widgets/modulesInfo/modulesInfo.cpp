@@ -19,6 +19,14 @@ ModulesInfo::ModulesInfo(QWidget* parent)
 
     setColumnCount(m_moduleInfo.size());
     setHorizontalHeaderLabels(m_moduleInfo);
+    horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+    verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
+    setSelectionMode(QAbstractItemView::NoSelection);
+
+    setWordWrap(true);
+
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     verticalHeader()->setVisible(false);
 }
