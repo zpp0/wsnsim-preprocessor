@@ -52,8 +52,10 @@ void InterfaceInfo::addValidDependence(QString moduleName, quint16 moduleID)
 
 void InterfaceInfo::setDependence(int index)
 {
-    int moduleID = m_dependencies[index];
-    m_dependence->moduleID = moduleID;
+    if (m_ui->cb_modules->currentText() != "") {
+        int moduleID = m_dependencies[index];
+        m_dependence->moduleID = moduleID;
+    }
 }
 
 InterfaceInfo::~InterfaceInfo()
