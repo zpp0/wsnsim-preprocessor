@@ -19,6 +19,7 @@ HEADERS += model/modulesStorage.h \
            view/dependenciesPage.h \
            view/simulatorParams.h \
            widgets/checkModule.h \
+           widgets/nodeTypeSpinBox.h \
            widgets/interfaceInfo.h \
            widgets/projectTree.h \
            widgets/modulesInfo/modulesInfo.h \
@@ -59,6 +60,7 @@ SOURCES += main.cpp \
            view/projectInfo.cpp \
            view/simulatorParams.cpp \
            widgets/checkModule.cpp \
+           widgets/nodeTypeSpinBox.cpp \
            widgets/interfaceInfo.cpp \
            widgets/projectTree.cpp \
            widgets/modulesInfo/modulesInfo.cpp \

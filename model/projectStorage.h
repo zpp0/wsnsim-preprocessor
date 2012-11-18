@@ -35,7 +35,7 @@ public:
     void setTimeUnits(TimeUnits units);
     void setFileName(QString value);
 
-    void addNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes);
+    void setNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes);
     // void removeNodes(QString nodeType, int numOfNodes);
 
     quint16 getModuleID(ModuleDescriptionRaw* module);

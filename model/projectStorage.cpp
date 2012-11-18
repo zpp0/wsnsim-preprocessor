@@ -8,7 +8,7 @@
 
 #include "projectStorage.h"
 
-void ProjectStorage::addNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes)
+void ProjectStorage::setNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes)
 {
     m_nodes[module][nodeType] = numOfNodes;
     // quint16 moduleID = m_nodesModulesIDs[nodeType];

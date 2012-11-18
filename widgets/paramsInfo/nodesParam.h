@@ -28,7 +28,8 @@ public slots:
     void removeNodeType(QString name);
 
 private slots:
-    void addNodes();
+    void addNodeType();
+    void setNodes(QString nodeType, int number);
 
 protected:
     Ui::NodesParam *m_ui;

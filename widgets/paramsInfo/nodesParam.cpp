@@ -9,6 +9,8 @@
 #include "nodesParam.h"
 #include "ui_nodesParam.h"
 
+#include "nodeTypeSpinBox.h"
+
 #include "projectStorage.h"
 
 ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
@@ -17,9 +19,12 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
     m_ui->setupUi(this);
 
     m_ui->t_nodes->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
+    m_ui->t_nodes->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     connect(m_ui->b_add, SIGNAL(clicked()),
-            this, SLOT(addNodes()));
+            this, SLOT(addNodeType()));
+    connect(m_ui->b_remove, SIGNAL(clicked()),
+            this, SLOT(removeNodeType()));
 }
 
 ModuleParamNodes::~ModuleParamNodes()
@@ -27,11 +32,9 @@ ModuleParamNodes::~ModuleParamNodes()
     delete m_ui;
 }
 
-void ModuleParamNodes::addNodes()
+void ModuleParamNodes::addNodeType()
 {
     QString nodeType = m_ui->cb_nodeType->currentText();
-
-    int number = m_ui->sb_nodesNum->value();
 
     int row = m_nodeTypesRows.value(nodeType, -1);
     if (row == -1) {
@@ -39,17 +42,28 @@ void ModuleParamNodes::addNodes()
         m_ui->t_nodes->insertRow(row);
     }
 
+    NodeTypeSpinBox* nodeSpinBox = new NodeTypeSpinBox(nodeType);
+
+    connect(nodeSpinBox, SIGNAL(setNodesNum(QString, int)),
+            this, SLOT(setNodes(QString, int)));
+
     m_ui->t_nodes->setItem(row, 0, new QTableWidgetItem(nodeType));
-    m_ui->t_nodes->setItem(row, 1, new QTableWidgetItem(QString::number(number)));
+    m_ui->t_nodes->setCellWidget(row, 1, nodeSpinBox);
 
     m_nodeTypesRows[nodeType] = row;
+}
 
+void ModuleParamNodes::setNodes(QString nodeType, int number)
+{
+    // set the param value
     QMap<QString, QVariant> value = m_param->value.toMap();
-    value[nodeType] = row;
+    value[nodeType] = number;
     m_param->value = value;
 
+    // set the simulator's nodes number
     ProjectStorage& storage = ProjectStorage::instance();
-    storage.addNodes(m_module, nodeType, number);
+    storage.setNodes(m_module, nodeType, number);
+
 }
 
 void ModuleParamNodes::addNodeType(QString name)
