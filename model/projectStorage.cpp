@@ -181,4 +181,6 @@ void ProjectStorage::saveXML(QString file)
     QString errorMessage;
 
     pd(file, &errorMessage, m_project);
+
+    m_project.events.systemEvents.clear();
 }
