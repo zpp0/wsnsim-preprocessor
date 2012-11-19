@@ -29,12 +29,21 @@ public slots:
 
 private slots:
     void addNodeType();
+
     void setNodes(QString nodeType, int number);
+
+    void customContextMenuRequested(const QPoint &p);
 
 protected:
     Ui::NodesParam *m_ui;
 
 private:
+    void removeNodes(QString nodeType);
+
+    void addDummyNodeType();
+    void removeDummyNodeType();
+
+    QString m_dummyNodeType;
     // nodeTypeName -> row
     QMap<QString, int> m_nodeTypesRows;
 };

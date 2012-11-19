@@ -10,10 +10,16 @@
 
 void ProjectStorage::setNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes)
 {
-    m_nodes[module][nodeType] = numOfNodes;
-    // quint16 moduleID = m_nodesModulesIDs[nodeType];
     quint16 moduleID = getModuleID(module);
-    m_project.simulatorParams.nodes[moduleID] = numOfNodes;
+
+    if (numOfNodes > 0) {
+        m_nodes[module][nodeType] = numOfNodes;
+        m_project.simulatorParams.nodes[moduleID] = numOfNodes;
+    }
+    else {
+        m_nodes[module].remove(nodeType);
+        m_project.simulatorParams.nodes.remove(moduleID);
+    }
 
     emit setNodesNum(numOfNodes);
 }

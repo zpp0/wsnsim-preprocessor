@@ -21,3 +21,8 @@ void NodeTypeSpinBox::setNodes(int number)
 {
     emit setNodesNum(m_nodeType, number);
 }
+
+NodeTypeSpinBox::~NodeTypeSpinBox()
+{
+    emit setNodesNum(m_nodeType, 0);
+}

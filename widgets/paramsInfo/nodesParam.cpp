@@ -18,13 +18,18 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
 {
     m_ui->setupUi(this);
 
+    m_dummyNodeType = tr("Nothing to add");
+
+    m_ui->t_nodes->setContextMenuPolicy(Qt::CustomContextMenu);
+
     m_ui->t_nodes->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     m_ui->t_nodes->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
     connect(m_ui->b_add, SIGNAL(clicked()),
             this, SLOT(addNodeType()));
-    connect(m_ui->b_remove, SIGNAL(clicked()),
-            this, SLOT(removeNodeType()));
+
+    connect(m_ui->t_nodes, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(customContextMenuRequested(const QPoint &)));
 }
 
 ModuleParamNodes::~ModuleParamNodes()
@@ -35,43 +40,97 @@ ModuleParamNodes::~ModuleParamNodes()
 void ModuleParamNodes::addNodeType()
 {
     QString nodeType = m_ui->cb_nodeType->currentText();
+    if ((nodeType != "")
+        && (nodeType != m_dummyNodeType)) {
 
-    int row = m_nodeTypesRows.value(nodeType, -1);
-    if (row == -1) {
-        row = m_ui->t_nodes->rowCount();
+        int row = m_ui->t_nodes->rowCount();
         m_ui->t_nodes->insertRow(row);
+
+        QTableWidgetItem* ti_nodeType = new QTableWidgetItem(nodeType);
+        NodeTypeSpinBox* nodeSpinBox = new NodeTypeSpinBox(nodeType);
+
+        connect(nodeSpinBox, SIGNAL(setNodesNum(QString, int)),
+                this, SLOT(setNodes(QString, int)));
+
+        m_ui->t_nodes->setItem(row, 0, ti_nodeType);
+        m_ui->t_nodes->setCellWidget(row, 1, nodeSpinBox);
+
+        m_nodeTypesRows[nodeType] = row;
+
+        removeNodeType(nodeType);
     }
-
-    NodeTypeSpinBox* nodeSpinBox = new NodeTypeSpinBox(nodeType);
-
-    connect(nodeSpinBox, SIGNAL(setNodesNum(QString, int)),
-            this, SLOT(setNodes(QString, int)));
-
-    m_ui->t_nodes->setItem(row, 0, new QTableWidgetItem(nodeType));
-    m_ui->t_nodes->setCellWidget(row, 1, nodeSpinBox);
-
-    m_nodeTypesRows[nodeType] = row;
 }
 
 void ModuleParamNodes::setNodes(QString nodeType, int number)
 {
-    // set the param value
     QMap<QString, QVariant> value = m_param->value.toMap();
-    value[nodeType] = number;
+
+    // set the param value
+    if (number > 0)
+        value[nodeType] = number;
+    else
+        value.remove(nodeType);
+
     m_param->value = value;
 
     // set the simulator's nodes number
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setNodes(m_module, nodeType, number);
-
 }
 
 void ModuleParamNodes::addNodeType(QString name)
 {
+    if ((m_ui->cb_nodeType->count() == 1)
+        && (m_ui->cb_nodeType->currentText() == m_dummyNodeType))
+        removeDummyNodeType();
+
     m_ui->cb_nodeType->addItem(name);
 }
 
 void ModuleParamNodes::removeNodeType(QString name)
 {
     m_ui->cb_nodeType->removeItem(m_ui->cb_nodeType->findText(name));
+
+    if (m_ui->cb_nodeType->count() == 0)
+        addDummyNodeType();
+}
+
+void ModuleParamNodes::addDummyNodeType()
+{
+    m_ui->cb_nodeType->addItem(m_dummyNodeType);
+    m_ui->b_add->setEnabled(false);
+    m_ui->cb_nodeType->setEnabled(false);
+}
+
+void ModuleParamNodes::removeDummyNodeType()
+{
+    m_ui->cb_nodeType->removeItem(m_ui->cb_nodeType->findText(m_dummyNodeType));
+    m_ui->b_add->setEnabled(true);
+    m_ui->cb_nodeType->setEnabled(true);
+}
+
+void ModuleParamNodes::customContextMenuRequested(const QPoint &p)
+{
+    QTableWidgetItem* ti_nt_name = m_ui->t_nodes->itemAt(p);
+
+    if (ti_nt_name == NULL)
+        return;
+
+    QMenu menu(m_ui->t_nodes);
+
+    QAction* actionRemove = menu.addAction(tr("&Remove"));
+
+    QAction *a = menu.exec(m_ui->t_nodes->mapToGlobal(p));
+
+    if (a == actionRemove)
+        removeNodes(ti_nt_name->text());
+}
+
+void ModuleParamNodes::removeNodes(QString nodeType)
+{
+    int row = m_nodeTypesRows[nodeType];
+    m_ui->t_nodes->removeCellWidget(row, 1);
+    m_ui->t_nodes->removeRow(row);
+
+    addNodeType(nodeType);
 }

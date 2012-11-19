@@ -17,7 +17,7 @@ class NodeTypeSpinBox : public QSpinBox
     Q_OBJECT
 public:
     NodeTypeSpinBox(QString nodeType);
-    virtual ~NodeTypeSpinBox() {}
+    virtual ~NodeTypeSpinBox();
 
 signals:
     void setNodesNum(QString nodeType, int number);
