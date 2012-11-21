@@ -198,6 +198,9 @@ void MainWindow::openOrCreateProject(QString project)
 
         ProjectStorage& project = ProjectStorage::instance();
 
+        connect(&scanner, SIGNAL(setUuid(QString)),
+                &project, SLOT(setUuid(QString)));
+
         connect(&scanner, SIGNAL(addModule(ModuleData)),
                 &project, SLOT(addModule(ModuleData)));
 
