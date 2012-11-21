@@ -57,6 +57,8 @@ signals:
     void newModuleParam(ModuleData* module, ModuleParam* param);
     void newModuleDependence(ModuleData* module, ModuleDependence* dependence);
 
+    void savingFileError(QString errorString);
+
 private:
     ProjectStorage() : m_newModuleID(0) {}
     ProjectStorage(ProjectStorage const&);

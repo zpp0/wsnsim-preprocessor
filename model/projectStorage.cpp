@@ -172,7 +172,8 @@ void ProjectStorage::saveXML(QString file)
     projectDataLib.load();
 
     if(!projectDataLib.isLoaded()) {
-        qDebug() << "Error load library";
+        emit savingFileError(projectDataLib.errorString());
+        return;
     }
 
     // FIXME: make it easy
