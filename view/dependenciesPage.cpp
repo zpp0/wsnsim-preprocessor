@@ -42,13 +42,13 @@ void DependenciesPage::createDependence(ModuleDescriptionRaw* module, ModuleDepe
 void DependenciesPage::moduleEnabled(ModuleDescriptionRaw* module)
 {
     foreach(InterfaceInfo* interface, m_interfaces)
-        moduleEnabled(module);
+        interface->moduleEnabled(module);
 }
 
 void DependenciesPage::moduleDisabled(ModuleDescriptionRaw* module)
 {
     foreach(InterfaceInfo* interface, m_interfaces)
-        moduleDisabled(module);
+        interface->moduleDisabled(module);
 }
 
 DependenciesPage::~DependenciesPage()
