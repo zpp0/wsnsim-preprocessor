@@ -70,6 +70,7 @@ SOURCES += main.cpp \
            widgets/interfaceInfo.cpp \
            widgets/projectTree.cpp \
            widgets/modulesInfo/modulesInfo.cpp \
+           widgets/paramsInfo/generalParam.cpp \
            widgets/paramsInfo/doubleParam.cpp \
            widgets/paramsInfo/intParam.cpp \
            widgets/paramsInfo/uintParam.cpp \
