@@ -227,14 +227,20 @@ void ProjectStorage::setTitle(QString title)
     m_project.projectInfo.projectTitle = title;
 }
 
+void ProjectStorage::setUuid(QString uuid)
+{
+    m_uuid = QUuid(uuid);
+    qDebug() << "uuid" << m_uuid << uuid;
+}
+
 void ProjectStorage::saveXML(QString file)
 {
     m_project.version = "0.6.0";
 
-    if (m_uuid.isNull()) {
+    if (m_uuid.isNull())
         m_uuid = QUuid::createUuid();
-        m_project.uuid = m_uuid.toString();
-    }
+
+    m_project.uuid = m_uuid.toString();
 
     m_project.projectInfo.modified = QDateTime::currentDateTime().toString();
 

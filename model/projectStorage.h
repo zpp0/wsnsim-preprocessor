@@ -24,7 +24,10 @@ public:
         return instance;
     }
 
+public slots:
     void saveXML(QString file);
+
+    void setUuid(QString uuid);
 
     void setAuthor(QString author);
     void setComment(QString comment);
@@ -40,6 +43,7 @@ public:
 
     void setNodeType(QString name, QList<ModuleDescriptionRaw*> modules);
 
+public:
     quint16 getModuleID(ModuleDescriptionRaw* module);
     ModuleDescriptionRaw* getModule(quint16 moduleID);
 
