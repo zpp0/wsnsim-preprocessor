@@ -8,8 +8,6 @@
 
 #include "checkModule.h"
 
-#include <QDebug>
-
 CheckModule::CheckModule(ModuleDescriptionRaw* module)
     :QCheckBox(), m_module(module)
 {
@@ -19,8 +17,12 @@ CheckModule::CheckModule(ModuleDescriptionRaw* module)
 
 void CheckModule::enabled(bool enable)
 {
-    if (enable == true)
+    if (enable == true) {
+        setCheckState(Qt::Checked);
         emit moduleEnabled(m_module);
-    else
+    }
+    else {
+        setCheckState(Qt::Unchecked);
         emit moduleDisabled(m_module);
+    }
 }

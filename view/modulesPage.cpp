@@ -134,18 +134,9 @@ void ModulesPage::newModule(ModuleData* moduleData)
 {
     ModulesStorage& storage = ModulesStorage::instance();
 
-    ModuleDescriptionRaw* module = storage.getDescription(moduleData->moduleInfo["uuid"]);
-    if (module) {
-        m_enabledModules += module;
-
-        m_modulesPairs[module] = moduleData;
-
-        foreach(DependenciesPage* page, m_dependencies.values())
-            moduleEnabled(module);
-
-        createParamsPage(module, moduleData, false);
-        createDependenciesPage(module, moduleData, false);
-    }
+    ModuleDescriptionRaw* module = storage.getDescription(moduleData->moduleInfo["UUID"]);
+    if (module)
+        m_modulesInfo->enableModuleInfo(module);
     else {
         // TODO: handle error
     }
