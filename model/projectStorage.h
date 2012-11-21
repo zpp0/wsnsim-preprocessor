@@ -38,7 +38,10 @@ public:
     void setNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes);
     // void removeNodes(QString nodeType, int numOfNodes);
 
+    void setNodeType(QString name, QList<ModuleDescriptionRaw*> modules);
+
     quint16 getModuleID(ModuleDescriptionRaw* module);
+    ModuleDescriptionRaw* getModule(quint16 moduleID);
 
     ModuleData* addModule(ModuleDescriptionRaw* module);
     ModuleParam* addModuleParam(ModuleData* module);
@@ -48,10 +51,14 @@ public:
 
 public slots:
     void addModule(ModuleData module);
+    void addNodeType(NodeTypeData nodeType);
     // void setNodesNum(quint16 moduleID, QString nodeType, quint16 nodesNumber);
 
 signals:
     void setNodesNum(int num);
+
+    void newNodeType(QString name);
+    void deleteNodeType(QString name);
 
     void newModule(ModuleData* module);
     void newModuleParam(ModuleData* module, ModuleParam* param);
@@ -62,12 +69,12 @@ private:
     ProjectStorage(ProjectStorage const&);
     void operator=(ProjectStorage const&);
 
+    void nodesNumber();
+
     ProjectParams m_project;
     quint16 m_newModuleID;
 
     QMap<quint16, QList<EventParams> > m_events;
-
-    QMap<ModuleDescriptionRaw*, QMap<QString, quint16> > m_nodes;
     QMap<ModuleDescriptionRaw*, quint16> m_modulesID;
 
     QUuid m_uuid;

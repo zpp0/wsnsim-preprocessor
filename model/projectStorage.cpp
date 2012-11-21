@@ -13,20 +13,93 @@ void ProjectStorage::setNodes(ModuleDescriptionRaw* module, QString nodeType, in
     quint16 moduleID = getModuleID(module);
 
     if (numOfNodes > 0) {
-        m_nodes[module][nodeType] = numOfNodes;
-        m_project.simulatorParams.nodes[moduleID] = numOfNodes;
-    }
-    else {
-        m_nodes[module].remove(nodeType);
-        m_project.simulatorParams.nodes.remove(moduleID);
-    }
 
-    emit setNodesNum(numOfNodes);
+        for (int i = 0; i < m_project.simulatorParams.nodes.size(); i++) {
+
+            if ((m_project.simulatorParams.nodes[i].moduleID == moduleID)
+                && (m_project.simulatorParams.nodes[i].nodeType == nodeType)) {
+
+                m_project.simulatorParams.nodes[i].nodesNumber = numOfNodes;
+                nodesNumber();
+
+                return;
+            }
+        }
+
+        NodesData nodes;
+        nodes.moduleID = moduleID;
+        nodes.nodeType = nodeType;
+        nodes.nodesNumber = numOfNodes;
+
+        m_project.simulatorParams.nodes += nodes;
+
+    }
+    else
+        for (int i = 0; i < m_project.simulatorParams.nodes.size(); i++)
+            if (m_project.simulatorParams.nodes[i].moduleID == moduleID)
+                m_project.simulatorParams.nodes.removeAt(i);
+
+    nodesNumber();
+}
+
+void ProjectStorage::nodesNumber()
+{
+    int nodesNumber = 0;
+    foreach(const NodesData& nodes, m_project.simulatorParams.nodes)
+        nodesNumber += nodes.nodesNumber;
+
+    emit setNodesNum(nodesNumber);
+}
+
+void ProjectStorage::setNodeType(QString name, QList<ModuleDescriptionRaw*> modules)
+{
+    if (!modules.isEmpty()) {
+        QList<quint16> hardware;
+        QList<quint16> software;
+        foreach(ModuleDescriptionRaw* module, modules) {
+            quint16 moduleID = m_modulesID[module];
+            if (module->type == "hardware")
+                hardware += moduleID;
+            else if (module->type == "software")
+                software += moduleID;
+        }
+
+        for (int i = 0; i < m_project.nodeTypes.size(); i++) {
+            if (m_project.nodeTypes[i].name == name) {
+                m_project.nodeTypes[i].hardwareModules = hardware;
+                m_project.nodeTypes[i].softwareModules = software;
+
+                return;
+            }
+        }
+
+        NodeTypeData nodeType;
+        nodeType.name = name;
+        nodeType.hardwareModules = hardware;
+        nodeType.softwareModules = software;
+
+        m_project.nodeTypes += nodeType;
+        emit newNodeType(name);
+    }
+    // removing
+    else {
+        for (int i = 0; i < m_project.nodeTypes.size(); i++) {
+            if (m_project.nodeTypes[i].name == name) {
+                m_project.nodeTypes.removeAt(i);
+                emit deleteNodeType(name);
+            }
+        }
+    }
 }
 
 quint16 ProjectStorage::getModuleID(ModuleDescriptionRaw* module)
 {
     return m_modulesID[module];
+}
+
+ModuleDescriptionRaw* ProjectStorage::getModule(quint16 moduleID)
+{
+    return m_modulesID.key(moduleID);
 }
 
 ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
@@ -101,6 +174,14 @@ void ProjectStorage::addModule(ModuleData module)
 
     for (int i = 0; i < newModuleData->dependencies.size(); i++)
         emit newModuleDependence(newModuleData, &(newModuleData->dependencies[i]));
+}
+
+void ProjectStorage::addNodeType(NodeTypeData nodeType)
+{
+    m_project.nodeTypes += nodeType;
+    NodeTypeData* newType = &(m_project.nodeTypes.last());
+    emit newNodeType(newType);
+    emit newNodeType(newType->name);
 }
 
 void ProjectStorage::setMaxTime(int time)

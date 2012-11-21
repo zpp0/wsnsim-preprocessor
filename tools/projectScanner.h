@@ -37,6 +37,7 @@ signals:
     void setTitle(QString title);
 
     void addModule(ModuleData module);
+    void addNodeType(NodeTypeData module);
 
 private:
     ProjectParams m_project;
