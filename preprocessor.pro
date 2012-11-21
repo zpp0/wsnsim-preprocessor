@@ -18,6 +18,8 @@ HEADERS += model/modulesStorage.h \
            view/projectInfo.h \
            view/dependenciesPage.h \
            view/simulatorParams.h \
+           view/nodeTypePage.h \
+           view/nodeTypesPage.h \
            widgets/checkModule.h \
            widgets/nodeTypeSpinBox.h \
            widgets/interfaceInfo.h \
@@ -39,6 +41,8 @@ FORMS += view/mainwindow.ui \
          view/projectInfo.ui \
          view/dependenciesPage.ui \
          view/simulatorParams.ui \
+         view/nodeTypePage.ui \
+         view/nodeTypesPage.ui \
          widgets/paramsInfo/doubleParam.ui \
          widgets/paramsInfo/intParam.ui \
          widgets/paramsInfo/stringParam.ui \
@@ -59,6 +63,8 @@ SOURCES += main.cpp \
            view/paramsPage.cpp \
            view/projectInfo.cpp \
            view/simulatorParams.cpp \
+           view/nodeTypePage.cpp \
+           view/nodeTypesPage.cpp \
            widgets/checkModule.cpp \
            widgets/nodeTypeSpinBox.cpp \
            widgets/interfaceInfo.cpp \
