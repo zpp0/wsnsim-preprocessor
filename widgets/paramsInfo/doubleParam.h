@@ -23,6 +23,8 @@ public:
     ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamDouble();
 
+    void setParamValue(QVariant value);
+
 private slots:
     void setParamValue(double value);
 

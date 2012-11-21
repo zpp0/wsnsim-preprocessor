@@ -23,6 +23,7 @@ public:
     ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamTable();
 
+    void setParamValue(QVariant value);
 protected:
     Ui::TableParam *m_ui;
 

@@ -23,12 +23,15 @@ public:
     ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamNodes();
 
+    void setParamValue(QVariant value);
+
 public slots:
     void addNodeType(QString name);
     void removeNodeType(QString name);
 
 private slots:
     void addNodeType();
+    void addNodeType(QString name, int number);
 
     void setNodes(QString nodeType, int number);
 

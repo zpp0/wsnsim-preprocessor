@@ -36,6 +36,9 @@ ModuleParamTable::ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw*
     m_ui->table->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     m_ui->table->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     ProjectStorage& storage = ProjectStorage::instance();
     connect (&storage, SIGNAL(setNodesNum(int)),
              this, SLOT(setNodesNum(int)));
@@ -62,6 +65,10 @@ void ModuleParamTable::setNodesNum(int number)
             m_tableRows[item] = i;
         }
     }
+}
+
+void ModuleParamTable::setParamValue(QVariant value)
+{
 }
 
 ModuleParamTable::~ModuleParamTable()

@@ -56,6 +56,8 @@ private:
     void createDependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps = true);
     void deleteDependenciesPage(ModuleDescriptionRaw* module);
 
+    void moduleEnabled(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams = true);
+
     ModulesInfo* m_modulesInfo;
     QTableWidget* m_t_warnings;
 

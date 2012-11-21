@@ -23,6 +23,8 @@ public:
     ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamTime();
 
+    void setParamValue(QVariant value);
+
 private slots:
     void setTimeValue(int time);
     void timeUnitsActivated(int units);

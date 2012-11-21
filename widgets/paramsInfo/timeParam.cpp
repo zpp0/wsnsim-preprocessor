@@ -17,6 +17,9 @@ ModuleParamTime::ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* p
 
     m_ui->l_info->setText(paramRaw->info);
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     connect(m_ui->time, SIGNAL(setValue(int)),
             this, SLOT(setTimeValue(int)));
     connect(m_ui->cb_timeUnits, SIGNAL(activated(int)),
@@ -26,6 +29,10 @@ ModuleParamTime::ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* p
 ModuleParamTime::~ModuleParamTime()
 {
     delete m_ui;
+}
+
+void ModuleParamTime::setParamValue(QVariant value)
+{
 }
 
 void ModuleParamTime::setTimeValue(int time)

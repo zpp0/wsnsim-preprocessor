@@ -23,6 +23,8 @@ public:
     ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamString();
 
+    void setParamValue(QVariant value);
+
 protected:
     Ui::StringParam *m_ui;
 

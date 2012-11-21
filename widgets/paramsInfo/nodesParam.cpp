@@ -27,6 +27,9 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
 
     addDummyNodeType();
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     ProjectStorage& storage = ProjectStorage::instance();
     connect(&storage, SIGNAL(newNodeType(QString)),
             this, SLOT(addNodeType(QString)));
@@ -49,25 +52,29 @@ ModuleParamNodes::~ModuleParamNodes()
 void ModuleParamNodes::addNodeType()
 {
     QString nodeType = m_ui->cb_nodeType->currentText();
-    if ((nodeType != "")
-        && (nodeType != m_dummyNodeType)) {
-
-        int row = m_ui->t_nodes->rowCount();
-        m_ui->t_nodes->insertRow(row);
-
-        QTableWidgetItem* ti_nodeType = new QTableWidgetItem(nodeType);
-        NodeTypeSpinBox* nodeSpinBox = new NodeTypeSpinBox(nodeType);
-
-        connect(nodeSpinBox, SIGNAL(setNodesNum(QString, int)),
-                this, SLOT(setNodes(QString, int)));
-
-        m_ui->t_nodes->setItem(row, 0, ti_nodeType);
-        m_ui->t_nodes->setCellWidget(row, 1, nodeSpinBox);
-
-        m_nodeTypesRows[nodeType] = row;
-
+    if ((nodeType != "") && (nodeType != m_dummyNodeType)) {
+        addNodeType(nodeType, 0);
         removeNodeType(nodeType);
     }
+}
+
+void ModuleParamNodes::addNodeType(QString nodeType, int number)
+{
+    int row = m_ui->t_nodes->rowCount();
+    m_ui->t_nodes->insertRow(row);
+
+    QTableWidgetItem* ti_nodeType = new QTableWidgetItem(nodeType);
+    NodeTypeSpinBox* nodeSpinBox = new NodeTypeSpinBox(nodeType);
+
+    connect(nodeSpinBox, SIGNAL(setNodesNum(QString, int)),
+            this, SLOT(setNodes(QString, int)));
+
+    m_ui->t_nodes->setItem(row, 0, ti_nodeType);
+    m_ui->t_nodes->setCellWidget(row, 1, nodeSpinBox);
+
+    m_nodeTypesRows[nodeType] = row;
+
+    nodeSpinBox->setValue(number);
 }
 
 void ModuleParamNodes::setNodes(QString nodeType, int number)
@@ -142,4 +149,11 @@ void ModuleParamNodes::removeNodes(QString nodeType)
     m_ui->t_nodes->removeRow(row);
 
     addNodeType(nodeType);
+}
+
+void ModuleParamNodes::setParamValue(QVariant value)
+{
+    QMap<QString, QVariant> nodes = value.toMap();
+    foreach(QString name, nodes.keys())
+        addNodeType(name, nodes[name].toInt());
 }

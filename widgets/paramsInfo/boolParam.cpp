@@ -15,9 +15,21 @@ ModuleParamBool::ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* p
     m_ui->setupUi(this);
 
     m_ui->checkBox->setText(paramRaw->info);
+
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
 }
 
 ModuleParamBool::~ModuleParamBool()
 {
     delete m_ui;
+}
+
+void ModuleParamBool::setParamValue(QVariant value)
+{
+    bool param = value.toBool();
+    if (param == true)
+        m_ui->checkBox->setCheckState(Qt::Checked);
+    else
+        m_ui->checkBox->setCheckState(Qt::Unchecked);
 }

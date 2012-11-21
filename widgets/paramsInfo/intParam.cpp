@@ -17,6 +17,9 @@ ModuleParamInt::ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* par
     m_ui->l_info->setText(paramRaw->info);
     m_ui->l_units->setText(paramRaw->units);
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     connect(m_ui->spinBox, SIGNAL(valueChanged(int)),
             this, SLOT(setParamValue(int)));
 }
@@ -24,6 +27,11 @@ ModuleParamInt::ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* par
 ModuleParamInt::~ModuleParamInt()
 {
     delete m_ui;
+}
+
+void ModuleParamInt::setParamValue(QVariant value)
+{
+    m_ui->spinBox->setValue(value.toInt());
 }
 
 void ModuleParamInt::setParamValue(int value)

@@ -63,19 +63,23 @@ void ModulesPage::moduleScanError(QString file, QString error)
 
 void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module)
 {
+    ProjectStorage& project = ProjectStorage::instance();
+    ModuleData* moduleData = project.addModule(module);
+    moduleEnabled(module, moduleData);
+}
+
+void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams)
+{
     qDebug() << "enabled" << module->name;
 
     m_enabledModules += module;
-    ProjectStorage& project = ProjectStorage::instance();
-    ModuleData* moduleData = project.addModule(module);
-
     m_modulesPairs[module] = moduleData;
 
     foreach(DependenciesPage* page, m_dependencies.values())
         page->moduleEnabled(module);
 
-    createParamsPage(module, moduleData);
-    createDependenciesPage(module, moduleData);
+    createParamsPage(module, moduleData, withParams);
+    createDependenciesPage(module, moduleData, withParams);
 
     emit moduleEnable(module);
 }
@@ -93,7 +97,7 @@ void ModulesPage::moduleDisabled(ModuleDescriptionRaw* module)
     deleteDependenciesPage(module);
 
     foreach(DependenciesPage* page, m_dependencies.values())
-        moduleDisabled(module);
+        page->moduleDisabled(module);
 
     emit moduleDisable(module);
 }
@@ -139,8 +143,10 @@ void ModulesPage::newModule(ModuleData* moduleData)
     ModulesStorage& storage = ModulesStorage::instance();
 
     ModuleDescriptionRaw* module = storage.getDescription(moduleData->moduleInfo["UUID"]);
-    if (module)
+    if (module) {
+        moduleEnabled(module, moduleData, false);
         m_modulesInfo->enableModuleInfo(module);
+    }
     else {
         // TODO: handle error
     }
@@ -150,13 +156,15 @@ void ModulesPage::newModuleParam(ModuleData* moduleData, ModuleParam* param)
 {
     ModuleDescriptionRaw* module = m_modulesPairs.key(moduleData);
     if (module) {
-        ModuleParamRaw* paramRaw;
-        foreach(ModuleParamRaw paramR, module->params) {
-            if (paramR.name == param->name) {
-                paramRaw = &paramR;
+        ModuleParamRaw* paramRaw = NULL;
+        for (int i = 0; i < module->params.size(); i++) {
+            if (module->params[i].name == param->name) {
+                paramRaw = &(module->params[i]);
                 break;
             }
         }
+        if (!paramRaw)
+            return;
 
         ParamsPage* page = m_params[module];
 

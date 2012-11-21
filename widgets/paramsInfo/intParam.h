@@ -23,6 +23,8 @@ public:
     ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamInt();
 
+    void setParamValue(QVariant value);
+
 private slots:
     void setParamValue(int value);
 

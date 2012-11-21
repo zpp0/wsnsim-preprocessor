@@ -20,6 +20,9 @@ ModuleParamString::ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRa
     else
         m_ui->l_units->setText(paramRaw->units);
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     connect(m_ui->lineEdit, SIGNAL(textChanged(QString)),
             this, SLOT(setParamValue(QString)));
 }
@@ -27,6 +30,11 @@ ModuleParamString::ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRa
 ModuleParamString::~ModuleParamString()
 {
     delete m_ui;
+}
+
+void ModuleParamString::setParamValue(QVariant value)
+{
+    m_ui->lineEdit->setText(value.toString());
 }
 
 void ModuleParamString::setParamValue(QString value)

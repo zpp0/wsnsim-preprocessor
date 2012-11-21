@@ -17,6 +17,9 @@ ModuleParamDouble::ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRa
     m_ui->l_info->setText(m_paramRaw->info);
     m_ui->l_units->setText(m_paramRaw->units);
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     connect(m_ui->doubleSpinBox, SIGNAL(valueChanged(double)),
             this, SLOT(setParamValue(double)));
 }
@@ -24,6 +27,12 @@ ModuleParamDouble::ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRa
 ModuleParamDouble::~ModuleParamDouble()
 {
     delete m_ui;
+}
+
+void ModuleParamDouble::setParamValue(QVariant value)
+{
+    double param = value.toDouble();
+    m_ui->doubleSpinBox->setValue(param);
 }
 
 void ModuleParamDouble::setParamValue(double value)

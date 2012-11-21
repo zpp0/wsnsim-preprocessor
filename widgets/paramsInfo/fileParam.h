@@ -23,6 +23,8 @@ public:
     ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
     virtual ~ModuleParamFile();
 
+    void setParamValue(QVariant value);
+
 protected:
     Ui::FileParam *m_ui;
 

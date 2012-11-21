@@ -18,6 +18,9 @@ ModuleParamFile::ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* p
 
     m_ui->l_info->setText(paramRaw->info);
 
+    if (!m_param->value.isNull())
+        setParamValue(m_param->value);
+
     connect(m_ui->b_file, SIGNAL(clicked()),
             this, SLOT(browseFile()));
 
@@ -37,6 +40,12 @@ void ModuleParamFile::browseFile()
                                                 "", "");
     if (text != "")
         m_ui->lineEdit->setText(text);
+}
+
+void ModuleParamFile::setParamValue(QVariant value)
+{
+    QString param = value.toString();
+    m_ui->lineEdit->setText(param);
 }
 
 void ModuleParamFile::setParamValue(QString value)
