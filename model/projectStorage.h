@@ -77,6 +77,7 @@ private:
     ProjectStorage(ProjectStorage const&);
     void operator=(ProjectStorage const&);
 
+    ModuleData* addModule(ModuleData module, ModuleDescriptionRaw* moduleRaw);
     void nodesNumber();
 
     ProjectParams m_project;

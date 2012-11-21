@@ -8,6 +8,8 @@
 
 #include "projectStorage.h"
 
+#include "modulesStorage.h"
+
 void ProjectStorage::setNodes(ModuleDescriptionRaw* module, QString nodeType, int numOfNodes)
 {
     quint16 moduleID = getModuleID(module);
@@ -105,11 +107,16 @@ ModuleDescriptionRaw* ProjectStorage::getModule(quint16 moduleID)
 ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
 {
     ModuleData module;
-
     module.moduleInfo["name"] = moduleRaw->name;
     module.moduleInfo["ID"] = QString::number(m_newModuleID);
     module.moduleInfo["UUID"] = moduleRaw->UUID;
     module.fileName = moduleRaw->fileName;
+
+    return addModule(module, moduleRaw);
+}
+
+ModuleData* ProjectStorage::addModule(ModuleData module, ModuleDescriptionRaw* moduleRaw)
+{
     m_project.modules += module;
 
     m_modulesID[moduleRaw] = m_newModuleID;
@@ -164,17 +171,21 @@ ModuleDependence* ProjectStorage::addModuleDependence(ModuleData* module)
     return &(module->dependencies.last());
 }
 
-void ProjectStorage::addModule(ModuleData module)
+void ProjectStorage::addModule(ModuleData moduleData)
 {
-    m_project.modules += module;
-    ModuleData* newModuleData = &(m_project.modules.last());
-    emit newModule(newModuleData);
+    ModulesStorage& storage = ModulesStorage::instance();
+    ModuleDescriptionRaw* moduleRaw = storage.getDescription(moduleData.moduleInfo["UUID"]);;
 
-    for (int i = 0; i < newModuleData->params.size(); i++)
-        emit newModuleParam(newModuleData, &(newModuleData->params[i]));
+    if (moduleRaw) {
+        ModuleData* newModuleData = addModule(moduleData, moduleRaw);
+        emit newModule(newModuleData);
 
-    for (int i = 0; i < newModuleData->dependencies.size(); i++)
-        emit newModuleDependence(newModuleData, &(newModuleData->dependencies[i]));
+        for (int i = 0; i < newModuleData->params.size(); i++)
+            emit newModuleParam(newModuleData, &(newModuleData->params[i]));
+
+        for (int i = 0; i < newModuleData->dependencies.size(); i++)
+            emit newModuleDependence(newModuleData, &(newModuleData->dependencies[i]));
+    }
 }
 
 void ProjectStorage::addNodeType(NodeTypeData nodeType)
