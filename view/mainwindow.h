@@ -10,6 +10,7 @@
 #include "paramsPage.h"
 #include "modulesPage.h"
 #include "simulatorParams.h"
+#include "nodeTypesPage.h"
 
 #include "projectTree.h"
 
@@ -46,6 +47,7 @@ private:
     // среда
     SimulatorParamsPage *m_simulatorParams;
     ModulesPage *m_modulesPage;
+    NodeTypesPage* m_nodeTypesPage;
 
 private slots:
     // события

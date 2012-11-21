@@ -48,4 +48,7 @@ void ProjectScanner::scanFile(QString& file)
 
     foreach(ModuleData module, m_project.modules)
         emit addModule(module);
+
+    foreach(NodeTypeData nodeType, m_project.nodeTypes)
+        emit addNodeType(nodeType);
 }

@@ -43,6 +43,7 @@ MainWindow::MainWindow() :
     QTreeWidgetItem* ti_projectInfo = m_projectTree->addTiWidget(tr("Project information"));
     QTreeWidgetItem* ti_simulatorParams = m_projectTree->addTiWidget(tr("Simulator params"));
     QTreeWidgetItem* ti_modulesParams = m_projectTree->addTiWidget(tr("Modules"));
+    QTreeWidgetItem* ti_nodeTypesPage = m_projectTree->addTiWidget(tr("Node Types"));
 
     // создаем объекты стандартных страниц
     // проект
@@ -50,12 +51,14 @@ MainWindow::MainWindow() :
     // среда
     m_simulatorParams = new SimulatorParamsPage();
     m_modulesPage = new ModulesPage(ti_modulesParams, m_projectTree);
+    m_nodeTypesPage = new NodeTypesPage(ti_nodeTypesPage, m_projectTree);
 
     // создаем стандартные страницы
     m_projectTree->addPage(ti_projectInfo, m_project);
 
     m_projectTree->addPage(ti_simulatorParams, m_simulatorParams);
     m_projectTree->addPage(ti_modulesParams, m_modulesPage);
+    m_projectTree->addPage(ti_nodeTypesPage, m_nodeTypesPage);
 
     // activate the default item
     m_projectTree->setCurrentItem(ti_projectInfo);
@@ -72,6 +75,11 @@ MainWindow::MainWindow() :
     connect(&storage, SIGNAL(registerModule(ModuleDescriptionRaw*)),
             m_modulesPage, SLOT(registerModule(ModuleDescriptionRaw*)));
 
+    connect(m_modulesPage, SIGNAL(moduleEnable(ModuleDescriptionRaw*)),
+            m_nodeTypesPage, SLOT(moduleEnabled(ModuleDescriptionRaw*)));
+    connect(m_modulesPage, SIGNAL(moduleDisable(ModuleDescriptionRaw*)),
+            m_nodeTypesPage, SLOT(moduleDisabled(ModuleDescriptionRaw*)));
+
     ProjectStorage& project = ProjectStorage::instance();
     connect(&project, SIGNAL(newModule(ModuleData*)),
             m_modulesPage, SLOT(newModule(ModuleData*)));
@@ -82,6 +90,9 @@ MainWindow::MainWindow() :
 
     connect(&project, SIGNAL(setNodesNum(int)),
             m_simulatorParams, SLOT(setNodesTotal(int)));
+
+    connect(&project, SIGNAL(newNodeType(NodeTypeData*)),
+            m_nodeTypesPage, SLOT(newNodeType(NodeTypeData*)));
 
     // сигнал нажатия кнопок обрабатывает основное окно
     connect(m_ui->actionScanForModules, SIGNAL(triggered()),
@@ -189,6 +200,9 @@ void MainWindow::openOrCreateProject(QString project)
 
         connect(&scanner, SIGNAL(addModule(ModuleData)),
                 &project, SLOT(addModule(ModuleData)));
+
+        connect(&scanner, SIGNAL(addNodeType(NodeTypeData)),
+                &project, SLOT(addNodeType(NodeTypeData)));
 
         scanner.scanFile(m_projectFileName);
 
