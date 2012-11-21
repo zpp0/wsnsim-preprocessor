@@ -77,6 +77,7 @@
     <property name="title">
      <string>Edit</string>
     </property>
+    <addaction name="actionPreferences"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -88,11 +89,6 @@
     <addaction name="actionAbout"/>
     <addaction name="separator"/>
    </widget>
-   <widget class="QMenu" name="menuOptions">
-    <property name="title">
-     <string>Preferences</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuModules">
     <property name="title">
      <string>Tools</string>
@@ -101,7 +97,6 @@
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuSettings"/>
-   <addaction name="menuOptions"/>
    <addaction name="menuModules"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -206,6 +201,11 @@
   <action name="actionScanForModules">
    <property name="text">
     <string>Scan for modules</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>Preferences</string>
    </property>
   </action>
  </widget>
