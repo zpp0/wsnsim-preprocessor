@@ -35,6 +35,7 @@ ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
 
     module.moduleInfo["name"] = moduleRaw->name;
     module.moduleInfo["ID"] = QString::number(m_newModuleID);
+    module.moduleInfo["UUID"] = moduleRaw->UUID;
     module.fileName = moduleRaw->fileName;
     m_project.modules += module;
 
