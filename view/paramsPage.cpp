@@ -21,9 +21,12 @@
 #include "projectStorage.h"
 
 ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams)
-    : m_ui(new Ui::ParamsPage), m_module(module), m_moduleData(moduleData)
+    : m_ui(new Ui::ParamsPage)
 {
     m_ui->setupUi(this);
+
+    m_module = module;
+    m_moduleData = moduleData;
 
     setTitle(m_module->name);
     m_ui->l_description->setText(m_module->shortDescription);

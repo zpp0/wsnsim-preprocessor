@@ -10,7 +10,7 @@
 #include "ui_intParam.h"
 
 ModuleParamInt::ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::IntParam), ModuleParamGeneral(module, paramRaw, param)
+    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::IntParam)
 {
     m_ui->setupUi(this);
 

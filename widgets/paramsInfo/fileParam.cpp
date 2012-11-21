@@ -12,7 +12,7 @@
 #include "ui_fileParam.h"
 
 ModuleParamFile::ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :m_ui(new Ui::FileParam), ModuleParamGeneral(module, paramRaw, param)
+    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::FileParam)
 {
     m_ui->setupUi(this);
 

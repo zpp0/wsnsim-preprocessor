@@ -11,9 +11,12 @@
 #include "projectStorage.h"
 
 DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps)
-    : m_ui(new Ui::DependenciesPage), m_module(module), m_moduleData(moduleData)
+    : m_ui(new Ui::DependenciesPage)
 {
     m_ui->setupUi(this);
+
+    m_module = module;
+    m_moduleData = moduleData;
 
     setTitle(m_module->name);
 

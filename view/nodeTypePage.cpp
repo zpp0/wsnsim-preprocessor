@@ -14,9 +14,11 @@
 #include "projectStorage.h"
 
 NodeTypePage::NodeTypePage(QString name, QList<ModuleDescriptionRaw*> modules)
-    :m_ui(new Ui::NodeTypePage), m_name(name)
+    :m_ui(new Ui::NodeTypePage)
 {
     m_ui->setupUi(this);
+
+    m_name = name;
 
     setTitle(name);
 

@@ -12,9 +12,12 @@
 #include "modulesStorage.h"
 
 ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
-    :m_ui(new Ui::ModulesPage), m_selfTreeElement(treeElement), m_projectTree(projectTree)
+    :m_ui(new Ui::ModulesPage)
 {
     m_ui->setupUi(this);
+
+    m_selfTreeElement = treeElement;
+    m_projectTree = projectTree;
 
     m_modulesInfo = new ModulesInfo(this);
     m_ui->vertical->addWidget(m_modulesInfo);

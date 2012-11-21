@@ -10,9 +10,12 @@
 #include "ui_nodeTypesPage.h"
 
 NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
-    :m_ui(new Ui::NodeTypesPage), m_selfTreeElement(treeElement), m_projectTree(projectTree)
+    :m_ui(new Ui::NodeTypesPage)
 {
     m_ui->setupUi(this);
+
+    m_selfTreeElement = treeElement;
+    m_projectTree = projectTree;
 
     connect(m_ui->le_nodeType, SIGNAL(textChanged(QString)),
             this, SLOT(isNewNodeTypeName(QString)));

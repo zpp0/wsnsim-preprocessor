@@ -11,9 +11,12 @@
 #include "projectStorage.h"
 
 InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependence* dependence)
-    : m_ui(new Ui::InterfaceInfo), m_module(module), m_dependence(dependence)
+    : m_ui(new Ui::InterfaceInfo)
 {
     m_ui->setupUi(this);
+
+    m_module = module;
+    m_dependence = dependence;
 
     m_ui->l_name->setText(m_dependence->name);
 
