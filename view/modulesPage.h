@@ -45,6 +45,10 @@ public slots:
     void newModuleParam(ModuleData* module, ModuleParam* param);
     void newModuleDependence(ModuleData* module, ModuleDependence* dependence);
 
+signals:
+    void moduleEnable(ModuleDescriptionRaw* module);
+    void moduleDisable(ModuleDescriptionRaw* module);
+
 private:
     void createParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams = true);
     void deleteParamsPage(ModuleDescriptionRaw* module);

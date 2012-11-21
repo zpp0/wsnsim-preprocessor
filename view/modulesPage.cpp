@@ -72,10 +72,12 @@ void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module)
     m_modulesPairs[module] = moduleData;
 
     foreach(DependenciesPage* page, m_dependencies.values())
-        moduleEnabled(module);
+        page->moduleEnabled(module);
 
     createParamsPage(module, moduleData);
     createDependenciesPage(module, moduleData);
+
+    emit moduleEnable(module);
 }
 
 void ModulesPage::moduleDisabled(ModuleDescriptionRaw* module)
@@ -92,6 +94,8 @@ void ModulesPage::moduleDisabled(ModuleDescriptionRaw* module)
 
     foreach(DependenciesPage* page, m_dependencies.values())
         moduleDisabled(module);
+
+    emit moduleDisable(module);
 }
 
 void ModulesPage::createParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams)
