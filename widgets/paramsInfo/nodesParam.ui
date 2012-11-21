@@ -96,11 +96,6 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <item>
-           <property name="text">
-            <string>default</string>
-           </property>
-          </item>
          </widget>
         </item>
         <item>

@@ -25,6 +25,15 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
     m_ui->t_nodes->horizontalHeader()->setResizeMode(QHeaderView::Stretch);
     m_ui->t_nodes->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 
+    addDummyNodeType();
+
+    ProjectStorage& storage = ProjectStorage::instance();
+    connect(&storage, SIGNAL(newNodeType(QString)),
+            this, SLOT(addNodeType(QString)));
+
+    connect(&storage, SIGNAL(deleteNodeType(QString)),
+            this, SLOT(removeNodeType(QString)));
+
     connect(m_ui->b_add, SIGNAL(clicked()),
             this, SLOT(addNodeType()));
 
