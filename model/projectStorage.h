@@ -68,6 +68,8 @@ signals:
     void newModuleParam(ModuleData* module, ModuleParam* param);
     void newModuleDependence(ModuleData* module, ModuleDependence* dependence);
 
+    void newNodeType(NodeTypeData* nodeType);
+
     void savingFileError(QString errorString);
 
 private:
