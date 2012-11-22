@@ -24,6 +24,7 @@ public:
     virtual ~ModuleParamTable();
 
     void setParamValue(QVariant value);
+
 protected:
     Ui::TableParam *m_ui;
 
@@ -32,9 +33,12 @@ private slots:
     void itemChanged(QTableWidgetItem* item);
 
 private:
+    void createNodes(int number, int from = 0);
     void setParamValue(int row, int column, double value);
+
     QMap<QTableWidgetItem*, int> m_tableColumns;
     QMap<QTableWidgetItem*, int> m_tableRows;
+    QMap<int, QString> m_columnsNames;
     int m_columns;
 };
 

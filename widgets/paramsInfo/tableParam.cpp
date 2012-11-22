@@ -27,8 +27,10 @@ ModuleParamTable::ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw*
     m_columns = columns;
 
     QStringList columnsNames;
-    for (int i = 0; i < columns; i++)
+    for (int i = 0; i < columns; i++) {
         columnsNames << args["columnName" + QString::number(i+1)];
+        m_columnsNames[i] = args["columnName" + QString::number(i+1)];
+    }
 
     m_ui->table->setColumnCount(columns);
     m_ui->table->setHorizontalHeaderLabels(columnsNames);
@@ -50,25 +52,54 @@ ModuleParamTable::ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw*
 void ModuleParamTable::setNodesNum(int number)
 {
     m_ui->table->setRowCount(number);
+    createNodes(number);
+}
 
+void ModuleParamTable::createNodes(int number, int from)
+{
     // TODO: remove old connections and the relevant values from param->value if the current rows count are less than new number
-
-    for (int i = 0; i < number; i++) {
+    for (int i = from; i < number; i++) {
         m_ui->table->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
 
         for (int col = 1; col < m_columns; col++) {
-            QTableWidgetItem* item = new QTableWidgetItem();
+            QTableWidgetItem* item = new QTableWidgetItem("0");
 
             m_ui->table->setItem(i, col, item);
 
             m_tableColumns[item] = col;
             m_tableRows[item] = i;
+
+            setParamValue(i, col, 0);
         }
     }
 }
 
 void ModuleParamTable::setParamValue(QVariant value)
 {
+    QMap<QString, QVariant> map = value.toMap();
+    foreach(QString column, map.keys()) {
+        foreach(QString row, map[column].toMap().keys()) {
+            int irow = row.toInt();
+
+            int rows = m_ui->table->rowCount();
+            if (rows <= irow) {
+                m_ui->table->setRowCount(irow + 1);
+
+                for (int i = rows; i <= irow; i++)
+                    m_ui->table->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
+            }
+
+            QString svalue = QString::number(map[column].toMap()[row].toDouble());
+
+            QTableWidgetItem* item = new QTableWidgetItem(svalue);
+            int icol = m_columnsNames.key(column);
+
+            m_tableColumns[item] = icol;
+            m_tableRows[item] = irow;
+
+            m_ui->table->setItem(irow, icol, item);
+        }
+    }
 }
 
 ModuleParamTable::~ModuleParamTable()
@@ -86,8 +117,12 @@ void ModuleParamTable::itemChanged(QTableWidgetItem* item)
     }
 }
 
-void ModuleParamTable::setParamValue(int row, int column, double value)
+void ModuleParamTable::setParamValue(int row, int column, double paramValue)
 {
-    // QMap<QString, QVariant> value = m_param->value.toMap();
-    // TODO: do it
+    QMap<QString, QVariant> value = m_param->value.toMap();
+    QString name = m_columnsNames[column];
+    QMap<QString, QVariant> array = value[name].toMap();
+    array[QString::number(row)] = paramValue;
+    value[name] = array;
+    m_param->value = value;
 }
