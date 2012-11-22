@@ -154,6 +154,8 @@ void ModuleParamNodes::removeNodes(QString nodeType)
 void ModuleParamNodes::setParamValue(QVariant value)
 {
     QMap<QString, QVariant> nodes = value.toMap();
-    foreach(QString name, nodes.keys())
+    foreach(QString name, nodes.keys()) {
         addNodeType(name, nodes[name].toInt());
+        removeNodeType(name);
+    }
 }
