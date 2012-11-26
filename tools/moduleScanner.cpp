@@ -11,6 +11,7 @@
 #include <QStringList>
 #include <QLibrary>
 #include <QDebug>
+#include <QSettings>
 
 #include "moduleScanner.h"
 
@@ -36,11 +37,17 @@ void ModuleScanner::scanFile(QString& file)
     QString errorMessage;
 
     ModuleDescriptionRaw moduleDescription = load(file, &errorMessage);
-    if (errorMessage == "")
-        // FIXME: don't send big structure with the signal
-        emit moduleScanSuccess(file, moduleDescription);
-    else
+
+    if (!(errorMessage == ""))
         emit moduleScanError(file, errorMessage);
+
+    QString modulesDirectory = QSettings().value("Modules/Directory").toString();
+    QDir modulesDir(QDir::currentPath() + modulesDirectory);
+
+    QString moduleFile = modulesDir.relativeFilePath(moduleDescription.fileName);
+    moduleDescription.fileName = moduleFile;
+
+    emit moduleScanSuccess(file, moduleDescription);
 
     return;
 }
