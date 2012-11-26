@@ -17,7 +17,7 @@
 ModuleScanner::ModuleScanner(QObject* parent)
     : m_parent(parent)
 {
-    m_moduleFileExtensions << "*.xml";
+    m_moduleFileExtensions << "*.lua";
 }
 
 void ModuleScanner::scanFile(QString& file)
