@@ -143,8 +143,9 @@ void MainWindow::actionScan()
     connect(&scanner, SIGNAL(moduleScanSuccess(QString, ModuleDescriptionRaw)),
             &storage, SLOT(moduleScanSuccess(QString, ModuleDescriptionRaw)));
 
-    // FIXME: get directory from preferences
-    QString modulesDir = QDir::currentPath() + "/modules/";
+    QSettings settings;
+    QString modulesDirectory = settings.value("Modules/Directory").toString();
+    QString modulesDir = QDir::currentPath() + modulesDirectory;
     scanner.scanDir(modulesDir);
 }
 

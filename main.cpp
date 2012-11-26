@@ -8,6 +8,14 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
+    QCoreApplication::setOrganizationName("wsnsim");
+    QCoreApplication::setApplicationName("projecteditor");
+
+    QSettings settings;
+
+    if(!settings.contains("Modules/Directory"))
+        settings.setValue("Modules/Directory", "/modules/");
+
     QTranslator translator_qt;
     QTranslator translator_postprocessor;
 
