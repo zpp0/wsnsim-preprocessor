@@ -75,14 +75,14 @@ void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module, ModuleData* module
 {
     qDebug() << "enabled" << module->name;
 
-    m_enabledModules += module;
-    m_modulesPairs[module] = moduleData;
-
     foreach(DependenciesPage* page, m_dependencies.values())
         page->moduleEnabled(module);
 
     createParamsPage(module, moduleData, withParams);
     createDependenciesPage(module, moduleData, withParams);
+
+    m_enabledModules += module;
+    m_modulesPairs[module] = moduleData;
 
     emit moduleEnable(module);
 }
@@ -95,12 +95,12 @@ void ModulesPage::moduleDisabled(ModuleDescriptionRaw* module)
     ProjectStorage& project = ProjectStorage::instance();
     project.removeModule(moduleData);
 
+    foreach(DependenciesPage* page, m_dependencies.values())
+        page->moduleDisabled(module);
+
     m_enabledModules.removeOne(module);
     deleteParamsPage(module);
     deleteDependenciesPage(module);
-
-    foreach(DependenciesPage* page, m_dependencies.values())
-        page->moduleDisabled(module);
 
     emit moduleDisable(module);
 }
@@ -126,6 +126,9 @@ void ModulesPage::deleteParamsPage(ModuleDescriptionRaw* module)
 void ModulesPage::createDependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps)
 {
     DependenciesPage* page = new DependenciesPage(module, moduleData, withDeps);
+    foreach(ModuleDescriptionRaw* module, m_enabledModules)
+        page->moduleEnabled(module);
+
     m_dependencies[module] = page;
 
     QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(module->name, m_dependenciesTreeElement);
