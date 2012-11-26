@@ -73,6 +73,7 @@ void ModuleParamNodes::addNodeType(QString nodeType, int number)
     m_ui->t_nodes->setCellWidget(row, 1, nodeSpinBox);
 
     m_nodeTypesRows[nodeType] = row;
+    m_nodeTypes += nodeType;
 
     nodeSpinBox->setValue(number);
 }
@@ -96,16 +97,24 @@ void ModuleParamNodes::setNodes(QString nodeType, int number)
 
 void ModuleParamNodes::addNodeType(QString name)
 {
+    if (m_nodeTypes.contains(name))
+        return;
+
     if ((m_ui->cb_nodeType->count() == 1)
         && (m_ui->cb_nodeType->currentText() == m_dummyNodeType))
         removeDummyNodeType();
 
     m_ui->cb_nodeType->addItem(name);
+    m_nodeTypes += name;
 }
 
 void ModuleParamNodes::removeNodeType(QString name)
 {
-    m_ui->cb_nodeType->removeItem(m_ui->cb_nodeType->findText(name));
+    int index = m_ui->cb_nodeType->findText(name, Qt::MatchFixedString);
+    if (index != -1 && m_nodeTypes.contains(name)) {
+        m_ui->cb_nodeType->removeItem(index);
+        m_nodeTypes.removeOne(name);
+    }
 
     if (m_ui->cb_nodeType->count() == 0)
         addDummyNodeType();
@@ -148,6 +157,8 @@ void ModuleParamNodes::removeNodes(QString nodeType)
     m_ui->t_nodes->removeCellWidget(row, 1);
     m_ui->t_nodes->removeRow(row);
 
+    m_nodeTypes.removeOne(nodeType);
+
     addNodeType(nodeType);
 }
 
@@ -155,7 +166,7 @@ void ModuleParamNodes::setParamValue(QVariant value)
 {
     QMap<QString, QVariant> nodes = value.toMap();
     foreach(QString name, nodes.keys()) {
-        addNodeType(name, nodes[name].toInt());
         removeNodeType(name);
+        addNodeType(name, nodes[name].toInt());
     }
 }

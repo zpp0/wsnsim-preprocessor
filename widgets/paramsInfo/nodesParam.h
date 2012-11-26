@@ -49,6 +49,7 @@ private:
     QString m_dummyNodeType;
     // nodeTypeName -> row
     QMap<QString, int> m_nodeTypesRows;
+    QList<QString> m_nodeTypes;
 };
 
 #endif // NODESPARAM_H
