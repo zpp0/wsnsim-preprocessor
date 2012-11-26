@@ -46,9 +46,10 @@ void ProjectScanner::scanFile(QString& file)
     emit setKeywords(m_project.projectInfo.keywords.join(" "));
     emit setTitle(m_project.projectInfo.projectTitle);
 
+    foreach(ModuleData module, m_project.modules)
+        emit addModule(module);
+
     foreach(NodeTypeData nodeType, m_project.nodeTypes)
         emit addNodeType(nodeType);
 
-    foreach(ModuleData module, m_project.modules)
-        emit addModule(module);
 }
