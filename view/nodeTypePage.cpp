@@ -63,7 +63,7 @@ void NodeTypePage::newModule(quint16 moduleID)
     ProjectStorage& storage = ProjectStorage::instance();
     ModuleDescriptionRaw* module = storage.getModule(moduleID);
     addModule_toTable(module);
-    int index = m_indexes.key(module, -1);
+    int index = m_indexes.indexOf(module);
     if (index != -1)
         removeModule_fromCombobox(index);
 }
@@ -79,18 +79,17 @@ bool NodeTypePage::isNodeModule(ModuleDescriptionRaw* module)
 
 void NodeTypePage::addModule_toCombobox(ModuleDescriptionRaw* module)
 {
-    int count = m_ui->cb_modules->count();
-    m_indexes[count] = module;
+    m_indexes += module;
     m_ui->cb_modules->addItem(module->name);
 }
 
 void NodeTypePage::removeModule(ModuleDescriptionRaw* module)
 {
-    int index = m_indexes.key(module, -1);
+    int index = m_indexes.indexOf(module);
     if (index != -1)
         removeModule_fromCombobox(index);
 
-    int row = m_nodeType.key(module, -1);
+    int row = m_nodeType.indexOf(module);
     if (row != -1)
         removeModule_fromTable(row);
 }
@@ -98,8 +97,10 @@ void NodeTypePage::removeModule(ModuleDescriptionRaw* module)
 void NodeTypePage::addModule_toTable_fromCombobox()
 {
     int index = m_ui->cb_modules->currentIndex();
-    addModule_toTable(m_indexes[index]);
-    removeModule_fromCombobox(index);
+    if (index != -1) {
+        addModule_toTable(m_indexes[index]);
+        removeModule_fromCombobox(index);
+    }
 }
 
 void NodeTypePage::addModule_toTable(ModuleDescriptionRaw* module)
@@ -115,7 +116,7 @@ void NodeTypePage::addModule_toTable(ModuleDescriptionRaw* module)
     m_ui->t_modules->setItem(row, 2, new QTableWidgetItem(module->description));
 
     m_nodeTypesModules += module;
-    m_nodeType[row] = module;
+    m_nodeType += module;
 
     ProjectStorage& storage = ProjectStorage::instance();
     storage.setNodeType(m_name, m_nodeTypesModules);
@@ -146,7 +147,7 @@ void NodeTypePage::removeModule_fromTable(int row)
 {
     ModuleDescriptionRaw* module = m_nodeType[row];
     m_ui->t_modules->removeRow(row);
-    m_nodeType.remove(row);
+    m_nodeType.removeAt(row);
     m_nodeTypesModules.removeAll(module);
 
     ProjectStorage& storage = ProjectStorage::instance();
@@ -156,5 +157,5 @@ void NodeTypePage::removeModule_fromTable(int row)
 void NodeTypePage::removeModule_fromCombobox(int index)
 {
     m_ui->cb_modules->removeItem(index);
-    m_indexes.remove(index);
+    m_indexes.removeAt(index);
 }

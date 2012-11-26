@@ -56,10 +56,10 @@ private:
     QList<ModuleDescriptionRaw*> m_nodeTypesModules;
 
     // combobox index -> module
-    QMap<int, ModuleDescriptionRaw*> m_indexes;
+    QList<ModuleDescriptionRaw*> m_indexes;
 
     // table row -> module
-    QMap<int, ModuleDescriptionRaw*> m_nodeType;
+    QList<ModuleDescriptionRaw*> m_nodeType;
 
     Ui::NodeTypePage *m_ui;
 };
