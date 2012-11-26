@@ -7,6 +7,16 @@ int main(int argc, char *argv[])
     // Q_INIT_RESOURCE(configdialog);
 
     QApplication app(argc, argv);
+
+    QTranslator translator_qt;
+    QTranslator translator_postprocessor;
+
+    translator_qt.load(":/languages/qt.qm");
+    translator_postprocessor.load(":/languages/preprocessor.qm");
+
+    app.installTranslator(&translator_qt);
+    app.installTranslator(&translator_postprocessor);
+
     MainWindow w;
     w.show();
     if (argc == 2)

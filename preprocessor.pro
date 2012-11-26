@@ -80,3 +80,11 @@ SOURCES += main.cpp \
            widgets/paramsInfo/tableParam.cpp \
            widgets/paramsInfo/timeParam.cpp \
            widgets/paramsInfo/fileParam.cpp
+RESOURCES += res/preprocessor.qrc
+TRANSLATIONS = res/languages/preprocessor_en.ts \
+               res/languages/preprocessor_ru.ts \
+               res/languages/qt_en.ts \
+               res/languages/qt_ru.ts
+tr.commands = lrelease $$_PRO_FILE_
+QMAKE_EXTRA_TARGETS += tr
+POST_TARGETDEPS += tr
