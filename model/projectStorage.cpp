@@ -109,7 +109,7 @@ ModuleData* ProjectStorage::addModule(ModuleDescriptionRaw* moduleRaw)
     ModuleData module;
     module.moduleInfo["name"] = moduleRaw->name;
     module.moduleInfo["ID"] = QString::number(m_newModuleID);
-    module.moduleInfo["UUID"] = moduleRaw->UUID;
+    module.moduleInfo["type"] = moduleRaw->type;
     module.fileName = moduleRaw->fileName;
 
     return addModule(module, moduleRaw);
@@ -129,7 +129,7 @@ ModuleData* ProjectStorage::addModule(ModuleData module, ModuleDescriptionRaw* m
         event.eventInfo["ID"] = QString::number(i);
         event.eventInfo["moduleID"] = QString::number(m_newModuleID);
 
-        QList<ModuleEventArgumentRaw> arguments = eventsRaw[i].arguments;
+        QList<ModuleEventParamRaw> arguments = eventsRaw[i].params;
         for (int j = 0; j < arguments.size(); j++) {
             EventArgument arg;
             arg["ID"] = QString::number(arguments[j].ID);
@@ -174,7 +174,7 @@ ModuleDependence* ProjectStorage::addModuleDependence(ModuleData* module)
 void ProjectStorage::addModule(ModuleData moduleData)
 {
     ModulesStorage& storage = ModulesStorage::instance();
-    ModuleDescriptionRaw* moduleRaw = storage.getDescription(moduleData.moduleInfo["UUID"]);;
+    ModuleDescriptionRaw* moduleRaw = storage.getDescription(moduleData.fileName);
 
     if (moduleRaw) {
         ModuleData* newModuleData = addModule(moduleData, moduleRaw);

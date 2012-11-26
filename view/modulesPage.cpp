@@ -148,7 +148,7 @@ void ModulesPage::newModule(ModuleData* moduleData)
 {
     ModulesStorage& storage = ModulesStorage::instance();
 
-    ModuleDescriptionRaw* module = storage.getDescription(moduleData->moduleInfo["UUID"]);
+    ModuleDescriptionRaw* module = storage.getDescription(moduleData->fileName);
     if (module) {
         moduleEnabled(module, moduleData, false);
         m_modulesInfo->enableModuleInfo(module);

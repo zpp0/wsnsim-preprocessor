@@ -24,7 +24,7 @@ public:
         return instance;
     }
 
-    ModuleDescriptionRaw* getDescription(QString Uuid);
+    ModuleDescriptionRaw* getDescription(QString fileName);
 
 signals:
     void registerModule(ModuleDescriptionRaw* module);

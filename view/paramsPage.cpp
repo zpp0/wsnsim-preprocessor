@@ -29,7 +29,7 @@ ParamsPage::ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, boo
     m_moduleData = moduleData;
 
     setTitle(m_module->name);
-    m_ui->l_description->setText(m_module->shortDescription);
+    m_ui->l_description->setText(m_module->description);
 
     m_ui->paramsList->setDirection(QBoxLayout::BottomToTop);
 

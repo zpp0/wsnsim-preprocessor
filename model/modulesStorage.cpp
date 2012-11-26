@@ -14,10 +14,10 @@ void ModulesStorage::moduleScanSuccess(QString file, ModuleDescriptionRaw module
     emit registerModule(&m_modules.last());
 }
 
-ModuleDescriptionRaw* ModulesStorage::getDescription(QString Uuid)
+ModuleDescriptionRaw* ModulesStorage::getDescription(QString fileName)
 {
     for (int i = 0; i < m_modules.size(); i++)
-        if (m_modules[i].UUID == Uuid)
+        if (m_modules[i].fileName == fileName)
             return &(m_modules[i]);
 
     return NULL;
