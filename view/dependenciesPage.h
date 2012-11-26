@@ -37,6 +37,7 @@ private:
     ModuleDescriptionRaw* m_module;
     ModuleData* m_moduleData;
 
+    QList<ModuleDescriptionRaw*> m_modules;
     QList<InterfaceInfo*> m_interfaces;
 
     Ui::DependenciesPage *m_ui;

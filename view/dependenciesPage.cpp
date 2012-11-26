@@ -36,17 +36,25 @@ DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* mod
 void DependenciesPage::createDependence(ModuleDescriptionRaw* module, ModuleDependence* dependence)
 {
     InterfaceInfo* interface = new InterfaceInfo(module, dependence);
+    foreach(ModuleDescriptionRaw* module, m_modules)
+        interface->moduleEnabled(module);
+
     m_ui->layout->insertWidget(0, interface);
+    m_interfaces += interface;
 }
 
 void DependenciesPage::moduleEnabled(ModuleDescriptionRaw* module)
 {
+    m_modules += module;
+
     foreach(InterfaceInfo* interface, m_interfaces)
         interface->moduleEnabled(module);
 }
 
 void DependenciesPage::moduleDisabled(ModuleDescriptionRaw* module)
 {
+    m_modules.removeOne(module);
+
     foreach(InterfaceInfo* interface, m_interfaces)
         interface->moduleDisabled(module);
 }
