@@ -27,6 +27,8 @@ public:
     InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependence* dependence);
     virtual ~InterfaceInfo();
 
+    void setValue(quint16 moduleID);
+
 public slots:
     void moduleEnabled(ModuleDescriptionRaw* module);
     void moduleDisabled(ModuleDescriptionRaw* module);
@@ -38,16 +40,15 @@ private:
 
     void isValidDependence(ModuleDescriptionRaw* module);
 
-    // TODO: implement this
-    // void removeDependence(QString moduleName, quint16 moduleID);
-    void addValidDependence(QString moduleName, quint16 moduleID);
-
-    QList<ModuleDescriptionRaw*> m_possibleDependencies;
+    void addValidDependence(QString moduleName);
 
     ModuleDependence* m_dependence;
     ModuleDescriptionRaw* m_module;
 
-    QMap<int, int> m_dependencies;
+    bool m_valueFromProject;
+
+    QList<int> m_dependencies;
+    QList<ModuleDescriptionRaw*> m_modules;
 
     Ui::InterfaceInfo* m_ui;
 };

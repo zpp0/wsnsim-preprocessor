@@ -20,18 +20,32 @@ InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependence* dep
 
     m_ui->l_name->setText(m_dependence->name);
 
+    m_valueFromProject = false;
+
     connect(m_ui->cb_modules, SIGNAL(activated(int)),
             this, SLOT(setDependence(int)));
 }
 
+void InterfaceInfo::setValue(quint16 moduleID)
+{
+    m_valueFromProject = true;
+    ProjectStorage& storage = ProjectStorage::instance();
+    ModuleDescriptionRaw* depModule = storage.getModule(moduleID);
+
+    int index = m_modules.indexOf(depModule);
+    setDependence(index);
+}
+
 void InterfaceInfo::moduleEnabled(ModuleDescriptionRaw* module)
 {
-    m_possibleDependencies += module;
+    isValidDependence(module);
 }
 
 void InterfaceInfo::moduleDisabled(ModuleDescriptionRaw* module)
 {
-    m_possibleDependencies.removeOne(module);
+    int index = m_modules.indexOf(module);
+    m_ui->cb_modules->removeItem(index);
+    m_modules.removeAt(index);
 }
 
 void InterfaceInfo::isValidDependence(ModuleDescriptionRaw* module)
@@ -39,24 +53,26 @@ void InterfaceInfo::isValidDependence(ModuleDescriptionRaw* module)
     if (module->type == m_dependence->type) {
         // TODO: check for the interface compatibility
 
-        ProjectStorage& storage = ProjectStorage::instance();
-        quint16 moduleID = storage.getModuleID(module);
+        m_modules += module;
 
-        addValidDependence(module->name, moduleID);
+        addValidDependence(module->name);
     }
 }
 
-void InterfaceInfo::addValidDependence(QString moduleName, quint16 moduleID)
+void InterfaceInfo::addValidDependence(QString moduleName)
 {
-    int count = m_ui->cb_modules->count();
     m_ui->cb_modules->addItem(moduleName);
-    m_dependencies[count+1] = moduleID;
+    if (!m_valueFromProject)
+        setDependence(m_ui->cb_modules->count() - 1);
 }
 
 void InterfaceInfo::setDependence(int index)
 {
     if (m_ui->cb_modules->currentText() != "") {
-        int moduleID = m_dependencies[index];
+        ModuleDescriptionRaw* module = m_modules[index];
+        ProjectStorage& storage = ProjectStorage::instance();
+        quint16 moduleID = storage.getModuleID(module);
+
         m_dependence->moduleID = moduleID;
     }
 }
