@@ -77,8 +77,8 @@ void ModuleParamTable::createNodes(int number, int from)
 void ModuleParamTable::setParamValue(QVariant value)
 {
     QMap<QString, QVariant> map = value.toMap();
-    foreach(QString column, map.keys()) {
-        foreach(QString row, map[column].toMap().keys()) {
+    foreach(QString row, map.keys()) {
+        foreach(QString column, map[row].toMap().keys()) {
             int irow = row.toInt();
 
             int rows = m_ui->table->rowCount();
@@ -89,7 +89,7 @@ void ModuleParamTable::setParamValue(QVariant value)
                     m_ui->table->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
             }
 
-            QString svalue = QString::number(map[column].toMap()[row].toDouble());
+            QString svalue = QString::number(map[row].toMap()[column].toDouble());
 
             QTableWidgetItem* item = new QTableWidgetItem(svalue);
             int icol = m_columnsNames.key(column);
@@ -120,9 +120,10 @@ void ModuleParamTable::itemChanged(QTableWidgetItem* item)
 void ModuleParamTable::setParamValue(int row, int column, double paramValue)
 {
     QMap<QString, QVariant> value = m_param->value.toMap();
+    QString rowName = QString::number(row);
     QString name = m_columnsNames[column];
-    QMap<QString, QVariant> array = value[name].toMap();
-    array[QString::number(row)] = paramValue;
-    value[name] = array;
+    QMap<QString, QVariant> array = value[rowName].toMap();
+    array[name] = paramValue;
+    value[rowName] = array;
     m_param->value = value;
 }
