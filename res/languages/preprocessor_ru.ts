@@ -159,41 +159,45 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="208"/>
-        <source>Preferences</source>
+        <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="43"/>
+        <source>Preferences</source>
+        <translation type="obsolete">Настройки</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.cpp" line="44"/>
         <source>Project information</source>
         <translation>Параметры прокта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="44"/>
+        <location filename="../../view/mainwindow.cpp" line="45"/>
         <source>Simulator params</source>
         <translation>Параметры симулятора</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="45"/>
+        <location filename="../../view/mainwindow.cpp" line="46"/>
         <source>Modules</source>
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="46"/>
+        <location filename="../../view/mainwindow.cpp" line="47"/>
         <source>Node Types</source>
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="167"/>
+        <location filename="../../view/mainwindow.cpp" line="172"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="222"/>
+        <location filename="../../view/mainwindow.cpp" line="227"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="225"/>
+        <location filename="../../view/mainwindow.cpp" line="230"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
     </message>
@@ -334,7 +338,7 @@
     <message>
         <location filename="../../view/nodeTypesPage.ui" line="36"/>
         <source>add</source>
-        <translation type="unfinished">Добавить</translation>
+        <translation>Добавить</translation>
     </message>
     <message>
         <location filename="../../view/nodeTypesPage.cpp" line="121"/>
@@ -423,6 +427,34 @@
     </message>
 </context>
 <context>
+    <name>Settings</name>
+    <message>
+        <location filename="../../settings/settings.ui" line="14"/>
+        <source>Settings</source>
+        <translation>Настройки</translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.ui" line="33"/>
+        <source>Modules</source>
+        <translation>Модули</translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.ui" line="39"/>
+        <source>Directory</source>
+        <translation>Директория</translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.ui" line="46"/>
+        <source>browse...</source>
+        <translation>обзор...</translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.cpp" line="62"/>
+        <source>Open Directory</source>
+        <translation>Выбрать директорию</translation>
+    </message>
+</context>
+<context>
     <name>SimulatorParams</name>
     <message>
         <location filename="../../view/simulatorParams.ui" line="14"/>
@@ -442,7 +474,7 @@
     <message>
         <location filename="../../view/simulatorParams.ui" line="88"/>
         <source>microsecond(s)</source>
-        <translation type="unfinished">микросекунд(ы)</translation>
+        <translation>микросекунд(ы)</translation>
     </message>
     <message>
         <location filename="../../view/simulatorParams.ui" line="93"/>
@@ -521,47 +553,47 @@
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="68"/>
         <source>microsecond(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">микросекунд(ы)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="73"/>
         <source>millisecond(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">миллисекунд(ы)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="78"/>
         <source>second(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">секунд(ы)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="83"/>
         <source>minute(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">минут(ы)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="88"/>
         <source>hour(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">час(ов)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="93"/>
         <source>day(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">дней</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="98"/>
         <source>week(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">недель</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="103"/>
         <source>month(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">месяц(ев)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="108"/>
         <source>year(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">год(ы)</translation>
     </message>
 </context>
 </TS>

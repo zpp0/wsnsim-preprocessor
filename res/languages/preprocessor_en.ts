@@ -159,41 +159,45 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="208"/>
-        <source>Preferences</source>
-        <translation>Preferences</translation>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="43"/>
+        <source>Preferences</source>
+        <translation type="obsolete">Preferences</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.cpp" line="44"/>
         <source>Project information</source>
         <translation>Project information</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="44"/>
+        <location filename="../../view/mainwindow.cpp" line="45"/>
         <source>Simulator params</source>
         <translation>Simulator params</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="45"/>
+        <location filename="../../view/mainwindow.cpp" line="46"/>
         <source>Modules</source>
         <translation>Modules</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="46"/>
+        <location filename="../../view/mainwindow.cpp" line="47"/>
         <source>Node Types</source>
         <translation>Node Types</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="167"/>
+        <location filename="../../view/mainwindow.cpp" line="172"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="222"/>
+        <location filename="../../view/mainwindow.cpp" line="227"/>
         <source>Save XML Project file</source>
         <translation>Save XML Project file</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="225"/>
+        <location filename="../../view/mainwindow.cpp" line="230"/>
         <source>XML Project file (*.xml)</source>
         <translatorcomment>XML Файл проекта (*.xml)</translatorcomment>
         <translation>XML Project file (*.xml)</translation>
@@ -424,6 +428,34 @@
     </message>
 </context>
 <context>
+    <name>Settings</name>
+    <message>
+        <location filename="../../settings/settings.ui" line="14"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.ui" line="33"/>
+        <source>Modules</source>
+        <translation type="unfinished">Modules</translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.ui" line="39"/>
+        <source>Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.ui" line="46"/>
+        <source>browse...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../settings/settings.cpp" line="62"/>
+        <source>Open Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SimulatorParams</name>
     <message>
         <location filename="../../view/simulatorParams.ui" line="14"/>
@@ -522,47 +554,47 @@
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="68"/>
         <source>microsecond(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">microsecond(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="73"/>
         <source>millisecond(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">millisecond(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="78"/>
         <source>second(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">second(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="83"/>
         <source>minute(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">minute(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="88"/>
         <source>hour(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">hour(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="93"/>
         <source>day(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">day(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="98"/>
         <source>week(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">week(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="103"/>
         <source>month(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">month(s)</translation>
     </message>
     <message>
         <location filename="../../widgets/paramsInfo/timeParam.ui" line="108"/>
         <source>year(s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">year(s)</translation>
     </message>
 </context>
 </TS>
