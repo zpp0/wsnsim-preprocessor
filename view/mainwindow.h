@@ -60,6 +60,8 @@ private slots:
     // выйти
     void actionQuit();
 
+    void actionSettings();
+
     // scan for modules
     void actionScan();
 };

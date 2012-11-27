@@ -15,6 +15,7 @@
 #include "projectScanner.h"
 
 #include "model/modulesStorage.h"
+#include "settings.h"
 
 MainWindow::MainWindow() :
     m_ui(new Ui::MainWindow)
@@ -107,6 +108,9 @@ MainWindow::MainWindow() :
 
     connect(m_ui->actionSaveAs, SIGNAL(triggered()),
             this, SLOT(actionSaveAs()));
+
+    connect(m_ui->actionSettings, SIGNAL(triggered()),
+            this, SLOT(actionSettings()));
 
     connect(m_ui->actionQuit, SIGNAL(triggered()),
             this, SLOT(actionQuit()));
@@ -233,6 +237,12 @@ void MainWindow::actionSaveAs()
         ProjectStorage& project = ProjectStorage::instance();
         project.saveXML(m_projectFileName);
     }
+}
+
+void MainWindow::actionSettings()
+{
+    Settings settings;
+    settings.exec();
 }
 
 void MainWindow::actionQuit()
