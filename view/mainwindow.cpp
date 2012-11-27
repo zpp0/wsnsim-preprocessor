@@ -147,7 +147,7 @@ void MainWindow::actionScan()
     connect(&scanner, SIGNAL(moduleScanSuccess(QString, ModuleDescriptionRaw)),
             &storage, SLOT(moduleScanSuccess(QString, ModuleDescriptionRaw)));
 
-    QSettings settings;
+    QSettings settings("wsnsim", "simulator");
     QString modulesDirectory = settings.value("Modules/Directory").toString();
     QString modulesDir = QDir::currentPath() + modulesDirectory;
     scanner.scanDir(modulesDir);

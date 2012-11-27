@@ -37,7 +37,7 @@ QString Settings::setRelativeDirectory(QString directory)
 
 void Settings::showCurrentSettings()
 {
-    QString directory = QSettings().value("Modules/Directory").toString();
+    QString directory = QSettings("wsnsim", "simulator").value("Modules/Directory").toString();
     m_ui->le_directory->setText(directory);
 }
 
@@ -45,7 +45,8 @@ void Settings::saveSettings()
 {
     QString directory = m_ui->le_directory->text();
 
-    QSettings().setValue("Modules/Directory", directory);
+    QSettings settings("wsnsim", "simulator");
+    settings.setValue("Modules/Directory", directory);
 }
 
 void Settings::buttonClicked(QAbstractButton *button)

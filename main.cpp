@@ -11,10 +11,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("wsnsim");
     QCoreApplication::setApplicationName("projecteditor");
 
-    QSettings settings;
+    QSettings simsettings("wsnsim" "simulator");
 
-    if(!settings.contains("Modules/Directory"))
-        settings.setValue("Modules/Directory", "/modules/");
+    if(!simsettings.contains("Modules/Directory"))
+        simsettings.setValue("Modules/Directory", "/modules/");
 
     QTranslator translator_qt;
     QTranslator translator_postprocessor;

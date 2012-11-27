@@ -4,14 +4,15 @@ TEMPLATE = app
 QT += gui
 CONFIG += console
 INCLUDEPATH += . ../libs/projectData ../libs/moduleData
-DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/paramsInfo widgets
-INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/paramsInfo widgets
+DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/paramsInfo widgets settings
+INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/paramsInfo widgets settings
 
 # Input
 HEADERS += model/modulesStorage.h \
            model/projectStorage.h \
            tools/moduleScanner.h \
            tools/projectScanner.h \
+           settings/settings.h \
            view/mainwindow.h \
            view/modulesPage.h \
            view/paramsPage.h \
@@ -43,6 +44,7 @@ FORMS += view/mainwindow.ui \
          view/simulatorParams.ui \
          view/nodeTypePage.ui \
          view/nodeTypesPage.ui \
+         settings/settings.ui \
          widgets/paramsInfo/doubleParam.ui \
          widgets/paramsInfo/intParam.ui \
          widgets/paramsInfo/stringParam.ui \
@@ -57,6 +59,7 @@ SOURCES += main.cpp \
            model/projectStorage.cpp \
            tools/moduleScanner.cpp \
            tools/projectScanner.cpp \
+           settings/settings.cpp \
            view/mainwindow.cpp \
            view/modulesPage.cpp \
            view/dependenciesPage.cpp \
