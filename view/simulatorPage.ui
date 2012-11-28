@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SimulatorParams</class>
- <widget class="QGroupBox" name="SimulatorParams">
+ <class>SimulatorPage</class>
+ <widget class="QGroupBox" name="SimulatorPage">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>378</width>
+    <width>397</width>
     <height>115</height>
    </rect>
   </property>
