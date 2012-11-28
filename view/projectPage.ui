@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ProjectInfo</class>
- <widget class="QGroupBox" name="ProjectInfo">
+ <class>ProjectPage</class>
+ <widget class="QGroupBox" name="ProjectPage">
   <property name="geometry">
    <rect>
     <x>0</x>
