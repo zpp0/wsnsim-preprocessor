@@ -1,43 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ParamsPage</class>
- <widget class="QGroupBox" name="ParamsPage">
+ <class>ParamsWidget</class>
+ <widget class="QFrame" name="ParamsWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>226</width>
+    <height>156</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>GroupBox</string>
+   <string>Frame</string>
   </property>
-  <property name="title">
-   <string>GroupBox</string>
+  <property name="frameShape">
+   <enum>QFrame::NoFrame</enum>
+  </property>
+  <property name="frameShadow">
+   <enum>QFrame::Raised</enum>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
-    <number>5</number>
+    <number>0</number>
    </property>
-   <item row="1" column="0">
-    <widget class="Line" name="line">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="0">
-    <widget class="QLabel" name="l_description">
-     <property name="text">
-      <string>ModuleDescription</string>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
@@ -62,8 +48,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>320</width>
-        <height>221</height>
+        <width>226</width>
+        <height>156</height>
        </rect>
       </property>
       <property name="sizePolicy">
