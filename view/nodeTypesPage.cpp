@@ -9,6 +9,8 @@
 #include "nodeTypesPage.h"
 #include "ui_nodeTypesPage.h"
 
+#include "nodesStorage.h"
+
 NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
     :m_ui(new Ui::NodeTypesPage)
 {
@@ -27,41 +29,9 @@ NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectT
             this, SLOT(customContextMenuRequested(const QPoint &)));
 }
 
-NodeTypesPage::~NodeTypesPage()
-{
-    delete m_ui;
-}
-
-void NodeTypesPage::newNodeType(NodeTypeData* nodeType)
-{
-    createNodeTypePage(nodeType->name);
-    NodeTypePage* page = m_nodeTypes[nodeType->name];
-
-    for (int i = 0; i < nodeType->hardwareModules.size(); i++)
-        page->newModule(nodeType->hardwareModules[i]);
-    for (int i = 0; i < nodeType->softwareModules.size(); i++)
-        page->newModule(nodeType->softwareModules[i]);
-}
-
-void NodeTypesPage::moduleEnabled(ModuleDescriptionRaw* module)
-{
-    m_modules += module;
-
-    foreach(NodeTypePage* page, m_nodeTypes.values())
-        page->moduleEnabled(module);
-}
-
-void NodeTypesPage::moduleDisabled(ModuleDescriptionRaw* module)
-{
-    m_modules.removeOne(module);
-
-    foreach(NodeTypePage* page, m_nodeTypes.values())
-        page->moduleDisabled(module);
-}
-
 void NodeTypesPage::createNodeTypePage(QString nodeTypeName)
 {
-    NodeTypePage* page = new NodeTypePage(nodeTypeName, m_modules);
+    NodeTypePage* page = new NodeTypePage(nodeTypeName);
 
     m_nodeTypes[nodeTypeName] = page;
     m_nodeTypesNames += nodeTypeName;
@@ -70,6 +40,8 @@ void NodeTypesPage::createNodeTypePage(QString nodeTypeName)
 
     QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(nodeTypeName, m_selfTreeElement);
     m_projectTree->addPage(ti_page, page);
+
+    NodesStorage::instance().addNodeType(nodeTypeName);
 }
 
 void NodeTypesPage::createNodeTypePage()
@@ -81,23 +53,20 @@ void NodeTypesPage::createNodeTypePage()
 
 void NodeTypesPage::deleteNodeTypePage(QListWidgetItem* nodeTypeItem)
 {
+    // TODO: check if user change params
     QString nodeTypeName = nodeTypeItem->text();
 
-    deleteNodeTypePage(nodeTypeName);
-
-    m_ui->list_nodeTypes->removeItemWidget(nodeTypeItem);
-    delete nodeTypeItem;
-}
-
-void NodeTypesPage::deleteNodeTypePage(QString nodeTypeName)
-{
-    // TODO: check if user change params
     NodeTypePage* page = m_nodeTypes[nodeTypeName];
     m_nodeTypes.remove(nodeTypeName);
 
     m_projectTree->removePage(page);
 
     delete page;
+
+    m_ui->list_nodeTypes->removeItemWidget(nodeTypeItem);
+    delete nodeTypeItem;
+
+    NodesStorage::instance().removeNodeType(nodeTypeName);
 }
 
 void NodeTypesPage::isNewNodeTypeName(QString name)
@@ -126,9 +95,36 @@ void NodeTypesPage::customContextMenuRequested(const QPoint &p)
         deleteNodeTypePage(nt_name);
 }
 
-void NodeTypesPage::clean()
+QList<NodeTypeData> NodeTypesPage::getNodeTypes()
 {
-    foreach(QString name, m_nodeTypesNames)
-        deleteNodeTypePage(name);
+    QList<NodeTypeData> nodeTypes;
+
+    foreach(NodeTypePage* nodeTypePage, m_nodeTypes.values())
+        nodeTypes += nodeTypePage->getNodeType();
+
+    return nodeTypes;
+}
+
+void NodeTypesPage::setNodeTypes(QList<NodeTypeData> nodeTypes)
+{
+    foreach(NodeTypeData nodeType, nodeTypes) {
+        createNodeTypePage(nodeType.name);
+        m_nodeTypes[nodeType.name]->setNodeType(nodeType);
+    }
+}
+
+void NodeTypesPage::clear()
+{
+    foreach(QString name, m_nodeTypesNames) {
+        QList<QListWidgetItem*> items = m_ui->list_nodeTypes->findItems(name, Qt::MatchFixedString);
+        foreach(QListWidgetItem* item, items)
+            deleteNodeTypePage(item);
+    }
+
     m_ui->list_nodeTypes->clear();
+}
+
+NodeTypesPage::~NodeTypesPage()
+{
+    delete m_ui;
 }

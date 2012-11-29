@@ -27,19 +27,18 @@ class NodeTypePage : public QGroupBox
     Q_OBJECT
 
 public:
-    NodeTypePage(QString name, QList<ModuleDescriptionRaw*> modules);
+    NodeTypePage(QString name);
     virtual ~NodeTypePage();
 
-    void moduleEnabled(ModuleDescriptionRaw* module);
-    void moduleDisabled(ModuleDescriptionRaw* module);
+    NodeTypeData getNodeType();
+    void setNodeType(NodeTypeData nodeType);
 
-    void newModule(quint16 moduleID);
+public slots:
+    void moduleEnabled(ModuleDescriptionRaw* module, bool enabled);
 
 private slots:
 
     void customContextMenuRequested(const QPoint &p);
-    // void removeModule(int row);
-
     void addModule_toTable_fromCombobox();
 private:
 
@@ -52,8 +51,6 @@ private:
     void removeModule_fromCombobox(int index);
 
     QString m_name;
-    // module -> moduleID
-    QList<ModuleDescriptionRaw*> m_nodeTypesModules;
 
     // combobox index -> module
     QList<ModuleDescriptionRaw*> m_indexes;
