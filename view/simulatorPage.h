@@ -1,35 +1,36 @@
-#ifndef SIMULATORPARAMS_H
-#define SIMULATORPARAMS_H
+/**
+ *
+ * File: simulatorPage.h
+ * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
+ *
+ **/
+
+#ifndef SIMULATORPAGE_H
+#define SIMULATORPAGE_H
 
 #include <QGroupBox>
 
 #include "projectParams.h"
 
 namespace Ui {
-    class SimulatorParams;
+    class SimulatorPage;
 }
 
-class SimulatorParamsPage : public QGroupBox
+class SimulatorPage : public QGroupBox
 {
     Q_OBJECT
 
 public:
-    SimulatorParamsPage();
-    virtual ~SimulatorParamsPage();
+    SimulatorPage();
+    virtual ~SimulatorPage();
 
-public slots:
-    void setNewFileName(QString fileName);
-    void setNewTimeValue(int time);
-    void setNewTimeUnits(int units);
-    void setNodesTotal(int number);
+    SimulatorParams getParams();
+    void setParams(SimulatorParams params);
 
-private slots:
-    void setFileName(QString fileName);
-    void setTimeValue(int time);
-    void timeUnitsActivated(int units);
+    void clear();
 
 private:
-    Ui::SimulatorParams *m_ui;
+    Ui::SimulatorPage *m_ui;
 };
 
-#endif // SIMULATORPARAMS_H
+#endif // SIMULATORPAGE_H

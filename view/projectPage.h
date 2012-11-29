@@ -1,3 +1,10 @@
+/**
+ *
+ * File: projectPage.h
+ * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
+ *
+ **/
+
 #ifndef PROJECTPAGE_H
 #define PROJECTPAGE_H
 
@@ -6,31 +13,24 @@
 #include "projectParams.h"
 
 namespace Ui {
-    class ProjectInfo;
+    class ProjectPage;
 }
 
-class ProjectInfoPage : public QGroupBox
+class ProjectPage : public QGroupBox
 {
     Q_OBJECT
 
 public:
-    ProjectInfoPage();
-    virtual ~ProjectInfoPage();
+    ProjectPage();
+    virtual ~ProjectPage();
 
-public slots:
-    void setNewAuthor(QString author);
-    void setNewComment(QString comment);
-    void setNewKeywords(QString keyword);
-    void setNewTitle(QString title);
+    ProjectInfo getParams();
+    void setParams(ProjectInfo params);
 
-private slots:
-    void setAuthor(QString author);
-    void setComment(QString comment);
-    void setKeywords(QString keyword);
-    void setTitle(QString title);
+    void clear();
 
 private:
-    Ui::ProjectInfo *m_ui;
+    Ui::ProjectPage *m_ui;
 };
 
 #endif // PROJECTPAGE_H

@@ -1,61 +1,44 @@
-#include "simulatorParams.h"
-#include "ui_simulatorParams.h"
+/**
+ *
+ * File: simulatorPage.cpp
+ * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
+ *
+ **/
 
-#include "projectStorage.h"
+#include "simulatorPage.h"
+#include "ui_simulatorPage.h"
 
-SimulatorParamsPage::SimulatorParamsPage() :
-    m_ui(new Ui::SimulatorParams)
+SimulatorPage::SimulatorPage()
+    : m_ui(new Ui::SimulatorPage)
 {
-    m_ui->setupUi (this);
-
-    connect(m_ui->logFile, SIGNAL(textChanged(QString)),
-            this, SLOT(setFileName(QString)));
-
-    connect(m_ui->maxTime, SIGNAL(valueChanged(int)),
-            this, SLOT(setTimeValue(int)));
-    connect(m_ui->cb_timeUnits, SIGNAL(currentIndexChanged(int)),
-            this, SLOT(timeUnitsActivated(int)));
+    m_ui->setupUi(this);
 }
 
-SimulatorParamsPage::~SimulatorParamsPage()
+SimulatorParams SimulatorPage::getParams()
+{
+    SimulatorParams params;
+    params.logFile = m_ui->logFile->text();
+    params.maxTime = m_ui->maxTime->value();
+    params.timeUnits = (TimeUnits)m_ui->cb_timeUnits->currentIndex();
+
+    return params;
+}
+
+void SimulatorPage::setParams(SimulatorParams params)
+{
+    m_ui->logFile->setText(params.logFile);
+    m_ui->maxTime->setValue(params.maxTime);
+    m_ui->cb_timeUnits->setCurrentIndex(params.timeUnits);
+}
+
+void SimulatorPage::clear()
+{
+    m_ui->logFile->setText("");
+    m_ui->maxTime->setValue(0);
+    m_ui->cb_timeUnits->setCurrentIndex(0);
+}
+
+SimulatorPage::~SimulatorPage()
 {
     delete m_ui;
-}
-
-void SimulatorParamsPage::setTimeValue(int time)
-{
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setMaxTime(time);
-}
-
-void SimulatorParamsPage::timeUnitsActivated(int units)
-{
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setTimeUnits((TimeUnits)units);
-}
-
-void SimulatorParamsPage::setFileName(QString value)
-{
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setFileName(value);
-}
-
-void SimulatorParamsPage::setNodesTotal(int number)
-{
-    m_ui->sb_nodes->setValue(number);
-}
-
-void SimulatorParamsPage::setNewFileName(QString fileName)
-{
-    m_ui->logFile->setText(fileName);
-}
-
-void SimulatorParamsPage::setNewTimeValue(int time)
-{
-    m_ui->maxTime->setValue(time);
-}
-
-void SimulatorParamsPage::setNewTimeUnits(int units)
-{
-    m_ui->cb_timeUnits->setCurrentIndex(units);
 }
