@@ -1,15 +1,18 @@
 /**
  *
- * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
  * File: modulePage.h
+ * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
  *
  **/
 
 #ifndef MODULEPAGE_H
-#define MODULEPAGE_H 1
+#define MODULEPAGE_H
 
-#include "paramsPage.h"
-#include "dependenciesPage.h"
+#include "projectParams.h"
+#include "moduleParams.h"
+
+#include "paramsWidget.h"
+#include "dependenciesWidget.h"
 
 namespace Ui {
     class ModulePage;
@@ -19,28 +22,20 @@ class ModulePage : public QGroupBox
 {
     Q_OBJECT
 public:
-    ModulePage();
+    ModulePage(ModuleDescriptionRaw* module);
     virtual ~ModulePage();
 
-    QMap<ModuleParamRaw*, QVariant> getParams();
-    QMap<QString, ModuleDescriptionRaw*> getDependencies();
+    ModuleData getModule();
+    void setModule(ModuleData module);
 
-public slots:
-    void moduleEnabled(ModuleDescriptionRaw* module);
-    void moduleDisabled(ModuleDescriptionRaw* module);
-
-    void setModuleParam(ModuleParamRaw* param, QVariant value);
-    void setModuleDependence(ModuleDependRaw* dependence, ModuleDescriptionRaw* depModule);
+    QList<EventParams> getEvents();
+    void setEvents(QList<EventParams>);
 
 private:
-    void createParamsPage(ModuleDescriptionRaw* module);
-    void deleteParamsPage(ModuleDescriptionRaw* module);
+    ModuleDescriptionRaw* m_module;
 
-    void createDependenciesPage(ModuleDescriptionRaw* module);
-    void deleteDependenciesPage(ModuleDescriptionRaw* module);
-
-    ParamsPage* m_param;
-    DependenciesPage* m_dependencies;
+    ParamsWidget* m_param;
+    DependenciesWidget* m_dependencies;
 
     Ui::ModulePage *m_ui;
 };

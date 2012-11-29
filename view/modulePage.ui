@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>429</width>
+    <height>301</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,11 @@
   <property name="title">
    <string>GroupBox</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
+  <layout class="QVBoxLayout" name="verticalLayout">
    <property name="margin">
-    <number>5</number>
+    <number>0</number>
    </property>
-   <item row="0" column="0">
+   <item>
     <widget class="QScrollArea" name="scrollArea">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -33,8 +33,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>386</width>
-        <height>272</height>
+        <width>425</width>
+        <height>283</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_5">
@@ -47,15 +47,28 @@
           <enum>QFrame::NoFrame</enum>
          </property>
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
-         <widget class="QWidget" name="params">
+         <widget class="QWidget" name="infoPage">
+          <attribute name="label">
+           <string>Information</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="info"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="paramsPage">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>376</width>
-            <height>206</height>
+            <width>415</width>
+            <height>161</height>
            </rect>
           </property>
           <attribute name="label">
@@ -65,15 +78,18 @@
            <property name="margin">
             <number>5</number>
            </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="params"/>
+           </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="dependencies">
+         <widget class="QWidget" name="dependenciesPage">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>376</width>
-            <height>206</height>
+            <width>415</width>
+            <height>161</height>
            </rect>
           </property>
           <attribute name="label">
@@ -83,6 +99,22 @@
            <property name="margin">
             <number>5</number>
            </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="dependencies"/>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="eventsPage">
+          <attribute name="label">
+           <string>Events</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="margin">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <layout class="QGridLayout" name="events"/>
+           </item>
           </layout>
          </widget>
         </widget>
