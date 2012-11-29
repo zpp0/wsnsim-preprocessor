@@ -5,13 +5,8 @@ TARGET = projectEditor
 QT += gui
 CONFIG += console
 INCLUDEPATH += . ../libs/projectData ../libs/moduleData
-<<<<<<< HEAD
-DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/paramsInfo widgets settings
-INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/paramsInfo widgets settings
-=======
-DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules
-INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules
->>>>>>> simplification
+DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules settings
+INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules settings
 
 # Input
 HEADERS += model/modulesStorage.h \
@@ -51,17 +46,7 @@ FORMS += view/mainwindow.ui \
          view/simulatorPage.ui \
          view/nodeTypePage.ui \
          view/nodeTypesPage.ui \
-<<<<<<< HEAD
          settings/settings.ui \
-         widgets/paramsInfo/doubleParam.ui \
-         widgets/paramsInfo/intParam.ui \
-         widgets/paramsInfo/stringParam.ui \
-         widgets/paramsInfo/boolParam.ui \
-         widgets/paramsInfo/nodesParam.ui \
-         widgets/paramsInfo/tableParam.ui \
-         widgets/paramsInfo/timeParam.ui \
-         widgets/paramsInfo/fileParam.ui \
-=======
          widgets/modules/paramsWidget.ui \
          widgets/modules/dependenciesWidget.ui \
          widgets/params/doubleParam.ui \
@@ -72,7 +57,6 @@ FORMS += view/mainwindow.ui \
          widgets/params/tableParam.ui \
          widgets/params/timeParam.ui \
          widgets/params/fileParam.ui \
->>>>>>> simplification
          widgets/interfaceInfo.ui
 SOURCES += main.cpp \
            model/modulesStorage.cpp \

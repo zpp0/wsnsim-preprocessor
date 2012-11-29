@@ -14,13 +14,9 @@
 #include "moduleScanner.h"
 #include "projectScanner.h"
 
-<<<<<<< HEAD
-#include "model/modulesStorage.h"
 #include "settings.h"
-=======
 #include "modulesStorage.h"
 #include "nodesStorage.h"
->>>>>>> simplification
 
 MainWindow::MainWindow() :
     m_ui(new Ui::MainWindow)
