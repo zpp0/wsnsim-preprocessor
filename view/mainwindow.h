@@ -6,10 +6,9 @@
 #include <QHash>
 #include <QLabel>
 
-#include "projectInfo.h"
-#include "paramsPage.h"
+#include "projectPage.h"
 #include "modulesPage.h"
-#include "simulatorParams.h"
+#include "simulatorPage.h"
 #include "nodeTypesPage.h"
 
 #include "projectTree.h"
@@ -43,9 +42,9 @@ private:
 
     // стандартные страницы
     // проект
-    ProjectInfoPage *m_project;
+    ProjectPage *m_projectPage;
     // среда
-    SimulatorParamsPage *m_simulatorParams;
+    SimulatorPage *m_simulatorPage;
     ModulesPage *m_modulesPage;
     NodeTypesPage* m_nodeTypesPage;
 
