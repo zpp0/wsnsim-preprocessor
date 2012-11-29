@@ -12,8 +12,8 @@
 #include <QCheckBox>
 #include <QFrame>
 
-#include "moduleParams.h"
 #include "projectParams.h"
+#include "moduleParams.h"
 
 namespace Ui {
     class InterfaceInfo;
@@ -24,17 +24,14 @@ class InterfaceInfo : public QFrame
     Q_OBJECT
 
 public:
-    InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependence* dependence);
+    InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* dependence);
     virtual ~InterfaceInfo();
 
-    void setValue(quint16 moduleID);
+    void setValue(ModuleDependence dependence);
+    ModuleDependence getValue();
 
 public slots:
-    void moduleEnabled(ModuleDescriptionRaw* module);
-    void moduleDisabled(ModuleDescriptionRaw* module);
-
-private slots:
-    void setDependence(int moduleID);
+    void moduleEnabled(ModuleDescriptionRaw* module, bool enabled);
 
 private:
 
@@ -42,12 +39,9 @@ private:
 
     void addValidDependence(QString moduleName);
 
-    ModuleDependence* m_dependence;
     ModuleDescriptionRaw* m_module;
+    ModuleDependRaw* m_dependence;
 
-    bool m_valueFromProject;
-
-    QList<int> m_dependencies;
     QList<ModuleDescriptionRaw*> m_modules;
 
     Ui::InterfaceInfo* m_ui;

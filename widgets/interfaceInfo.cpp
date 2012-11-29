@@ -8,9 +8,9 @@
 #include "interfaceInfo.h"
 #include "ui_interfaceInfo.h"
 
-#include "projectStorage.h"
+#include "modulesStorage.h"
 
-InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependence* dependence)
+InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* dependence)
     : m_ui(new Ui::InterfaceInfo)
 {
     m_ui->setupUi(this);
@@ -20,61 +20,63 @@ InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependence* dep
 
     m_ui->l_name->setText(m_dependence->name);
 
-    m_valueFromProject = false;
+    ModulesStorage& storage = ModulesStorage::instance();
 
-    connect(m_ui->cb_modules, SIGNAL(activated(int)),
-            this, SLOT(setDependence(int)));
+    QList<ModuleDescriptionRaw*> modules = storage.getEnabled();
+    foreach(ModuleDescriptionRaw* module, modules)
+        moduleEnabled(module, true);
+
+    connect(&storage, SIGNAL(moduleEnabled(ModuleDescriptionRaw*, bool)),
+            this, SLOT(moduleEnabled(ModuleDescriptionRaw*, bool)));
 }
 
-void InterfaceInfo::setValue(quint16 moduleID)
+void InterfaceInfo::moduleEnabled(ModuleDescriptionRaw* module, bool enabled)
 {
-    m_valueFromProject = true;
-    ProjectStorage& storage = ProjectStorage::instance();
-    ModuleDescriptionRaw* depModule = storage.getModule(moduleID);
-
-    int index = m_modules.indexOf(depModule);
-    setDependence(index);
-}
-
-void InterfaceInfo::moduleEnabled(ModuleDescriptionRaw* module)
-{
-    isValidDependence(module);
-}
-
-void InterfaceInfo::moduleDisabled(ModuleDescriptionRaw* module)
-{
-    int index = m_modules.indexOf(module);
-    m_ui->cb_modules->removeItem(index);
-    m_modules.removeAt(index);
+    if (enabled)
+        isValidDependence(module);
+    else {
+        int index = m_modules.indexOf(module);
+        m_ui->cb_modules->removeItem(index);
+        m_modules.removeAt(index);
+    }
 }
 
 void InterfaceInfo::isValidDependence(ModuleDescriptionRaw* module)
 {
     if (module->type == m_dependence->type) {
         // TODO: check for the interface compatibility
-
-        m_modules += module;
-
         addValidDependence(module->name);
+        m_modules += module;
     }
 }
 
 void InterfaceInfo::addValidDependence(QString moduleName)
 {
     m_ui->cb_modules->addItem(moduleName);
-    if (!m_valueFromProject)
-        setDependence(m_ui->cb_modules->count() - 1);
 }
 
-void InterfaceInfo::setDependence(int index)
+void InterfaceInfo::setValue(ModuleDependence dependence)
 {
-    if (m_ui->cb_modules->currentText() != "") {
-        ModuleDescriptionRaw* module = m_modules[index];
-        ProjectStorage& storage = ProjectStorage::instance();
-        quint16 moduleID = storage.getModuleID(module);
+    ModuleDescriptionRaw* module = ModulesStorage::instance().getModule(dependence.moduleID);
+    int index = m_modules.indexOf(module);
+    if (index != -1)
+        m_ui->cb_modules->setCurrentIndex(index);
+    // TODO: errors handling
+}
 
-        m_dependence->moduleID = moduleID;
-    }
+ModuleDependence InterfaceInfo::getValue()
+{
+    ModuleDependence dependence;
+
+    int index = m_ui->cb_modules->currentIndex();
+    ModuleDescriptionRaw* module = m_modules[index];
+    quint16 moduleID = ModulesStorage::instance().getModule(module);
+
+    dependence.name = m_dependence->name;
+    dependence.type = m_dependence->type;
+    dependence.moduleID = moduleID;
+
+    return dependence;
 }
 
 InterfaceInfo::~InterfaceInfo()
