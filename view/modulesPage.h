@@ -12,13 +12,14 @@
 #include <QtGui>
 
 #include "modulesInfo.h"
-#include "moduleParams.h"
 #include "projectTree.h"
 
-#include "projectStorage.h"
+#include "modulePage.h"
 
-#include "paramsPage.h"
-#include "dependenciesPage.h"
+#include "moduleParams.h"
+#include "projectParams.h"
+
+#include "projectStorage.h"
 
 namespace Ui {
     class ModulesPage;
@@ -32,7 +33,13 @@ public:
     ModulesPage(QTreeWidgetItem* treeElement = 0, ProjectTree* projectTree = 0);
     virtual ~ModulesPage();
 
-    void clean();
+    QList<ModuleData> getModules();
+    void setModules(QList<ModuleData> modules);
+
+    QList<EventParams> getEvents();
+    void setEvents(QList<EventParams> events);
+
+    void clear();
 
 public slots:
     void registerModule(ModuleDescriptionRaw* module);
@@ -41,41 +48,20 @@ public slots:
     void moduleEnabled(ModuleDescriptionRaw* module);
     void moduleDisabled(ModuleDescriptionRaw* module);
 
-    void newModule(ModuleData* module);
-    void newModuleParam(ModuleData* module, ModuleParam* param);
-    void newModuleDependence(ModuleData* module, ModuleDependence* dependence);
-
-signals:
-    void moduleEnable(ModuleDescriptionRaw* module);
-    void moduleDisable(ModuleDescriptionRaw* module);
-
 private:
-    void createParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams = true);
-    void deleteParamsPage(ModuleDescriptionRaw* module);
+    void createModulePage(ModuleDescriptionRaw* module);
+    void deleteModulePage(ModuleDescriptionRaw* module);
 
-    void createDependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps = true);
-    void deleteDependenciesPage(ModuleDescriptionRaw* module);
-
-    void moduleEnabled(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams = true);
+    ModuleDescriptionRaw* getModuleRaw(ModuleData moduleData);
 
     ModulesInfo* m_modulesInfo;
     QTableWidget* m_t_warnings;
 
-    QList<ModuleDescriptionRaw*> m_modules;
-    QList<ModuleDescriptionRaw*> m_enabledModules;
-
-    QMap<ModuleDescriptionRaw*, ParamsPage*> m_params;
-    QMap<ModuleDescriptionRaw*, DependenciesPage*> m_dependencies;
+    QMap<ModuleDescriptionRaw*, ModulePage*> m_modules;
 
     QTreeWidgetItem* m_selfTreeElement;
-    QTreeWidgetItem* m_paramsTreeElement;
-    QTreeWidgetItem* m_dependenciesTreeElement;
 
     ProjectTree* m_projectTree;
-
-    QList<ModuleData*> m_modulesData;
-
-    QMap<ModuleDescriptionRaw*, ModuleData*> m_modulesPairs;
 
     Ui::ModulesPage *m_ui;
 };
