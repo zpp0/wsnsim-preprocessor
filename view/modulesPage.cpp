@@ -36,9 +36,6 @@ ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
 
     m_t_warnings->setVisible(false);
     m_ui->vertical->addWidget(m_t_warnings);
-
-    m_paramsTreeElement = m_projectTree->addTiWidget(tr("Params"), m_selfTreeElement);
-    m_dependenciesTreeElement = m_projectTree->addTiWidget(tr("Dependencies"), m_selfTreeElement);
 }
 
 ModulesPage::~ModulesPage()
@@ -48,7 +45,6 @@ ModulesPage::~ModulesPage()
 
 void ModulesPage::registerModule(ModuleDescriptionRaw* module)
 {
-    m_modules += module;
     m_modulesInfo->addModuleInfo(module);
 }
 
@@ -66,139 +62,87 @@ void ModulesPage::moduleScanError(QString file, QString error)
 
 void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module)
 {
-    ProjectStorage& project = ProjectStorage::instance();
-    ModuleData* moduleData = project.addModule(module);
-    moduleEnabled(module, moduleData);
-}
-
-void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams)
-{
-    qDebug() << "enabled" << module->name;
-
-    foreach(DependenciesPage* page, m_dependencies.values())
-        page->moduleEnabled(module);
-
-    createParamsPage(module, moduleData, withParams);
-    createDependenciesPage(module, moduleData, withParams);
-
-    m_enabledModules += module;
-    m_modulesPairs[module] = moduleData;
-
-    emit moduleEnable(module);
+    createModulePage(module);
+    ModulesStorage::instance().enableModule(module, true);
 }
 
 void ModulesPage::moduleDisabled(ModuleDescriptionRaw* module)
 {
-    qDebug() << "disabled" << module->name;
-
-    ModuleData* moduleData = m_modulesPairs[module];
-    ProjectStorage& project = ProjectStorage::instance();
-    project.removeModule(moduleData);
-
-    foreach(DependenciesPage* page, m_dependencies.values())
-        page->moduleDisabled(module);
-
-    m_enabledModules.removeOne(module);
-    deleteParamsPage(module);
-    deleteDependenciesPage(module);
-
-    emit moduleDisable(module);
+    deleteModulePage(module);
+    ModulesStorage::instance().enableModule(module, false);
 }
 
-void ModulesPage::createParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams)
+void ModulesPage::createModulePage(ModuleDescriptionRaw* module)
 {
-    ParamsPage* paramsPage = new ParamsPage(module, moduleData, withParams);
-    m_params[module] = paramsPage;
+    ModulePage* page = new ModulePage(module);
+    m_modules[module] = page;
 
-    QTreeWidgetItem* ti_paramsPage = m_projectTree->addTiWidget(module->name, m_paramsTreeElement);
-    m_projectTree->addPage(ti_paramsPage, paramsPage);
-}
-
-void ModulesPage::deleteParamsPage(ModuleDescriptionRaw* module)
-{
-    // TODO: check if user change params
-    ParamsPage* page = m_params[module];
-    m_params.remove(module);
-
-    m_projectTree->removePage(page);
-}
-
-void ModulesPage::createDependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps)
-{
-    DependenciesPage* page = new DependenciesPage(module, moduleData, withDeps);
-    foreach(ModuleDescriptionRaw* module, m_enabledModules)
-        page->moduleEnabled(module);
-
-    m_dependencies[module] = page;
-
-    QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(module->name, m_dependenciesTreeElement);
+    QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(module->name, m_selfTreeElement);
     m_projectTree->addPage(ti_page, page);
 }
 
-void ModulesPage::deleteDependenciesPage(ModuleDescriptionRaw* module)
+void ModulesPage::deleteModulePage(ModuleDescriptionRaw* module)
 {
     // TODO: check if user change params
-    DependenciesPage* page = m_dependencies[module];
-    m_dependencies.remove(module);
+    ModulePage* page = m_modules[module];
+    m_modules.remove(module);
 
     m_projectTree->removePage(page);
+    delete page;
 }
 
-void ModulesPage::newModule(ModuleData* moduleData)
+ModuleDescriptionRaw* ModulesPage::getModuleRaw(ModuleData moduleData)
 {
-    ModulesStorage& storage = ModulesStorage::instance();
-
-    ModuleDescriptionRaw* module = storage.getDescription(moduleData->fileName);
-    if (module) {
-        moduleEnabled(module, moduleData, false);
-        m_modulesInfo->enableModuleInfo(module);
-    }
-    else {
-        // TODO: handle error
-    }
-}
-
-void ModulesPage::newModuleParam(ModuleData* moduleData, ModuleParam* param)
-{
-    ModuleDescriptionRaw* module = m_modulesPairs.key(moduleData);
-    if (module) {
-        ModuleParamRaw* paramRaw = NULL;
-        for (int i = 0; i < module->params.size(); i++) {
-            if (module->params[i].name == param->name) {
-                paramRaw = &(module->params[i]);
-                break;
-            }
+    QList<ModuleDescriptionRaw*> modules;
+    ModuleDescriptionRaw* module = NULL;
+    foreach(ModuleDescriptionRaw* moduleRaw, modules) {
+        if (moduleRaw->fileName == moduleData.fileName) {
+            module = moduleRaw;
+            break;
         }
-        if (!paramRaw)
-            return;
-
-        ParamsPage* page = m_params[module];
-
-        page->createParam(module, paramRaw, param);
     }
-    else {
-        // TODO: handle error
+    return module;
+}
+
+QList<ModuleData> ModulesPage::getModules()
+{
+    QList<ModuleData> modules;
+
+    foreach(ModulePage* page, m_modules.values())
+        modules += page->getModule();
+
+    return modules;
+}
+
+void ModulesPage::setModules(QList<ModuleData> modules)
+{
+    foreach(ModuleData moduleData, modules) {
+        ModuleDescriptionRaw* module = getModuleRaw(moduleData);
+        if (!module)
+            // TODO: errors handling
+            continue;
+        m_modules[module]->setModule(moduleData);
     }
 }
 
-void ModulesPage::newModuleDependence(ModuleData* moduleData, ModuleDependence* dependence)
+QList<EventParams> ModulesPage::getEvents()
 {
-    ModuleDescriptionRaw* module = m_modulesPairs.key(moduleData);
-    if (module) {
-        DependenciesPage* page = m_dependencies[module];
-        page->createDependence(module, dependence);
-    }
-    else {
-        // TODO: handle error
-    }
+    QList<EventParams> events;
+
+    foreach(ModulePage* page, m_modules.values())
+        events += page->getEvents();
+
+    return events;
 }
 
-void ModulesPage::clean()
+void ModulesPage::setEvents(QList<EventParams> events)
 {
-    foreach(ModuleDescriptionRaw* module, m_enabledModules)
-        deleteParamsPage(module);
-    foreach(ModuleDescriptionRaw* module, m_enabledModules)
-        deleteDependenciesPage(module);
+}
+
+void ModulesPage::clear()
+{
+    foreach(ModuleDescriptionRaw* module, m_modules.keys())
+        deleteModulePage(module);
 
     delete m_modulesInfo;
 

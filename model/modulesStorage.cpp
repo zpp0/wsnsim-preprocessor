@@ -14,11 +14,27 @@ void ModulesStorage::moduleScanSuccess(QString file, ModuleDescriptionRaw module
     emit registerModule(&m_modules.last());
 }
 
-ModuleDescriptionRaw* ModulesStorage::getDescription(QString fileName)
+void ModulesStorage::enableModule(ModuleDescriptionRaw* module, bool enable)
 {
-    for (int i = 0; i < m_modules.size(); i++)
-        if (m_modules[i].fileName == fileName)
-            return &(m_modules[i]);
+    if (enable)
+        m_enabled += module;
+    else
+        m_enabled.removeOne(module);
 
-    return NULL;
+    emit moduleEnabled(module, enable);
+}
+
+ModuleDescriptionRaw* ModulesStorage::getModule(quint16 moduleID)
+{
+    return m_enabled[moduleID];
+}
+
+quint16 ModulesStorage::getModule(ModuleDescriptionRaw* module)
+{
+    return m_enabled.indexOf(module);
+}
+
+QList<ModuleDescriptionRaw*> ModulesStorage::getEnabled()
+{
+    return m_enabled;
 }

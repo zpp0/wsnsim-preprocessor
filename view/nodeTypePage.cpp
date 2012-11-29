@@ -11,9 +11,9 @@
 #include "nodeTypePage.h"
 #include "ui_nodeTypePage.h"
 
-#include "projectStorage.h"
+#include "modulesStorage.h"
 
-NodeTypePage::NodeTypePage(QString name, QList<ModuleDescriptionRaw*> modules)
+NodeTypePage::NodeTypePage(QString name)
     :m_ui(new Ui::NodeTypePage)
 {
     m_ui->setupUi(this);
@@ -31,41 +31,59 @@ NodeTypePage::NodeTypePage(QString name, QList<ModuleDescriptionRaw*> modules)
     connect(m_ui->b_addModule, SIGNAL(clicked()),
             this, SLOT(addModule_toTable_fromCombobox()));
 
+    ModulesStorage& storage = ModulesStorage::instance();
+
+    QList<ModuleDescriptionRaw*> modules = storage.getEnabled();
     foreach(ModuleDescriptionRaw* module, modules)
-        if (isNodeModule(module))
-            moduleEnabled(module);
-}
+        moduleEnabled(module, true);
 
-NodeTypePage::~NodeTypePage()
-{
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setNodeType(m_name, QList<ModuleDescriptionRaw*>());
-
-    delete m_ui;
+    connect(&storage, SIGNAL(moduleEnabled(ModuleDescriptionRaw*, bool)),
+            this, SLOT(moduleEnabled(ModuleDescriptionRaw*, bool)));
 }
 
 //
 // -- interface --
 //
 
-void NodeTypePage::moduleEnabled(ModuleDescriptionRaw* module)
+NodeTypeData NodeTypePage::getNodeType()
 {
-    addModule_toCombobox(module);
+    NodeTypeData nodeType;
+    nodeType.name = m_name;
+    foreach(ModuleDescriptionRaw* module, m_nodeType) {
+        quint16 moduleID = ModulesStorage::instance().getModule(module);
+        if (module->type == "hardware")
+            nodeType.hardwareModules += moduleID;
+        else if (module->type == "software")
+            nodeType.softwareModules += moduleID;
+    }
+    return nodeType;
 }
 
-void NodeTypePage::moduleDisabled(ModuleDescriptionRaw* module)
+void NodeTypePage::setNodeType(NodeTypeData nodeType)
 {
-    removeModule(module);
+    ModuleDescriptionRaw* module;
+    QList<quint16> modules;
+    modules += nodeType.hardwareModules;
+    modules += nodeType.softwareModules;
+    foreach(quint16 moduleID, modules) {
+        module = ModulesStorage::instance().getModule(moduleID);
+        addModule_toTable(module);
+        int row = m_nodeType.indexOf(module);
+        if (row != -1)
+            removeModule_fromTable(row);
+    }
 }
 
-void NodeTypePage::newModule(quint16 moduleID)
+//
+// -- slots --
+//
+
+void NodeTypePage::moduleEnabled(ModuleDescriptionRaw* module, bool enabled)
 {
-    ProjectStorage& storage = ProjectStorage::instance();
-    ModuleDescriptionRaw* module = storage.getModule(moduleID);
-    addModule_toTable(module);
-    int index = m_indexes.indexOf(module);
-    if (index != -1)
-        removeModule_fromCombobox(index);
+    if (enabled)
+        addModule_toCombobox(module);
+    else
+        removeModule(module);
 }
 
 //
@@ -115,11 +133,7 @@ void NodeTypePage::addModule_toTable(ModuleDescriptionRaw* module)
     m_ui->t_modules->setItem(row, 1, new QTableWidgetItem(module->type));
     m_ui->t_modules->setItem(row, 2, new QTableWidgetItem(module->description));
 
-    m_nodeTypesModules += module;
     m_nodeType += module;
-
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setNodeType(m_name, m_nodeTypesModules);
 }
 
 void NodeTypePage::customContextMenuRequested(const QPoint &p)
@@ -148,14 +162,18 @@ void NodeTypePage::removeModule_fromTable(int row)
     ModuleDescriptionRaw* module = m_nodeType[row];
     m_ui->t_modules->removeRow(row);
     m_nodeType.removeAt(row);
-    m_nodeTypesModules.removeAll(module);
 
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setNodeType(m_name, m_nodeTypesModules);
+    // ProjectStorage& storage = ProjectStorage::instance();
+    // storage.setNodeType(m_name, m_nodeTypesModules);
 }
 
 void NodeTypePage::removeModule_fromCombobox(int index)
 {
     m_ui->cb_modules->removeItem(index);
     m_indexes.removeAt(index);
+}
+
+NodeTypePage::~NodeTypePage()
+{
+    delete m_ui;
 }

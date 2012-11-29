@@ -1,24 +1,30 @@
 include(../wsnsim.pri)
 
 TEMPLATE = app
+TARGET = projectEditor
 QT += gui
 CONFIG += console
 INCLUDEPATH += . ../libs/projectData ../libs/moduleData
+<<<<<<< HEAD
 DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/paramsInfo widgets settings
 INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/paramsInfo widgets settings
+=======
+DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules
+INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules
+>>>>>>> simplification
 
 # Input
 HEADERS += model/modulesStorage.h \
            model/projectStorage.h \
+           model/nodesStorage.h \
            tools/moduleScanner.h \
            tools/projectScanner.h \
            settings/settings.h \
            view/mainwindow.h \
            view/modulesPage.h \
-           view/paramsPage.h \
-           view/projectInfo.h \
-           view/dependenciesPage.h \
-           view/simulatorParams.h \
+           view/modulePage.h \
+           view/projectpage.h \
+           view/simulatorPage.h \
            view/nodeTypePage.h \
            view/nodeTypesPage.h \
            widgets/checkModule.h \
@@ -26,24 +32,26 @@ HEADERS += model/modulesStorage.h \
            widgets/interfaceInfo.h \
            widgets/projectTree.h \
            widgets/modulesInfo/modulesInfo.h \
-           widgets/paramsInfo/generalParam.h \
-           widgets/paramsInfo/doubleParam.h \
-           widgets/paramsInfo/intParam.h \
-           widgets/paramsInfo/uintParam.h \
-           widgets/paramsInfo/stringParam.h \
-           widgets/paramsInfo/boolParam.h \
-           widgets/paramsInfo/nodesParam.h \
-           widgets/paramsInfo/timeParam.h \
-           widgets/paramsInfo/fileParam.h \
-           widgets/paramsInfo/tableParam.h
+           widgets/modules/paramsWidget.h \
+           widgets/modules/dependenciesWidget.h \
+           widgets/params/generalParam.h \
+           widgets/params/doubleParam.h \
+           widgets/params/intParam.h \
+           widgets/params/uintParam.h \
+           widgets/params/stringParam.h \
+           widgets/params/boolParam.h \
+           widgets/params/nodesParam.h \
+           widgets/params/timeParam.h \
+           widgets/params/fileParam.h \
+           widgets/params/tableParam.h
 FORMS += view/mainwindow.ui \
          view/modulesPage.ui \
-         view/paramsPage.ui \
-         view/projectInfo.ui \
-         view/dependenciesPage.ui \
-         view/simulatorParams.ui \
+         view/modulePage.ui \
+         view/projectPage.ui \
+         view/simulatorPage.ui \
          view/nodeTypePage.ui \
          view/nodeTypesPage.ui \
+<<<<<<< HEAD
          settings/settings.ui \
          widgets/paramsInfo/doubleParam.ui \
          widgets/paramsInfo/intParam.ui \
@@ -53,36 +61,50 @@ FORMS += view/mainwindow.ui \
          widgets/paramsInfo/tableParam.ui \
          widgets/paramsInfo/timeParam.ui \
          widgets/paramsInfo/fileParam.ui \
+=======
+         widgets/modules/paramsWidget.ui \
+         widgets/modules/dependenciesWidget.ui \
+         widgets/params/doubleParam.ui \
+         widgets/params/intParam.ui \
+         widgets/params/stringParam.ui \
+         widgets/params/boolParam.ui \
+         widgets/params/nodesParam.ui \
+         widgets/params/tableParam.ui \
+         widgets/params/timeParam.ui \
+         widgets/params/fileParam.ui \
+>>>>>>> simplification
          widgets/interfaceInfo.ui
 SOURCES += main.cpp \
            model/modulesStorage.cpp \
            model/projectStorage.cpp \
+           model/nodesStorage.cpp \
            tools/moduleScanner.cpp \
            tools/projectScanner.cpp \
            settings/settings.cpp \
            view/mainwindow.cpp \
            view/modulesPage.cpp \
-           view/dependenciesPage.cpp \
-           view/paramsPage.cpp \
-           view/projectInfo.cpp \
-           view/simulatorParams.cpp \
+           view/modulePage.cpp \
+           view/projectPage.cpp \
+           view/simulatorPage.cpp \
            view/nodeTypePage.cpp \
            view/nodeTypesPage.cpp \
+           widgets/modules/paramsWidget.cpp \
+           widgets/modules/dependenciesWidget.cpp \
            widgets/checkModule.cpp \
            widgets/nodeTypeSpinBox.cpp \
            widgets/interfaceInfo.cpp \
            widgets/projectTree.cpp \
            widgets/modulesInfo/modulesInfo.cpp \
-           widgets/paramsInfo/generalParam.cpp \
-           widgets/paramsInfo/doubleParam.cpp \
-           widgets/paramsInfo/intParam.cpp \
-           widgets/paramsInfo/uintParam.cpp \
-           widgets/paramsInfo/stringParam.cpp \
-           widgets/paramsInfo/boolParam.cpp \
-           widgets/paramsInfo/nodesParam.cpp \
-           widgets/paramsInfo/tableParam.cpp \
-           widgets/paramsInfo/timeParam.cpp \
-           widgets/paramsInfo/fileParam.cpp
+           widgets/params/generalParam.cpp \
+           widgets/params/doubleParam.cpp \
+           widgets/params/intParam.cpp \
+           widgets/params/uintParam.cpp \
+           widgets/params/stringParam.cpp \
+           widgets/params/boolParam.cpp \
+           widgets/params/nodesParam.cpp \
+           widgets/params/tableParam.cpp \
+           widgets/params/timeParam.cpp \
+           widgets/params/fileParam.cpp
 RESOURCES += res/preprocessor.qrc
 TRANSLATIONS = res/languages/preprocessor_en.ts \
                res/languages/preprocessor_ru.ts \

@@ -24,10 +24,17 @@ public:
         return instance;
     }
 
-    ModuleDescriptionRaw* getDescription(QString fileName);
+    void enableModule(ModuleDescriptionRaw* module, bool enable);
+
+    ModuleDescriptionRaw* getModule(quint16 moduleID);
+    quint16 getModule(ModuleDescriptionRaw* module);
+
+    QList<ModuleDescriptionRaw*> getEnabled();
 
 signals:
     void registerModule(ModuleDescriptionRaw* module);
+
+    void moduleEnabled(ModuleDescriptionRaw* module, bool enabled);
 
 public slots:
     void moduleScanSuccess(QString file, ModuleDescriptionRaw module);
@@ -37,6 +44,7 @@ private:
     ModulesStorage(ModulesStorage const&);
     void operator=(ModulesStorage const&);
 
+    QList<ModuleDescriptionRaw*> m_enabled;
     QList<ModuleDescriptionRaw> m_modules;
 };
 

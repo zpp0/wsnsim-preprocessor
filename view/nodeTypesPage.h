@@ -29,13 +29,10 @@ public:
     NodeTypesPage(QTreeWidgetItem* treeElement = 0, ProjectTree* projectTree = 0);
     virtual ~NodeTypesPage();
 
-    void clean();
+    QList<NodeTypeData> getNodeTypes();
+    void setNodeTypes(QList<NodeTypeData> nodeTypes);
 
-public slots:
-    void newNodeType(NodeTypeData* nodeType);
-
-    void moduleEnabled(ModuleDescriptionRaw* module);
-    void moduleDisabled(ModuleDescriptionRaw* module);
+    void clear();
 
 private slots:
     void isNewNodeTypeName(QString name);
@@ -44,11 +41,7 @@ private slots:
 
 private:
     void createNodeTypePage(QString name);
-
     void deleteNodeTypePage(QListWidgetItem* nodeTypeItem);
-    void deleteNodeTypePage(QString nodeTypeName);
-
-    QList<ModuleDescriptionRaw*> m_modules;
 
     QList<QString> m_nodeTypesNames;
 

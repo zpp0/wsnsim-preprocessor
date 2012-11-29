@@ -14,8 +14,13 @@
 #include "moduleScanner.h"
 #include "projectScanner.h"
 
+<<<<<<< HEAD
 #include "model/modulesStorage.h"
 #include "settings.h"
+=======
+#include "modulesStorage.h"
+#include "nodesStorage.h"
+>>>>>>> simplification
 
 MainWindow::MainWindow() :
     m_ui(new Ui::MainWindow)
@@ -41,28 +46,28 @@ MainWindow::MainWindow() :
 
     // создаем элементы дерева стандартных страниц
     // проект
-    QTreeWidgetItem* ti_projectInfo = m_projectTree->addTiWidget(tr("Project information"));
-    QTreeWidgetItem* ti_simulatorParams = m_projectTree->addTiWidget(tr("Simulator params"));
+    QTreeWidgetItem* ti_projectPage = m_projectTree->addTiWidget(tr("Project information"));
+    QTreeWidgetItem* ti_simulatorPage = m_projectTree->addTiWidget(tr("Simulator params"));
     QTreeWidgetItem* ti_modulesParams = m_projectTree->addTiWidget(tr("Modules"));
     QTreeWidgetItem* ti_nodeTypesPage = m_projectTree->addTiWidget(tr("Node Types"));
 
     // создаем объекты стандартных страниц
     // проект
-    m_project = new ProjectInfoPage();
+    m_projectPage = new ProjectPage();
     // среда
-    m_simulatorParams = new SimulatorParamsPage();
+    m_simulatorPage = new SimulatorPage();
     m_modulesPage = new ModulesPage(ti_modulesParams, m_projectTree);
     m_nodeTypesPage = new NodeTypesPage(ti_nodeTypesPage, m_projectTree);
 
     // создаем стандартные страницы
-    m_projectTree->addPage(ti_projectInfo, m_project);
+    m_projectTree->addPage(ti_projectPage, m_projectPage);
 
-    m_projectTree->addPage(ti_simulatorParams, m_simulatorParams);
+    m_projectTree->addPage(ti_simulatorPage, m_simulatorPage);
     m_projectTree->addPage(ti_modulesParams, m_modulesPage);
     m_projectTree->addPage(ti_nodeTypesPage, m_nodeTypesPage);
 
     // activate the default item
-    m_projectTree->setCurrentItem(ti_projectInfo);
+    m_projectTree->setCurrentItem(ti_projectPage);
 
     // путь к файлу исходных данных
     m_projectFileName = "";
@@ -75,25 +80,6 @@ MainWindow::MainWindow() :
     ModulesStorage& storage = ModulesStorage::instance();
     connect(&storage, SIGNAL(registerModule(ModuleDescriptionRaw*)),
             m_modulesPage, SLOT(registerModule(ModuleDescriptionRaw*)));
-
-    connect(m_modulesPage, SIGNAL(moduleEnable(ModuleDescriptionRaw*)),
-            m_nodeTypesPage, SLOT(moduleEnabled(ModuleDescriptionRaw*)));
-    connect(m_modulesPage, SIGNAL(moduleDisable(ModuleDescriptionRaw*)),
-            m_nodeTypesPage, SLOT(moduleDisabled(ModuleDescriptionRaw*)));
-
-    ProjectStorage& project = ProjectStorage::instance();
-    connect(&project, SIGNAL(newModule(ModuleData*)),
-            m_modulesPage, SLOT(newModule(ModuleData*)));
-    connect(&project, SIGNAL(newModuleParam(ModuleData*, ModuleParam*)),
-            m_modulesPage, SLOT(newModuleParam(ModuleData*, ModuleParam*)));
-    connect(&project, SIGNAL(newModuleDependence(ModuleData*, ModuleDependence*)),
-            m_modulesPage, SLOT(newModuleDependence(ModuleData*, ModuleDependence*)));
-
-    connect(&project, SIGNAL(setNodesNum(int)),
-            m_simulatorParams, SLOT(setNodesTotal(int)));
-
-    connect(&project, SIGNAL(newNodeType(NodeTypeData*)),
-            m_nodeTypesPage, SLOT(newNodeType(NodeTypeData*)));
 
     // сигнал нажатия кнопок обрабатывает основное окно
     connect(m_ui->actionScanForModules, SIGNAL(triggered()),
@@ -136,7 +122,7 @@ void MainWindow::switchPage(QWidget *page)
 
 void MainWindow::actionScan()
 {
-    m_modulesPage->clean();
+    m_modulesPage->clear();
 
     ModuleScanner scanner;
     ModulesStorage& storage = ModulesStorage::instance();
@@ -185,33 +171,6 @@ void MainWindow::openOrCreateProject(QString project)
 
         ProjectScanner scanner;
 
-        connect(&scanner, SIGNAL(setLogFileName(QString)),
-                m_simulatorParams, SLOT(setNewFileName(QString)));
-        connect(&scanner, SIGNAL(setMaxTime(int)),
-                m_simulatorParams, SLOT(setNewTimeValue(int)));
-        connect(&scanner, SIGNAL(setTimeUnits(int)),
-                m_simulatorParams, SLOT(setNewTimeUnits(int)));
-
-        connect(&scanner, SIGNAL(setAuthor(QString)),
-                m_project, SLOT(setNewAuthor(QString)));
-        connect(&scanner, SIGNAL(setComment(QString)),
-                m_project, SLOT(setNewComment(QString)));
-        connect(&scanner, SIGNAL(setKeywords(QString)),
-                m_project, SLOT(setNewKeywords(QString)));
-        connect(&scanner, SIGNAL(setTitle(QString)),
-                m_project, SLOT(setNewTitle(QString)));
-
-        ProjectStorage& project = ProjectStorage::instance();
-
-        connect(&scanner, SIGNAL(setUuid(QString)),
-                &project, SLOT(setUuid(QString)));
-
-        connect(&scanner, SIGNAL(addModule(ModuleData)),
-                &project, SLOT(addModule(ModuleData)));
-
-        connect(&scanner, SIGNAL(addNodeType(NodeTypeData)),
-                &project, SLOT(addNodeType(NodeTypeData)));
-
         scanner.scanFile(m_projectFileName);
 
         // m_l_projectName->setText(m_projectFileName);
@@ -233,9 +192,18 @@ void MainWindow::actionSaveAs()
         m_projectFileName = file;
         m_l_projectFileName->setText(file);
 
+        ProjectParams project;
+        project.simulatorParams = m_simulatorPage->getParams();
+        project.projectInfo = m_projectPage->getParams();
+        project.modules = m_modulesPage->getModules();
+        project.events.systemEvents = m_modulesPage->getEvents();
+        project.nodeTypes = m_nodeTypesPage->getNodeTypes();
+
+        project.nodes = NodesStorage::instance().getNodes();
+
         // сохраняем данные в xml
-        ProjectStorage& project = ProjectStorage::instance();
-        project.saveXML(m_projectFileName);
+        ProjectStorage storage;
+        storage.saveXML(project, m_projectFileName);
     }
 }
 
