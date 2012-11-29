@@ -38,8 +38,10 @@ void ModuleScanner::scanFile(QString& file)
 
     ModuleDescriptionRaw moduleDescription = load(file, &errorMessage);
 
-    if (!(errorMessage == ""))
+    if (!(errorMessage == "")) {
         emit moduleScanError(file, errorMessage);
+        return;
+    }
 
     QString modulesDirectory = QSettings().value("Modules/Directory").toString();
     QDir modulesDir(QDir::currentPath() + modulesDirectory);
