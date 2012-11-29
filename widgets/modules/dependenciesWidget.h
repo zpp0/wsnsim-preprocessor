@@ -1,13 +1,13 @@
 /**
  *
- * File: dependenciesPage.h
- * Description: Page of choosing dependencies of the modules
+ * File: dependenciesWidget.h
+ * Description: Widget of choosing dependencies of the modules
  * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
  *
  **/
 
-#ifndef DEPENDENCIESPAGE_H
-#define DEPENDENCIESPAGE_H
+#ifndef DEPENDENCIESWIDGET_H
+#define DEPENDENCIESWIDGET_H
 
 #include <QtGui>
 
@@ -17,30 +17,31 @@
 #include "interfaceInfo.h"
 
 namespace Ui {
-    class DependenciesPage;
+    class DependenciesWidget;
 }
 
-class DependenciesPage : public QGroupBox
+class DependenciesWidget : public QFrame
 {
     Q_OBJECT
 
 public:
-    DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps);
-    virtual ~DependenciesPage();
+    DependenciesWidget(ModuleDescriptionRaw* module);
+    virtual ~DependenciesWidget();
 
-    void moduleEnabled(ModuleDescriptionRaw* module);
-    void moduleDisabled(ModuleDescriptionRaw* module);
-
-    void createDependence(ModuleDescriptionRaw* module, ModuleDependence* dependence);
+    QList<ModuleDependence> getDependencies();
+    void setDependencies(QList<ModuleDependence> dependencies);
 
 private:
-    ModuleDescriptionRaw* m_module;
-    ModuleData* m_moduleData;
+    void createDependence(ModuleDependRaw* dependence);
+    ModuleDependRaw* getDependenceRaw(ModuleDependence dependence);
 
-    QList<ModuleDescriptionRaw*> m_modules;
+    ModuleDescriptionRaw* m_selfModule;
+
     QList<InterfaceInfo*> m_interfaces;
 
-    Ui::DependenciesPage *m_ui;
+    QMap<ModuleDependRaw*, InterfaceInfo*> m_dependencies;
+
+    Ui::DependenciesWidget* m_ui;
 };
 
-#endif // DEPENDENCIESPAGE_H
+#endif // DEPENDENCIESWIDGET_H

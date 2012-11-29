@@ -1,13 +1,13 @@
 /**
  *
- * File: paramsPage.h
+ * File: paramsWidget.h
  * Description: Module params widget
  * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
  *
  **/
 
-#ifndef PARAMSPAGE_H
-#define PARAMSPAGE_H
+#ifndef PARAMSWIDGET_H
+#define PARAMSWIDGET_H
 
 #include <QMap>
 #include <QString>
@@ -19,28 +19,29 @@
 #include "generalParam.h"
 
 namespace Ui {
-    class ParamsPage;
+    class ParamsWidget;
 }
 
-class ParamsPage : public QGroupBox
+class ParamsWidget : public QFrame
 {
     Q_OBJECT
 
 public:
-    ParamsPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withParams);
-    virtual ~ParamsPage();
+    ParamsWidget(ModuleDescriptionRaw* module);
+    virtual ~ParamsWidget();
 
-    void createParam(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    QList<ModuleParam> getParams();
+    void setParams(QList<ModuleParam> params);
 
 private:
+    ModuleParamRaw* getParamRaw(ModuleParam param);
+    void createParam(ModuleParamRaw* paramRaw);
 
+    ModuleDescriptionRaw* m_selfModule;
 
-    ModuleDescriptionRaw* m_module;
-    ModuleData* m_moduleData;
+    QMap<ModuleParamRaw*, ModuleParamGeneral*> m_params;
 
-    QList<ModuleParamGeneral*> m_params;
-
-    Ui::ParamsPage *m_ui;
+    Ui::ParamsWidget *m_ui;
 };
 
-#endif // PARAMSPAGE_H
+#endif // PARAMSWIDGET_H

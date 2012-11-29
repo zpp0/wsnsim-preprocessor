@@ -1,65 +1,74 @@
 /**
- * File: dependenciesPage.cpp
- * Description: Module params widget
+ *
+ * File: dependenciesWidget.cpp
+ * Description: Module dependencies widget
  * Author: Alexander Yarygin <yarygin.alexander@gmail.com>
  *
  **/
 
-#include "dependenciesPage.h"
-#include "ui_dependenciesPage.h"
+#include "dependenciesWidget.h"
+#include "ui_dependenciesWidget.h"
 
-#include "projectStorage.h"
-
-DependenciesPage::DependenciesPage(ModuleDescriptionRaw* module, ModuleData* moduleData, bool withDeps)
-    : m_ui(new Ui::DependenciesPage)
+DependenciesWidget::DependenciesWidget(ModuleDescriptionRaw* module)
+    : m_ui(new Ui::DependenciesWidget)
 {
     m_ui->setupUi(this);
 
-    m_module = module;
-    m_moduleData = moduleData;
+    m_selfModule = module;
 
-    setTitle(m_module->name);
+    for (int i = 0; i < m_selfModule->dependencies.size(); i++)
+        createDependence(&(m_selfModule->dependencies[i]));
+}
 
-    if (withDeps == true) {
-        ProjectStorage& storage = ProjectStorage::instance();
+void DependenciesWidget::createDependence(ModuleDependRaw* dependence)
+{
+    InterfaceInfo* interface = new InterfaceInfo(m_selfModule, dependence);
 
-        foreach(ModuleDependRaw dep, module->dependencies) {
-            ModuleDependence* dependence = storage.addModuleDependence(moduleData);
-            dependence->name = dep.name;
-            dependence->type = dep.type;
+    m_dependencies[dependence] = interface;
+    m_interfaces += interface;
 
-            createDependence(module, dependence);
+    m_ui->layout->insertWidget(0, interface);
+}
+
+QList<ModuleDependence> DependenciesWidget::getDependencies()
+{
+    QList<ModuleDependence> dependencies;
+
+    foreach(InterfaceInfo* interface, m_interfaces)
+        dependencies += interface->getValue();
+
+    return dependencies;
+}
+
+ModuleDependRaw* DependenciesWidget::getDependenceRaw(ModuleDependence dependence)
+{
+    ModuleDependRaw* depend = NULL;
+
+    foreach(ModuleDependRaw* dep, m_dependencies.keys()) {
+        if (dep->name == dependence.name) {
+            depend = dep;
+            break;
         }
+    }
+
+    return depend;
+}
+
+void DependenciesWidget::setDependencies(QList<ModuleDependence> dependencies)
+{
+    foreach(ModuleDependence dependence, dependencies) {
+        ModuleDependRaw* depend = getDependenceRaw(dependence);
+        if (!depend)
+            // TODO: errors handling
+            continue;
+        m_dependencies[depend]->setValue(dependence);
     }
 }
 
-void DependenciesPage::createDependence(ModuleDescriptionRaw* module, ModuleDependence* dependence)
+DependenciesWidget::~DependenciesWidget()
 {
-    InterfaceInfo* interface = new InterfaceInfo(module, dependence);
-    foreach(ModuleDescriptionRaw* module, m_modules)
-        interface->moduleEnabled(module);
-
-    m_ui->layout->insertWidget(0, interface);
-    m_interfaces += interface;
-}
-
-void DependenciesPage::moduleEnabled(ModuleDescriptionRaw* module)
-{
-    m_modules += module;
-
     foreach(InterfaceInfo* interface, m_interfaces)
-        interface->moduleEnabled(module);
-}
+        delete interface;
 
-void DependenciesPage::moduleDisabled(ModuleDescriptionRaw* module)
-{
-    m_modules.removeOne(module);
-
-    foreach(InterfaceInfo* interface, m_interfaces)
-        interface->moduleDisabled(module);
-}
-
-DependenciesPage::~DependenciesPage()
-{
     delete m_ui;
 }
