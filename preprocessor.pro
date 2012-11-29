@@ -2,8 +2,7 @@ include(../wsnsim.pri)
 
 TEMPLATE = app
 TARGET = projectEditor
-QT += gui
-CONFIG += console
+QT += gui core
 INCLUDEPATH += . ../libs/projectData ../libs/moduleData
 DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules settings
 INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules settings
