@@ -20,13 +20,11 @@ class ModuleParamInt : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamInt();
 
-    void setParamValue(QVariant value);
-
-private slots:
-    void setParamValue(int value);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 protected:
     Ui::IntParam *m_ui;

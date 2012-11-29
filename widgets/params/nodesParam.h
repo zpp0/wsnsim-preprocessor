@@ -20,10 +20,11 @@ class ModuleParamNodes : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamNodes();
 
-    void setParamValue(QVariant value);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 public slots:
     void addNodeType(QString name);
@@ -42,6 +43,8 @@ protected:
 
 private:
     void removeNodes(QString nodeType);
+
+    int getNodes_fromTable(int row);
 
     void addDummyNodeType();
     void removeDummyNodeType();

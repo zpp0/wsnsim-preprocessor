@@ -9,34 +9,32 @@
 #include "doubleParam.h"
 #include "ui_doubleParam.h"
 
-ModuleParamDouble::ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::DoubleParam)
+ModuleParamDouble::ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw)
+    :ModuleParamGeneral(module, paramRaw), m_ui(new Ui::DoubleParam)
 {
     m_ui->setupUi(this);
 
-    m_ui->l_info->setText(m_paramRaw->info);
-    m_ui->l_units->setText(m_paramRaw->units);
+    m_ui->l_info->setText(m_param->info);
+    m_ui->l_units->setText(m_param->units);
+}
 
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
+void ModuleParamDouble::setParam(ModuleParam param)
+{
+    double value = param.value.toDouble();
+    m_ui->doubleSpinBox->setValue(value);
+}
 
-    connect(m_ui->doubleSpinBox, SIGNAL(valueChanged(double)),
-            this, SLOT(setParamValue(double)));
+ModuleParam ModuleParamDouble::getParam()
+{
+    ModuleParam param;
+    param.name = m_param->name;
+    param.type = m_param->type;
+    param.value = m_ui->doubleSpinBox->value();
+
+    return param;
 }
 
 ModuleParamDouble::~ModuleParamDouble()
 {
     delete m_ui;
-}
-
-void ModuleParamDouble::setParamValue(QVariant value)
-{
-    double param = value.toDouble();
-    m_ui->doubleSpinBox->setValue(param);
-}
-
-void ModuleParamDouble::setParamValue(double value)
-{
-    m_param->value = value;
-    qDebug() << m_param->value;
 }

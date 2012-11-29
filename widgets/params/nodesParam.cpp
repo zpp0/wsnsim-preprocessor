@@ -11,10 +11,10 @@
 
 #include "nodeTypeSpinBox.h"
 
-#include "projectStorage.h"
+#include "nodesStorage.h"
 
-ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::NodesParam)
+ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw)
+    :ModuleParamGeneral(module, paramRaw), m_ui(new Ui::NodesParam)
 {
     m_ui->setupUi(this);
 
@@ -27,14 +27,16 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
 
     addDummyNodeType();
 
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
+    NodesStorage& storage = NodesStorage::instance();
 
-    ProjectStorage& storage = ProjectStorage::instance();
-    connect(&storage, SIGNAL(newNodeType(QString)),
+    QList<QString> nodeTypes = storage.getNodeTypes();
+    foreach(QString nodeType, nodeTypes)
+        addNodeType(nodeType);
+
+    connect(&storage, SIGNAL(nodeTypeAdded(QString)),
             this, SLOT(addNodeType(QString)));
 
-    connect(&storage, SIGNAL(deleteNodeType(QString)),
+    connect(&storage, SIGNAL(nodeTypeRemoved(QString)),
             this, SLOT(removeNodeType(QString)));
 
     connect(m_ui->b_add, SIGNAL(clicked()),
@@ -42,11 +44,6 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
 
     connect(m_ui->t_nodes, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(customContextMenuRequested(const QPoint &)));
-}
-
-ModuleParamNodes::~ModuleParamNodes()
-{
-    delete m_ui;
 }
 
 void ModuleParamNodes::addNodeType()
@@ -80,19 +77,7 @@ void ModuleParamNodes::addNodeType(QString nodeType, int number)
 
 void ModuleParamNodes::setNodes(QString nodeType, int number)
 {
-    QMap<QString, QVariant> value = m_param->value.toMap();
-
-    // set the param value
-    if (number > 0)
-        value[nodeType] = number;
-    else
-        value.remove(nodeType);
-
-    m_param->value = value;
-
-    // set the simulator's nodes number
-    ProjectStorage& storage = ProjectStorage::instance();
-    storage.setNodes(m_module, nodeType, number);
+    NodesStorage::instance().setNodes(m_module, nodeType, number);
 }
 
 void ModuleParamNodes::addNodeType(QString name)
@@ -160,13 +145,42 @@ void ModuleParamNodes::removeNodes(QString nodeType)
     m_nodeTypes.removeOne(nodeType);
 
     addNodeType(nodeType);
+
+    NodesStorage::instance().removeNodes(m_module, nodeType);
 }
 
-void ModuleParamNodes::setParamValue(QVariant value)
+void ModuleParamNodes::setParam(ModuleParam param)
 {
-    QMap<QString, QVariant> nodes = value.toMap();
+    QMap<QString, QVariant> nodes = param.value.toMap();
     foreach(QString name, nodes.keys()) {
         removeNodeType(name);
         addNodeType(name, nodes[name].toInt());
     }
+}
+
+int ModuleParamNodes::getNodes_fromTable(int row)
+{
+    NodeTypeSpinBox* nodes = (NodeTypeSpinBox*)m_ui->t_nodes->cellWidget(row, 1);
+    return nodes->value();
+}
+
+ModuleParam ModuleParamNodes::getParam()
+{
+    ModuleParam param;
+    param.name = m_param->name;
+    param.type = m_param->type;
+
+    QMap<QString, QVariant> nodes;
+
+    foreach(QString nodeType, m_nodeTypesRows.keys())
+        nodes[nodeType] = getNodes_fromTable(m_nodeTypesRows[nodeType]);
+
+    param.value = nodes;
+
+    return param;
+}
+
+ModuleParamNodes::~ModuleParamNodes()
+{
+    delete m_ui;
 }

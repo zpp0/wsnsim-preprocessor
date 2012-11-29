@@ -20,13 +20,11 @@ class ModuleParamDouble : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamDouble();
 
-    void setParamValue(QVariant value);
-
-private slots:
-    void setParamValue(double value);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 protected:
     Ui::DoubleParam *m_ui;

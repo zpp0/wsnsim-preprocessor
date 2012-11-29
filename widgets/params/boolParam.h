@@ -20,10 +20,11 @@ class ModuleParamBool : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamBool();
 
-    void setParamValue(QVariant value);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 protected:
     Ui::BoolParam *m_ui;

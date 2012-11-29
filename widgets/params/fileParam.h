@@ -20,17 +20,17 @@ class ModuleParamFile : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamFile();
 
-    void setParamValue(QVariant value);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 protected:
     Ui::FileParam *m_ui;
 
 private slots:
     void browseFile();
-    void setParamValue(QString value);
 };
 
 #endif // FILEPARAM_H

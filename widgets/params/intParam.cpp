@@ -9,32 +9,31 @@
 #include "intParam.h"
 #include "ui_intParam.h"
 
-ModuleParamInt::ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::IntParam)
+ModuleParamInt::ModuleParamInt(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw)
+    :ModuleParamGeneral(module, paramRaw), m_ui(new Ui::IntParam)
 {
     m_ui->setupUi(this);
 
-    m_ui->l_info->setText(paramRaw->info);
-    m_ui->l_units->setText(paramRaw->units);
+    m_ui->l_info->setText(m_param->info);
+    m_ui->l_units->setText(m_param->units);
+}
 
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
+void ModuleParamInt::setParam(ModuleParam param)
+{
+    m_ui->spinBox->setValue(param.value.toInt());
+}
 
-    connect(m_ui->spinBox, SIGNAL(valueChanged(int)),
-            this, SLOT(setParamValue(int)));
+ModuleParam ModuleParamInt::getParam()
+{
+    ModuleParam param;
+    param.name = m_param->name;
+    param.type = m_param->type;
+    param.value = m_ui->spinBox->value();
+
+    return param;
 }
 
 ModuleParamInt::~ModuleParamInt()
 {
     delete m_ui;
-}
-
-void ModuleParamInt::setParamValue(QVariant value)
-{
-    m_ui->spinBox->setValue(value.toInt());
-}
-
-void ModuleParamInt::setParamValue(int value)
-{
-    m_param->value = value;
 }

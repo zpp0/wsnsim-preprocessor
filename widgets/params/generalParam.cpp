@@ -7,11 +7,9 @@
  **/
 
 #include "generalParam.h"
-#include "projectParams.h"
 
-ModuleParamGeneral::ModuleParamGeneral(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
+ModuleParamGeneral::ModuleParamGeneral(ModuleDescriptionRaw* module, ModuleParamRaw* param)
 {
     m_module = module;
-    m_paramRaw = paramRaw;
     m_param = param;
 }

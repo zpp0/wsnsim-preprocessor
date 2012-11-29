@@ -10,20 +10,12 @@
 #include "ui_timeParam.h"
 #include "projectParams.h"
 
-ModuleParamTime::ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::TimeParam)
+ModuleParamTime::ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw)
+    :ModuleParamGeneral(module, paramRaw), m_ui(new Ui::TimeParam)
 {
     m_ui->setupUi(this);
 
-    m_ui->l_info->setText(paramRaw->info);
-
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
-
-    connect(m_ui->time, SIGNAL(setValue(int)),
-            this, SLOT(setTimeValue(int)));
-    connect(m_ui->cb_timeUnits, SIGNAL(activated(int)),
-            this, SLOT(timeUnitsActivated(int)));
+    m_ui->l_info->setText(m_param->info);
 }
 
 ModuleParamTime::~ModuleParamTime()
@@ -31,20 +23,11 @@ ModuleParamTime::~ModuleParamTime()
     delete m_ui;
 }
 
-void ModuleParamTime::setParamValue(QVariant value)
+void ModuleParamTime::setParam(ModuleParam param)
 {
 }
 
-void ModuleParamTime::setTimeValue(int time)
+ModuleParam ModuleParamTime::getParam()
 {
-    QMap<QString, QVariant> value = m_param->value.toMap();
-    value["time"] = time;
-    m_param->value = value;
-}
-
-void ModuleParamTime::timeUnitsActivated(int units)
-{
-    QMap<QString, QVariant> value = m_param->value.toMap();
-    value["timeUnits"] = units;
-    m_param->value = value;
+    return ModuleParam();
 }

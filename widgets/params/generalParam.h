@@ -11,23 +11,23 @@
 
 #include <QtGui>
 
-#include "moduleParams.h"
 #include "projectParams.h"
+#include "moduleParams.h"
 
 class ModuleParamGeneral : public QFrame
 {
     Q_OBJECT
 
 public:
-    ModuleParamGeneral(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamGeneral(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
 
     virtual ~ModuleParamGeneral() {}
 
-    virtual void setParamValue(QVariant value) = 0;
+    virtual void setParam(ModuleParam param) = 0;
+    virtual ModuleParam getParam() = 0;
 
 protected:
-    ModuleParamRaw* m_paramRaw;
-    ModuleParam* m_param;
+    ModuleParamRaw* m_param;
     ModuleDescriptionRaw* m_module;
 };
 

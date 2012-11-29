@@ -16,7 +16,7 @@ class ModuleParamUint : protected ModuleParamInt
     Q_OBJECT
 
 public:
-    ModuleParamUint(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamUint(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamUint() {}
 };
 

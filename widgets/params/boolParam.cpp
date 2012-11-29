@@ -9,27 +9,34 @@
 #include "boolParam.h"
 #include "ui_boolParam.h"
 
-ModuleParamBool::ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::BoolParam)
+ModuleParamBool::ModuleParamBool(ModuleDescriptionRaw* module, ModuleParamRaw* param)
+    :ModuleParamGeneral(module, param), m_ui(new Ui::BoolParam)
 {
     m_ui->setupUi(this);
 
-    m_ui->checkBox->setText(paramRaw->info);
+    m_ui->checkBox->setText(param->info);
+}
 
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
+void ModuleParamBool::setParam(ModuleParam param)
+{
+    bool value = param.value.toBool();
+    if (value == true)
+        m_ui->checkBox->setCheckState(Qt::Checked);
+    else
+        m_ui->checkBox->setCheckState(Qt::Unchecked);
+}
+
+ModuleParam ModuleParamBool::getParam()
+{
+    ModuleParam param;
+    param.name = m_param->name;
+    param.type = m_param->type;
+    param.value = m_ui->checkBox->checkState() == Qt::Checked ? true : false;
+
+    return param;
 }
 
 ModuleParamBool::~ModuleParamBool()
 {
     delete m_ui;
-}
-
-void ModuleParamBool::setParamValue(QVariant value)
-{
-    bool param = value.toBool();
-    if (param == true)
-        m_ui->checkBox->setCheckState(Qt::Checked);
-    else
-        m_ui->checkBox->setCheckState(Qt::Unchecked);
 }

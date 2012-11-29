@@ -20,14 +20,11 @@ class ModuleParamTime : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamTime(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamTime();
 
-    void setParamValue(QVariant value);
-
-private slots:
-    void setTimeValue(int time);
-    void timeUnitsActivated(int units);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 protected:
     Ui::TimeParam *m_ui;

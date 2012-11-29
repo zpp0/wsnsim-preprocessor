@@ -20,16 +20,14 @@ class ModuleParamString : protected ModuleParamGeneral
     Q_OBJECT
 
 public:
-    ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param);
+    ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw);
     virtual ~ModuleParamString();
 
-    void setParamValue(QVariant value);
+    void setParam(ModuleParam param);
+    ModuleParam getParam();
 
 protected:
     Ui::StringParam *m_ui;
-
-private slots:
-    void setParamValue(QString value);
 };
 
 #endif // STRINGPARAM_H

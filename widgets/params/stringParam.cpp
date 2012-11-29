@@ -9,35 +9,34 @@
 #include "stringParam.h"
 #include "ui_stringParam.h"
 
-ModuleParamString::ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::StringParam)
+ModuleParamString::ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw)
+    :ModuleParamGeneral(module, paramRaw), m_ui(new Ui::StringParam)
 {
     m_ui->setupUi(this);
 
-    m_ui->l_info->setText(paramRaw->info);
-    if (paramRaw->units == "")
+    m_ui->l_info->setText(m_param->info);
+    if (m_param->units == "")
         m_ui->l_units->setVisible(false);
     else
         m_ui->l_units->setText(paramRaw->units);
+}
 
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
+void ModuleParamString::setParam(ModuleParam param)
+{
+    m_ui->lineEdit->setText(param.value.toString());
+}
 
-    connect(m_ui->lineEdit, SIGNAL(textChanged(QString)),
-            this, SLOT(setParamValue(QString)));
+ModuleParam ModuleParamString::getParam()
+{
+    ModuleParam param;
+    param.name = m_param->name;
+    param.type = m_param->type;
+    param.value = m_ui->lineEdit->text();
+
+    return param;
 }
 
 ModuleParamString::~ModuleParamString()
 {
     delete m_ui;
-}
-
-void ModuleParamString::setParamValue(QVariant value)
-{
-    m_ui->lineEdit->setText(value.toString());
-}
-
-void ModuleParamString::setParamValue(QString value)
-{
-    m_param->value = value;
 }

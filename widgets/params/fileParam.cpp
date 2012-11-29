@@ -11,26 +11,15 @@
 #include "fileParam.h"
 #include "ui_fileParam.h"
 
-ModuleParamFile::ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw, ModuleParam* param)
-    :ModuleParamGeneral(module, paramRaw, param), m_ui(new Ui::FileParam)
+ModuleParamFile::ModuleParamFile(ModuleDescriptionRaw* module, ModuleParamRaw* paramRaw)
+    :ModuleParamGeneral(module, paramRaw), m_ui(new Ui::FileParam)
 {
     m_ui->setupUi(this);
 
-    m_ui->l_info->setText(paramRaw->info);
-
-    if (!m_param->value.isNull())
-        setParamValue(m_param->value);
+    m_ui->l_info->setText(m_param->info);
 
     connect(m_ui->b_file, SIGNAL(clicked()),
             this, SLOT(browseFile()));
-
-    connect(m_ui->lineEdit, SIGNAL(textChanged(QString)),
-            this, SLOT(setParamValue(QString)));
-}
-
-ModuleParamFile::~ModuleParamFile()
-{
-    delete m_ui;
 }
 
 void ModuleParamFile::browseFile()
@@ -42,13 +31,23 @@ void ModuleParamFile::browseFile()
         m_ui->lineEdit->setText(text);
 }
 
-void ModuleParamFile::setParamValue(QVariant value)
+void ModuleParamFile::setParam(ModuleParam param)
 {
-    QString param = value.toString();
-    m_ui->lineEdit->setText(param);
+    QString value = param.value.toString();
+    m_ui->lineEdit->setText(value);
 }
 
-void ModuleParamFile::setParamValue(QString value)
+ModuleParam ModuleParamFile::getParam()
 {
-    m_param->value = value;
+    ModuleParam param;
+    param.name = m_param->name;
+    param.type = m_param->type;
+    param.value = m_ui->lineEdit->text();
+
+    return param;
+}
+
+ModuleParamFile::~ModuleParamFile()
+{
+    delete m_ui;
 }
