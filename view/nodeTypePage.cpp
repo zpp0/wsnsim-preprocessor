@@ -80,10 +80,12 @@ void NodeTypePage::setNodeType(NodeTypeData nodeType)
 
 void NodeTypePage::moduleEnabled(ModuleDescriptionRaw* module, bool enabled)
 {
-    if (enabled)
-        addModule_toCombobox(module);
-    else
-        removeModule(module);
+    if (isNodeModule(module)) {
+        if (enabled)
+            addModule_toCombobox(module);
+        else
+            removeModule(module);
+    }
 }
 
 //
