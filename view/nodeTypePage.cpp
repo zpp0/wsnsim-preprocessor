@@ -159,12 +159,8 @@ void NodeTypePage::customContextMenuRequested(const QPoint &p)
 
 void NodeTypePage::removeModule_fromTable(int row)
 {
-    ModuleDescriptionRaw* module = m_nodeType[row];
     m_ui->t_modules->removeRow(row);
     m_nodeType.removeAt(row);
-
-    // ProjectStorage& storage = ProjectStorage::instance();
-    // storage.setNodeType(m_name, m_nodeTypesModules);
 }
 
 void NodeTypePage::removeModule_fromCombobox(int index)
