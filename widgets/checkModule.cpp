@@ -26,11 +26,3 @@ void CheckModule::enabled(bool enable)
         emit moduleDisabled(m_module);
     }
 }
-
-void CheckModule::setCheck(bool check)
-{
-    if (check == true)
-        setCheckState(Qt::Checked);
-    else
-        setCheckState(Qt::Unchecked);
-}

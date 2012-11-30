@@ -20,8 +20,6 @@ public:
     CheckModule(ModuleDescriptionRaw* module);
     virtual ~CheckModule() {}
 
-    void setCheck(bool check);
-
 signals:
     void moduleEnabled(ModuleDescriptionRaw* module);
     void moduleDisabled(ModuleDescriptionRaw* module);
