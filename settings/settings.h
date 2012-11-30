@@ -29,8 +29,6 @@ private slots:
     void showCurrentSettings();
     void saveSettings();
 private:
-    QString setRelativeDirectory(QString directory);
-
     Ui::Settings* m_ui;
 };
 

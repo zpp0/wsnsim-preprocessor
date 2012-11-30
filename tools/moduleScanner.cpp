@@ -43,8 +43,10 @@ void ModuleScanner::scanFile(QString& file)
         return;
     }
 
-    QString modulesDirectory = QSettings().value("Modules/Directory").toString();
-    QDir modulesDir(QDir::currentPath() + modulesDirectory);
+    QSettings settings("wsnsim", "simulator");
+
+    QString modulesDirectory = settings.value("Modules/Directory").toString();
+    QDir modulesDir(modulesDirectory);
 
     QString moduleFile = modulesDir.relativeFilePath(moduleDescription.fileName);
     moduleDescription.fileName = moduleFile;
@@ -62,7 +64,7 @@ void ModuleScanner::scanDir(QString& dir)
     QStringList modulesFiles = modulesDir.entryList(m_moduleFileExtensions);
     foreach (QString moduleFile, modulesFiles) {
         qDebug() << "scan" << moduleFile;
-        QString modulePath = dir + moduleFile;
+        QString modulePath = dir + "/" + moduleFile;
         scanFile(modulePath);
     }
 }

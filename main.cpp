@@ -4,17 +4,15 @@
 
 int main(int argc, char *argv[])
 {
-    // Q_INIT_RESOURCE(configdialog);
-
     QApplication app(argc, argv);
 
     QCoreApplication::setOrganizationName("wsnsim");
     QCoreApplication::setApplicationName("projecteditor");
 
-    QSettings simsettings("wsnsim" "simulator");
+    QSettings simsettings("wsnsim", "simulator");
 
     if(!simsettings.contains("Modules/Directory"))
-        simsettings.setValue("Modules/Directory", "/modules/");
+        simsettings.setValue("Modules/Directory", QDir::currentPath() + "/modules/");
 
     QTranslator translator_qt;
     QTranslator translator_postprocessor;

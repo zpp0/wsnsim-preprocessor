@@ -30,20 +30,18 @@ Settings::~Settings()
     delete m_ui;
 }
 
-QString Settings::setRelativeDirectory(QString directory)
-{
-    return ("/" + QDir::current().relativeFilePath(directory) + "/");
-}
-
 void Settings::showCurrentSettings()
 {
     QString directory = QSettings("wsnsim", "simulator").value("Modules/Directory").toString();
     m_ui->le_directory->setText(directory);
+    qDebug() << directory;
 }
 
 void Settings::saveSettings()
 {
     QString directory = m_ui->le_directory->text();
+
+    qDebug() << directory;
 
     QSettings settings("wsnsim", "simulator");
     settings.setValue("Modules/Directory", directory);
@@ -63,7 +61,7 @@ void Settings::browseDirectory()
     QString directory = QFileDialog::getExistingDirectory(this, tr("Open Directory"),
                                                           QDir::currentPath(),
                                                           QFileDialog::ShowDirsOnly);
-    directory = setRelativeDirectory(directory);
+    // directory = setRelativeDirectory(directory);
 
     m_ui->le_directory->setText(directory);
 }
