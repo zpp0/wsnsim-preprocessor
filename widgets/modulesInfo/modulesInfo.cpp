@@ -47,9 +47,11 @@ void ModulesInfo::addModuleInfo(ModuleDescriptionRaw* module)
 
     CheckModule* checkModule = new CheckModule(module);
     connect(checkModule, SIGNAL(moduleEnabled(ModuleDescriptionRaw*)),
-            m_parent, SLOT(moduleEnabled(ModuleDescriptionRaw*)));
+            m_parent, SLOT(moduleEnabled(ModuleDescriptionRaw*)),
+            Qt::DirectConnection);
     connect(checkModule, SIGNAL(moduleDisabled(ModuleDescriptionRaw*)),
-            m_parent, SLOT(moduleDisabled(ModuleDescriptionRaw*)));
+            m_parent, SLOT(moduleDisabled(ModuleDescriptionRaw*)),
+            Qt::DirectConnection);
 
     m_modules[module] = checkModule;
 
