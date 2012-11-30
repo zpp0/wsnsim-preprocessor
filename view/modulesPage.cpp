@@ -93,7 +93,7 @@ void ModulesPage::deleteModulePage(ModuleDescriptionRaw* module)
 
 ModuleDescriptionRaw* ModulesPage::getModuleRaw(ModuleData moduleData)
 {
-    QList<ModuleDescriptionRaw*> modules;
+    QList<ModuleDescriptionRaw*> modules = ModulesStorage::instance().getEnabled();
     ModuleDescriptionRaw* module = NULL;
     foreach(ModuleDescriptionRaw* moduleRaw, modules) {
         if (moduleRaw->fileName == moduleData.fileName) {
