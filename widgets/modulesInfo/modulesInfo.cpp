@@ -63,10 +63,10 @@ void ModulesInfo::addModuleInfo(ModuleDescriptionRaw* module)
 
 void ModulesInfo::enableModuleInfo(ModuleDescriptionRaw* module)
 {
-    m_modules[module]->setCheck(true);
+    m_modules[module]->enabled(true);
 }
 
 void ModulesInfo::disableModuleInfo(ModuleDescriptionRaw* module)
 {
-    m_modules[module]->setCheck(false);
+    m_modules[module]->enabled(false);
 }
