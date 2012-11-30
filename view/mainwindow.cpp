@@ -12,7 +12,6 @@
 #include <QtGui>
 
 #include "moduleScanner.h"
-#include "projectScanner.h"
 
 #include "settings.h"
 #include "modulesStorage.h"
@@ -160,9 +159,14 @@ void MainWindow::openOrCreateProject(QString project)
         m_projectFileName = project;
         m_l_projectFileName->setText(project);
 
-        ProjectScanner scanner;
+        ProjectStorage& storage = ProjectStorage::instance();
+        ProjectParams& project = storage.loadXML(m_projectFileName);
 
-        scanner.scanFile(m_projectFileName);
+        m_simulatorPage->setParams(project.simulatorParams);
+        m_projectPage->setParams(project.projectInfo);
+        m_modulesPage->activateModules(project.modules);
+        m_nodeTypesPage->setNodeTypes(project.nodeTypes);
+        m_modulesPage->setModules(project.modules);
 
         // m_l_projectName->setText(m_projectFileName);
     }
@@ -183,19 +187,18 @@ void MainWindow::actionSaveAs()
         m_projectFileName = file;
         m_l_projectFileName->setText(file);
 
-        ProjectParams project;
+        ProjectStorage& storage = ProjectStorage::instance();
+        ProjectParams& project = storage.getProject();
         project.simulatorParams = m_simulatorPage->getParams();
         project.projectInfo = m_projectPage->getParams();
         project.projectInfo.revision = 0;
         project.modules = m_modulesPage->getModules();
         project.events.systemEvents = m_modulesPage->getEvents();
         project.nodeTypes = m_nodeTypesPage->getNodeTypes();
-
         project.nodes = NodesStorage::instance().getNodes();
 
         // сохраняем данные в xml
-        ProjectStorage storage;
-        storage.saveXML(project, m_projectFileName);
+        storage.saveXML(m_projectFileName);
     }
 }
 
