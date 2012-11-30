@@ -28,10 +28,6 @@ MainWindow::MainWindow() :
     QWidget* treeTitle = new QWidget(this);
     m_ui->dockWidget->setTitleBarWidget(treeTitle);
 
-    // устанавливаем кодировки для строк
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf-8"));
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
-
     m_projectTree = new ProjectTree();
     m_ui->dockWidget->setWidget(m_projectTree);
 
@@ -131,8 +127,7 @@ void MainWindow::actionScan()
 
     QSettings settings("wsnsim", "simulator");
     QString modulesDirectory = settings.value("Modules/Directory").toString();
-    QString modulesDir = QDir::currentPath() + modulesDirectory;
-    scanner.scanDir(modulesDir);
+    scanner.scanDir(modulesDirectory);
 }
 
 void MainWindow::actionSave()

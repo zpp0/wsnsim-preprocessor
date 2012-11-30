@@ -9,6 +9,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationName("wsnsim");
     QCoreApplication::setApplicationName("projecteditor");
 
+    // устанавливаем кодировки для строк
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf-8"));
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+
     QSettings simsettings("wsnsim", "simulator");
 
     if(!simsettings.contains("Modules/Directory"))
