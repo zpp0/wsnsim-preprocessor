@@ -1,29 +1,52 @@
 /**
  *
  * File: projectStorage.h
- * Description: projects storage
  * Author: Yarygin Alexander <yarygin.alexander@gmail.com>
  *
  **/
 
-#ifndef PROJECTSSTORAGE_H
-#define PROJECTSSTORAGE_H
+#ifndef PROJECTSTORAGE_H
+#define PROJECTSTORAGE_H
 
 #include <QString>
-#include <QList>
 
 #include "projectParams.h"
-#include "moduleParams.h"
 
 class ProjectStorage : public QObject
 {
     Q_OBJECT
 public:
-    void saveXML(ProjectParams project, QString file);
+    static ProjectStorage& instance() {
+        static ProjectStorage instance;
+        return instance;
+    }
+
+    void saveXML(QString file);
+    ProjectParams& loadXML(QString file);
+
+    ProjectParams& getProject();
 
 signals:
 
-    void savingFileError(QString errorString);
+    void libLoadingError(QString errorString);
+
+    void savingProjectError(QString errorString);
+    void loadingProjectError(QString errorString);
+
+private:
+    ProjectStorage();
+    ProjectStorage(ProjectStorage const&);
+    void operator=(ProjectStorage const&);
+
+    bool loaded;
+
+    typedef void(*projectDataSave) (QString& projectFileName, QString* errorMessage, ProjectParams params);
+    typedef ProjectParams(*projectDataLoad) (QString& projectFileName, QString* errorMessage);
+
+    projectDataSave m_saveFun;
+    projectDataLoad m_loadFun;
+
+    ProjectParams m_project;
 };
 
-#endif // PROJECTSSTORAGE_H
+#endif // PROJECTSTORAGE_H

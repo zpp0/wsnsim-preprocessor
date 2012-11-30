@@ -1,7 +1,6 @@
 /**
  *
- * File: projectStorage.cpp
- * Description: projects storage
+ * File: project.cpp
  * Author: Yarygin Alexander <yarygin.alexander@gmail.com>
  *
  **/
@@ -10,37 +9,72 @@
 
 #include "projectStorage.h"
 
-void ProjectStorage::saveXML(ProjectParams project, QString file)
+ProjectStorage::ProjectStorage()
 {
-    project.version = "0.6.0";
-
-    if (project.uuid.isNull())
-        project.uuid = QUuid::createUuid().toString();
-
-    project.projectInfo.revision++;
-    project.projectInfo.modified = QDateTime::currentDateTime().toString();
-
-    for (int i = 0; i < project.events.systemEvents.size(); i++)
-        project.events.systemEvents[i].eventInfo["ID"] = QString::number(i);
-
-    LogFileInfo info;
-    info["ID"] = QString::number(0);
-    info["name"] = project.simulatorParams.logFile;
-    project.logFiles += info;
-
     QLibrary projectDataLib("./projectData");
     projectDataLib.load();
 
-    if(!projectDataLib.isLoaded()) {
-        emit savingFileError(projectDataLib.errorString());
+    if(projectDataLib.isLoaded()) {
+        m_saveFun = (projectDataSave) projectDataLib.resolve("save");
+        m_loadFun = (projectDataLoad) projectDataLib.resolve("load");
+
+        loaded = true;
+    }
+    else {
+        emit libLoadingError(projectDataLib.errorString());
+        loaded = false;
+    }
+}
+
+ProjectParams& ProjectStorage::getProject()
+{
+    return m_project;
+}
+
+void ProjectStorage::saveXML(QString file)
+{
+    if (!loaded) {
+        emit libLoadingError(tr("ProjectData library was not loaded!"));
         return;
     }
 
-    // FIXME: make it easy
-    typedef void(*projectDataSave) (QString& projectFileName, QString* errorMessage, ProjectParams params);
-    projectDataSave pd = (projectDataSave) projectDataLib.resolve("save");
+    m_project.version = "0.6.0";
 
-    QString errorMessage;
+    if (m_project.uuid.isNull())
+        m_project.uuid = QUuid::createUuid().toString();
 
-    pd(file, &errorMessage, project);
+    m_project.projectInfo.revision++;
+    m_project.projectInfo.modified = QDateTime::currentDateTime().toString();
+
+    for (int i = 0; i < m_project.events.systemEvents.size(); i++)
+        m_project.events.systemEvents[i].eventInfo["ID"] = QString::number(i);
+
+    LogFileInfo info;
+    info["ID"] = QString::number(0);
+    info["name"] = m_project.simulatorParams.logFile;
+    m_project.logFiles += info;
+
+    QString errorMessage = "";
+
+    m_saveFun(file, &errorMessage, m_project);
+
+    if (errorMessage != "")
+        emit savingProjectError(errorMessage);
+}
+
+ProjectParams& ProjectStorage::loadXML(QString file)
+{
+    if (!loaded) {
+        emit libLoadingError(tr("ProjectData library was not loaded!"));
+        return getProject();
+    }
+
+    QString errorMessage = "";
+
+    m_project = m_loadFun(file, &errorMessage);
+
+    if (errorMessage != "")
+        emit loadingProjectError(errorMessage);
+
+    return getProject();
 }
