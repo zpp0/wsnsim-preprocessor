@@ -12,12 +12,11 @@ HEADERS += model/modulesStorage.h \
            model/projectStorage.h \
            model/nodesStorage.h \
            tools/moduleScanner.h \
-           tools/projectScanner.h \
            settings/settings.h \
            view/mainwindow.h \
            view/modulesPage.h \
            view/modulePage.h \
-           view/projectpage.h \
+           view/projectPage.h \
            view/simulatorPage.h \
            view/nodeTypePage.h \
            view/nodeTypesPage.h \
@@ -62,7 +61,6 @@ SOURCES += main.cpp \
            model/projectStorage.cpp \
            model/nodesStorage.cpp \
            tools/moduleScanner.cpp \
-           tools/projectScanner.cpp \
            settings/settings.cpp \
            view/mainwindow.cpp \
            view/modulesPage.cpp \
