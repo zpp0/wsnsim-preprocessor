@@ -35,6 +35,7 @@ public:
 
     QList<ModuleData> getModules();
     void setModules(QList<ModuleData> modules);
+    void activateModules(QList<ModuleData> modules);
 
     QList<EventParams> getEvents();
     void setEvents(QList<EventParams> events);

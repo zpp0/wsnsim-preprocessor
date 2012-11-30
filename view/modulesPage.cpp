@@ -114,6 +114,27 @@ QList<ModuleData> ModulesPage::getModules()
     return modules;
 }
 
+bool moduleIDLessThan(const ModuleData &s1, const ModuleData &s2)
+{
+    return s1.moduleInfo["ID"].toUInt() < s2.moduleInfo["ID"].toUInt();
+}
+
+
+void ModulesPage::activateModules(QList<ModuleData> modules)
+{
+    // sort by moduleID
+    qSort(modules.begin(), modules.end(), moduleIDLessThan);
+
+    foreach(ModuleData moduleData, modules) {
+        ModuleDescriptionRaw* module = ModulesStorage::instance().getModule(moduleData.fileName);
+        if (module)
+            m_modulesInfo->enableModuleInfo(module);
+        else {
+            // TODO: errors handling
+        }
+    }
+}
+
 void ModulesPage::setModules(QList<ModuleData> modules)
 {
     foreach(ModuleData moduleData, modules) {
