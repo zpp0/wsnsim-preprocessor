@@ -186,6 +186,7 @@ void MainWindow::actionSaveAs()
         ProjectParams project;
         project.simulatorParams = m_simulatorPage->getParams();
         project.projectInfo = m_projectPage->getParams();
+        project.projectInfo.revision = 0;
         project.modules = m_modulesPage->getModules();
         project.events.systemEvents = m_modulesPage->getEvents();
         project.nodeTypes = m_nodeTypesPage->getNodeTypes();

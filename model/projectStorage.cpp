@@ -17,6 +17,7 @@ void ProjectStorage::saveXML(ProjectParams project, QString file)
     if (project.uuid.isNull())
         project.uuid = QUuid::createUuid().toString();
 
+    project.projectInfo.revision++;
     project.projectInfo.modified = QDateTime::currentDateTime().toString();
 
     for (int i = 0; i < project.events.systemEvents.size(); i++)
