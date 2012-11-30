@@ -68,9 +68,9 @@ void NodeTypePage::setNodeType(NodeTypeData nodeType)
     foreach(quint16 moduleID, modules) {
         module = ModulesStorage::instance().getModule(moduleID);
         addModule_toTable(module);
-        int row = m_nodeType.indexOf(module);
+        int row = m_indexes.indexOf(module);
         if (row != -1)
-            removeModule_fromTable(row);
+            removeModule_fromCombobox(row);
     }
 }
 
