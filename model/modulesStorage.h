@@ -26,6 +26,8 @@ public:
 
     void enableModule(ModuleDescriptionRaw* module, bool enable);
 
+    ModuleDescriptionRaw* getModule(QString fileName);
+
     ModuleDescriptionRaw* getModule(quint16 moduleID);
     quint16 getModule(ModuleDescriptionRaw* module);
 
