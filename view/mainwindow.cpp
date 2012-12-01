@@ -91,6 +91,15 @@ MainWindow::MainWindow() :
 
     connect(m_ui->actionQuit, SIGNAL(triggered()),
             this, SLOT(actionQuit()));
+
+    m_ui->toolBar->addAction(m_ui->actionNew);
+    m_ui->toolBar->addAction(m_ui->actionOpen);
+    m_ui->toolBar->addAction(m_ui->actionSave);
+    m_ui->toolBar->addSeparator();
+    m_ui->toolBar->addAction(m_ui->actionScanForModules);
+    m_ui->toolBar->addSeparator();
+    m_ui->toolBar->addAction(m_ui->actionSettings);
+
 void MainWindow::loadProject()
 {
     m_simulatorPage->clear();
