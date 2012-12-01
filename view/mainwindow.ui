@@ -153,6 +153,10 @@
    </attribute>
   </widget>
   <action name="actionNew">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/icons/document_file.png</normaloff>:/icons/icons/document_file.png</iconset>
+   </property>
    <property name="text">
     <string>New</string>
    </property>
@@ -161,6 +165,10 @@
    </property>
   </action>
   <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/icons/folder.png</normaloff>:/icons/icons/folder.png</iconset>
+   </property>
    <property name="text">
     <string>Open</string>
    </property>
@@ -174,6 +182,10 @@
    </property>
   </action>
   <action name="actionSave">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/icons/save_as.png</normaloff>:/icons/icons/save_as.png</iconset>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
@@ -190,6 +202,10 @@
    </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/icons/close_delete_2.png</normaloff>:/icons/icons/close_delete_2.png</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>
@@ -213,16 +229,34 @@
    </property>
   </action>
   <action name="actionScanForModules">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/icons/refresh.png</normaloff>:/icons/icons/refresh.png</iconset>
+   </property>
    <property name="text">
-    <string>Scan for modules</string>
+    <string>Rescan for modules</string>
+   </property>
+   <property name="toolTip">
+    <string>Rescan for modules</string>
    </property>
   </action>
   <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/icons/options.png</normaloff>:/icons/icons/options.png</iconset>
+   </property>
    <property name="text">
     <string>Settings</string>
    </property>
   </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../res/preprocessor.qrc"/>
+ </resources>
  <connections/>
 </ui>
