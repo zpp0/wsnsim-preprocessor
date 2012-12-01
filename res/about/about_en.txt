@@ -1,0 +1,4 @@
+Program: Project Editor
+Authors: Alexander Yarygin / 2012-2013
+
+Copyright (C) Moscow / MAI

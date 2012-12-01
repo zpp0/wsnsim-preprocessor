@@ -7,6 +7,12 @@
         <file alias="preprocessor.qm">languages/preprocessor_en.qm</file>
         <file alias="qt.qm">languages/qt_en.qm</file>
     </qresource>
+    <qresource prefix="/about" lang="ru">
+        <file alias="about.txt">about/about_ru.txt</file>
+    </qresource>
+    <qresource prefix="/about" lang="en">
+        <file alias="about.txt">about/about_en.txt</file>
+    </qresource>
     <qresource prefix="/icons">
         <file>icons/arrow_down.png</file>
         <file>icons/arrow_left-down.png</file>

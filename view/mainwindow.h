@@ -31,6 +31,10 @@ public slots:
     void newPage(QWidget *page);
     void switchPage(QWidget *page);
 
+private slots:
+    void showAboutDialog();
+    void showAboutQtDialog();
+
 private:
     Ui::MainWindow *m_ui;
 

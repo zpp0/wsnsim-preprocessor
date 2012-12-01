@@ -92,6 +92,12 @@ MainWindow::MainWindow() :
     connect(m_ui->actionQuit, SIGNAL(triggered()),
             this, SLOT(actionQuit()));
 
+    connect(m_ui->actionAbout, SIGNAL(triggered()),
+            this, SLOT(showAboutDialog()));
+
+    connect(m_ui->actionAbout_Qt, SIGNAL(triggered()),
+            this, SLOT(showAboutQtDialog()));
+
     m_ui->toolBar->addAction(m_ui->actionNew);
     m_ui->toolBar->addAction(m_ui->actionOpen);
     m_ui->toolBar->addAction(m_ui->actionSave);
@@ -240,4 +246,23 @@ void MainWindow::actionQuit()
     // TODO: спрашивать сохранить ли результат
     // выходим
     close();
+}
+
+void MainWindow::showAboutDialog()
+{
+    QFile file(":/about/about.txt");
+
+    file.open(QFile::ReadOnly);
+
+    QTextStream stream(&file);
+
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    stream.setCodec(codec);
+
+    QMessageBox::about(this, tr("About"), stream.readAll());
+}
+
+void MainWindow::showAboutQtDialog()
+{
+    QMessageBox::aboutQt(this, tr("About Qt"));
 }
