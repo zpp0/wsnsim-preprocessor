@@ -145,7 +145,7 @@ void MainWindow::switchPage(QWidget *page)
 
 void MainWindow::actionScan()
 {
-    m_modulesPage->clear();
+    m_modulesPage->clean();
 
     ModuleScanner scanner;
     ModulesStorage& storage = ModulesStorage::instance();

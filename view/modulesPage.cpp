@@ -165,6 +165,17 @@ void ModulesPage::clear()
     foreach(ModuleDescriptionRaw* module, m_modules.keys())
         deleteModulePage(module);
 
+    m_modulesInfo->disableAllModules();
+
+    // delete m_modulesInfo;
+
+    // m_modulesInfo = new ModulesInfo(this);
+    // m_ui->vertical->insertWidget(0, m_modulesInfo);
+}
+
+void ModulesPage::clean()
+{
+    clear();
     delete m_modulesInfo;
 
     m_modulesInfo = new ModulesInfo(this);

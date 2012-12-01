@@ -41,6 +41,7 @@ public:
     void setEvents(QList<EventParams> events);
 
     void clear();
+    void clean();
 
 public slots:
     void registerModule(ModuleDescriptionRaw* module);
