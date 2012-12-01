@@ -34,6 +34,9 @@ public slots:
 private:
     Ui::MainWindow *m_ui;
 
+    void loadProject();
+    void saveProject();
+
     // путь к файлу проекта
     QString m_projectFileName;
     QLabel* m_l_projectFileName;

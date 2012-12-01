@@ -91,6 +91,38 @@ MainWindow::MainWindow() :
 
     connect(m_ui->actionQuit, SIGNAL(triggered()),
             this, SLOT(actionQuit()));
+void MainWindow::loadProject()
+{
+    m_simulatorPage->clear();
+    m_projectPage->clear();
+    m_modulesPage->clear();
+    m_nodeTypesPage->clear();
+
+    ProjectStorage& storage = ProjectStorage::instance();
+
+    ProjectParams& project = storage.loadXML(m_projectFileName);
+
+    m_simulatorPage->setParams(project.simulatorParams);
+    m_projectPage->setParams(project.projectInfo);
+    m_modulesPage->activateModules(project.modules);
+    m_nodeTypesPage->setNodeTypes(project.nodeTypes);
+    m_modulesPage->setModules(project.modules);
+}
+
+void MainWindow::saveProject()
+{
+    ProjectStorage& storage = ProjectStorage::instance();
+    ProjectParams& project = storage.getProject();
+    project.simulatorParams = m_simulatorPage->getParams();
+    project.projectInfo = m_projectPage->getParams();
+    project.projectInfo.revision = 0;
+    project.modules = m_modulesPage->getModules();
+    project.events.systemEvents = m_modulesPage->getEvents();
+    project.nodeTypes = m_nodeTypesPage->getNodeTypes();
+    project.nodes = NodesStorage::instance().getNodes();
+
+    // сохраняем данные в xml
+    storage.saveXML(m_projectFileName);
 }
 
 MainWindow::~MainWindow()
@@ -153,21 +185,14 @@ void MainWindow::actionOpen()
 
 void MainWindow::openOrCreateProject(QString project)
 {
+    // FIXME: where is here creating?
     if (project != "") {
         // TODO: спрашивать, надо ли их сохранить
 
         m_projectFileName = project;
         m_l_projectFileName->setText(project);
 
-        ProjectStorage& storage = ProjectStorage::instance();
-        ProjectParams& project = storage.loadXML(m_projectFileName);
-
-        m_simulatorPage->setParams(project.simulatorParams);
-        m_projectPage->setParams(project.projectInfo);
-        m_modulesPage->activateModules(project.modules);
-        m_nodeTypesPage->setNodeTypes(project.nodeTypes);
-        m_modulesPage->setModules(project.modules);
-
+        loadProject();
         // m_l_projectName->setText(m_projectFileName);
     }
 }
@@ -187,18 +212,7 @@ void MainWindow::actionSaveAs()
         m_projectFileName = file;
         m_l_projectFileName->setText(file);
 
-        ProjectStorage& storage = ProjectStorage::instance();
-        ProjectParams& project = storage.getProject();
-        project.simulatorParams = m_simulatorPage->getParams();
-        project.projectInfo = m_projectPage->getParams();
-        project.projectInfo.revision = 0;
-        project.modules = m_modulesPage->getModules();
-        project.events.systemEvents = m_modulesPage->getEvents();
-        project.nodeTypes = m_nodeTypesPage->getNodeTypes();
-        project.nodes = NodesStorage::instance().getNodes();
-
-        // сохраняем данные в xml
-        storage.saveXML(m_projectFileName);
+        saveProject();
     }
 }
 
