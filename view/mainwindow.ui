@@ -71,13 +71,9 @@
     <addaction name="actionSave"/>
     <addaction name="actionSaveAs"/>
     <addaction name="separator"/>
+    <addaction name="actionClose"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
-   </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-    <addaction name="actionSettings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -93,10 +89,11 @@
     <property name="title">
      <string>Tools</string>
     </property>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
     <addaction name="actionScanForModules"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuSettings"/>
    <addaction name="menuModules"/>
    <addaction name="menuHelp"/>
   </widget>
