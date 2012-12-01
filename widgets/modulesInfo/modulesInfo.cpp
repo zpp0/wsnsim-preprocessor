@@ -7,6 +7,7 @@
  **/
 
 #include "modulesInfo.h"
+#include "luaEditor.h"
 
 ModulesInfo::ModulesInfo(QWidget* parent)
     :QTableWidget(parent), m_parent(parent)
@@ -110,9 +111,15 @@ void ModulesInfo::customContextMenuRequested(const QPoint &p)
     }
 
     if (ti_item != NULL) {
+        ModuleDescriptionRaw* module = m_rows[row(ti_item)];
+
         if (a == actionOpen) {
+            LuaEditor editor(module->fileName);
+            editor.exec();
         }
         else if (a == actionOpenInExternalEditor) {
+            ModuleDescriptionRaw* module = m_rows[row(ti_item)];
+            LuaEditor::openExternal(module->fileName);
         }
         else if (a == actionRescan) {
         }
