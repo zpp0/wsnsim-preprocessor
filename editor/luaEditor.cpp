@@ -21,7 +21,7 @@ LuaEditor::LuaEditor(QString fileName, QWidget *parent)
     m_fileName = fileName;
     m_ui->l_file->setText(m_fileName);
 
-    m_editor = new QPlainTextEdit(this);
+    m_editor = new CodeEditor(this);
     m_ui->layout->addWidget(m_editor);
 
     m_luaHighlighter = new LuaHighlighter(m_editor->document());

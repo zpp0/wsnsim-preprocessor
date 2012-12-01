@@ -4,8 +4,8 @@ TEMPLATE = app
 TARGET = projectEditor
 QT += gui core
 INCLUDEPATH += . ../libs/projectData ../libs/moduleData
-DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules settings
-INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules settings
+DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules settings editor
+INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules settings editor
 
 # Input
 HEADERS += model/modulesStorage.h \
@@ -13,6 +13,9 @@ HEADERS += model/modulesStorage.h \
            model/nodesStorage.h \
            tools/moduleScanner.h \
            settings/settings.h \
+           editor/luaEditor.h \
+           editor/luaHighlighter.h \
+           editor/codeEditor.h \
            view/mainwindow.h \
            view/modulesPage.h \
            view/modulePage.h \
@@ -44,6 +47,7 @@ FORMS += view/mainwindow.ui \
          view/simulatorPage.ui \
          view/nodeTypePage.ui \
          view/nodeTypesPage.ui \
+         editor/luaEditor.ui \
          settings/settings.ui \
          widgets/modules/paramsWidget.ui \
          widgets/modules/dependenciesWidget.ui \
@@ -61,6 +65,9 @@ SOURCES += main.cpp \
            model/projectStorage.cpp \
            model/nodesStorage.cpp \
            tools/moduleScanner.cpp \
+           editor/luaEditor.cpp \
+           editor/luaHighlighter.cpp \
+           editor/codeEditor.cpp \
            settings/settings.cpp \
            view/mainwindow.cpp \
            view/modulesPage.cpp \

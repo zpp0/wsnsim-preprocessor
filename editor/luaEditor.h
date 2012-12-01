@@ -12,6 +12,8 @@
 
 #include "luaHighlighter.h"
 
+#include "codeEditor.h"
+
 namespace Ui {
     class LuaEditor;
 }
@@ -29,7 +31,7 @@ private:
     static QString getModuleFilePath(QString fileName);
 
     QString m_fileName;
-    QPlainTextEdit* m_editor;
+    CodeEditor* m_editor;
     LuaHighlighter* m_luaHighlighter;
 
     Ui::LuaEditor* m_ui;
