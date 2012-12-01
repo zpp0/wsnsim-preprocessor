@@ -178,9 +178,8 @@ void MainWindow::actionSave()
     if (m_projectFileName == "")
         // спрашиваем полщователя
         actionSaveAs();
-
-    // сохраняем
-    // saveXml();
+    else
+        saveProject();
 }
 
 void MainWindow::actionOpen()
