@@ -9,6 +9,7 @@
 #define LUAEDITOR_H
 
 #include <QDialog>
+#include <QPushButton>
 
 #include "luaHighlighter.h"
 
@@ -27,12 +28,21 @@ public:
 
     static void openExternal(QString fileName);
 
+private slots:
+    void buttonClicked(QAbstractButton *button);
+
 private:
     static QString getModuleFilePath(QString fileName);
 
-    QString m_fileName;
+    void saveFile();
+
+    QString m_filePath;
     CodeEditor* m_editor;
     LuaHighlighter* m_luaHighlighter;
+
+    QPushButton* b_save;
+    QPushButton* b_saveAndExit;
+    QPushButton* b_exit;
 
     Ui::LuaEditor* m_ui;
 };
