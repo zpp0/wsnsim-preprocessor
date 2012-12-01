@@ -100,6 +100,9 @@ MainWindow::MainWindow() :
     m_ui->toolBar->addSeparator();
     m_ui->toolBar->addAction(m_ui->actionSettings);
 
+    actionScan();
+}
+
 void MainWindow::loadProject()
 {
     m_simulatorPage->clear();
