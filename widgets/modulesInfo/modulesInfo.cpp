@@ -29,6 +29,12 @@ ModulesInfo::ModulesInfo(QWidget* parent)
     setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     verticalHeader()->setVisible(false);
+
+    setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(customContextMenuRequested(const QPoint &)));
+
 }
 
 ModulesInfo::~ModulesInfo()
@@ -54,6 +60,7 @@ void ModulesInfo::addModuleInfo(ModuleDescriptionRaw* module)
             Qt::DirectConnection);
 
     m_modules[module] = checkModule;
+    m_rows[rows] = module;
 
     setCellWidget(rows, 0, checkModule);
 
@@ -77,4 +84,39 @@ void ModulesInfo::disableAllModules()
 {
     foreach(ModuleDescriptionRaw* module, m_modules.keys())
         disableModuleInfo(module);
+}
+
+void ModulesInfo::customContextMenuRequested(const QPoint &p)
+{
+    QMenu menu(this);
+
+    QAction* actionNew = menu.addAction(tr("&New module"));
+    QAction* actionOpenInExternalEditor = NULL;
+    QAction* actionOpen = NULL;
+    QAction* actionRescan = NULL;
+    QAction* actionRemove = NULL;
+
+    QTableWidgetItem* ti_item = itemAt(p);
+    if (ti_item != NULL) {
+        actionOpen = menu.addAction(tr("&Open"));
+        actionOpenInExternalEditor = menu.addAction(tr("Open in &external editor"));
+        actionRescan = menu.addAction(tr("Re&scan"));
+        actionRemove = menu.addAction(tr("&Remove module"));
+    }
+
+    QAction *a = menu.exec(mapToGlobal(p));
+
+    if (a == actionNew) {
+    }
+
+    if (ti_item != NULL) {
+        if (a == actionOpen) {
+        }
+        else if (a == actionOpenInExternalEditor) {
+        }
+        else if (a == actionRescan) {
+        }
+        else if (a == actionRemove) {
+        }
+    }
 }

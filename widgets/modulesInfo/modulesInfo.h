@@ -29,9 +29,13 @@ public:
 
     void disableAllModules();
 
+private slots:
+    void customContextMenuRequested(const QPoint &p);
+
 private:
     QStringList m_moduleInfo;
     QMap<ModuleDescriptionRaw*, CheckModule*> m_modules;
+    QMap<int, ModuleDescriptionRaw*> m_rows;
 
     QWidget* m_parent;
 };
