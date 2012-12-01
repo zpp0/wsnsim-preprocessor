@@ -27,6 +27,8 @@ public:
     void enableModuleInfo(ModuleDescriptionRaw* module);
     void disableModuleInfo(ModuleDescriptionRaw* module);
 
+    void disableAllModules();
+
 private:
     QStringList m_moduleInfo;
     QMap<ModuleDescriptionRaw*, CheckModule*> m_modules;

@@ -72,3 +72,9 @@ void ModulesInfo::disableModuleInfo(ModuleDescriptionRaw* module)
 {
     m_modules[module]->enabled(false);
 }
+
+void ModulesInfo::disableAllModules()
+{
+    foreach(ModuleDescriptionRaw* module, m_modules.keys())
+        disableModuleInfo(module);
+}
