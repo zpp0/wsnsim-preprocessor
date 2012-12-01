@@ -42,7 +42,7 @@
     <message>
         <location filename="../../widgets/params/fileParam.ui" line="45"/>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Обзор...</translation>
     </message>
 </context>
 <context>
@@ -74,93 +74,113 @@
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="78"/>
         <source>Edit</source>
-        <translation>Правка</translation>
+        <translation type="obsolete">Правка</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="84"/>
-        <location filename="../../view/mainwindow.ui" line="188"/>
+        <location filename="../../view/mainwindow.ui" line="80"/>
+        <location filename="../../view/mainwindow.ui" line="221"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="94"/>
+        <location filename="../../view/mainwindow.ui" line="89"/>
         <source>Tools</source>
         <translation>Инструменты</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="143"/>
+        <location filename="../../view/mainwindow.ui" line="139"/>
+        <source>toolBar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="160"/>
         <source>New</source>
         <translation>Создать</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="146"/>
+        <location filename="../../view/mainwindow.ui" line="163"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="151"/>
+        <location filename="../../view/mainwindow.ui" line="172"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="154"/>
+        <location filename="../../view/mainwindow.ui" line="175"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="159"/>
+        <location filename="../../view/mainwindow.ui" line="180"/>
         <source>Recent Projects</source>
         <translation>Последние проекты</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="164"/>
+        <location filename="../../view/mainwindow.ui" line="189"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="167"/>
+        <location filename="../../view/mainwindow.ui" line="192"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="172"/>
+        <location filename="../../view/mainwindow.ui" line="197"/>
         <source>Save As</source>
         <translation>Сохранить как</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="175"/>
+        <location filename="../../view/mainwindow.ui" line="200"/>
         <source>Ctrl+Shift+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="180"/>
+        <location filename="../../view/mainwindow.ui" line="209"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="183"/>
+        <location filename="../../view/mainwindow.ui" line="212"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="193"/>
+        <location filename="../../view/mainwindow.ui" line="226"/>
         <source>Context help</source>
         <translation type="unfinished">Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="198"/>
+        <location filename="../../view/mainwindow.ui" line="235"/>
+        <location filename="../../view/mainwindow.cpp" line="262"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="203"/>
-        <source>Scan for modules</source>
-        <translation>Сканировать модули</translation>
+        <location filename="../../view/mainwindow.ui" line="244"/>
+        <location filename="../../view/mainwindow.ui" line="247"/>
+        <source>Rescan for modules</source>
+        <translation>Пересканировать модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="208"/>
+        <location filename="../../view/mainwindow.ui" line="261"/>
+        <source>Close</source>
+        <translation>Закрыть</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="270"/>
+        <source>About Qt...</source>
+        <translation>О Qt...</translation>
+    </message>
+    <message>
+        <source>Scan for modules</source>
+        <translation type="obsolete">Сканировать модули</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="256"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -169,39 +189,44 @@
         <translation type="obsolete">Настройки</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="45"/>
+        <location filename="../../view/mainwindow.cpp" line="40"/>
         <source>Project information</source>
         <translation>Параметры прокта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="46"/>
+        <location filename="../../view/mainwindow.cpp" line="41"/>
         <source>Simulator params</source>
         <translation>Параметры симулятора</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="47"/>
+        <location filename="../../view/mainwindow.cpp" line="42"/>
         <source>Modules</source>
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="48"/>
+        <location filename="../../view/mainwindow.cpp" line="43"/>
         <source>Node Types</source>
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="154"/>
+        <location filename="../../view/mainwindow.cpp" line="197"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="182"/>
+        <location filename="../../view/mainwindow.cpp" line="223"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="185"/>
+        <location filename="../../view/mainwindow.cpp" line="226"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.cpp" line="267"/>
+        <source>About Qt</source>
+        <translation>О Qt</translation>
     </message>
 </context>
 <context>
@@ -342,7 +367,7 @@
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypePage.cpp" line="148"/>
+        <location filename="../../view/nodeTypePage.cpp" line="150"/>
         <source>&amp;Remove</source>
         <translation>&amp;Удалить</translation>
     </message>
@@ -473,6 +498,15 @@
     </message>
 </context>
 <context>
+    <name>ProjectStorage</name>
+    <message>
+        <location filename="../../model/projectStorage.cpp" line="37"/>
+        <location filename="../../model/projectStorage.cpp" line="68"/>
+        <source>ProjectData library was not loaded!</source>
+        <translation>Библиотека ProjectData не загружена!</translation>
+    </message>
+</context>
+<context>
     <name>Settings</name>
     <message>
         <location filename="../../settings/settings.ui" line="14"/>
@@ -495,7 +529,7 @@
         <translation>обзор...</translation>
     </message>
     <message>
-        <location filename="../../settings/settings.cpp" line="63"/>
+        <location filename="../../settings/settings.cpp" line="61"/>
         <source>Open Directory</source>
         <translation>Выбрать директорию</translation>
     </message>
