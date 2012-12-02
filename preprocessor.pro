@@ -23,6 +23,7 @@ HEADERS += model/modulesStorage.h \
            view/simulatorPage.h \
            view/nodeTypePage.h \
            view/nodeTypesPage.h \
+           widgets/renamingNodeTypeDialog.h \
            widgets/checkModule.h \
            widgets/nodeTypeSpinBox.h \
            widgets/interfaceInfo.h \
@@ -49,6 +50,7 @@ FORMS += view/mainwindow.ui \
          view/nodeTypesPage.ui \
          editor/luaEditor.ui \
          settings/settings.ui \
+         widgets/renamingNodeTypeDialog.ui \
          widgets/modules/paramsWidget.ui \
          widgets/modules/dependenciesWidget.ui \
          widgets/params/doubleParam.ui \
@@ -78,6 +80,7 @@ SOURCES += main.cpp \
            view/nodeTypesPage.cpp \
            widgets/modules/paramsWidget.cpp \
            widgets/modules/dependenciesWidget.cpp \
+           widgets/renamingNodeTypeDialog.cpp \
            widgets/checkModule.cpp \
            widgets/nodeTypeSpinBox.cpp \
            widgets/interfaceInfo.cpp \
