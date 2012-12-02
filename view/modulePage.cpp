@@ -22,6 +22,9 @@ ModulePage::ModulePage(ModuleDescriptionRaw* module)
     m_param = new ParamsWidget(module);
     m_ui->params->addWidget(m_param);
 
+    m_info = new InfoWidget(module);
+    m_ui->info->addWidget(m_info);
+
     m_dependencies = new DependenciesWidget(module);
     m_ui->dependencies->addWidget(m_dependencies);
 }

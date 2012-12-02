@@ -11,6 +11,7 @@
 #include "projectParams.h"
 #include "moduleParams.h"
 
+#include "infoWidget.h"
 #include "paramsWidget.h"
 #include "dependenciesWidget.h"
 
@@ -34,6 +35,7 @@ public:
 private:
     ModuleDescriptionRaw* m_module;
 
+    InfoWidget* m_info;
     ParamsWidget* m_param;
     DependenciesWidget* m_dependencies;
 
