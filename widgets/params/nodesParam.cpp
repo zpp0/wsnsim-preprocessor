@@ -37,7 +37,7 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
             this, SLOT(addNodeType(QString)));
 
     connect(&storage, SIGNAL(nodeTypeRemoved(QString)),
-            this, SLOT(removeNodeType(QString)));
+            this, SLOT(removeNodeTypeAndNodes(QString)));
 
     connect(&storage, SIGNAL(nodeTypeRenamed(QString, QString)),
             this, SLOT(renameNodeType(QString, QString)));
@@ -94,6 +94,12 @@ void ModuleParamNodes::addNodeType(QString name)
 
     m_ui->cb_nodeType->addItem(name);
     m_nodeTypes += name;
+}
+
+void ModuleParamNodes::removeNodeTypeAndNodes(QString name)
+{
+    removeNodes(name);
+    removeNodeType(name);
 }
 
 void ModuleParamNodes::removeNodeType(QString name)

@@ -35,6 +35,8 @@ private slots:
     void addNodeType();
     void addNodeType(QString name, int number);
 
+    void removeNodeTypeAndNodes(QString name);
+
     void setNodes(QString nodeType, int number);
 
     void customContextMenuRequested(const QPoint &p);
