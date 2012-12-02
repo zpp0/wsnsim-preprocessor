@@ -24,6 +24,7 @@ public:
 
     void addNodeType(QString name);
     void removeNodeType(QString name);
+    void renameNodeType(QString newName, QString oldName);
 
     void setNodes(ModuleDescriptionRaw* module, QString nodeType, int number);
     void removeNodes(ModuleDescriptionRaw* module, QString nodeType);
@@ -36,6 +37,7 @@ public:
 signals:
     void nodeTypeAdded(QString name);
     void nodeTypeRemoved(QString name);
+    void nodeTypeRenamed(QString newName, QString oldName);
 
     void nodesTotalChanged(int number);
 

@@ -20,6 +20,13 @@ void NodesStorage::removeNodeType(QString name)
     emit nodeTypeRemoved(name);
 }
 
+void NodesStorage::renameNodeType(QString newName, QString oldName)
+{
+    int index = m_nodeTypes.indexOf(oldName);
+    m_nodeTypes[index] = newName;
+    emit nodeTypeRenamed(newName, oldName);
+}
+
 void NodesStorage::setNodes(ModuleDescriptionRaw* module, QString nodeType, int number)
 {
     m_nodes[module][nodeType] = number;
