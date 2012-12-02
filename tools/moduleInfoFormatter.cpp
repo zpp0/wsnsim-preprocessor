@@ -37,17 +37,22 @@ QStringList ModuleInfoFormatter::getDependencies()
     QStringList dependencies;
 
     foreach(const ModuleDependRaw& dependence, m_module->dependencies) {
-        QString sdependence = (dependence.name + " " + dependence.type + "\n");
+        QString sdependence = (tr("Name: ") + dependence.name + " "
+                               + tr("Type: ") + dependence.type + "\n");
 
-        sdependence += (tr("functions:") + "\n");
+        if (dependence.interface.functions.size() > 0) {
+            sdependence += ("  " + tr("functions:") + "\n");
 
-        foreach(const ModuleFunctionRaw& function, dependence.interface.functions)
-            sdependence += (getFunction(function) + "\n");
+            foreach(const ModuleFunctionRaw& function, dependence.interface.functions)
+                sdependence += ("    " + getFunction(function) + "\n");
+        }
 
-        sdependence += (tr("events:") + "\n");
+        if (dependence.interface.events.size() > 0) {
+            sdependence += ("  " + tr("events:") + "\n");
 
-        foreach(const ModuleEventRaw& event, dependence.interface.events)
-            sdependence += (getEvent(event) + "\n");
+            foreach(const ModuleEventRaw& event, dependence.interface.events)
+                sdependence += ("    " + getEvent(event) + "\n");
+        }
 
         dependencies << sdependence;
     }
@@ -64,10 +69,9 @@ QString ModuleInfoFormatter::getFunction(const ModuleFunctionRaw& function)
 
     foreach(const ModuleFunctionArgumentRaw& arg, function.arguments)
         sfunction += (arg.type + " " + arg.name
-                      + (&arg != &(function.arguments.last()) ? "," : ""));
+                      + (&arg != &(function.arguments.last()) ? ", " : ""));
 
-    sfunction += (")\n"
-                  + function.info);
+    sfunction += (") " + function.info);
 
     return sfunction;
 }
@@ -76,15 +80,14 @@ QString ModuleInfoFormatter::getEvent(const ModuleEventRaw& event)
 {
     QString sevent;
 
-    sevent += (event.name + " "
+    sevent += (event.name
                + "(");
 
     foreach(const ModuleEventParamRaw& param, event.params)
-        sevent += (param.type + " " + param.name + " " + param.info
-                   + (&param != &(event.params.last()) ? "," : ""));
+        sevent += (param.type + " " + param.name + (param.info != "" ? " " + param.info : "")
+                   + (&param != &(event.params.last()) ? ", " : ""));
 
-    sevent += (")\n"
-               + event.info);
+    sevent += (") " + event.info);
 
     return sevent;
 }
