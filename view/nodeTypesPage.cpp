@@ -10,6 +10,7 @@
 #include "ui_nodeTypesPage.h"
 
 #include "nodesStorage.h"
+#include "renamingNodeTypeDialog.h"
 
 NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
     :m_ui(new Ui::NodeTypesPage)
@@ -39,6 +40,8 @@ void NodeTypesPage::createNodeTypePage(QString nodeTypeName)
     m_ui->list_nodeTypes->addItem(new QListWidgetItem(nodeTypeName));
 
     QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(nodeTypeName, m_selfTreeElement);
+    m_nodeTypesTree[nodeTypeName] = ti_page;
+
     m_projectTree->addPage(ti_page, page);
 
     NodesStorage::instance().addNodeType(nodeTypeName);
@@ -88,11 +91,33 @@ void NodeTypesPage::customContextMenuRequested(const QPoint &p)
     QMenu menu(m_ui->list_nodeTypes);
 
     QAction* actionRemove = menu.addAction(tr("&Remove"));
+    QAction* actionRename = menu.addAction(tr("&Rename"));
 
     QAction* a = menu.exec(m_ui->list_nodeTypes->mapToGlobal(p));
 
     if (a == actionRemove)
         deleteNodeTypePage(nt_name);
+    else if (a == actionRename)
+        renameNodeTypePage(nt_name);
+}
+
+void NodeTypesPage::renameNodeTypePage(QListWidgetItem* nodeTypeItem)
+{
+    QString name = nodeTypeItem->text();
+    RenamingNodeTypeDialog dialog(name, this);
+
+    int ret = dialog.exec();
+    if (ret == QDialog::Accepted) {
+        QString newName = dialog.getNewName();
+        NodesStorage::instance().renameNodeType(newName, name);
+
+        nodeTypeItem->setText(newName);
+
+        QTreeWidgetItem* ti_page = m_nodeTypesTree[name];
+        ti_page->setText(0, newName);
+        m_nodeTypesTree.remove(name);
+        m_nodeTypesTree[newName] = ti_page;
+    }
 }
 
 QList<NodeTypeData> NodeTypesPage::getNodeTypes()

@@ -12,6 +12,7 @@
 #include "ui_nodeTypePage.h"
 
 #include "modulesStorage.h"
+#include "nodesStorage.h"
 
 NodeTypePage::NodeTypePage(QString name)
     :m_ui(new Ui::NodeTypePage)
@@ -31,6 +32,10 @@ NodeTypePage::NodeTypePage(QString name)
     connect(m_ui->b_addModule, SIGNAL(clicked()),
             this, SLOT(addModule_toTable_fromCombobox()));
 
+    NodesStorage& nodesStorage = NodesStorage::instance();
+    connect(&nodesStorage, SIGNAL(nodeTypeRenamed(QString, QString)),
+            this, SLOT(renameNodeType(QString, QString)));
+
     ModulesStorage& storage = ModulesStorage::instance();
 
     QList<ModuleDescriptionRaw*> modules = storage.getEnabled();
@@ -44,6 +49,14 @@ NodeTypePage::NodeTypePage(QString name)
 //
 // -- interface --
 //
+
+void NodeTypePage::renameNodeType(QString newName, QString oldName)
+{
+    if (oldName == m_name) {
+        m_name = newName;
+        setTitle(m_name);
+    }
+}
 
 NodeTypeData NodeTypePage::getNodeType()
 {

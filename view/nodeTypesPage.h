@@ -43,9 +43,13 @@ private:
     void createNodeTypePage(QString name);
     void deleteNodeTypePage(QListWidgetItem* nodeTypeItem);
 
+    void renameNodeTypePage(QListWidgetItem* nodeTypeItem);
+
     QList<QString> m_nodeTypesNames;
 
     QMap<QString, NodeTypePage*> m_nodeTypes;
+
+    QMap<QString, QTreeWidgetItem*> m_nodeTypesTree;
 
     ProjectTree* m_projectTree;
     QTreeWidgetItem* m_selfTreeElement;

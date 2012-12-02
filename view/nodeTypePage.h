@@ -40,6 +40,8 @@ private slots:
 
     void customContextMenuRequested(const QPoint &p);
     void addModule_toTable_fromCombobox();
+
+    void renameNodeType(QString newName, QString oldName);
 private:
 
     bool isNodeModule(ModuleDescriptionRaw* module);
