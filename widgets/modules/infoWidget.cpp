@@ -17,6 +17,10 @@ InfoWidget::InfoWidget(ModuleDescriptionRaw* module)
 
     m_module = module;
 
+    m_ui->l_module->setText(module->name);
+    m_ui->l_type->setText(module->type);
+    m_ui->l_description->setText(module->description);
+
     ModuleInfoFormatter formatter(m_module);
 
     if (m_module->interface.functions.size() != 0) {
