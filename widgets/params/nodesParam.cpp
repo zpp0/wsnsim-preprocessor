@@ -39,6 +39,9 @@ ModuleParamNodes::ModuleParamNodes(ModuleDescriptionRaw* module, ModuleParamRaw*
     connect(&storage, SIGNAL(nodeTypeRemoved(QString)),
             this, SLOT(removeNodeType(QString)));
 
+    connect(&storage, SIGNAL(nodeTypeRenamed(QString, QString)),
+            this, SLOT(renameNodeType(QString, QString)));
+
     connect(m_ui->b_add, SIGNAL(clicked()),
             this, SLOT(addNodeType()));
 
@@ -147,6 +150,28 @@ void ModuleParamNodes::removeNodes(QString nodeType)
     addNodeType(nodeType);
 
     NodesStorage::instance().removeNodes(m_module, nodeType);
+}
+
+void ModuleParamNodes::renameNodeType(QString newName, QString oldName)
+{
+    if (m_nodeTypesRows.contains(oldName)) {
+        int row = m_nodeTypesRows[oldName];
+
+        QTableWidgetItem* ti_nt_name = m_ui->t_nodes->item(row, 0);
+        ti_nt_name->setText(newName);
+
+        m_nodeTypesRows[newName] = row;
+        m_nodeTypesRows.remove(oldName);
+        m_nodeTypes[m_nodeTypes.indexOf(oldName)] = newName;
+    }
+
+    else {
+        int index = m_ui->cb_nodeType->findText(oldName, Qt::MatchFixedString);
+        if (index != -1 && m_nodeTypes.contains(oldName)) {
+            m_ui->cb_nodeType->setItemText(index, newName);
+            m_nodeTypes[index] = newName;
+        }
+    }
 }
 
 void ModuleParamNodes::setParam(ModuleParam param)

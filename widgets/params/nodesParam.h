@@ -29,6 +29,7 @@ public:
 public slots:
     void addNodeType(QString name);
     void removeNodeType(QString name);
+    void renameNodeType(QString newName, QString oldName);
 
 private slots:
     void addNodeType();
