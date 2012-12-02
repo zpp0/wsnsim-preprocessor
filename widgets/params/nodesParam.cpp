@@ -146,6 +146,7 @@ void ModuleParamNodes::removeNodes(QString nodeType)
     m_ui->t_nodes->removeRow(row);
 
     m_nodeTypes.removeOne(nodeType);
+    m_nodeTypesRows.remove(nodeType);
 
     addNodeType(nodeType);
 
