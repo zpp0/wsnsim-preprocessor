@@ -23,7 +23,8 @@ InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* depe
 
     ModulesStorage& storage = ModulesStorage::instance();
 
-    setError(true);
+    if (!m_dependence->optional)
+        setError(true);
 
     QList<ModuleDescriptionRaw*> modules = storage.getEnabled();
     foreach(ModuleDescriptionRaw* module, modules)
@@ -42,8 +43,9 @@ void InterfaceInfo::moduleEnabled(ModuleDescriptionRaw* module, bool enabled)
         m_ui->cb_modules->removeItem(index);
         m_modules.removeAt(index);
 
-        if (m_modules.isEmpty())
-            setError(true);
+        if (!m_dependence->optional)
+            if (m_modules.isEmpty())
+                setError(true);
     }
 }
 
@@ -54,8 +56,9 @@ void InterfaceInfo::isValidDependence(ModuleDescriptionRaw* module)
         addValidDependence(module->name);
         m_modules += module;
 
-        if (m_modules.size() == 1)
-            setError(false);
+        if (!m_dependence->optional)
+            if (m_modules.size() == 1)
+                setError(false);
     }
 }
 
