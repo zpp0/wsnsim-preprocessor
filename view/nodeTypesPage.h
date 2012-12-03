@@ -45,6 +45,8 @@ private:
 
     void renameNodeTypePage(QListWidgetItem* nodeTypeItem);
 
+    void setNodeTypesError(bool error);
+
     QList<QString> m_nodeTypesNames;
 
     QMap<QString, NodeTypePage*> m_nodeTypes;

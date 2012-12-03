@@ -10,6 +10,8 @@
 #include "ui_nodeTypesPage.h"
 
 #include "nodesStorage.h"
+#include "errorsStorage.h"
+
 #include "renamingNodeTypeDialog.h"
 
 NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
@@ -28,6 +30,8 @@ NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectT
 
     connect(m_ui->list_nodeTypes, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(customContextMenuRequested(const QPoint &)));
+
+    setNodeTypesError(true);
 }
 
 void NodeTypesPage::createNodeTypePage(QString nodeTypeName)
@@ -45,6 +49,9 @@ void NodeTypesPage::createNodeTypePage(QString nodeTypeName)
     m_projectTree->addPage(ti_page, page);
 
     NodesStorage::instance().addNodeType(nodeTypeName);
+
+    if (m_nodeTypesNames.size() == 1)
+        setNodeTypesError(false);
 }
 
 void NodeTypesPage::createNodeTypePage()
@@ -70,6 +77,9 @@ void NodeTypesPage::deleteNodeTypePage(QListWidgetItem* nodeTypeItem)
     delete nodeTypeItem;
 
     NodesStorage::instance().removeNodeType(nodeTypeName);
+
+    if (m_nodeTypesNames.isEmpty())
+        setNodeTypesError(true);
 }
 
 void NodeTypesPage::isNewNodeTypeName(QString name)
@@ -136,6 +146,13 @@ void NodeTypesPage::setNodeTypes(QList<NodeTypeData> nodeTypes)
         createNodeTypePage(nodeType.name);
         m_nodeTypes[nodeType.name]->setNodeType(nodeType);
     }
+}
+
+void NodeTypesPage::setNodeTypesError(bool error)
+{
+    ErrorsStorage::instance().setPossibleError(m_ui->list_nodeTypes,
+                                               error,
+                                               title() + ": " + tr("no node types chosen"));
 }
 
 void NodeTypesPage::clear()
