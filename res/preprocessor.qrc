@@ -13,7 +13,7 @@
     <qresource prefix="/about" lang="en">
         <file alias="about.txt">about/about_en.txt</file>
     </qresource>
-    <qresource prefix="/icons">
+    <qresource prefix="/">
         <file>icons/arrow_down.png</file>
         <file>icons/arrow_left-down.png</file>
         <file>icons/arrow_left-up.png</file>

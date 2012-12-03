@@ -154,7 +154,7 @@
   <action name="actionNew">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/document_file.png</normaloff>:/icons/icons/document_file.png</iconset>
+     <normaloff>:/icons/document_file.png</normaloff>:/icons/document_file.png</iconset>
    </property>
    <property name="text">
     <string>New</string>
@@ -166,7 +166,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/folder.png</normaloff>:/icons/icons/folder.png</iconset>
+     <normaloff>:/icons/folder.png</normaloff>:/icons/folder.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
@@ -183,7 +183,7 @@
   <action name="actionSave">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/save_as.png</normaloff>:/icons/icons/save_as.png</iconset>
+     <normaloff>:/icons/save_as.png</normaloff>:/icons/save_as.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
@@ -203,7 +203,7 @@
   <action name="actionQuit">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/close_delete_2.png</normaloff>:/icons/icons/close_delete_2.png</iconset>
+     <normaloff>:/icons/close_delete_2.png</normaloff>:/icons/close_delete_2.png</iconset>
    </property>
    <property name="text">
     <string>Quit</string>
@@ -215,7 +215,7 @@
   <action name="actionHelp">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/help.png</normaloff>:/icons/icons/help.png</iconset>
+     <normaloff>:/icons/help.png</normaloff>:/icons/help.png</iconset>
    </property>
    <property name="text">
     <string>Help</string>
@@ -229,7 +229,7 @@
   <action name="actionAbout">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/information.png</normaloff>:/icons/icons/information.png</iconset>
+     <normaloff>:/icons/information.png</normaloff>:/icons/information.png</iconset>
    </property>
    <property name="text">
     <string>About</string>
@@ -238,7 +238,7 @@
   <action name="actionScanForModules">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/refresh.png</normaloff>:/icons/icons/refresh.png</iconset>
+     <normaloff>:/icons/refresh.png</normaloff>:/icons/refresh.png</iconset>
    </property>
    <property name="text">
     <string>Rescan for modules</string>
@@ -250,7 +250,7 @@
   <action name="actionSettings">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/options.png</normaloff>:/icons/icons/options.png</iconset>
+     <normaloff>:/icons/options.png</normaloff>:/icons/options.png</iconset>
    </property>
    <property name="text">
     <string>Settings</string>
@@ -264,7 +264,7 @@
   <action name="actionAbout_Qt">
    <property name="icon">
     <iconset resource="../res/preprocessor.qrc">
-     <normaloff>:/icons/icons/qt.png</normaloff>:/icons/icons/qt.png</iconset>
+     <normaloff>:/icons/qt.png</normaloff>:/icons/qt.png</iconset>
    </property>
    <property name="text">
     <string>About Qt...</string>
