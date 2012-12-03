@@ -19,6 +19,9 @@ ModuleParamString::ModuleParamString(ModuleDescriptionRaw* module, ModuleParamRa
         m_ui->l_units->setVisible(false);
     else
         m_ui->l_units->setText(paramRaw->units);
+
+    if (m_param->defaultValue.isValid())
+        m_ui->lineEdit->setText(m_param->defaultValue.toString());
 }
 
 void ModuleParamString::setParam(ModuleParam param)

@@ -15,7 +15,14 @@ ModuleParamDouble::ModuleParamDouble(ModuleDescriptionRaw* module, ModuleParamRa
     m_ui->setupUi(this);
 
     m_ui->l_info->setText(m_param->info);
-    m_ui->l_units->setText(m_param->units);
+
+    if (m_param->units == "")
+        m_ui->l_units->setVisible(false);
+    else
+        m_ui->l_units->setText(m_param->units);
+
+    if (m_param->defaultValue.isValid())
+        m_ui->doubleSpinBox->setValue(m_param->defaultValue.toDouble());
 }
 
 void ModuleParamDouble::setParam(ModuleParam param)
