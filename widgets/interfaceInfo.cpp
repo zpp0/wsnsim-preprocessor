@@ -9,6 +9,7 @@
 #include "ui_interfaceInfo.h"
 
 #include "modulesStorage.h"
+#include "errorsStorage.h"
 
 InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* dependence)
     : m_ui(new Ui::InterfaceInfo)
@@ -21,6 +22,8 @@ InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* depe
     m_ui->l_name->setText(m_dependence->name);
 
     ModulesStorage& storage = ModulesStorage::instance();
+
+    setError(true);
 
     QList<ModuleDescriptionRaw*> modules = storage.getEnabled();
     foreach(ModuleDescriptionRaw* module, modules)
@@ -38,6 +41,9 @@ void InterfaceInfo::moduleEnabled(ModuleDescriptionRaw* module, bool enabled)
         int index = m_modules.indexOf(module);
         m_ui->cb_modules->removeItem(index);
         m_modules.removeAt(index);
+
+        if (m_modules.isEmpty())
+            setError(true);
     }
 }
 
@@ -47,6 +53,9 @@ void InterfaceInfo::isValidDependence(ModuleDescriptionRaw* module)
         // TODO: check for the interface compatibility
         addValidDependence(module->name);
         m_modules += module;
+
+        if (m_modules.size() == 1)
+            setError(false);
     }
 }
 
@@ -68,6 +77,7 @@ ModuleDependence InterfaceInfo::getValue()
 {
     ModuleDependence dependence;
 
+    // TODO: global block the saving if index count == 0
     int index = m_ui->cb_modules->currentIndex();
     ModuleDescriptionRaw* module = m_modules[index];
     quint16 moduleID = ModulesStorage::instance().getModule(module);
@@ -77,6 +87,14 @@ ModuleDependence InterfaceInfo::getValue()
     dependence.moduleID = moduleID;
 
     return dependence;
+}
+
+void InterfaceInfo::setError(bool error)
+{
+    ErrorsStorage::instance().setPossibleError(m_ui->cb_modules, error,
+                                               tr("Module") + " " + m_module->name + ": "
+                                               + tr("dependence") + " " + m_dependence->name + ": "
+                                               + tr("unbinded"));
 }
 
 InterfaceInfo::~InterfaceInfo()

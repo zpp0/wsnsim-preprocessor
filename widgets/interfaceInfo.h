@@ -39,6 +39,8 @@ private:
 
     void addValidDependence(QString moduleName);
 
+    void setError(bool error);
+
     ModuleDescriptionRaw* m_module;
     ModuleDependRaw* m_dependence;
 
