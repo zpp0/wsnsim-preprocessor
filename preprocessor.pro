@@ -11,7 +11,9 @@ INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets 
 HEADERS += model/modulesStorage.h \
            model/projectStorage.h \
            model/nodesStorage.h \
+           model/errorsStorage.h \
            tools/moduleScanner.h \
+           tools/moduleInfoFormatter.h \
            settings/settings.h \
            editor/luaEditor.h \
            editor/luaHighlighter.h \
@@ -23,12 +25,15 @@ HEADERS += model/modulesStorage.h \
            view/simulatorPage.h \
            view/nodeTypePage.h \
            view/nodeTypesPage.h \
+           widgets/errorAction.h \
+           widgets/errorsPanel.h \
            widgets/renamingNodeTypeDialog.h \
            widgets/checkModule.h \
            widgets/nodeTypeSpinBox.h \
            widgets/interfaceInfo.h \
            widgets/projectTree.h \
            widgets/modulesInfo/modulesInfo.h \
+           widgets/modules/infoWidget.h \
            widgets/modules/paramsWidget.h \
            widgets/modules/dependenciesWidget.h \
            widgets/params/generalParam.h \
@@ -50,7 +55,9 @@ FORMS += view/mainwindow.ui \
          view/nodeTypesPage.ui \
          editor/luaEditor.ui \
          settings/settings.ui \
+         widgets/errorsPanel.ui \
          widgets/renamingNodeTypeDialog.ui \
+         widgets/modules/infoWidget.ui \
          widgets/modules/paramsWidget.ui \
          widgets/modules/dependenciesWidget.ui \
          widgets/params/doubleParam.ui \
@@ -66,7 +73,9 @@ SOURCES += main.cpp \
            model/modulesStorage.cpp \
            model/projectStorage.cpp \
            model/nodesStorage.cpp \
+           model/errorsStorage.cpp \
            tools/moduleScanner.cpp \
+           tools/moduleInfoFormatter.cpp \
            editor/luaEditor.cpp \
            editor/luaHighlighter.cpp \
            editor/codeEditor.cpp \
@@ -78,10 +87,13 @@ SOURCES += main.cpp \
            view/simulatorPage.cpp \
            view/nodeTypePage.cpp \
            view/nodeTypesPage.cpp \
+           widgets/modules/infoWidget.cpp \
            widgets/modules/paramsWidget.cpp \
            widgets/modules/dependenciesWidget.cpp \
            widgets/renamingNodeTypeDialog.cpp \
            widgets/checkModule.cpp \
+           widgets/errorAction.cpp \
+           widgets/errorsPanel.cpp \
            widgets/nodeTypeSpinBox.cpp \
            widgets/interfaceInfo.cpp \
            widgets/projectTree.cpp \
