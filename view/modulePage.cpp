@@ -19,14 +19,32 @@ ModulePage::ModulePage(ModuleDescriptionRaw* module)
 
     setTitle(m_module->name);
 
-    m_param = new ParamsWidget(module);
-    m_ui->params->addWidget(m_param);
-
     m_info = new InfoWidget(module);
     m_ui->info->addWidget(m_info);
 
-    m_dependencies = new DependenciesWidget(module);
-    m_ui->dependencies->addWidget(m_dependencies);
+    m_param = NULL;
+    m_dependencies = NULL;
+
+    if (m_module->params.size() > 0) {
+        m_param = new ParamsWidget(module);
+        m_ui->params->addWidget(m_param);
+    }
+    else
+        m_ui->tabWidget->removeTab(m_ui->tabWidget->indexOf(m_ui->paramsPage));
+
+    if (m_module->interface.events.size() > 0) {
+        // m_dependencies = new DependenciesWidget(module);
+        // m_ui->dependencies->addWidget(m_dependencies);
+    }
+    else
+        m_ui->tabWidget->removeTab(m_ui->tabWidget->indexOf(m_ui->eventsPage));
+
+    if (m_module->dependencies.size() > 0) {
+        m_dependencies = new DependenciesWidget(module);
+        m_ui->dependencies->addWidget(m_dependencies);
+    }
+    else
+        m_ui->tabWidget->removeTab(m_ui->tabWidget->indexOf(m_ui->dependenciesPage));
 }
 
 ModuleData ModulePage::getModule()
@@ -37,16 +55,20 @@ ModuleData ModulePage::getModule()
     moduleData.moduleInfo["name"] = m_module->name;
     moduleData.moduleInfo["type"] = m_module->type;
 
-    moduleData.params = m_param->getParams();
-    moduleData.dependencies = m_dependencies->getDependencies();
+    if (m_param)
+        moduleData.params = m_param->getParams();
+    if (m_dependencies)
+        moduleData.dependencies = m_dependencies->getDependencies();
 
     return moduleData;
 }
 
 void ModulePage::setModule(ModuleData module)
 {
-    m_param->setParams(module.params);
-    m_dependencies->setDependencies(module.dependencies);
+    if (m_param)
+        m_param->setParams(module.params);
+    if (m_dependencies)
+        m_dependencies->setDependencies(module.dependencies);
 }
 
 QList<EventParams> ModulePage::getEvents()
