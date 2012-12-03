@@ -33,6 +33,8 @@ public slots:
     void newPage(QWidget *page);
     void switchPage(QWidget *page);
 
+    void hasErrors(bool yes);
+
 private slots:
     void showAboutDialog();
     void showAboutQtDialog();

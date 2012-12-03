@@ -178,6 +178,18 @@ void MainWindow::switchPage(QWidget *page)
         m_ui->pages->setCurrentWidget(page);
 }
 
+void MainWindow::hasErrors(bool yes)
+{
+    if (yes) {
+        m_ui->actionSave->setEnabled(false);
+        m_ui->actionSaveAs->setEnabled(false);
+    }
+    else {
+        m_ui->actionSave->setEnabled(true);
+        m_ui->actionSaveAs->setEnabled(true);
+    }
+}
+
 void MainWindow::actionScan()
 {
     m_modulesPage->clean();
