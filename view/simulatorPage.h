@@ -21,7 +21,7 @@ class SimulatorPage : public QGroupBox
     Q_OBJECT
 
 public:
-    SimulatorPage();
+    SimulatorPage(QWidget* parent = 0);
     virtual ~SimulatorPage();
 
     SimulatorParams getParams();
@@ -29,7 +29,16 @@ public:
 
     void clear();
 
+private slots:
+    void setFileName(QString fileName);
+    void setTimeValue(int time);
+    void setNodesTotal(int number);
+
 private:
+    void setTimeError(bool error);
+    void setLogError(bool error);
+    void setNodesError(bool error);
+
     Ui::SimulatorPage *m_ui;
 };
 
