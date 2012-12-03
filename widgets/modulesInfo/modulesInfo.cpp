@@ -9,6 +9,8 @@
 #include "modulesInfo.h"
 #include "luaEditor.h"
 
+#include "modulesInfoDialog.h"
+
 ModulesInfo::ModulesInfo(QWidget* parent)
     :QTableWidget(parent), m_parent(parent)
 {
@@ -89,41 +91,41 @@ void ModulesInfo::disableAllModules()
 
 void ModulesInfo::customContextMenuRequested(const QPoint &p)
 {
-    QMenu menu(this);
-
-    QAction* actionNew = menu.addAction(tr("&New module"));
-    QAction* actionOpenInExternalEditor = NULL;
-    QAction* actionOpen = NULL;
-    QAction* actionRescan = NULL;
-    QAction* actionRemove = NULL;
-
     QTableWidgetItem* ti_item = itemAt(p);
     if (ti_item != NULL) {
-        actionOpen = menu.addAction(tr("&Open"));
-        actionOpenInExternalEditor = menu.addAction(tr("Open in &external editor"));
-        actionRescan = menu.addAction(tr("Re&scan"));
-        actionRemove = menu.addAction(tr("&Remove module"));
-    }
 
-    QAction *a = menu.exec(mapToGlobal(p));
+        QMenu menu(this);
 
-    if (a == actionNew) {
-    }
+        QAction* actionShowInfo = menu.addAction(tr("&Show info"));
+        QAction* actionOpenInExternalEditor = menu.addAction(tr("&Open"));
+        QAction* actionOpen = menu.addAction(tr("Open in &external editor"));
+        QAction* actionRescan = menu.addAction(tr("Re&scan (unimplemented)"));
+        QAction* actionRemove = menu.addAction(tr("&Remove module (unimplemented)"));
 
-    if (ti_item != NULL) {
+        QAction *a = menu.exec(mapToGlobal(p));
+
         ModuleDescriptionRaw* module = m_rows[row(ti_item)];
 
-        if (a == actionOpen) {
+        if (a == actionShowInfo) {
+            ModulesInfoDialog dialog(this);
+            dialog.addModule(module);
+            dialog.exec();
+        }
+
+        else if (a == actionOpen) {
             LuaEditor editor(module->fileName);
             editor.exec();
         }
+
         else if (a == actionOpenInExternalEditor) {
             ModuleDescriptionRaw* module = m_rows[row(ti_item)];
             LuaEditor::openExternal(module->fileName);
         }
+
         else if (a == actionRescan) {
         }
         else if (a == actionRemove) {
         }
+
     }
 }
