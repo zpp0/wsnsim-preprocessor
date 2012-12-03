@@ -13,6 +13,8 @@
 
 #include "projectTree.h"
 
+#include "errorsPanel.h"
+
 namespace Ui {
     class MainWindow;
 }
@@ -44,6 +46,8 @@ private:
     // путь к файлу проекта
     QString m_projectFileName;
     QLabel* m_l_projectFileName;
+
+    ErrorsPanel* m_errorsPanel;
 
     ProjectTree* m_projectTree;
 

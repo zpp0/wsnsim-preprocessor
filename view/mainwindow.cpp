@@ -14,8 +14,10 @@
 #include "moduleScanner.h"
 
 #include "settings.h"
+
 #include "modulesStorage.h"
 #include "nodesStorage.h"
+#include "errorsStorage.h"
 
 MainWindow::MainWindow() :
     m_ui(new Ui::MainWindow)
@@ -34,6 +36,27 @@ MainWindow::MainWindow() :
             this, SLOT(newPage(QWidget*)));
     connect(m_projectTree, SIGNAL(pageSelected(QWidget*)),
             this, SLOT(switchPage(QWidget*)));
+
+    // путь к файлу исходных данных
+    m_projectFileName = "";
+    m_l_projectFileName = new QLabel();
+
+    m_errorsPanel = new ErrorsPanel(this);
+
+    ErrorsStorage& errors = ErrorsStorage::instance();
+    connect(&errors, SIGNAL(hasErrors(bool)),
+            this, SLOT(hasErrors(bool)));
+
+    connect(&errors, SIGNAL(errorAdded(QWidget*, QString)),
+            m_errorsPanel, SLOT(errorAdded(QWidget*, QString)));
+    connect(&errors, SIGNAL(errorRemoved(QWidget*)),
+            m_errorsPanel, SLOT(errorRemoved(QWidget*)));
+
+    connect(&errors, SIGNAL(hasErrors(bool)),
+            m_errorsPanel, SLOT(hasErrors(bool)));
+
+    m_ui->statusBar->addPermanentWidget(m_l_projectFileName);
+    m_ui->statusBar->addPermanentWidget(m_errorsPanel);
 
     // создаем элементы дерева стандартных страниц
     // проект
@@ -59,12 +82,6 @@ MainWindow::MainWindow() :
 
     // activate the default item
     m_projectTree->setCurrentItem(ti_projectPage);
-
-    // путь к файлу исходных данных
-    m_projectFileName = "";
-    m_l_projectFileName = new QLabel();
-
-    m_ui->statusBar->addPermanentWidget(m_l_projectFileName);
 
     // сигналы
 
