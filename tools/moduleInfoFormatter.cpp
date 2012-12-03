@@ -37,21 +37,22 @@ QStringList ModuleInfoFormatter::getDependencies()
     QStringList dependencies;
 
     foreach(const ModuleDependRaw& dependence, m_module->dependencies) {
-        QString sdependence = (tr("Name: ") + dependence.name + " "
-                               + tr("Type: ") + dependence.type + "\n");
+        QString sdependence;
+        // QString sdependence = (tr("Name: ") + dependence.name + " "
+        //                        + tr("Type: ") + dependence.type);
 
         if (dependence.interface.functions.size() > 0) {
-            sdependence += ("  " + tr("functions:") + "\n");
+            sdependence += ("\n  " + tr("functions:"));
 
             foreach(const ModuleFunctionRaw& function, dependence.interface.functions)
-                sdependence += ("    " + getFunction(function) + "\n");
+                sdependence += ("\n    " + getFunction(function));
         }
 
         if (dependence.interface.events.size() > 0) {
-            sdependence += ("  " + tr("events:") + "\n");
+            sdependence += ("\n  " + tr("events:"));
 
             foreach(const ModuleEventRaw& event, dependence.interface.events)
-                sdependence += ("    " + getEvent(event) + "\n");
+                sdependence += ("\n    " + getEvent(event));
         }
 
         dependencies << sdependence;
@@ -71,7 +72,7 @@ QString ModuleInfoFormatter::getFunction(const ModuleFunctionRaw& function)
         sfunction += (arg.type + " " + arg.name
                       + (&arg != &(function.arguments.last()) ? ", " : ""));
 
-    sfunction += (") " + function.info);
+    sfunction += ") ";
 
     return sfunction;
 }
@@ -87,7 +88,7 @@ QString ModuleInfoFormatter::getEvent(const ModuleEventRaw& event)
         sevent += (param.type + " " + param.name + (param.info != "" ? " " + param.info : "")
                    + (&param != &(event.params.last()) ? ", " : ""));
 
-    sevent += (") " + event.info);
+    sevent += ") ";
 
     return sevent;
 }
