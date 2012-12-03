@@ -27,6 +27,7 @@ HEADERS += model/modulesStorage.h \
            view/nodeTypesPage.h \
            widgets/errorAction.h \
            widgets/errorsPanel.h \
+           widgets/modulesInfoDialog.h \
            widgets/renamingNodeTypeDialog.h \
            widgets/checkModule.h \
            widgets/nodeTypeSpinBox.h \
@@ -56,6 +57,7 @@ FORMS += view/mainwindow.ui \
          editor/luaEditor.ui \
          settings/settings.ui \
          widgets/errorsPanel.ui \
+         widgets/modulesInfoDialog.ui \
          widgets/renamingNodeTypeDialog.ui \
          widgets/modules/infoWidget.ui \
          widgets/modules/paramsWidget.ui \
@@ -90,6 +92,7 @@ SOURCES += main.cpp \
            widgets/modules/infoWidget.cpp \
            widgets/modules/paramsWidget.cpp \
            widgets/modules/dependenciesWidget.cpp \
+           widgets/modulesInfoDialog.cpp \
            widgets/renamingNodeTypeDialog.cpp \
            widgets/checkModule.cpp \
            widgets/errorAction.cpp \
