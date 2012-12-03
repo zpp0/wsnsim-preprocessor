@@ -10,6 +10,7 @@
 #include "ui_modulesPage.h"
 
 #include "modulesStorage.h"
+#include "errorsStorage.h"
 
 ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
     :m_ui(new Ui::ModulesPage)
@@ -36,6 +37,8 @@ ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
 
     m_t_warnings->setVisible(false);
     m_ui->vertical->addWidget(m_t_warnings);
+
+    setModulesError(true);
 }
 
 ModulesPage::~ModulesPage()
@@ -79,6 +82,9 @@ void ModulesPage::createModulePage(ModuleDescriptionRaw* module)
 
     QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(module->name, m_selfTreeElement);
     m_projectTree->addPage(ti_page, page);
+
+    if (m_modules.size() == 1)
+        setModulesError(false);
 }
 
 void ModulesPage::deleteModulePage(ModuleDescriptionRaw* module)
@@ -89,6 +95,9 @@ void ModulesPage::deleteModulePage(ModuleDescriptionRaw* module)
 
     m_projectTree->removePage(page);
     delete page;
+
+    if (m_modules.isEmpty())
+        setModulesError(true);
 }
 
 ModuleDescriptionRaw* ModulesPage::getModuleRaw(ModuleData moduleData)
@@ -118,7 +127,6 @@ bool moduleIDLessThan(const ModuleData &s1, const ModuleData &s2)
 {
     return s1.moduleInfo["ID"].toUInt() < s2.moduleInfo["ID"].toUInt();
 }
-
 
 void ModulesPage::activateModules(QList<ModuleData> modules)
 {
@@ -171,6 +179,13 @@ void ModulesPage::clear()
 
     // m_modulesInfo = new ModulesInfo(this);
     // m_ui->vertical->insertWidget(0, m_modulesInfo);
+}
+
+void ModulesPage::setModulesError(bool error)
+{
+    ErrorsStorage::instance().setPossibleError(m_modulesInfo,
+                                               error,
+                                               title() + ": " + tr("no modules chosen"));
 }
 
 void ModulesPage::clean()

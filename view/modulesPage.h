@@ -54,6 +54,8 @@ private:
     void createModulePage(ModuleDescriptionRaw* module);
     void deleteModulePage(ModuleDescriptionRaw* module);
 
+    void setModulesError(bool error);
+
     ModuleDescriptionRaw* getModuleRaw(ModuleData moduleData);
 
     ModulesInfo* m_modulesInfo;
