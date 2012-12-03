@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>325</width>
-    <height>229</height>
+    <height>171</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,34 +23,6 @@
    <property name="margin">
     <number>0</number>
    </property>
-   <item row="7" column="0" colspan="3">
-    <widget class="QGroupBox" name="g_dependencies">
-     <property name="title">
-      <string>Dependencies</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <property name="margin">
-       <number>5</number>
-      </property>
-      <item row="0" column="0">
-       <layout class="QVBoxLayout" name="dependencies"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="l_ro_module">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Module</string>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="2">
     <widget class="QLabel" name="l_module">
      <property name="sizePolicy">
@@ -70,17 +42,30 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="3">
-    <widget class="QGroupBox" name="g_events">
-     <property name="title">
-      <string>Events</string>
+   <item row="0" column="0">
+    <widget class="QLabel" name="l_ro_module">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
-     <layout class="QGridLayout" name="gridLayout_3">
+     <property name="text">
+      <string>Module</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="0" colspan="3">
+    <widget class="QGroupBox" name="g_dependencies">
+     <property name="title">
+      <string>Dependencies</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
       <property name="margin">
        <number>5</number>
       </property>
       <item row="0" column="0">
-       <layout class="QVBoxLayout" name="events"/>
+       <layout class="QGridLayout" name="dependencies"/>
       </item>
      </layout>
     </widget>
@@ -92,10 +77,48 @@
      </property>
     </widget>
    </item>
-   <item row="0" column="1" rowspan="3">
-    <widget class="Line" name="line_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item row="1" column="0">
+    <widget class="QLabel" name="l_ro_type">
+     <property name="text">
+      <string>Type</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="l_ro_description">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Description</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
+    <widget class="QGroupBox" name="g_events">
+     <property name="title">
+      <string>Events</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_3">
+      <property name="margin">
+       <number>5</number>
+      </property>
+      <item row="0" column="0">
+       <layout class="QGridLayout" name="events"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="l_type">
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
    </item>
@@ -118,32 +141,6 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="l_ro_description">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string>Description</string>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="0">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="5" column="0" colspan="3">
     <widget class="QGroupBox" name="g_functions">
      <property name="title">
@@ -154,25 +151,15 @@
        <number>5</number>
       </property>
       <item row="0" column="0">
-       <layout class="QVBoxLayout" name="functions"/>
+       <layout class="QGridLayout" name="functions"/>
       </item>
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="l_ro_type">
-     <property name="text">
-      <string>Type</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="l_type">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+   <item row="0" column="1" rowspan="3">
+    <widget class="Line" name="line_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
      </property>
     </widget>
    </item>

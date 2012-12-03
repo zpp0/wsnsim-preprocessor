@@ -25,24 +25,32 @@ InfoWidget::InfoWidget(ModuleDescriptionRaw* module)
 
     if (m_module->interface.functions.size() != 0) {
         QStringList functions = formatter.getFunctions();
-        foreach(QString function, functions)
-            m_ui->functions->addWidget(new QLabel(function));
+        for (int i = 0; i < functions.size(); i++) {
+            m_ui->functions->addWidget(new QLabel(functions[i]), i, 0);
+            m_ui->functions->addWidget(new QLabel(m_module->interface.functions[i].info), i, 1);
+        }
     }
     else
         m_ui->g_functions->setVisible(false);
 
     if (m_module->interface.events.size() != 0) {
         QStringList events = formatter.getEvents();
-        foreach(QString event, events)
-            m_ui->events->addWidget(new QLabel(event));
+        for (int i = 0; i < events.size(); i++) {
+            m_ui->events->addWidget(new QLabel(events[i]), i, 0);
+            m_ui->events->addWidget(new QLabel(m_module->interface.events[i].info), i, 1);
+        }
     }
     else
         m_ui->g_events->setVisible(false);
 
     if (m_module->dependencies.size() != 0) {
         QStringList dependencies = formatter.getDependencies();
-        foreach(QString dependence, dependencies)
-            m_ui->dependencies->addWidget(new QLabel(dependence));
+        for (int i = 0; i < dependencies.size(); i++) {
+            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].name), i, 0);
+            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].type), i, 1);
+            m_ui->dependencies->addWidget(new QLabel(dependencies[i]), i, 2);
+            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].info), i, 3);
+        }
     }
     else
         m_ui->g_dependencies->setVisible(false);
