@@ -33,6 +33,29 @@
     </message>
 </context>
 <context>
+    <name>ErrorsPanel</name>
+    <message>
+        <location filename="../../widgets/errorsPanel.ui" line="20"/>
+        <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/errorsPanel.ui" line="41"/>
+        <source>Status:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/errorsPanel.ui" line="60"/>
+        <source>Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/errorsPanel.cpp" line="60"/>
+        <source>error(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>FileParam</name>
     <message>
         <location filename="../../widgets/params/fileParam.ui" line="14"/>
@@ -43,6 +66,51 @@
         <location filename="../../widgets/params/fileParam.ui" line="45"/>
         <source>Browse...</source>
         <translation>Browse...</translation>
+    </message>
+</context>
+<context>
+    <name>InfoWidget</name>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="14"/>
+        <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="35"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="131"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="147"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="54"/>
+        <source>Module</source>
+        <translation type="unfinished">Module</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="61"/>
+        <source>Dependencies</source>
+        <translation type="unfinished">Dependencies</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="96"/>
+        <source>Type</source>
+        <translation type="unfinished">Type</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="109"/>
+        <source>Description</source>
+        <translation type="unfinished">Description</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="116"/>
+        <source>Events</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="160"/>
+        <source>Functions</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -58,6 +126,49 @@
     <message>
         <location filename="../../widgets/interfaceInfo.ui" line="14"/>
         <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.cpp" line="98"/>
+        <source>Module</source>
+        <translation type="unfinished">Module</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.cpp" line="99"/>
+        <source>dependence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.cpp" line="100"/>
+        <source>unbinded</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LuaEditor</name>
+    <message>
+        <location filename="../../editor/luaEditor.ui" line="14"/>
+        <source>Modules Editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../editor/luaEditor.ui" line="47"/>
+        <source>file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../editor/luaEditor.cpp" line="22"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../editor/luaEditor.cpp" line="23"/>
+        <source>&amp;Save and Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../editor/luaEditor.cpp" line="24"/>
+        <source>&amp;Exit without saving</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -155,7 +266,7 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="235"/>
-        <location filename="../../view/mainwindow.cpp" line="262"/>
+        <location filename="../../view/mainwindow.cpp" line="291"/>
         <source>About</source>
         <translation>About</translation>
     </message>
@@ -189,44 +300,57 @@
         <translation type="obsolete">Preferences</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="40"/>
+        <location filename="../../view/mainwindow.cpp" line="63"/>
         <source>Project information</source>
         <translation>Project information</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="41"/>
+        <location filename="../../view/mainwindow.cpp" line="64"/>
         <source>Simulator params</source>
         <translation>Simulator params</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="42"/>
+        <location filename="../../view/mainwindow.cpp" line="65"/>
         <source>Modules</source>
         <translation>Modules</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="43"/>
+        <location filename="../../view/mainwindow.cpp" line="66"/>
         <source>Node Types</source>
         <translation>Node Types</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="197"/>
+        <location filename="../../view/mainwindow.cpp" line="226"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="223"/>
+        <location filename="../../view/mainwindow.cpp" line="252"/>
         <source>Save XML Project file</source>
         <translation>Save XML Project file</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="226"/>
+        <location filename="../../view/mainwindow.cpp" line="255"/>
         <source>XML Project file (*.xml)</source>
         <translatorcomment>XML Файл проекта (*.xml)</translatorcomment>
         <translation>XML Project file (*.xml)</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="267"/>
+        <location filename="../../view/mainwindow.cpp" line="296"/>
         <source>About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ModuleInfoFormatter</name>
+    <message>
+        <location filename="../../tools/moduleInfoFormatter.cpp" line="45"/>
+        <source>functions:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleInfoFormatter.cpp" line="52"/>
+        <source>events:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -239,22 +363,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="54"/>
+        <location filename="../../view/modulePage.ui" line="51"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="75"/>
+        <location filename="../../view/modulePage.ui" line="68"/>
         <source>Params</source>
         <translation type="unfinished">Params</translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="96"/>
+        <location filename="../../view/modulePage.ui" line="85"/>
         <source>Dependencies</source>
         <translation type="unfinished">Dependencies</translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="109"/>
+        <location filename="../../view/modulePage.ui" line="102"/>
         <source>Events</source>
         <translation type="unfinished"></translation>
     </message>
@@ -275,7 +399,7 @@
         <translation>Nothing to add</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/nodesParam.cpp" line="131"/>
+        <location filename="../../widgets/params/nodesParam.cpp" line="140"/>
         <source>&amp;Remove</source>
         <translation>&amp;Remove</translation>
     </message>
@@ -283,24 +407,62 @@
 <context>
     <name>ModulesInfo</name>
     <message>
-        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="15"/>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="18"/>
         <source>Enabled</source>
         <translation>Enabled</translation>
     </message>
     <message>
-        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="16"/>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="19"/>
         <source>Module</source>
         <translation>Module</translation>
     </message>
     <message>
-        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="17"/>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="20"/>
         <source>Type</source>
         <translation>Type</translation>
     </message>
     <message>
-        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="18"/>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="21"/>
         <source>Description</source>
         <translation>Description</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="99"/>
+        <source>&amp;Show info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="100"/>
+        <source>&amp;Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="101"/>
+        <source>Open in &amp;external editor</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="102"/>
+        <source>Re&amp;scan (unimplemented)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="103"/>
+        <source>&amp;Remove module (unimplemented)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="133"/>
+        <source>&amp;Show all info</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ModulesInfoDialog</name>
+    <message>
+        <location filename="../../widgets/modulesInfoDialog.ui" line="14"/>
+        <source>Modules Info</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -316,14 +478,19 @@
         <translation>Modules</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="27"/>
+        <location filename="../../view/modulesPage.cpp" line="28"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="28"/>
+        <location filename="../../view/modulesPage.cpp" line="29"/>
         <source>Error</source>
         <translation>Error</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="188"/>
+        <source>no modules chosen</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Params</source>
@@ -368,7 +535,7 @@
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypePage.cpp" line="150"/>
+        <location filename="../../view/nodeTypePage.cpp" line="163"/>
         <source>&amp;Remove</source>
         <translation>&amp;Remove</translation>
     </message>
@@ -396,9 +563,19 @@
         <translation>add</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="90"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="103"/>
         <source>&amp;Remove</source>
         <translation>&amp;Remove</translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypesPage.cpp" line="104"/>
+        <source>&amp;Rename</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypesPage.cpp" line="155"/>
+        <source>no node types chosen</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -515,6 +692,24 @@
     </message>
 </context>
 <context>
+    <name>RenamingNodeTypeDialog</name>
+    <message>
+        <location filename="../../widgets/renamingNodeTypeDialog.ui" line="20"/>
+        <source>Enter new name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/renamingNodeTypeDialog.ui" line="29"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/renamingNodeTypeDialog.ui" line="41"/>
+        <source>New name</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Settings</name>
     <message>
         <location filename="../../settings/settings.ui" line="14"/>
@@ -613,6 +808,21 @@
         <location filename="../../view/simulatorPage.ui" line="149"/>
         <source>Log file name</source>
         <translation type="unfinished">Log file name</translation>
+    </message>
+    <message>
+        <location filename="../../view/simulatorPage.cpp" line="85"/>
+        <source>unbinded virtual time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/simulatorPage.cpp" line="92"/>
+        <source>unbinded log file name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/simulatorPage.cpp" line="99"/>
+        <source>No nodes chosen</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
