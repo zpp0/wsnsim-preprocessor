@@ -12,7 +12,7 @@
 #include "errorsStorage.h"
 
 SimulatorPage::SimulatorPage(QWidget* parent)
-    : m_ui(new Ui::SimulatorPage), QGroupBox(parent)
+    : QGroupBox(parent), m_ui(new Ui::SimulatorPage)
 {
     m_ui->setupUi(this);
 
