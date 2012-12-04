@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Modules Editor</string>
   </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
     <number>5</number>
