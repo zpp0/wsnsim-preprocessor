@@ -97,8 +97,8 @@ void ModulesInfo::customContextMenuRequested(const QPoint &p)
         QMenu menu(this);
 
         QAction* actionShowInfo = menu.addAction(tr("&Show info"));
-        QAction* actionOpenInExternalEditor = menu.addAction(tr("&Open"));
-        QAction* actionOpen = menu.addAction(tr("Open in &external editor"));
+        QAction* actionOpen = menu.addAction(tr("&Open"));
+        QAction* actionOpenInExternalEditor = menu.addAction(tr("Open in &external editor"));
         QAction* actionRescan = menu.addAction(tr("Re&scan (unimplemented)"));
         QAction* actionRemove = menu.addAction(tr("&Remove module (unimplemented)"));
 
@@ -127,5 +127,19 @@ void ModulesInfo::customContextMenuRequested(const QPoint &p)
         else if (a == actionRemove) {
         }
 
+    }
+    else {
+        QMenu menu(this);
+        QAction* actionShowInfo = menu.addAction(tr("&Show all info"));
+
+        QAction *a = menu.exec(mapToGlobal(p));
+
+        if (a == actionShowInfo) {
+            ModulesInfoDialog dialog(this);
+            foreach(ModuleDescriptionRaw* module, m_rows.values())
+                dialog.addModule(module);
+            // dialog.adjustSize();
+            dialog.exec();
+        }
     }
 }
