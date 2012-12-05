@@ -13,6 +13,8 @@ int main(int argc, char *argv[])
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf-8"));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
 
+
+
     QSettings simsettings("wsnsim", "simulator");
 
     if(!simsettings.contains("Modules/Directory"))
