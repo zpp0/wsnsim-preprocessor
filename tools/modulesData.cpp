@@ -14,6 +14,7 @@ ModulesData::ModulesData()
 {
     QTextCodec::setCodecForTr(QTextCodec::codecForName("utf-8"));
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
+    setlocale(LC_NUMERIC, "C");
     open();
 }
 
