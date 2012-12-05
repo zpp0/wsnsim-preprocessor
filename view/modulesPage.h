@@ -16,7 +16,7 @@
 
 #include "modulePage.h"
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 #include "projectParams.h"
 
 #include "projectStorage.h"
