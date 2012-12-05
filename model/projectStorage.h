@@ -11,6 +11,7 @@
 #include <QString>
 
 #include "projectParams.h"
+#include "projectData.h"
 
 class ProjectStorage : public QObject
 {
@@ -37,14 +38,6 @@ private:
     ProjectStorage();
     ProjectStorage(ProjectStorage const&);
     void operator=(ProjectStorage const&);
-
-    bool loaded;
-
-    typedef void(*projectDataSave) (QString& projectFileName, QString* errorMessage, ProjectParams params);
-    typedef ProjectParams(*projectDataLoad) (QString& projectFileName, QString* errorMessage);
-
-    projectDataSave m_saveFun;
-    projectDataLoad m_loadFun;
 
     ProjectParams m_project;
 };

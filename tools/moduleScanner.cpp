@@ -23,20 +23,10 @@ ModuleScanner::ModuleScanner(QObject* parent)
 
 void ModuleScanner::scanFile(QString& file)
 {
-    QLibrary moduleDataLib("./moduleData");
-    moduleDataLib.load();
-
-    if(!moduleDataLib.isLoaded()) {
-        emit moduleScanError(file, moduleDataLib.errorString());
-        return;
-    }
-
-    typedef ModuleDescriptionRaw(*moduleDataLoad) (QString& FileName, QString* errorMessage);
-    moduleDataLoad load = (moduleDataLoad) moduleDataLib.resolve("load");
-
     QString errorMessage;
 
-    ModuleDescriptionRaw moduleDescription = load(file, &errorMessage);
+    ModulesData data;
+    ModuleDescriptionRaw moduleDescription = data.load(file, &errorMessage);
 
     if (!(errorMessage == "")) {
         emit moduleScanError(file, errorMessage);

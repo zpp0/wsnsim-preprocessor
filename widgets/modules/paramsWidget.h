@@ -13,7 +13,7 @@
 #include <QString>
 #include <QLineEdit>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 #include "projectParams.h"
 
 #include "generalParam.h"

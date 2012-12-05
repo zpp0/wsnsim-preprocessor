@@ -11,19 +11,6 @@
 
 ProjectStorage::ProjectStorage()
 {
-    QLibrary projectDataLib("./projectData");
-    projectDataLib.load();
-
-    if(projectDataLib.isLoaded()) {
-        m_saveFun = (projectDataSave) projectDataLib.resolve("save");
-        m_loadFun = (projectDataLoad) projectDataLib.resolve("load");
-
-        loaded = true;
-    }
-    else {
-        emit libLoadingError(projectDataLib.errorString());
-        loaded = false;
-    }
 }
 
 ProjectParams& ProjectStorage::getProject()
@@ -33,11 +20,6 @@ ProjectParams& ProjectStorage::getProject()
 
 void ProjectStorage::saveXML(QString file)
 {
-    if (!loaded) {
-        emit libLoadingError(tr("ProjectData library was not loaded!"));
-        return;
-    }
-
     m_project.version = "0.6.0";
 
     if (m_project.uuid.isNull())
@@ -56,7 +38,8 @@ void ProjectStorage::saveXML(QString file)
 
     QString errorMessage = "";
 
-    m_saveFun(file, &errorMessage, m_project);
+    ProjectData data;
+    data.save(file, &errorMessage, m_project);
 
     if (errorMessage != "")
         emit savingProjectError(errorMessage);
@@ -64,14 +47,10 @@ void ProjectStorage::saveXML(QString file)
 
 ProjectParams& ProjectStorage::loadXML(QString file)
 {
-    if (!loaded) {
-        emit libLoadingError(tr("ProjectData library was not loaded!"));
-        return getProject();
-    }
-
     QString errorMessage = "";
 
-    m_project = m_loadFun(file, &errorMessage);
+    ProjectData data;
+    m_project = data.load(file, &errorMessage);
 
     if (errorMessage != "")
         emit loadingProjectError(errorMessage);

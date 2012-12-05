@@ -10,7 +10,7 @@
 
 #include <QDialog>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 namespace Ui {
     class ModulesInfoDialog;

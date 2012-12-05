@@ -9,7 +9,7 @@
 #define MODULEPAGE_H
 
 #include "projectParams.h"
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 #include "infoWidget.h"
 #include "paramsWidget.h"
