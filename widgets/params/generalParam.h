@@ -12,7 +12,7 @@
 #include <QtGui>
 
 #include "projectParams.h"
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 class ModuleParamGeneral : public QFrame
 {

@@ -10,7 +10,7 @@
 #define CHECKMODULE_H
 
 #include <QCheckBox>
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 class CheckModule : public QCheckBox
 {

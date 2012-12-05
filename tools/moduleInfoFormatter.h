@@ -12,7 +12,7 @@
 #include <QStringList>
 #include <QObject>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 class ModuleInfoFormatter : public QObject
 {
