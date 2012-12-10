@@ -13,7 +13,8 @@
 #include <QStringList>
 #include <QObject>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
+#include "modulesData.h"
 
 class ModuleScanner : public QObject
 {

@@ -2,10 +2,22 @@ include(../wsnsim.pri)
 
 TEMPLATE = app
 TARGET = projectEditor
-QT += gui core
-INCLUDEPATH += . ../libs/projectData ../libs/moduleData
+QT += gui core xml
+INCLUDEPATH += . ../libs/projectData
 DEPENDPATH += . model tools ui view widgets/modulesInfo widgets/params widgets widgets/modules settings editor
 INCLUDEPATH += . view widgets/modulesInfo tools ui model widgets/params widgets widgets/modules settings editor
+
+win32 {
+    INCLUDEPATH += ../libs/luajit/src
+    LIBS += ../../bin/libluajit.a
+    LIBS += ../../bin/libprojectData.a
+}
+
+unix {
+    INCLUDEPATH += . /usr/include/luajit-2.0
+    LIBS += -lluajit-5.1
+    LIBS += -L../../bin -lprojectData
+}
 
 # Input
 HEADERS += model/modulesStorage.h \
@@ -46,7 +58,9 @@ HEADERS += model/modulesStorage.h \
            widgets/params/nodesParam.h \
            widgets/params/timeParam.h \
            widgets/params/fileParam.h \
-           widgets/params/tableParam.h
+           widgets/params/tableParam.h \
+    tools/modulesData.h \
+    tools/modulesParams.h
 FORMS += view/mainwindow.ui \
          view/modulesPage.ui \
          view/modulePage.ui \
@@ -110,7 +124,8 @@ SOURCES += main.cpp \
            widgets/params/nodesParam.cpp \
            widgets/params/tableParam.cpp \
            widgets/params/timeParam.cpp \
-           widgets/params/fileParam.cpp
+           widgets/params/fileParam.cpp \
+    tools/modulesData.cpp
 RESOURCES += res/preprocessor.qrc
 TRANSLATIONS = res/languages/preprocessor_en.ts \
                res/languages/preprocessor_ru.ts \

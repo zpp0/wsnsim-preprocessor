@@ -11,7 +11,7 @@
 #include <QtCore>
 
 #include "projectParams.h"
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 class NodesStorage : public QObject
 {

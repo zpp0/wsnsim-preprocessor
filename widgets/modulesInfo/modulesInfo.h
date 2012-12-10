@@ -11,7 +11,7 @@
 
 #include <QtGui>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 #include "checkModule.h"
 
 class ModulesInfo : public QTableWidget

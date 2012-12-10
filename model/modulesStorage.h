@@ -13,7 +13,7 @@
 #include <QString>
 #include <QList>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 
 class ModulesStorage : public QObject
 {

@@ -15,7 +15,7 @@
 #include <QGroupBox>
 #include <QComboBox>
 
-#include "moduleParams.h"
+#include "modulesParams.h"
 #include "projectParams.h"
 
 namespace Ui {
