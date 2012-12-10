@@ -29,6 +29,8 @@ public:
 
     void disableAllModules();
 
+    void clean();
+
 private slots:
     void customContextMenuRequested(const QPoint &p);
 

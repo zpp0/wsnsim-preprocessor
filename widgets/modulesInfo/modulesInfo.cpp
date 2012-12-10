@@ -48,6 +48,19 @@ ModulesInfo::~ModulesInfo()
     clear();
 }
 
+void ModulesInfo::clean()
+{
+    int rows = rowCount();
+    for (int row = 0; row < rows; row++)
+        delete cellWidget(0, row);
+    clear();
+    setRowCount(0);
+    m_modules.clear();
+    m_rows.clear();
+
+    setHorizontalHeaderLabels(m_moduleInfo);
+}
+
 void ModulesInfo::addModuleInfo(ModuleDescriptionRaw* module)
 {
     int rows = rowCount();

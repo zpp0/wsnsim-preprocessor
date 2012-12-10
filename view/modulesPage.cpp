@@ -191,8 +191,5 @@ void ModulesPage::setModulesError(bool error)
 void ModulesPage::clean()
 {
     clear();
-    delete m_modulesInfo;
-
-    m_modulesInfo = new ModulesInfo(this);
-    m_ui->vertical->insertWidget(0, m_modulesInfo);
+    m_modulesInfo->clean();
 }
