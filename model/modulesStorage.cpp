@@ -51,3 +51,9 @@ QList<ModuleDescriptionRaw*> ModulesStorage::getEnabled()
 {
     return m_enabled;
 }
+
+void ModulesStorage::clean()
+{
+    m_enabled.clear();
+    m_modules.clear();
+}

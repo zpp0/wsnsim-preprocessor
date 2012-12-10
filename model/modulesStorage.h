@@ -33,6 +33,8 @@ public:
 
     QList<ModuleDescriptionRaw*> getEnabled();
 
+    void clean();
+
 signals:
     void registerModule(ModuleDescriptionRaw* module);
 

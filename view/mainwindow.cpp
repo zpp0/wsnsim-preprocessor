@@ -197,6 +197,8 @@ void MainWindow::actionScan()
     ModuleScanner scanner;
     ModulesStorage& storage = ModulesStorage::instance();
 
+    storage.clean();
+
     connect(&scanner, SIGNAL(moduleScanError(QString, QString)),
             m_modulesPage, SLOT(moduleScanError(QString, QString)));
 
