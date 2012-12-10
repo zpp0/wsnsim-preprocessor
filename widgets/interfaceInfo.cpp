@@ -88,6 +88,20 @@ ModuleDependence InterfaceInfo::getValue()
     dependence.name = m_dependence->name;
     dependence.type = m_dependence->type;
     dependence.moduleID = moduleID;
+    if (!m_dependence->interface.functions.isEmpty())
+        dependence.hasFunctions = "true";
+    else
+        dependence.hasFunctions = "false";
+
+    foreach(ModuleEventRaw event, m_dependence->interface.events) {
+        foreach(ModuleEventParamRaw param, event.params) {
+            EventArgument arg;
+            arg["name"] = param.name;
+            arg["ID"] = QString::number(param.ID);
+            arg["type"] = param.type;
+            dependence.events[event.name] += arg;
+        }
+    }
 
     return dependence;
 }
