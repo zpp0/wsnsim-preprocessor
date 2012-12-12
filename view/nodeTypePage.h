@@ -44,6 +44,8 @@ private slots:
     void renameNodeType(QString newName, QString oldName);
 private:
 
+    void setNodeTypeError(bool error);
+
     bool isNodeModule(ModuleDescriptionRaw* module);
 
     void addModule_toCombobox(ModuleDescriptionRaw* module);

@@ -13,6 +13,7 @@
 
 #include "modulesStorage.h"
 #include "nodesStorage.h"
+#include "errorsStorage.h"
 
 NodeTypePage::NodeTypePage(QString name)
     :m_ui(new Ui::NodeTypePage)
@@ -44,6 +45,8 @@ NodeTypePage::NodeTypePage(QString name)
 
     connect(&storage, SIGNAL(moduleEnabled(ModuleDescriptionRaw*, bool)),
             this, SLOT(moduleEnabled(ModuleDescriptionRaw*, bool)));
+
+    setNodeTypeError(true);
 }
 
 //
@@ -149,6 +152,9 @@ void NodeTypePage::addModule_toTable(ModuleDescriptionRaw* module)
     m_ui->t_modules->setItem(row, 2, new QTableWidgetItem(module->description));
 
     m_nodeType += module;
+
+    if (m_nodeType.size() == 1)
+        setNodeTypeError(false);
 }
 
 void NodeTypePage::customContextMenuRequested(const QPoint &p)
@@ -176,12 +182,21 @@ void NodeTypePage::removeModule_fromTable(int row)
 {
     m_ui->t_modules->removeRow(row);
     m_nodeType.removeAt(row);
+    if (m_nodeType.size() == 0)
+        setNodeTypeError(true);
 }
 
 void NodeTypePage::removeModule_fromCombobox(int index)
 {
     m_ui->cb_modules->removeItem(index);
     m_indexes.removeAt(index);
+}
+
+void NodeTypePage::setNodeTypeError(bool error)
+{
+    ErrorsStorage::instance().setPossibleError(m_ui->t_modules,
+                                               error,
+                                               title() + ": " + tr("nodeType has no modules"));
 }
 
 NodeTypePage::~NodeTypePage()
