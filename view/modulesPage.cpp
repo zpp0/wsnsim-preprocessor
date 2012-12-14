@@ -200,4 +200,8 @@ void ModulesPage::clean()
 {
     clear();
     m_modulesInfo->clean();
+
+    m_t_warnings->clearContents();
+    m_t_warnings->setRowCount(0);
+    m_t_warnings->setVisible(false);
 }
