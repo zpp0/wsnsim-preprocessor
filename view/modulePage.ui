@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>363</width>
-    <height>217</height>
+    <width>417</width>
+    <height>163</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,11 +16,11 @@
   <property name="title">
    <string>GroupBox</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QGridLayout" name="gridLayout">
    <property name="margin">
     <number>0</number>
    </property>
-   <item>
+   <item row="0" column="0">
     <widget class="QScrollArea" name="scrollArea">
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -33,88 +33,167 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>359</width>
-        <height>199</height>
+        <width>413</width>
+        <height>145</height>
        </rect>
       </property>
-      <layout class="QGridLayout" name="gridLayout_5">
+      <layout class="QGridLayout" name="gridLayout_2">
        <property name="margin">
-        <number>5</number>
+        <number>0</number>
        </property>
        <item row="0" column="0">
-        <widget class="QTabWidget" name="tabWidget">
-         <property name="currentIndex">
-          <number>0</number>
+        <layout class="QVBoxLayout" name="settings">
+         <property name="margin">
+          <number>5</number>
          </property>
-         <widget class="QWidget" name="infoPage" native="true">
-          <attribute name="title">
-           <string>Information</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_6">
-           <property name="margin">
-            <number>0</number>
+         <item>
+          <widget class="QGroupBox" name="g_information">
+           <property name="title">
+            <string>Information</string>
            </property>
-           <item row="0" column="0">
-            <layout class="QGridLayout" name="info">
-             <property name="margin">
-              <number>5</number>
-             </property>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="paramsPage" native="true">
-          <attribute name="title">
-           <string>Params</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_2">
-           <property name="margin">
-            <number>0</number>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <property name="margin">
+             <number>5</number>
+            </property>
+            <item row="0" column="0">
+             <layout class="QGridLayout" name="information">
+              <item row="2" column="0">
+               <widget class="QLabel" name="l_ro_description">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Description</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="l_ro_module">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Module</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="l_ro_type">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>Type</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QLabel" name="l_description">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <property name="indent">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QLabel" name="l_type">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <property name="indent">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QLabel" name="l_module">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text">
+                 <string>TextLabel</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+                <property name="wordWrap">
+                 <bool>true</bool>
+                </property>
+                <property name="margin">
+                 <number>0</number>
+                </property>
+                <property name="indent">
+                 <number>5</number>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1" rowspan="3">
+               <widget class="Line" name="line">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
            </property>
-           <item row="0" column="0">
-            <layout class="QGridLayout" name="params">
-             <property name="margin">
-              <number>5</number>
-             </property>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="dependenciesPage" native="true">
-          <attribute name="title">
-           <string>Dependencies</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <property name="margin">
-            <number>0</number>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>0</height>
+            </size>
            </property>
-           <item row="0" column="0">
-            <layout class="QGridLayout" name="dependencies">
-             <property name="margin">
-              <number>5</number>
-             </property>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-         <widget class="QWidget" name="eventsPage" native="true">
-          <attribute name="title">
-           <string>Events</string>
-          </attribute>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <property name="margin">
-            <number>0</number>
-           </property>
-           <item row="0" column="0">
-            <layout class="QGridLayout" name="events">
-             <property name="margin">
-              <number>5</number>
-             </property>
-            </layout>
-           </item>
-          </layout>
-         </widget>
-        </widget>
+          </spacer>
+         </item>
+        </layout>
        </item>
       </layout>
      </widget>
