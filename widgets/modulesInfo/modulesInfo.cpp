@@ -126,13 +126,14 @@ void ModulesInfo::customContextMenuRequested(const QPoint &p)
         }
 
         else if (a == actionOpen) {
-            LuaEditor editor(module->fileName);
+            LuaEditor editor;
+            editor.openModule(module->fileName);
             editor.exec();
         }
 
         else if (a == actionOpenInExternalEditor) {
             ModuleDescriptionRaw* module = m_rows[row(ti_item)];
-            LuaEditor::openExternal(module->fileName);
+            LuaEditor::openModuleInExternalEditor(module->fileName);
         }
 
         else if (a == actionRescan) {
