@@ -155,7 +155,7 @@ void NodeTypesPage::setNodeTypesError(bool error)
 {
     ErrorsStorage::instance().setPossibleError(m_ui->list_nodeTypes,
                                                error,
-                                               title() + ": " + tr("no node types chosen"));
+                                               tr("no node types selected"));
 }
 
 void NodeTypesPage::clear()
