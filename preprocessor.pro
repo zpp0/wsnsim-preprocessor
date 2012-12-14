@@ -47,6 +47,7 @@ HEADERS += model/modulesStorage.h \
            widgets/projectTree.h \
            widgets/modulesInfo/modulesInfo.h \
            widgets/modules/infoWidget.h \
+           widgets/modules/eventsWidget.h \
            widgets/modules/paramsWidget.h \
            widgets/modules/dependenciesWidget.h \
            widgets/params/generalParam.h \
@@ -59,8 +60,8 @@ HEADERS += model/modulesStorage.h \
            widgets/params/timeParam.h \
            widgets/params/fileParam.h \
            widgets/params/tableParam.h \
-    tools/modulesData.h \
-    tools/modulesParams.h
+           tools/modulesData.h \
+           tools/modulesParams.h
 FORMS += view/mainwindow.ui \
          view/modulesPage.ui \
          view/modulePage.ui \
@@ -74,6 +75,7 @@ FORMS += view/mainwindow.ui \
          widgets/modulesInfoDialog.ui \
          widgets/renamingNodeTypeDialog.ui \
          widgets/modules/infoWidget.ui \
+         widgets/modules/eventsWidget.ui \
          widgets/modules/paramsWidget.ui \
          widgets/modules/dependenciesWidget.ui \
          widgets/params/doubleParam.ui \
@@ -104,6 +106,7 @@ SOURCES += main.cpp \
            view/nodeTypePage.cpp \
            view/nodeTypesPage.cpp \
            widgets/modules/infoWidget.cpp \
+           widgets/modules/eventsWidget.cpp \
            widgets/modules/paramsWidget.cpp \
            widgets/modules/dependenciesWidget.cpp \
            widgets/modulesInfoDialog.cpp \
@@ -125,7 +128,7 @@ SOURCES += main.cpp \
            widgets/params/tableParam.cpp \
            widgets/params/timeParam.cpp \
            widgets/params/fileParam.cpp \
-    tools/modulesData.cpp
+           tools/modulesData.cpp
 RESOURCES += res/preprocessor.qrc
 TRANSLATIONS = res/languages/preprocessor_en.ts \
                res/languages/preprocessor_ru.ts \
