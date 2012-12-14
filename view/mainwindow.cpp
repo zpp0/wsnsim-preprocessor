@@ -142,6 +142,7 @@ void MainWindow::loadProject()
     m_modulesPage->activateModules(project.modules);
     m_nodeTypesPage->setNodeTypes(project.nodeTypes);
     m_modulesPage->setModules(project.modules);
+    m_modulesPage->setEvents(project.events.systemEvents);
 }
 
 void MainWindow::saveProject()

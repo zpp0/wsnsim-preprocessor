@@ -31,7 +31,7 @@ public:
     void setModule(ModuleData module);
 
     QList<EventParams> getEvents();
-    void setEvents(QList<EventParams>);
+    void setEvents(QList<EventParams> events);
 
 private:
     ModuleDescriptionRaw* m_module;

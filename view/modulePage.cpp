@@ -73,30 +73,16 @@ void ModulePage::setModule(ModuleData module)
 
 QList<EventParams> ModulePage::getEvents()
 {
-    QList<EventParams> events;
-    QList<ModuleEventRaw> eventsRaw = m_module->interface.events;
-    for (int i = 0; i < eventsRaw.size(); i++) {
-        EventParams event;
-        event.eventInfo["name"] = eventsRaw[i].name;
-        event.eventInfo["moduleID"] = QString::number(ModulesStorage::instance().getModule(m_module));
-
-        QList<ModuleEventParamRaw> arguments = eventsRaw[i].params;
-        for (int j = 0; j < arguments.size(); j++) {
-            EventArgument arg;
-            arg["ID"] = QString::number(arguments[j].ID);
-            arg["type"] = arguments[j].type;
-            arg["name"] = arguments[j].name;
-
-            event.arguments += arg;
-        }
-        events += event;
-    }
-
-    return events;
+    if (m_events)
+        return m_events->getEvents();
+    else
+        return QList<EventParams>();
 }
 
-void ModulePage::setEvents(QList<EventParams>)
+void ModulePage::setEvents(QList<EventParams> events)
 {
+    if (m_events)
+        m_events->setEvents(events);
 }
 
 ModulePage::~ModulePage()
