@@ -166,6 +166,14 @@ QList<EventParams> ModulesPage::getEvents()
 
 void ModulesPage::setEvents(QList<EventParams> events)
 {
+    foreach(ModuleDescriptionRaw* module, m_modules.keys()) {
+        QList<EventParams> moduleEvents;
+        foreach(EventParams event, events)
+            if (event.eventInfo["moduleID"].toInt() == ModulesStorage::instance().getModule(module))
+                moduleEvents += event;
+
+        m_modules[module]->setEvents(moduleEvents);
+    }
 }
 
 void ModulesPage::clear()
