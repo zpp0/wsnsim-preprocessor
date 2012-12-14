@@ -22,7 +22,7 @@ namespace Ui {
     class ParamsWidget;
 }
 
-class ParamsWidget : public QFrame
+class ParamsWidget : public QGroupBox
 {
     Q_OBJECT
 

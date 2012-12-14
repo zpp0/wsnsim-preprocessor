@@ -27,8 +27,6 @@ ParamsWidget::ParamsWidget(ModuleDescriptionRaw* module)
 
     m_selfModule = module;
 
-    m_ui->paramsList->setDirection(QBoxLayout::BottomToTop);
-
     for (int i = 0; i < m_selfModule->params.size(); i++)
         createParam(&(m_selfModule->params[i]));
 }
@@ -58,7 +56,7 @@ void ParamsWidget::createParam(ModuleParamRaw* paramRaw)
 
     if (param != NULL) {
         m_params[paramRaw] = param;
-        m_ui->paramsList->insertWidget(1, param);
+        m_ui->paramsList->addWidget(param);
     }
 }
 
