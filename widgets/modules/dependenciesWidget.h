@@ -20,7 +20,7 @@ namespace Ui {
     class DependenciesWidget;
 }
 
-class DependenciesWidget : public QFrame
+class DependenciesWidget : public QGroupBox
 {
     Q_OBJECT
 
