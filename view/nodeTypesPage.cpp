@@ -70,6 +70,8 @@ void NodeTypesPage::deleteNodeTypePage(QListWidgetItem* nodeTypeItem)
     NodeTypePage* page = m_nodeTypes[nodeTypeName];
     m_nodeTypes.remove(nodeTypeName);
 
+    m_nodeTypesNames.removeOne(nodeTypeName);
+
     m_projectTree->removePage(page);
 
     delete page;
@@ -117,7 +119,7 @@ void NodeTypesPage::customContextMenuRequested(const QPoint &p)
 void NodeTypesPage::renameNodeTypePage(QListWidgetItem* nodeTypeItem)
 {
     QString name = nodeTypeItem->text();
-    RenamingNodeTypeDialog dialog(name, this);
+    RenamingNodeTypeDialog dialog(name, m_nodeTypesNames, this);
 
     int ret = dialog.exec();
     if (ret == QDialog::Accepted) {
@@ -130,6 +132,9 @@ void NodeTypesPage::renameNodeTypePage(QListWidgetItem* nodeTypeItem)
         ti_page->setText(0, newName);
         m_nodeTypesTree.remove(name);
         m_nodeTypesTree[newName] = ti_page;
+
+        int index = m_nodeTypesNames.indexOf(name);
+        m_nodeTypesNames[index] = newName;
     }
 }
 
