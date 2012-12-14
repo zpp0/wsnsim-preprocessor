@@ -14,7 +14,7 @@
 #include "luaEditor.h"
 #include "ui_luaEditor.h"
 
-LuaEditor::LuaEditor(QString fileName, QWidget *parent)
+LuaEditor::LuaEditor(QWidget *parent)
     : QDialog(parent), m_ui(new Ui::LuaEditor)
 {
     m_ui->setupUi(this);
@@ -30,14 +30,27 @@ LuaEditor::LuaEditor(QString fileName, QWidget *parent)
     connect(m_ui->buttonBox, SIGNAL(clicked(QAbstractButton*)),
             this, SLOT(buttonClicked(QAbstractButton*)));
 
-    m_filePath = LuaEditor::getModuleFilePath(fileName);
-
-    m_ui->l_file->setText(fileName + " (" + m_filePath + ")");
-
     m_editor = new CodeEditor(this);
     m_ui->layout->addWidget(m_editor);
 
     m_luaHighlighter = new LuaHighlighter(m_editor->document());
+}
+
+void LuaEditor::openModule(QString fileName)
+{
+    m_filePath = LuaEditor::getModuleFilePath(fileName);
+    m_ui->l_file->setText(fileName + " (" + m_filePath + ")");
+
+    QFile file(m_filePath);
+    if (file.open(QFile::ReadOnly | QFile::Text))
+        m_editor->setPlainText(file.readAll());
+    file.close();
+}
+
+void LuaEditor::openFile(QString filePath)
+{
+    m_filePath = filePath;
+    m_ui->l_file->setText(m_filePath);
 
     QFile file(m_filePath);
     if (file.open(QFile::ReadOnly | QFile::Text))
@@ -50,11 +63,17 @@ LuaEditor::~LuaEditor()
     delete m_ui;
 }
 
-void LuaEditor::openExternal(QString fileName)
+void LuaEditor::openFileInExternalEditor(QString filePath)
+{
+    // FIXME: get it works on Windows
+    QDesktopServices::openUrl(QUrl(filePath));
+}
+
+void LuaEditor::openModuleInExternalEditor(QString fileName)
 {
     QString filePath = LuaEditor::getModuleFilePath(fileName);
     // FIXME: get it works on Windows
-    QDesktopServices::openUrl(QUrl(filePath));
+    openFileInExternalEditor(filePath);
 }
 
 QString LuaEditor::getModuleFilePath(QString fileName)

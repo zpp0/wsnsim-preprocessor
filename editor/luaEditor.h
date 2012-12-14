@@ -23,10 +23,14 @@ class LuaEditor : public QDialog
 {
     Q_OBJECT
 public:
-    LuaEditor(QString fileName, QWidget *parent = 0);
+    LuaEditor(QWidget *parent = 0);
     virtual ~LuaEditor();
 
-    static void openExternal(QString fileName);
+    void openModule(QString fileName);
+    void openFile(QString filePath);
+
+    static void openFileInExternalEditor(QString filePath);
+    static void openModuleInExternalEditor(QString fileName);
 
 private slots:
     void buttonClicked(QAbstractButton *button);
