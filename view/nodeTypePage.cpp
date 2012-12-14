@@ -201,5 +201,6 @@ void NodeTypePage::setNodeTypeError(bool error)
 
 NodeTypePage::~NodeTypePage()
 {
+    setNodeTypeError(false);
     delete m_ui;
 }
