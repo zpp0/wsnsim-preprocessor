@@ -31,6 +31,7 @@ NodeTypesPage::NodeTypesPage(QTreeWidgetItem* treeElement, ProjectTree* projectT
     connect(m_ui->list_nodeTypes, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(customContextMenuRequested(const QPoint &)));
 
+    m_ui->b_add->setEnabled(false);
     setNodeTypesError(true);
 }
 
@@ -84,10 +85,12 @@ void NodeTypesPage::deleteNodeTypePage(QListWidgetItem* nodeTypeItem)
 
 void NodeTypesPage::isNewNodeTypeName(QString name)
 {
-    if (m_nodeTypesNames.contains(name))
+    if (name == "")
         m_ui->b_add->setEnabled(false);
-    if ((!m_nodeTypesNames.contains(name))
-        && (!m_ui->b_add->isEnabled()))
+    else if (m_nodeTypesNames.contains(name))
+        m_ui->b_add->setEnabled(false);
+    else if ((!m_nodeTypesNames.contains(name))
+             && (!m_ui->b_add->isEnabled()))
         m_ui->b_add->setEnabled(true);
 }
 
