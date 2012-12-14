@@ -50,6 +50,9 @@ public slots:
     void moduleEnabled(ModuleDescriptionRaw* module);
     void moduleDisabled(ModuleDescriptionRaw* module);
 
+private slots:
+    void errorsContextMenuRequested(const QPoint &p);
+
 private:
     void createModulePage(ModuleDescriptionRaw* module);
     void deleteModulePage(ModuleDescriptionRaw* module);

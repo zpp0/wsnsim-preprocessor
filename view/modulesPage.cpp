@@ -12,6 +12,8 @@
 #include "modulesStorage.h"
 #include "errorsStorage.h"
 
+#include "luaEditor.h"
+
 ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
     :m_ui(new Ui::ModulesPage)
 {
@@ -29,11 +31,15 @@ ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
                 << tr("Error");
 
     m_t_warnings = new QTableWidget();
+    m_t_warnings->setContextMenuPolicy(Qt::CustomContextMenu);
     m_t_warnings->setColumnCount(warningInfo.size());
     m_t_warnings->setHorizontalHeaderLabels(warningInfo);
 
     m_t_warnings->horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
     m_t_warnings->verticalHeader()->setResizeMode(QHeaderView::ResizeToContents);
+
+    connect(m_t_warnings, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(errorsContextMenuRequested(const QPoint &)));
 
     m_t_warnings->setVisible(false);
     m_ui->vertical->addWidget(m_t_warnings);
@@ -173,6 +179,37 @@ void ModulesPage::setEvents(QList<EventParams> events)
                 moduleEvents += event;
 
         m_modules[module]->setEvents(moduleEvents);
+    }
+}
+
+void ModulesPage::errorsContextMenuRequested(const QPoint &p)
+{
+    QTableWidgetItem* ti_item = m_t_warnings->itemAt(p);
+    if (ti_item != NULL) {
+
+        QMenu menu(this);
+
+        QAction* actionOpen = menu.addAction(tr("&Open"));
+        QAction* actionOpenInExternalEditor = menu.addAction(tr("Open in &external editor"));
+        QAction* actionRescan = menu.addAction(tr("Re&scan (unimplemented)"));
+
+        QAction *a = menu.exec(m_t_warnings->mapToGlobal(p));
+
+        int row = m_t_warnings->row(ti_item);
+        QString file = m_t_warnings->item(row, 0)->text();
+
+        if (a == actionOpen) {
+            LuaEditor editor;
+            editor.openFile(file);
+            editor.exec();
+        }
+
+        else if (a == actionOpenInExternalEditor) {
+            LuaEditor::openFileInExternalEditor(file);
+        }
+
+        else if (a == actionRescan) {
+        }
     }
 }
 
