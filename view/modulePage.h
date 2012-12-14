@@ -12,6 +12,7 @@
 #include "modulesParams.h"
 
 #include "infoWidget.h"
+#include "eventsWidget.h"
 #include "paramsWidget.h"
 #include "dependenciesWidget.h"
 
@@ -35,9 +36,9 @@ public:
 private:
     ModuleDescriptionRaw* m_module;
 
-    InfoWidget* m_info;
     ParamsWidget* m_param;
     DependenciesWidget* m_dependencies;
+    EventsWidget* m_events;
 
     Ui::ModulePage *m_ui;
 };

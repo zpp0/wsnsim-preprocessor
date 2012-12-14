@@ -9,6 +9,7 @@
 #include "ui_modulePage.h"
 
 #include "modulesStorage.h"
+#include "moduleInfoFormatter.h"
 
 ModulePage::ModulePage(ModuleDescriptionRaw* module)
     :m_ui(new Ui::ModulePage)
@@ -19,32 +20,31 @@ ModulePage::ModulePage(ModuleDescriptionRaw* module)
 
     setTitle(m_module->name);
 
-    m_info = new InfoWidget(module);
-    m_ui->info->addWidget(m_info);
+    // m_info = new InfoWidget(module);
+    // m_ui->info->addWidget(m_info);
 
+    m_ui->l_module->setText(module->name);
+    m_ui->l_type->setText(module->type);
+    m_ui->l_description->setText(module->description);
+
+    m_events = NULL;
     m_param = NULL;
     m_dependencies = NULL;
 
-    if (m_module->params.size() > 0) {
-        m_param = new ParamsWidget(module);
-        m_ui->params->addWidget(m_param);
-    }
-    else
-        m_ui->tabWidget->removeTab(m_ui->tabWidget->indexOf(m_ui->paramsPage));
-
     if (m_module->interface.events.size() > 0) {
-        // m_dependencies = new DependenciesWidget(module);
-        // m_ui->dependencies->addWidget(m_dependencies);
+        m_events = new EventsWidget(module);
+        m_ui->settings->insertWidget(1, m_events);
     }
-    else
-        m_ui->tabWidget->removeTab(m_ui->tabWidget->indexOf(m_ui->eventsPage));
 
     if (m_module->dependencies.size() > 0) {
         m_dependencies = new DependenciesWidget(module);
-        m_ui->dependencies->addWidget(m_dependencies);
+        m_ui->settings->insertWidget(1, m_dependencies);
     }
-    else
-        m_ui->tabWidget->removeTab(m_ui->tabWidget->indexOf(m_ui->dependenciesPage));
+
+    if (m_module->params.size() > 0) {
+        m_param = new ParamsWidget(module);
+        m_ui->settings->insertWidget(1, m_param);
+    }
 }
 
 ModuleData ModulePage::getModule()
