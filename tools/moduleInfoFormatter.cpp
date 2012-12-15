@@ -68,7 +68,7 @@ QString ModuleInfoFormatter::getFunction(const ModuleFunctionRaw& function)
 {
     QString sfunction;
 
-    sfunction += (function.resultType + " " + function.name
+    sfunction += ((function.resultType != "" ? (function.resultType + " ") : "") + function.name
                   + "(");
 
     foreach(const ModuleFunctionArgumentRaw& arg, function.arguments)
