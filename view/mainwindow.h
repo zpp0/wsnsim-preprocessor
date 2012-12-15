@@ -36,6 +36,8 @@ public slots:
     void hasErrors(bool yes);
 
 private slots:
+    void openRecentProject();
+
     void showAboutDialog();
     void showAboutQtDialog();
 
@@ -49,6 +51,14 @@ private:
     void closeProject();
 
     void setProjectFile(QString file);
+
+    void insertActionsRecent();
+    void insertToRecent(QString fileName);
+
+
+
+    QMenu* m_recentMenu;
+    QActionGroup* m_actionsRecent;
 
     // путь к файлу проекта
     QString m_projectFileName;

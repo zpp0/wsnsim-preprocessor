@@ -132,6 +132,8 @@ MainWindow::MainWindow() :
     m_ui->toolBar->addSeparator();
     m_ui->toolBar->addAction(m_ui->actionSettings);
 
+    insertActionsRecent();
+
     actionScan();
 }
 
@@ -157,6 +159,9 @@ void MainWindow::loadProject(QString file)
     m_nodeTypesPage->setNodeTypes(project.nodeTypes);
     m_modulesPage->setModules(project.modules);
     m_modulesPage->setEvents(project.events.systemEvents);
+
+    insertToRecent(file);
+    insertActionsRecent();
 }
 
 void MainWindow::saveProject()
@@ -210,6 +215,67 @@ void MainWindow::hasErrors(bool yes)
         m_ui->actionSave->setEnabled(true);
         m_ui->actionSaveAs->setEnabled(true);
     }
+}
+
+void MainWindow::insertToRecent(QString fileName)
+{
+    int recentNumber = QSettings().value("General/Gui/Recent_number").toInt();
+
+    bool repeated = false;
+    bool inserted = false;
+    QStringList recentNames = QSettings().value("General/Gui/Recent").toStringList();
+    for (int i = 0; i < recentNumber; i ++) {
+        if (recentNames[i] == " ") {
+            recentNames[i] = fileName;
+            inserted = true;
+            break;
+        }
+        else if (recentNames[i] == fileName) {
+            repeated = true;
+            break;
+        }
+    }
+
+    if (!inserted && !repeated) {
+        for (int i = 0; i < recentNumber; i ++) {
+            if (i == recentNumber - 1)
+                recentNames[i] = fileName;
+            else
+                recentNames[i] = recentNames[i + 1];
+        }
+    }
+
+    QSettings().setValue("General/Gui/Recent", recentNames);
+}
+
+void MainWindow::insertActionsRecent()
+{
+    m_recentMenu = new QMenu(this);
+    m_actionsRecent = new QActionGroup(this);
+    QStringList recentFilesNames = QSettings().value("General/Gui/Recent").toStringList();
+    for(int i = 0; i < recentFilesNames.size(); i ++) {
+        if(recentFilesNames[i] != " ") {
+            QString recentFileName = QFileInfo(recentFilesNames[i]).fileName();
+            QAction *action = new QAction(("&" + QString::number(i + 1)
+                                           + " " + recentFileName.toAscii().data()),
+                                          this);
+
+            action->setData(recentFilesNames[i]);
+            m_actionsRecent->addAction(action);
+
+            connect(m_actionsRecent->actions()[i], SIGNAL(triggered()),
+                    this, SLOT(openRecentProject()));
+        }
+    }
+    m_recentMenu->addActions(m_actionsRecent->actions());
+    m_ui->actionRecent_projects->setMenu(m_recentMenu);
+}
+
+void MainWindow::openRecentProject()
+{
+    QAction* action = qobject_cast<QAction*>(sender());
+    if(action)
+        loadProject(action->data().toString());
 }
 
 void MainWindow::actionScan()
