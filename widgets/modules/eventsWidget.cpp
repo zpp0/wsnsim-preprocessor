@@ -23,6 +23,8 @@ EventsWidget::EventsWidget(ModuleDescriptionRaw* module)
         event->setCheckState(Qt::Checked);
         m_events[eventsRaw[i].name] = event;
         m_ui->events->addWidget(event);
+        m_ui->events->addWidget(new QLabel(eventsRaw[i].info), i, 1);
+
     }
 }
 
