@@ -70,7 +70,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -269,6 +269,10 @@
    </property>
   </action>
   <action name="actionClose">
+   <property name="icon">
+    <iconset resource="../res/preprocessor.qrc">
+     <normaloff>:/icons/close_delete.png</normaloff>:/icons/close_delete.png</iconset>
+   </property>
    <property name="text">
     <string>Close</string>
    </property>
