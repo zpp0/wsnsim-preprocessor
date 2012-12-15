@@ -85,6 +85,8 @@ MainWindow::MainWindow() :
     // activate the default item
     m_projectTree->setCurrentItem(ti_projectPage);
 
+    m_ui->actionClose->setEnabled(false);
+
     // сигналы
 
     ModulesStorage& storage = ModulesStorage::instance();
@@ -139,6 +141,11 @@ MainWindow::MainWindow() :
 
 void MainWindow::setProjectFile(QString file)
 {
+    if (m_projectFileName == "" && file != "")
+        m_ui->actionClose->setEnabled(true);
+    if (m_projectFileName != "" && file == "")
+        m_ui->actionClose->setEnabled(false);
+
     m_projectFileName = file;
     m_l_projectFileName->setText(file);
 }
