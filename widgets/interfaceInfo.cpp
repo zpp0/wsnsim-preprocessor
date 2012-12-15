@@ -197,5 +197,6 @@ void InterfaceInfo::setError(bool error)
 
 InterfaceInfo::~InterfaceInfo()
 {
+    setError(false);
     delete m_ui;
 }
