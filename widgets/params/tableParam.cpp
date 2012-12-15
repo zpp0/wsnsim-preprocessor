@@ -45,13 +45,14 @@ ModuleParamTable::ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw*
 
 void ModuleParamTable::setNodesNum(int number)
 {
+    int rows = m_ui->table->rowCount();
     m_ui->table->setRowCount(number);
-    createNodes(number);
+    if (number > rows)
+        createNodes(number, rows);
 }
 
 void ModuleParamTable::createNodes(int number, int from)
 {
-    // TODO: remove old connections and the relevant values from param->value if the current rows count are less than new number
     for (int i = from; i < number; i++) {
         m_ui->table->setItem(i, 0, new QTableWidgetItem(QString::number(i)));
 
