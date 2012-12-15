@@ -94,39 +94,44 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="180"/>
-        <location filename="../../widgets/modules/infoWidget.ui" line="199"/>
-        <location filename="../../widgets/modules/infoWidget.ui" line="215"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="36"/>
+        <source>Params</source>
+        <translation>Параметры</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/infoWidget.ui" line="141"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="166"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="188"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="154"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="115"/>
         <source>Module</source>
         <translation>Модуль</translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="92"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="216"/>
         <source>Dependencies</source>
         <translation>Зависимости</translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="167"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="128"/>
         <source>Type</source>
         <translation>Тип</translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="141"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="102"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="64"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="66"/>
         <source>Events</source>
         <translation>События</translation>
     </message>
     <message>
-        <location filename="../../widgets/modules/infoWidget.ui" line="29"/>
+        <location filename="../../widgets/modules/infoWidget.ui" line="51"/>
         <source>Functions</source>
         <translation>Функции</translation>
     </message>
@@ -167,17 +172,17 @@
         <translation>События:</translation>
     </message>
     <message>
-        <location filename="../../widgets/interfaceInfo.cpp" line="192"/>
+        <location filename="../../widgets/interfaceInfo.cpp" line="193"/>
         <source>Module</source>
         <translation>Модуль</translation>
     </message>
     <message>
-        <location filename="../../widgets/interfaceInfo.cpp" line="193"/>
+        <location filename="../../widgets/interfaceInfo.cpp" line="194"/>
         <source>dependence</source>
         <translation>зависимость</translation>
     </message>
     <message>
-        <location filename="../../widgets/interfaceInfo.cpp" line="194"/>
+        <location filename="../../widgets/interfaceInfo.cpp" line="195"/>
         <source>unbinded</source>
         <translation>не установлена</translation>
     </message>
@@ -552,22 +557,22 @@
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="216"/>
+        <location filename="../../view/modulesPage.cpp" line="220"/>
         <source>&amp;Edit</source>
         <translation>&amp;Редактировать</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="217"/>
+        <location filename="../../view/modulesPage.cpp" line="221"/>
         <source>Edit in e&amp;xternal editor</source>
         <translation>Редактировать во &amp;внешнем редакторе</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="218"/>
+        <location filename="../../view/modulesPage.cpp" line="222"/>
         <source>Re&amp;scan</source>
         <translation>&amp;Пересканировать</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="266"/>
+        <location filename="../../view/modulesPage.cpp" line="270"/>
         <source>no modules chosen</source>
         <translation>не выбрано модулей</translation>
     </message>
@@ -647,17 +652,17 @@
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="108"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="112"/>
         <source>&amp;Remove</source>
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="109"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="113"/>
         <source>&amp;Rename</source>
         <translation>&amp;Переименовать</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="163"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="167"/>
         <source>no node types selected</source>
         <translation>не выбраны типы узлов</translation>
     </message>
