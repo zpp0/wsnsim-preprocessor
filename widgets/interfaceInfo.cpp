@@ -188,7 +188,8 @@ ModuleDependence InterfaceInfo::getValue()
 
 void InterfaceInfo::setError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_ui->cb_modules, error,
+    ErrorsStorage::instance().setPossibleError(this, m_ui->cb_modules,
+                                               error,
                                                tr("Module") + " " + m_module->name + ": "
                                                + tr("dependence") + " " + m_dependence->name + ": "
                                                + tr("unbinded"));

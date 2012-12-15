@@ -80,21 +80,21 @@ void SimulatorPage::setNodesTotal(int number)
 
 void SimulatorPage::setTimeError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_ui->maxTime,
+    ErrorsStorage::instance().setPossibleError(this, m_ui->maxTime,
                                                error,
                                                title() + ": " + tr("unbinded virtual time"));
 }
 
 void SimulatorPage::setLogError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_ui->logFile,
+    ErrorsStorage::instance().setPossibleError(this, m_ui->logFile,
                                                error,
                                                title() + ": " + tr("unbinded log file name"));
 }
 
 void SimulatorPage::setNodesError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_ui->sb_nodes,
+    ErrorsStorage::instance().setPossibleError(this, m_ui->sb_nodes,
                                                error,
                                                tr("No nodes chosen"));
 }

@@ -28,6 +28,8 @@ public:
     // создание элемента дерева
     QTreeWidgetItem* addTiWidget(QString name, QTreeWidgetItem* parent = 0);
 
+    void setCurrentWidget(QWidget *page);
+
 signals:
     void newPage(QWidget *page);
     void delPage(QWidget *page);

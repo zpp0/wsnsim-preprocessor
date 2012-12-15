@@ -46,11 +46,13 @@ MainWindow::MainWindow() :
     ErrorsStorage& errors = ErrorsStorage::instance();
     connect(&errors, SIGNAL(hasErrors(bool)),
             this, SLOT(hasErrors(bool)));
+    connect(&errors, SIGNAL(errorSelected(QWidget*, QWidget*)),
+            this, SLOT(errorSelected(QWidget*, QWidget*)));
 
-    connect(&errors, SIGNAL(errorAdded(QWidget*, QString)),
-            m_errorsPanel, SLOT(errorAdded(QWidget*, QString)));
-    connect(&errors, SIGNAL(errorRemoved(QWidget*)),
-            m_errorsPanel, SLOT(errorRemoved(QWidget*)));
+    connect(&errors, SIGNAL(errorAdded(QWidget*, QWidget*, QString)),
+            m_errorsPanel, SLOT(errorAdded(QWidget*, QWidget*, QString)));
+    connect(&errors, SIGNAL(errorRemoved(QWidget*, QWidget*)),
+            m_errorsPanel, SLOT(errorRemoved(QWidget*, QWidget*)));
 
     connect(&errors, SIGNAL(hasErrors(bool)),
             m_errorsPanel, SLOT(hasErrors(bool)));
@@ -170,6 +172,13 @@ void MainWindow::newPage(QWidget *page)
 {
     // создаем страницу на объекте страниц
     m_ui->pages->addWidget(page);
+}
+
+void MainWindow::errorSelected(QWidget* page, QWidget* widget)
+{
+    switchPage(page);
+    m_projectTree->setCurrentWidget(page);
+    widget->setFocus(Qt::OtherFocusReason);
 }
 
 void MainWindow::switchPage(QWidget *page)

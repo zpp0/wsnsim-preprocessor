@@ -21,25 +21,28 @@ public:
         return instance;
     }
 
-    void setPossibleError(QWidget* widget, bool error, QString message = "");
+    void setPossibleError(QWidget* page, QWidget* widget, bool error, QString message = "");
 
-    void addError(QWidget* widget, QString message);
-    void removeError(QWidget* widget);
+    void addError(QWidget* page, QWidget* widget, QString message);
+    void removeError(QWidget* page, QWidget* widget);
 
-    bool hasError(QWidget* widget);
+    bool hasError(QWidget* page, QWidget* widget);
+
+    void gotoError(QWidget* page, QWidget* widget);
 
 signals:
-    void errorAdded(QWidget* widget, QString message);
-    void errorRemoved(QWidget* widget);
+    void errorAdded(QWidget* page, QWidget* widget, QString message);
+    void errorRemoved(QWidget* page, QWidget* widget);
     void hasErrors(bool yes);
+
+    void errorSelected(QWidget* page, QWidget* widget);
 
 private:
     ErrorsStorage() {}
     ErrorsStorage(ErrorsStorage const&);
     void operator=(ErrorsStorage const&);
 
-    QMap<QWidget*, QString> m_errors;
-    QMap<QWidget*, QString> m_warnings;
+    QMap<QWidget*, QMap<QWidget*, QString> > m_errors;
 };
 
 #endif // ERRORSSTORAGE_H

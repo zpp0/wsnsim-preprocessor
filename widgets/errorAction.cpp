@@ -7,13 +7,16 @@
 
 #include "errorAction.h"
 
-ErrorAction::ErrorAction(QWidget* author, QString text, QWidget* parent)
+#include "errorsStorage.h"
+
+ErrorAction::ErrorAction(QWidget* page, QWidget* author, QString text, QWidget* parent)
     : QAction(text, parent)
 {
     m_author = author;
+    m_page = page;
 }
 
 void ErrorAction::gotoError()
 {
-    m_author->setFocus(Qt::OtherFocusReason);
+    ErrorsStorage::instance().gotoError(m_page, m_author);
 }

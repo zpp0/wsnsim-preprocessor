@@ -194,7 +194,7 @@ void NodeTypePage::removeModule_fromCombobox(int index)
 
 void NodeTypePage::setNodeTypeError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_ui->t_modules,
+    ErrorsStorage::instance().setPossibleError(this, m_ui->t_modules,
                                                error,
                                                title() + ": " + tr("nodeType has no modules"));
 }

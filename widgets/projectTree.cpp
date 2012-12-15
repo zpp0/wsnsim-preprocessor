@@ -93,3 +93,8 @@ void ProjectTree::removePage(QWidget* page)
 
     emit delPage(page);
 }
+
+void ProjectTree::setCurrentWidget(QWidget *page)
+{
+    setCurrentItem(m_h_pages.key(page));
+}

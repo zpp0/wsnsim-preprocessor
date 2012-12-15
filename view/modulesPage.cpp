@@ -261,7 +261,7 @@ void ModulesPage::clear()
 
 void ModulesPage::setModulesError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_modulesInfo,
+    ErrorsStorage::instance().setPossibleError(this, m_modulesInfo,
                                                error,
                                                title() + ": " + tr("no modules chosen"));
 }

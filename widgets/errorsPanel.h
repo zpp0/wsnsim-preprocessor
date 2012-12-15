@@ -25,8 +25,8 @@ public:
     virtual ~ErrorsPanel();
 
 public slots:
-    void errorAdded(QWidget* widget, QString message);
-    void errorRemoved(QWidget* widget);
+    void errorAdded(QWidget* page, QWidget* widget, QString message);
+    void errorRemoved(QWidget* page, QWidget* widget);
 
     void hasErrors(bool yes);
 
@@ -38,6 +38,7 @@ private:
 
     QList<ErrorAction*> m_actions;
     QList<QWidget*> m_widgets;
+    QMap<QWidget*, QWidget*> m_pages;
 
     Ui::ErrorsPanel* m_ui;
 };

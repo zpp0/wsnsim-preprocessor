@@ -158,7 +158,7 @@ void NodeTypesPage::setNodeTypes(QList<NodeTypeData> nodeTypes)
 
 void NodeTypesPage::setNodeTypesError(bool error)
 {
-    ErrorsStorage::instance().setPossibleError(m_ui->list_nodeTypes,
+    ErrorsStorage::instance().setPossibleError(this, m_ui->list_nodeTypes,
                                                error,
                                                tr("no node types selected"));
 }

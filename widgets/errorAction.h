@@ -15,12 +15,13 @@ class ErrorAction : public QAction
 {
     Q_OBJECT
 public:
-    ErrorAction(QWidget* author, QString text, QWidget* parent = 0);
+    ErrorAction(QWidget* page, QWidget* author, QString text, QWidget* parent = 0);
     virtual ~ErrorAction() {}
 
     void gotoError();
 
 private:
+    QWidget* m_page;
     QWidget* m_author;
 };
 

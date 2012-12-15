@@ -24,19 +24,21 @@ ErrorsPanel::ErrorsPanel(QWidget* parent)
     m_ui->b_menu->setVisible(false);
 }
 
-void ErrorsPanel::errorAdded(QWidget* widget, QString message)
+void ErrorsPanel::errorAdded(QWidget* page, QWidget* widget, QString message)
 {
-    m_actions += new ErrorAction(widget, message, this);
+    m_actions += new ErrorAction(page, widget, message, this);
     m_widgets += widget;
+    m_pages[widget] = page;
     setErrorsCount();
 }
 
-void ErrorsPanel::errorRemoved(QWidget* widget)
+void ErrorsPanel::errorRemoved(QWidget* page, QWidget* widget)
 {
     int index = m_widgets.indexOf(widget);
     if (index != -1) {
         m_actions.removeAt(index);
         m_widgets.removeAt(index);
+        m_pages.remove(widget);
 
         setErrorsCount();
     }

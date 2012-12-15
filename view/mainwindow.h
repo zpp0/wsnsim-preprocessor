@@ -39,6 +39,8 @@ private slots:
     void showAboutDialog();
     void showAboutQtDialog();
 
+    void errorSelected(QWidget* page, QWidget* widget);
+
 private:
     Ui::MainWindow *m_ui;
 
