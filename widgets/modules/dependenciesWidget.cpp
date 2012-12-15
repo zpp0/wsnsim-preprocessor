@@ -27,7 +27,7 @@ void DependenciesWidget::createDependence(ModuleDependRaw* dependence)
     m_dependencies[dependence] = interface;
     m_interfaces += interface;
 
-    m_ui->dependenceiesList->insertWidget(0, interface);
+    m_ui->dependenciesList->insertWidget(0, interface);
 }
 
 QList<ModuleDependence> DependenciesWidget::getDependencies()
