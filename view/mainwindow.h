@@ -44,8 +44,11 @@ private slots:
 private:
     Ui::MainWindow *m_ui;
 
-    void loadProject();
+    void loadProject(QString file);
     void saveProject();
+    void closeProject();
+
+    void setProjectFile(QString file);
 
     // путь к файлу проекта
     QString m_projectFileName;
@@ -73,6 +76,9 @@ private slots:
     void actionOpen();
     // выйти
     void actionQuit();
+
+    void actionNew();
+    void actionClose();
 
     void actionSettings();
 

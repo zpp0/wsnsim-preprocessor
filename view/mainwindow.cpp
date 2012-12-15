@@ -99,6 +99,12 @@ MainWindow::MainWindow() :
     connect(m_ui->actionSave, SIGNAL(triggered()),
             this, SLOT(actionSave()));
 
+    connect(m_ui->actionNew, SIGNAL(triggered()),
+            this, SLOT(actionNew()));
+
+    connect(m_ui->actionClose, SIGNAL(triggered()),
+            this, SLOT(actionClose()));
+
     connect(m_ui->actionOpen, SIGNAL(triggered()),
             this, SLOT(actionOpen()));
 
@@ -118,6 +124,7 @@ MainWindow::MainWindow() :
             this, SLOT(showAboutQtDialog()));
 
     m_ui->toolBar->addAction(m_ui->actionNew);
+    m_ui->toolBar->addAction(m_ui->actionClose);
     m_ui->toolBar->addAction(m_ui->actionOpen);
     m_ui->toolBar->addAction(m_ui->actionSave);
     m_ui->toolBar->addSeparator();
@@ -128,12 +135,17 @@ MainWindow::MainWindow() :
     actionScan();
 }
 
-void MainWindow::loadProject()
+void MainWindow::setProjectFile(QString file)
 {
-    m_simulatorPage->clear();
-    m_projectPage->clear();
-    m_modulesPage->clear();
-    m_nodeTypesPage->clear();
+    m_projectFileName = file;
+    m_l_projectFileName->setText(file);
+}
+
+void MainWindow::loadProject(QString file)
+{
+    closeProject();
+
+    setProjectFile(file);
 
     ProjectStorage& storage = ProjectStorage::instance();
 
@@ -247,12 +259,41 @@ void MainWindow::openOrCreateProject(QString project)
     if (project != "") {
         // TODO: спрашивать, надо ли их сохранить
 
-        m_projectFileName = project;
-        m_l_projectFileName->setText(project);
-
-        loadProject();
-        // m_l_projectName->setText(m_projectFileName);
+        if (QFile::exists(project))
+            loadProject(project);
+        else
+            setProjectFile(project);
     }
+}
+
+void MainWindow::closeProject()
+{
+    m_simulatorPage->clear();
+    m_projectPage->clear();
+    m_modulesPage->clear();
+    m_nodeTypesPage->clear();
+
+    setProjectFile("");
+}
+
+void MainWindow::actionNew()
+{
+    closeProject();
+
+    // спрашиваем пользователя файл
+    QString file = QFileDialog::getSaveFileName(this,
+                                                tr("Save XML Project file"),
+                                                // FIXME: не очень удобно
+                                                "project.xml",
+                                                tr("XML Project file (*.xml)"));
+
+    if (file != "")
+        setProjectFile(file);
+}
+
+void MainWindow::actionClose()
+{
+    closeProject();
 }
 
 void MainWindow::actionSaveAs()
@@ -267,8 +308,7 @@ void MainWindow::actionSaveAs()
                                                 tr("XML Project file (*.xml)"));
 
     if (file != "") {
-        m_projectFileName = file;
-        m_l_projectFileName->setText(file);
+        setProjectFile(file);
 
         saveProject();
     }
