@@ -24,10 +24,11 @@ public:
     QStringList getEvents();
     QStringList getDependencies();
 
-private:
+    QString getDependence(const ModuleDependRaw& dependence);
     QString getFunction(const ModuleFunctionRaw& function);
     QString getEvent(const ModuleEventRaw& event);
 
+private:
     ModuleDescriptionRaw* m_module;
 };
 

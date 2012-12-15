@@ -36,29 +36,32 @@ QStringList ModuleInfoFormatter::getDependencies()
 {
     QStringList dependencies;
 
-    foreach(const ModuleDependRaw& dependence, m_module->dependencies) {
-        QString sdependence;
-        // QString sdependence = (tr("Name: ") + dependence.name + " "
-        //                        + tr("Type: ") + dependence.type);
-
-        if (dependence.interface.functions.size() > 0) {
-            sdependence += ("\n  " + tr("functions:"));
-
-            foreach(const ModuleFunctionRaw& function, dependence.interface.functions)
-                sdependence += ("\n    " + getFunction(function));
-        }
-
-        if (dependence.interface.events.size() > 0) {
-            sdependence += ("\n  " + tr("events:"));
-
-            foreach(const ModuleEventRaw& event, dependence.interface.events)
-                sdependence += ("\n    " + getEvent(event));
-        }
-
-        dependencies << sdependence;
-    }
+    foreach(const ModuleDependRaw& dependence, m_module->dependencies)
+        dependencies += getDependence(dependence);
 
     return dependencies;
+}
+
+QString ModuleInfoFormatter::getDependence(const ModuleDependRaw& dependence)
+{
+    // QString sdependence = (tr("Type: ") + dependence.type);
+    QString sdependence;
+
+    if (dependence.interface.functions.size() > 0) {
+        sdependence += ("\n  " + tr("functions:"));
+
+        foreach(const ModuleFunctionRaw& function, dependence.interface.functions)
+            sdependence += ("\n    " + getFunction(function));
+    }
+
+    if (dependence.interface.events.size() > 0) {
+        sdependence += ("\n  " + tr("events:"));
+
+        foreach(const ModuleEventRaw& event, dependence.interface.events)
+            sdependence += ("\n    " + getEvent(event));
+    }
+
+    return sdependence;
 }
 
 QString ModuleInfoFormatter::getFunction(const ModuleFunctionRaw& function)
