@@ -25,6 +25,7 @@ HEADERS += model/modulesStorage.h \
            model/nodesStorage.h \
            model/errorsStorage.h \
            tools/moduleScanner.h \
+           tools/moduleValidator.h \
            tools/moduleInfoFormatter.h \
            settings/settings.h \
            editor/luaEditor.h \
@@ -93,6 +94,7 @@ SOURCES += main.cpp \
            model/nodesStorage.cpp \
            model/errorsStorage.cpp \
            tools/moduleScanner.cpp \
+           tools/moduleValidator.cpp \
            tools/moduleInfoFormatter.cpp \
            editor/luaEditor.cpp \
            editor/luaHighlighter.cpp \
