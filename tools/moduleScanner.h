@@ -23,15 +23,14 @@ class ModuleScanner : public QObject
 public:
     ModuleScanner(QObject* parent = 0);
 
-    void scanDir(QString& dir);
+    void scanModulesDir(QString& dir);
+    void scanFile(QString& filePath);
 
 signals:
     void moduleScanSuccess(QString file, ModuleDescriptionRaw module);
     void moduleScanError(QString file, QString error);
 
 private:
-    void scanFile(QString& file);
-
     QStringList m_moduleFileExtensions;
 
     QObject* m_parent;

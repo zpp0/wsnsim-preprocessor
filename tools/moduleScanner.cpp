@@ -46,14 +46,12 @@ void ModuleScanner::scanFile(QString& file)
     return;
 }
 
-void ModuleScanner::scanDir(QString& dir)
+void ModuleScanner::scanModulesDir(QString& dir)
 {
-    qDebug() << dir;
     QDir modulesDir(dir);
 
     QStringList modulesFiles = modulesDir.entryList(m_moduleFileExtensions);
     foreach (QString moduleFile, modulesFiles) {
-        qDebug() << "scan" << moduleFile;
         QString modulePath = dir + "/" + moduleFile;
         scanFile(modulePath);
     }
