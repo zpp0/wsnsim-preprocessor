@@ -208,7 +208,7 @@ void MainWindow::actionScan()
 
     QSettings settings("wsnsim", "simulator");
     QString modulesDirectory = settings.value("Modules/Directory").toString();
-    scanner.scanDir(modulesDirectory);
+    scanner.scanModulesDir(modulesDirectory);
 }
 
 void MainWindow::actionSave()
