@@ -20,8 +20,13 @@
     <name>DependenciesWidget</name>
     <message>
         <location filename="../../widgets/modules/dependenciesWidget.ui" line="14"/>
-        <source>Frame</source>
+        <source>GroupBox</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/dependenciesWidget.ui" line="20"/>
+        <source>Depend on</source>
+        <translation>Зависит от</translation>
     </message>
 </context>
 <context>
@@ -40,19 +45,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/errorsPanel.ui" line="41"/>
+        <location filename="../../widgets/errorsPanel.ui" line="44"/>
         <source>Status:</source>
         <translation>Статус:</translation>
     </message>
     <message>
-        <location filename="../../widgets/errorsPanel.ui" line="60"/>
+        <location filename="../../widgets/errorsPanel.ui" line="63"/>
         <source>Ok</source>
         <translation>Ок</translation>
     </message>
     <message>
-        <location filename="../../widgets/errorsPanel.cpp" line="60"/>
+        <location filename="../../widgets/errorsPanel.cpp" line="62"/>
         <source>error(s)</source>
         <translation>ошибки</translation>
+    </message>
+</context>
+<context>
+    <name>EventsWidget</name>
+    <message>
+        <location filename="../../widgets/modules/eventsWidget.ui" line="14"/>
+        <source>GroupBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/eventsWidget.ui" line="20"/>
+        <source>Events for the record</source>
+        <translation>События для записи в журнал</translation>
     </message>
 </context>
 <context>
@@ -63,7 +81,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/params/fileParam.ui" line="45"/>
+        <location filename="../../widgets/params/fileParam.ui" line="48"/>
         <source>Browse...</source>
         <translation>Обзор...</translation>
     </message>
@@ -129,17 +147,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/interfaceInfo.cpp" line="112"/>
+        <location filename="../../widgets/interfaceInfo.ui" line="42"/>
+        <source>Interface</source>
+        <translation>Интерфейс</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.ui" line="68"/>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.ui" line="103"/>
+        <source>Functions:</source>
+        <translation>Функции:</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.ui" line="113"/>
+        <source>Events:</source>
+        <translation>События:</translation>
+    </message>
+    <message>
+        <location filename="../../widgets/interfaceInfo.cpp" line="192"/>
         <source>Module</source>
         <translation>Модуль</translation>
     </message>
     <message>
-        <location filename="../../widgets/interfaceInfo.cpp" line="113"/>
+        <location filename="../../widgets/interfaceInfo.cpp" line="193"/>
         <source>dependence</source>
         <translation>зависимость</translation>
     </message>
     <message>
-        <location filename="../../widgets/interfaceInfo.cpp" line="114"/>
+        <location filename="../../widgets/interfaceInfo.cpp" line="194"/>
         <source>unbinded</source>
         <translation>не установлена</translation>
     </message>
@@ -157,17 +195,17 @@
         <translation>файл</translation>
     </message>
     <message>
-        <location filename="../../editor/luaEditor.cpp" line="22"/>
+        <location filename="../../editor/luaEditor.cpp" line="24"/>
         <source>&amp;Save</source>
         <translation>&amp;Сохранить</translation>
     </message>
     <message>
-        <location filename="../../editor/luaEditor.cpp" line="23"/>
+        <location filename="../../editor/luaEditor.cpp" line="25"/>
         <source>&amp;Save and Exit</source>
         <translation>&amp;Сохранить и выйти</translation>
     </message>
     <message>
-        <location filename="../../editor/luaEditor.cpp" line="24"/>
+        <location filename="../../editor/luaEditor.cpp" line="26"/>
         <source>&amp;Exit without saving</source>
         <translation>&amp;Выйти без сохранения</translation>
     </message>
@@ -266,7 +304,7 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="247"/>
-        <location filename="../../view/mainwindow.cpp" line="293"/>
+        <location filename="../../view/mainwindow.cpp" line="303"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
@@ -300,42 +338,42 @@
         <translation type="obsolete">Настройки</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="63"/>
+        <location filename="../../view/mainwindow.cpp" line="65"/>
         <source>Project information</source>
         <translation>Параметры проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="64"/>
+        <location filename="../../view/mainwindow.cpp" line="66"/>
         <source>Simulator params</source>
         <translation>Параметры симулятора</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="65"/>
+        <location filename="../../view/mainwindow.cpp" line="67"/>
         <source>Modules</source>
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="66"/>
+        <location filename="../../view/mainwindow.cpp" line="68"/>
         <source>Node Types</source>
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="228"/>
+        <location filename="../../view/mainwindow.cpp" line="238"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="254"/>
+        <location filename="../../view/mainwindow.cpp" line="264"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="257"/>
+        <location filename="../../view/mainwindow.cpp" line="267"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="298"/>
+        <location filename="../../view/mainwindow.cpp" line="308"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
@@ -343,12 +381,12 @@
 <context>
     <name>ModuleInfoFormatter</name>
     <message>
-        <location filename="../../tools/moduleInfoFormatter.cpp" line="45"/>
+        <location filename="../../tools/moduleInfoFormatter.cpp" line="51"/>
         <source>functions:</source>
         <translation>функции:</translation>
     </message>
     <message>
-        <location filename="../../tools/moduleInfoFormatter.cpp" line="52"/>
+        <location filename="../../tools/moduleInfoFormatter.cpp" line="58"/>
         <source>events:</source>
         <translation>события:</translation>
     </message>
@@ -357,29 +395,48 @@
     <name>ModulePage</name>
     <message>
         <location filename="../../view/modulePage.ui" line="14"/>
-        <location filename="../../view/modulePage.ui" line="17"/>
+        <location filename="../../view/modulePage.ui" line="20"/>
         <source>GroupBox</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="51"/>
+        <location filename="../../view/modulePage.ui" line="55"/>
         <source>Information</source>
         <translation>Информация</translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="68"/>
-        <source>Params</source>
-        <translation>Параметры</translation>
+        <location filename="../../view/modulePage.ui" line="72"/>
+        <source>Description</source>
+        <translation>Описание</translation>
     </message>
     <message>
         <location filename="../../view/modulePage.ui" line="85"/>
-        <source>Dependencies</source>
-        <translation>Зависимости</translation>
+        <source>Module</source>
+        <translation>Модуль</translation>
     </message>
     <message>
-        <location filename="../../view/modulePage.ui" line="102"/>
+        <location filename="../../view/modulePage.ui" line="98"/>
+        <source>Type</source>
+        <translation>Тип</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulePage.ui" line="111"/>
+        <location filename="../../view/modulePage.ui" line="136"/>
+        <location filename="../../view/modulePage.ui" line="158"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Params</source>
+        <translation type="obsolete">Параметры</translation>
+    </message>
+    <message>
+        <source>Dependencies</source>
+        <translation type="obsolete">Зависимости</translation>
+    </message>
+    <message>
         <source>Events</source>
-        <translation>События</translation>
+        <translation type="obsolete">События</translation>
     </message>
 </context>
 <context>
@@ -432,13 +489,21 @@
     </message>
     <message>
         <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="113"/>
-        <source>&amp;Open</source>
-        <translation>&amp;Открыть</translation>
+        <source>&amp;Edit</source>
+        <translation>&amp;Редактировать</translation>
     </message>
     <message>
         <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="114"/>
+        <source>Edit in e&amp;xternal editor</source>
+        <translation>Редактировать во &amp;внешнем редакторе</translation>
+    </message>
+    <message>
+        <source>&amp;Open</source>
+        <translation type="obsolete">&amp;Открыть</translation>
+    </message>
+    <message>
         <source>Open in &amp;external editor</source>
-        <translation>&amp;Открыть во внешнем редакторе</translation>
+        <translation type="obsolete">&amp;Открыть во внешнем редакторе</translation>
     </message>
     <message>
         <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="115"/>
@@ -451,7 +516,7 @@
         <translation>&amp;Удалить модуль (не реализовано)</translation>
     </message>
     <message>
-        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="146"/>
+        <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="147"/>
         <source>&amp;Show all info</source>
         <translation>&amp;Информация о модулях</translation>
     </message>
@@ -477,17 +542,32 @@
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="28"/>
+        <location filename="../../view/modulesPage.cpp" line="31"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="29"/>
+        <location filename="../../view/modulesPage.cpp" line="32"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="188"/>
+        <location filename="../../view/modulesPage.cpp" line="216"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Редактировать</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="217"/>
+        <source>Edit in e&amp;xternal editor</source>
+        <translation>Редактировать во &amp;внешнем редакторе</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="218"/>
+        <source>Re&amp;scan</source>
+        <translation>&amp;Пересканировать</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="266"/>
         <source>no modules chosen</source>
         <translation>не выбрано модулей</translation>
     </message>
@@ -541,7 +621,7 @@
     <message>
         <location filename="../../view/nodeTypePage.cpp" line="199"/>
         <source>nodeType has no modules</source>
-        <translation type="unfinished">не установлены модули </translation>
+        <translation>не установлены модули </translation>
     </message>
 </context>
 <context>
@@ -567,19 +647,23 @@
         <translation>Добавить</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="103"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="108"/>
         <source>&amp;Remove</source>
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="104"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="109"/>
         <source>&amp;Rename</source>
         <translation>&amp;Переименовать</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypesPage.cpp" line="155"/>
+        <location filename="../../view/nodeTypesPage.cpp" line="163"/>
+        <source>no node types selected</source>
+        <translation>не выбраны типы узлов</translation>
+    </message>
+    <message>
         <source>no node types chosen</source>
-        <translation>не выбрано типов узлов</translation>
+        <translation type="obsolete">не выбрано типов узлов</translation>
     </message>
 </context>
 <context>
@@ -590,27 +674,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/params/nodesParam.ui" line="35"/>
+        <location filename="../../widgets/params/nodesParam.ui" line="38"/>
         <source>Nodes</source>
         <translation>Узлы</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/nodesParam.ui" line="66"/>
+        <location filename="../../widgets/params/nodesParam.ui" line="69"/>
         <source>Node Type</source>
         <translation>Тип узла</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/nodesParam.ui" line="71"/>
+        <location filename="../../widgets/params/nodesParam.ui" line="74"/>
         <source>Number</source>
         <translation>Количество</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/nodesParam.ui" line="87"/>
+        <location filename="../../widgets/params/nodesParam.ui" line="90"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/nodesParam.ui" line="110"/>
+        <location filename="../../widgets/params/nodesParam.ui" line="113"/>
         <source>add</source>
         <translation>Добавить</translation>
     </message>
@@ -619,8 +703,13 @@
     <name>ParamsWidget</name>
     <message>
         <location filename="../../widgets/modules/paramsWidget.ui" line="14"/>
-        <source>Frame</source>
+        <source>GroupBox</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../widgets/modules/paramsWidget.ui" line="20"/>
+        <source>Params</source>
+        <translation>Параметры</translation>
     </message>
 </context>
 <context>
@@ -899,47 +988,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="68"/>
+        <location filename="../../widgets/params/timeParam.ui" line="71"/>
         <source>microsecond(s)</source>
         <translation type="unfinished">микросекунд(ы)</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="73"/>
+        <location filename="../../widgets/params/timeParam.ui" line="76"/>
         <source>millisecond(s)</source>
         <translation type="unfinished">миллисекунд(ы)</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="78"/>
+        <location filename="../../widgets/params/timeParam.ui" line="81"/>
         <source>second(s)</source>
         <translation type="unfinished">секунд(ы)</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="83"/>
+        <location filename="../../widgets/params/timeParam.ui" line="86"/>
         <source>minute(s)</source>
         <translation type="unfinished">минут(ы)</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="88"/>
+        <location filename="../../widgets/params/timeParam.ui" line="91"/>
         <source>hour(s)</source>
         <translation type="unfinished">час(ов)</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="93"/>
+        <location filename="../../widgets/params/timeParam.ui" line="96"/>
         <source>day(s)</source>
         <translation type="unfinished">дней</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="98"/>
+        <location filename="../../widgets/params/timeParam.ui" line="101"/>
         <source>week(s)</source>
         <translation type="unfinished">недель</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="103"/>
+        <location filename="../../widgets/params/timeParam.ui" line="106"/>
         <source>month(s)</source>
         <translation type="unfinished">месяц(ев)</translation>
     </message>
     <message>
-        <location filename="../../widgets/params/timeParam.ui" line="108"/>
+        <location filename="../../widgets/params/timeParam.ui" line="111"/>
         <source>year(s)</source>
         <translation type="unfinished">год(ы)</translation>
     </message>
