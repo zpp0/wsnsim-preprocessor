@@ -14,7 +14,6 @@
 #include <QObject>
 
 #include "modulesParams.h"
-#include "modulesData.h"
 
 class ModuleScanner : public QObject
 {
@@ -31,6 +30,8 @@ signals:
     void moduleScanError(QString file, QString error);
 
 private:
+    bool isValueModule(ModuleDescriptionRaw module);
+
     QStringList m_moduleFileExtensions;
 
     QObject* m_parent;

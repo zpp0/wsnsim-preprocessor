@@ -14,6 +14,9 @@
 #include <QSettings>
 
 #include "moduleScanner.h"
+#include "modulesData.h"
+
+#include "moduleValidator.h"
 
 ModuleScanner::ModuleScanner(QObject* parent)
     : m_parent(parent)
@@ -28,8 +31,14 @@ void ModuleScanner::scanFile(QString& file)
     ModulesData data;
     ModuleDescriptionRaw moduleDescription = data.load(file, &errorMessage);
 
+    ModuleValidator validator;
+
     if (!(errorMessage == "")) {
         emit moduleScanError(file, errorMessage);
+        return;
+    }
+    else if (!validator.isValidModule(moduleDescription)) {
+        emit moduleScanError(file, validator.errorString());
         return;
     }
 
