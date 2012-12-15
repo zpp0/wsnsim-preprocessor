@@ -35,9 +35,9 @@ public slots:
 
 private:
 
-    void isValidDependence(ModuleDescriptionRaw* module);
+    bool isValidDependence(ModuleDescriptionRaw* module);
 
-    void addValidDependence(QString moduleName);
+    void addValidDependence(ModuleDescriptionRaw* module);
 
     void setError(bool error);
 
