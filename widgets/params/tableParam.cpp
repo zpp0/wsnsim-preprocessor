@@ -69,7 +69,7 @@ void ModuleParamTable::setParam(ModuleParam param)
             int irow = row.toInt();
 
             int rows = m_ui->table->rowCount();
-            if (rows <= irow) {
+            if (rows < irow) {
                 m_ui->table->setRowCount(irow + 1);
 
                 for (int i = rows; i <= irow; i++)
