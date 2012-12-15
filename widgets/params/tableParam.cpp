@@ -18,7 +18,7 @@ ModuleParamTable::ModuleParamTable(ModuleDescriptionRaw* module, ModuleParamRaw*
 {
     m_ui->setupUi(this);
 
-    m_ui->g_info->setTitle(m_param->name);
+    m_ui->g_info->setTitle(m_param->info);
 
     QMap<QString, QString> args = m_param->arguments;
 
