@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>GroupBox</string>
   </property>
+  <property name="accessibleDescription">
+   <string notr="true"/>
+  </property>
   <property name="title">
    <string>Depend on</string>
   </property>

@@ -19,6 +19,9 @@
   <property name="windowTitle">
    <string>Frame</string>
   </property>
+  <property name="accessibleDescription">
+   <string notr="true"/>
+  </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>
   </property>
