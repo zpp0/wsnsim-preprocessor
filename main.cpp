@@ -10,10 +10,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("projecteditor");
 
     // устанавливаем кодировки для строк
-    QTextCodec::setCodecForTr(QTextCodec::codecForName("utf-8"));
-    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("utf-8"));
-
-
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
 
     QSettings simsettings("wsnsim", "simulator");
 
