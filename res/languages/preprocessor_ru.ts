@@ -309,7 +309,7 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="247"/>
-        <location filename="../../view/mainwindow.cpp" line="303"/>
+        <location filename="../../view/mainwindow.cpp" line="343"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
@@ -320,12 +320,12 @@
         <translation>Пересканировать модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="273"/>
+        <location filename="../../view/mainwindow.ui" line="277"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="282"/>
+        <location filename="../../view/mainwindow.ui" line="286"/>
         <source>About Qt...</source>
         <translation>О Qt...</translation>
     </message>
@@ -363,22 +363,24 @@
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="238"/>
+        <location filename="../../view/mainwindow.cpp" line="250"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="264"/>
+        <location filename="../../view/mainwindow.cpp" line="285"/>
+        <location filename="../../view/mainwindow.cpp" line="305"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="267"/>
+        <location filename="../../view/mainwindow.cpp" line="288"/>
+        <location filename="../../view/mainwindow.cpp" line="308"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="308"/>
+        <location filename="../../view/mainwindow.cpp" line="348"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
@@ -463,6 +465,75 @@
         <location filename="../../widgets/params/nodesParam.cpp" line="140"/>
         <source>&amp;Remove</source>
         <translation>&amp;Удалить</translation>
+    </message>
+</context>
+<context>
+    <name>ModuleValidator</name>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="14"/>
+        <source>module has no name</source>
+        <translation>у модулья нет названия</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="21"/>
+        <source>wrong type module</source>
+        <translation>не правильный тип модуля</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="29"/>
+        <source>param has no name</source>
+        <translation>у параметр нет названия</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="41"/>
+        <location filename="../../tools/moduleValidator.cpp" line="73"/>
+        <source>param</source>
+        <translation>параметр</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="42"/>
+        <source>wrong type param</source>
+        <translation>не правильный тип параметра</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="52"/>
+        <source>event has no name</source>
+        <translation>у события нет названия</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="59"/>
+        <source>param of event</source>
+        <translation>параметр события</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="59"/>
+        <source>has no name</source>
+        <translation>не имеет названия</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="74"/>
+        <source>of event</source>
+        <translation>события</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="75"/>
+        <source>wrong type</source>
+        <translation>неправильный тип</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="87"/>
+        <source>function has no name</source>
+        <translation>у функции нет названия</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="99"/>
+        <source>dependence has no name</source>
+        <translation>у зависимости нет названия</translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="106"/>
+        <source>wrong type dependence</source>
+        <translation>неправильный тип зависимости</translation>
     </message>
 </context>
 <context>
