@@ -27,7 +27,9 @@ InfoWidget::InfoWidget(ModuleDescriptionRaw* module)
         QStringList functions = formatter.getFunctions();
         for (int i = 0; i < functions.size(); i++) {
             m_ui->functions->addWidget(new QLabel(functions[i]), i, 0);
-            m_ui->functions->addWidget(new QLabel(m_module->interface.functions[i].info), i, 1);
+            QLabel* info = new QLabel(m_module->interface.functions[i].info);
+            info->setWordWrap(true);
+            m_ui->functions->addWidget(info, i, 1);
         }
     }
     else
@@ -37,7 +39,9 @@ InfoWidget::InfoWidget(ModuleDescriptionRaw* module)
         QStringList events = formatter.getEvents();
         for (int i = 0; i < events.size(); i++) {
             m_ui->events->addWidget(new QLabel(events[i]), i, 0);
-            m_ui->events->addWidget(new QLabel(m_module->interface.events[i].info), i, 1);
+            QLabel* info = new QLabel(m_module->interface.events[i].info);
+            info->setWordWrap(true);
+            m_ui->events->addWidget(info, i, 1);
         }
     }
     else
@@ -46,14 +50,30 @@ InfoWidget::InfoWidget(ModuleDescriptionRaw* module)
     if (m_module->dependencies.size() != 0) {
         QStringList dependencies = formatter.getDependencies();
         for (int i = 0; i < dependencies.size(); i++) {
-            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].name), i, 0);
-            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].type), i, 1);
-            m_ui->dependencies->addWidget(new QLabel(dependencies[i]), i, 2);
-            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].info), i, 3);
+            // FIXME: too complicated indexation
+            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].name), i*2, 0);
+            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].type), i*2, 1);
+            m_ui->dependencies->addWidget(new QLabel(dependencies[i]), i*2+1, 1);
+            m_ui->dependencies->addWidget(new QLabel(m_module->dependencies[i].info), i*2, 2);
         }
     }
     else
         m_ui->g_dependencies->setVisible(false);
+
+    if (m_module->params.size() != 0) {
+        int i = 0;
+        foreach(ModuleParamRaw param, m_module->params) {
+            m_ui->params->addWidget(new QLabel(param.name), i, 0);
+            m_ui->params->addWidget(new QLabel(param.type), i, 1);
+            QLabel* info = new QLabel(param.info);
+            info->setWordWrap(true);
+            m_ui->params->addWidget(info, i, 2);
+            i++;
+        }
+    }
+    else
+        m_ui->g_params->setVisible(false);
+
 }
 
 InfoWidget::~InfoWidget()
