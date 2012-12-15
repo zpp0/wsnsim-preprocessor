@@ -51,8 +51,10 @@ void NodeTypesPage::createNodeTypePage(QString nodeTypeName)
 
     NodesStorage::instance().addNodeType(nodeTypeName);
 
-    if (m_nodeTypesNames.size() == 1)
+    if (m_nodeTypesNames.size() == 1) {
         setNodeTypesError(false);
+        m_selfTreeElement->setExpanded(true);
+    }
 }
 
 void NodeTypesPage::createNodeTypePage()
@@ -81,8 +83,10 @@ void NodeTypesPage::deleteNodeTypePage(QListWidgetItem* nodeTypeItem)
 
     NodesStorage::instance().removeNodeType(nodeTypeName);
 
-    if (m_nodeTypesNames.isEmpty())
+    if (m_nodeTypesNames.isEmpty()) {
         setNodeTypesError(true);
+        m_selfTreeElement->setExpanded(false);
+    }
 }
 
 void NodeTypesPage::isNewNodeTypeName(QString name)

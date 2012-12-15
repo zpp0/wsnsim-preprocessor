@@ -113,8 +113,10 @@ void ModulesPage::createModulePage(ModuleDescriptionRaw* module)
     QTreeWidgetItem* ti_page = m_projectTree->addTiWidget(module->name, m_selfTreeElement);
     m_projectTree->addPage(ti_page, page);
 
-    if (m_modules.size() == 1)
+    if (m_modules.size() == 1) {
         setModulesError(false);
+        m_selfTreeElement->setExpanded(true);
+    }
 }
 
 void ModulesPage::deleteModulePage(ModuleDescriptionRaw* module)
@@ -126,8 +128,10 @@ void ModulesPage::deleteModulePage(ModuleDescriptionRaw* module)
     m_projectTree->removePage(page);
     delete page;
 
-    if (m_modules.isEmpty())
+    if (m_modules.isEmpty()) {
         setModulesError(true);
+        m_selfTreeElement->setExpanded(false);
+    }
 }
 
 ModuleDescriptionRaw* ModulesPage::getModuleRaw(ModuleData moduleData)
