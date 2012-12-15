@@ -11,6 +11,8 @@
 #include "modulesStorage.h"
 #include "errorsStorage.h"
 
+#include "moduleInfoFormatter.h"
+
 InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* dependence)
     : m_ui(new Ui::InterfaceInfo)
 {
@@ -20,6 +22,14 @@ InterfaceInfo::InterfaceInfo(ModuleDescriptionRaw* module, ModuleDependRaw* depe
     m_dependence = dependence;
 
     m_ui->l_name->setText(m_dependence->name);
+    m_ui->l_type->setText(m_dependence->type);
+
+    ModuleInfoFormatter formatter(m_module);
+    foreach(const ModuleFunctionRaw& function, m_dependence->interface.functions)
+        m_ui->functions->addWidget(new QLabel(" " + formatter.getFunction(function)));
+
+    foreach(const ModuleEventRaw& event, m_dependence->interface.events)
+        m_ui->events->addWidget(new QLabel(" " + formatter.getEvent(event)));
 
     ModulesStorage& storage = ModulesStorage::instance();
 
