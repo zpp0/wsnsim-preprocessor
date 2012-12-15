@@ -13,6 +13,7 @@
 #include "errorsStorage.h"
 
 #include "luaEditor.h"
+#include "moduleScanner.h"
 
 ModulesPage::ModulesPage(QTreeWidgetItem* treeElement, ProjectTree* projectTree)
     :m_ui(new Ui::ModulesPage)
@@ -55,6 +56,22 @@ ModulesPage::~ModulesPage()
 void ModulesPage::registerModule(ModuleDescriptionRaw* module)
 {
     m_modulesInfo->addModuleInfo(module);
+
+    QString moduleFile = ModulesStorage::instance().getModuleFilePath(module->fileName);
+
+    foreach(QString file, m_errors) {
+        if (file != moduleFile)
+            continue;
+
+        m_t_warnings->removeRow(m_errors.indexOf(file));
+        m_errors.removeOne(file);
+
+        if (m_errors.isEmpty())
+            m_t_warnings->setVisible(false);
+
+        return;
+    }
+
 }
 
 void ModulesPage::moduleScanError(QString file, QString error)
@@ -62,11 +79,18 @@ void ModulesPage::moduleScanError(QString file, QString error)
     if (!m_t_warnings->isVisible())
         m_t_warnings->setVisible(true);
 
-    int rows = m_t_warnings->rowCount();
-    m_t_warnings->insertRow(rows);
+    int index = m_errors.indexOf(file);
+    if (index == -1) {
+        int rows = m_t_warnings->rowCount();
+        m_t_warnings->insertRow(rows);
 
-    m_t_warnings->setItem(rows, 0, new QTableWidgetItem(file));
-    m_t_warnings->setItem(rows, 1, new QTableWidgetItem(error));
+        m_errors += file;
+
+        m_t_warnings->setItem(rows, 0, new QTableWidgetItem(file));
+        m_t_warnings->setItem(rows, 1, new QTableWidgetItem(error));
+    }
+    else
+        m_t_warnings->setItem(index, 1, new QTableWidgetItem(error));
 }
 
 void ModulesPage::moduleEnabled(ModuleDescriptionRaw* module)
@@ -191,7 +215,7 @@ void ModulesPage::errorsContextMenuRequested(const QPoint &p)
 
         QAction* actionOpen = menu.addAction(tr("&Open"));
         QAction* actionOpenInExternalEditor = menu.addAction(tr("Open in &external editor"));
-        QAction* actionRescan = menu.addAction(tr("Re&scan (unimplemented)"));
+        QAction* actionRescan = menu.addAction(tr("Re&scan"));
 
         QAction *a = menu.exec(m_t_warnings->mapToGlobal(p));
 
@@ -209,6 +233,15 @@ void ModulesPage::errorsContextMenuRequested(const QPoint &p)
         }
 
         else if (a == actionRescan) {
+            ModuleScanner scanner;
+            ModulesStorage& storage = ModulesStorage::instance();
+            connect(&scanner, SIGNAL(moduleScanError(QString, QString)),
+                    this, SLOT(moduleScanError(QString, QString)));
+
+            connect(&scanner, SIGNAL(moduleScanSuccess(QString, ModuleDescriptionRaw)),
+                    &storage, SLOT(moduleScanSuccess(QString, ModuleDescriptionRaw)));
+
+            scanner.scanFile(file);
         }
     }
 }
@@ -241,4 +274,5 @@ void ModulesPage::clean()
     m_t_warnings->clearContents();
     m_t_warnings->setRowCount(0);
     m_t_warnings->setVisible(false);
+    m_errors.clear();
 }

@@ -66,6 +66,8 @@ private:
 
     QMap<ModuleDescriptionRaw*, ModulePage*> m_modules;
 
+    QList<QString> m_errors;
+
     QTreeWidgetItem* m_selfTreeElement;
 
     ProjectTree* m_projectTree;
