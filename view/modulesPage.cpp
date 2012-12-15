@@ -213,8 +213,8 @@ void ModulesPage::errorsContextMenuRequested(const QPoint &p)
 
         QMenu menu(this);
 
-        QAction* actionOpen = menu.addAction(tr("&Open"));
-        QAction* actionOpenInExternalEditor = menu.addAction(tr("Open in &external editor"));
+        QAction* actionOpen = menu.addAction(tr("&Edit"));
+        QAction* actionOpenInExternalEditor = menu.addAction(tr("Edit in e&xternal editor"));
         QAction* actionRescan = menu.addAction(tr("Re&scan"));
 
         QAction *a = menu.exec(m_t_warnings->mapToGlobal(p));
