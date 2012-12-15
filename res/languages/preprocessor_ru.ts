@@ -232,111 +232,136 @@
         <translation type="obsolete">Правка</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="92"/>
-        <location filename="../../view/mainwindow.ui" line="233"/>
+        <location filename="../../view/mainwindow.ui" line="93"/>
+        <location filename="../../view/mainwindow.ui" line="234"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="101"/>
+        <location filename="../../view/mainwindow.ui" line="102"/>
         <source>Tools</source>
         <translation>Инструменты</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="151"/>
+        <location filename="../../view/mainwindow.ui" line="152"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="172"/>
         <source>New</source>
-        <translation>Создать</translation>
+        <translation type="obsolete">Создать</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="175"/>
+        <location filename="../../view/mainwindow.ui" line="176"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="184"/>
         <source>Open</source>
-        <translation>Открыть</translation>
+        <translation type="obsolete">Открыть</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="187"/>
+        <location filename="../../view/mainwindow.ui" line="188"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="192"/>
+        <location filename="../../view/mainwindow.ui" line="193"/>
         <source>Recent Projects</source>
         <translation>Последние проекты</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="201"/>
+        <location filename="../../view/mainwindow.ui" line="202"/>
         <source>Save</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="204"/>
+        <location filename="../../view/mainwindow.ui" line="205"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="209"/>
         <source>Save As</source>
-        <translation>Сохранить как</translation>
+        <translation type="obsolete">Сохранить как</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="212"/>
+        <location filename="../../view/mainwindow.ui" line="173"/>
+        <source>New...</source>
+        <translation>Новый...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="185"/>
+        <source>Open...</source>
+        <translation>Открыть...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="210"/>
+        <source>Save As...</source>
+        <translation>Сохранить как...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="213"/>
         <source>Ctrl+Shift+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="221"/>
+        <location filename="../../view/mainwindow.ui" line="222"/>
         <source>Quit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="224"/>
+        <location filename="../../view/mainwindow.ui" line="225"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="238"/>
+        <location filename="../../view/mainwindow.ui" line="239"/>
         <source>Context help</source>
         <translation type="unfinished">Контекстная справка</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="247"/>
-        <location filename="../../view/mainwindow.cpp" line="343"/>
+        <location filename="../../view/mainwindow.ui" line="248"/>
+        <location filename="../../view/mainwindow.cpp" line="409"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="256"/>
-        <location filename="../../view/mainwindow.ui" line="259"/>
+        <location filename="../../view/mainwindow.ui" line="257"/>
+        <location filename="../../view/mainwindow.ui" line="260"/>
         <source>Rescan for modules</source>
         <translation>Пересканировать модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="277"/>
+        <location filename="../../view/mainwindow.ui" line="269"/>
+        <source>Settings...</source>
+        <translation>Настройки...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="278"/>
         <source>Close</source>
         <translation>Закрыть</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="286"/>
+        <location filename="../../view/mainwindow.ui" line="287"/>
         <source>About Qt...</source>
         <translation>О Qt...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="292"/>
+        <source>&amp;Recent projects...</source>
+        <translation>&amp;Последние проекты...</translation>
+    </message>
+    <message>
+        <source>Recent projects</source>
+        <translation type="obsolete">&amp;Последние проекты</translation>
     </message>
     <message>
         <source>Scan for modules</source>
         <translation type="obsolete">Сканировать модули</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="268"/>
         <source>Settings</source>
-        <translation>Настройки</translation>
+        <translation type="obsolete">Настройки</translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -363,24 +388,24 @@
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="250"/>
+        <location filename="../../view/mainwindow.cpp" line="316"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="285"/>
-        <location filename="../../view/mainwindow.cpp" line="305"/>
+        <location filename="../../view/mainwindow.cpp" line="351"/>
+        <location filename="../../view/mainwindow.cpp" line="371"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="288"/>
-        <location filename="../../view/mainwindow.cpp" line="308"/>
+        <location filename="../../view/mainwindow.cpp" line="354"/>
+        <location filename="../../view/mainwindow.cpp" line="374"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="348"/>
+        <location filename="../../view/mainwindow.cpp" line="414"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
