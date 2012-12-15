@@ -328,7 +328,6 @@ void MainWindow::actionOpen()
 
 void MainWindow::openOrCreateProject(QString project)
 {
-    // FIXME: where is here creating?
     if (project != "") {
         // TODO: спрашивать, надо ли их сохранить
 
@@ -351,8 +350,6 @@ void MainWindow::closeProject()
 
 void MainWindow::actionNew()
 {
-    closeProject();
-
     // спрашиваем пользователя файл
     QString file = QFileDialog::getSaveFileName(this,
                                                 tr("Save XML Project file"),
@@ -360,8 +357,10 @@ void MainWindow::actionNew()
                                                 "project.xml",
                                                 tr("XML Project file (*.xml)"));
 
-    if (file != "")
+    if (file != "") {
+        closeProject();
         setProjectFile(file);
+    }
 }
 
 void MainWindow::actionClose()
