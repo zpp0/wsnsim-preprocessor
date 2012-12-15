@@ -36,8 +36,6 @@ private slots:
     void buttonClicked(QAbstractButton *button);
 
 private:
-    static QString getModuleFilePath(QString fileName);
-
     void saveFile();
 
     QString m_filePath;

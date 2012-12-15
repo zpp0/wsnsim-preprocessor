@@ -6,6 +6,8 @@
  *
  **/
 
+#include <QSettings>
+
 #include "modulesStorage.h"
 
 void ModulesStorage::moduleScanSuccess(QString file, ModuleDescriptionRaw module)
@@ -50,6 +52,12 @@ quint16 ModulesStorage::getModule(ModuleDescriptionRaw* module)
 QList<ModuleDescriptionRaw*> ModulesStorage::getEnabled()
 {
     return m_enabled;
+}
+
+QString ModulesStorage::getModuleFilePath(QString fileName)
+{
+    QString modulesDir = QSettings("wsnsim", "simulator").value("Modules/Directory").toString();
+    return modulesDir + "/" + fileName;
 }
 
 void ModulesStorage::clean()

@@ -33,6 +33,8 @@ public:
 
     QList<ModuleDescriptionRaw*> getEnabled();
 
+    QString getModuleFilePath(QString fileName);
+
     void clean();
 
 signals:

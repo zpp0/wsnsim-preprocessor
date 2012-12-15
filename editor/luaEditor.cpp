@@ -14,6 +14,8 @@
 #include "luaEditor.h"
 #include "ui_luaEditor.h"
 
+#include "modulesStorage.h"
+
 LuaEditor::LuaEditor(QWidget *parent)
     : QDialog(parent), m_ui(new Ui::LuaEditor)
 {
@@ -38,7 +40,7 @@ LuaEditor::LuaEditor(QWidget *parent)
 
 void LuaEditor::openModule(QString fileName)
 {
-    m_filePath = LuaEditor::getModuleFilePath(fileName);
+    m_filePath = ModulesStorage::instance().getModuleFilePath(fileName);
     m_ui->l_file->setText(fileName + " (" + m_filePath + ")");
 
     QFile file(m_filePath);
@@ -71,15 +73,9 @@ void LuaEditor::openFileInExternalEditor(QString filePath)
 
 void LuaEditor::openModuleInExternalEditor(QString fileName)
 {
-    QString filePath = LuaEditor::getModuleFilePath(fileName);
+    QString filePath = ModulesStorage::instance().getModuleFilePath(fileName);
     // FIXME: get it works on Windows
     openFileInExternalEditor(filePath);
-}
-
-QString LuaEditor::getModuleFilePath(QString fileName)
-{
-    QString modulesDir = QSettings("wsnsim", "simulator").value("Modules/Directory").toString();
-    return modulesDir + "/" + fileName;
 }
 
 void LuaEditor::saveFile()
