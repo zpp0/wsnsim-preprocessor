@@ -232,111 +232,128 @@
         <translation type="obsolete">Edit</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="92"/>
-        <location filename="../../view/mainwindow.ui" line="233"/>
+        <location filename="../../view/mainwindow.ui" line="93"/>
+        <location filename="../../view/mainwindow.ui" line="234"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="101"/>
+        <location filename="../../view/mainwindow.ui" line="102"/>
         <source>Tools</source>
         <translation>Tools</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="151"/>
+        <location filename="../../view/mainwindow.ui" line="152"/>
         <source>toolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="172"/>
         <source>New</source>
-        <translation>New</translation>
+        <translation type="obsolete">New</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="175"/>
+        <location filename="../../view/mainwindow.ui" line="176"/>
         <source>Ctrl+N</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="184"/>
         <source>Open</source>
-        <translation>Open</translation>
+        <translation type="obsolete">Open</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="187"/>
+        <location filename="../../view/mainwindow.ui" line="188"/>
         <source>Ctrl+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="192"/>
+        <location filename="../../view/mainwindow.ui" line="193"/>
         <source>Recent Projects</source>
         <translation>Recent Projects</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="201"/>
+        <location filename="../../view/mainwindow.ui" line="202"/>
         <source>Save</source>
         <translation>Save</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="204"/>
+        <location filename="../../view/mainwindow.ui" line="205"/>
         <source>Ctrl+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="209"/>
         <source>Save As</source>
-        <translation>Save As</translation>
+        <translation type="obsolete">Save As</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="212"/>
+        <location filename="../../view/mainwindow.ui" line="173"/>
+        <source>New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="185"/>
+        <source>Open...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="210"/>
+        <source>Save As...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="213"/>
         <source>Ctrl+Shift+S</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="221"/>
+        <location filename="../../view/mainwindow.ui" line="222"/>
         <source>Quit</source>
         <translation>Quit</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="224"/>
+        <location filename="../../view/mainwindow.ui" line="225"/>
         <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="238"/>
+        <location filename="../../view/mainwindow.ui" line="239"/>
         <source>Context help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="247"/>
-        <location filename="../../view/mainwindow.cpp" line="303"/>
+        <location filename="../../view/mainwindow.ui" line="248"/>
+        <location filename="../../view/mainwindow.cpp" line="422"/>
         <source>About</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="256"/>
-        <location filename="../../view/mainwindow.ui" line="259"/>
+        <location filename="../../view/mainwindow.ui" line="257"/>
+        <location filename="../../view/mainwindow.ui" line="260"/>
         <source>Rescan for modules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="273"/>
+        <location filename="../../view/mainwindow.ui" line="269"/>
+        <source>Settings...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="278"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="282"/>
+        <location filename="../../view/mainwindow.ui" line="287"/>
         <source>About Qt...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="292"/>
+        <source>&amp;Recent projects...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Scan for modules</source>
         <translation type="obsolete">Scan for modules</translation>
-    </message>
-    <message>
-        <location filename="../../view/mainwindow.ui" line="268"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Preferences</source>
@@ -363,23 +380,30 @@
         <translation>Node Types</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="238"/>
+        <location filename="../../view/mainwindow.cpp" line="171"/>
+        <source>Errors Loading Project</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.cpp" line="329"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="264"/>
+        <location filename="../../view/mainwindow.cpp" line="362"/>
+        <location filename="../../view/mainwindow.cpp" line="384"/>
         <source>Save XML Project file</source>
         <translation>Save XML Project file</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="267"/>
+        <location filename="../../view/mainwindow.cpp" line="365"/>
+        <location filename="../../view/mainwindow.cpp" line="387"/>
         <source>XML Project file (*.xml)</source>
         <translatorcomment>XML Файл проекта (*.xml)</translatorcomment>
         <translation>XML Project file (*.xml)</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="308"/>
+        <location filename="../../view/mainwindow.cpp" line="427"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
@@ -463,6 +487,75 @@
     </message>
 </context>
 <context>
+    <name>ModuleValidator</name>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="14"/>
+        <source>module has no name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="21"/>
+        <source>wrong type module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="29"/>
+        <source>param has no name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="41"/>
+        <location filename="../../tools/moduleValidator.cpp" line="73"/>
+        <source>param</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="42"/>
+        <source>wrong type param</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="52"/>
+        <source>event has no name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="59"/>
+        <source>param of event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="59"/>
+        <source>has no name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="74"/>
+        <source>of event</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="75"/>
+        <source>wrong type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="87"/>
+        <source>function has no name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="99"/>
+        <source>dependence has no name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../tools/moduleValidator.cpp" line="106"/>
+        <source>wrong type dependence</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>ModulesInfo</name>
     <message>
         <location filename="../../widgets/modulesInfo/modulesInfo.cpp" line="18"/>
@@ -536,32 +629,52 @@
         <translation>Modules</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="31"/>
+        <location filename="../../view/modulesPage.cpp" line="32"/>
         <source>File</source>
         <translation>File</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="32"/>
+        <location filename="../../view/modulesPage.cpp" line="33"/>
         <source>Error</source>
         <translation>Error</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="220"/>
+        <location filename="../../view/modulesPage.cpp" line="180"/>
+        <source>Can&apos;t load module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="183"/>
+        <source>file not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="193"/>
+        <source>Can&apos;t set module settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="195"/>
+        <source>module not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="234"/>
         <source>&amp;Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="221"/>
+        <location filename="../../view/modulesPage.cpp" line="235"/>
         <source>Edit in e&amp;xternal editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="222"/>
+        <location filename="../../view/modulesPage.cpp" line="236"/>
         <source>Re&amp;scan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="270"/>
+        <location filename="../../view/modulesPage.cpp" line="284"/>
         <source>no modules chosen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -608,12 +721,27 @@
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypePage.cpp" line="169"/>
+        <location filename="../../view/nodeTypePage.cpp" line="89"/>
+        <source>Can&apos;t add module to node type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypePage.cpp" line="91"/>
+        <source>module</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypePage.cpp" line="93"/>
+        <source>not found.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypePage.cpp" line="181"/>
         <source>&amp;Remove</source>
         <translation>&amp;Remove</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypePage.cpp" line="199"/>
+        <location filename="../../view/nodeTypePage.cpp" line="211"/>
         <source>nodeType has no modules</source>
         <translation type="unfinished"></translation>
     </message>

@@ -321,7 +321,7 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="248"/>
-        <location filename="../../view/mainwindow.cpp" line="409"/>
+        <location filename="../../view/mainwindow.cpp" line="422"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
@@ -388,24 +388,29 @@
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="316"/>
+        <location filename="../../view/mainwindow.cpp" line="171"/>
+        <source>Errors Loading Project</source>
+        <translation>При загрузке проекта произошли ошибки</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.cpp" line="329"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="351"/>
-        <location filename="../../view/mainwindow.cpp" line="371"/>
+        <location filename="../../view/mainwindow.cpp" line="362"/>
+        <location filename="../../view/mainwindow.cpp" line="384"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="354"/>
-        <location filename="../../view/mainwindow.cpp" line="374"/>
+        <location filename="../../view/mainwindow.cpp" line="365"/>
+        <location filename="../../view/mainwindow.cpp" line="387"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="414"/>
+        <location filename="../../view/mainwindow.cpp" line="427"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
@@ -643,32 +648,52 @@
         <translation>Модули</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="31"/>
+        <location filename="../../view/modulesPage.cpp" line="32"/>
         <source>File</source>
         <translation>Файл</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="32"/>
+        <location filename="../../view/modulesPage.cpp" line="33"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="220"/>
+        <location filename="../../view/modulesPage.cpp" line="180"/>
+        <source>Can&apos;t load module</source>
+        <translation>Не удалось загрузить модуль</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="183"/>
+        <source>file not found.</source>
+        <translation>файл не найден.</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="193"/>
+        <source>Can&apos;t set module settings</source>
+        <translation>Не удалось установить настройки модуля</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="195"/>
+        <source>module not found.</source>
+        <translation>модуль не найден.</translation>
+    </message>
+    <message>
+        <location filename="../../view/modulesPage.cpp" line="234"/>
         <source>&amp;Edit</source>
         <translation>&amp;Редактировать</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="221"/>
+        <location filename="../../view/modulesPage.cpp" line="235"/>
         <source>Edit in e&amp;xternal editor</source>
         <translation>Редактировать во &amp;внешнем редакторе</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="222"/>
+        <location filename="../../view/modulesPage.cpp" line="236"/>
         <source>Re&amp;scan</source>
         <translation>&amp;Пересканировать</translation>
     </message>
     <message>
-        <location filename="../../view/modulesPage.cpp" line="270"/>
+        <location filename="../../view/modulesPage.cpp" line="284"/>
         <source>no modules chosen</source>
         <translation>не выбрано модулей</translation>
     </message>
@@ -715,12 +740,27 @@
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypePage.cpp" line="169"/>
+        <location filename="../../view/nodeTypePage.cpp" line="89"/>
+        <source>Can&apos;t add module to node type</source>
+        <translation>Не удалось добавить модуль типу узлов</translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypePage.cpp" line="91"/>
+        <source>module</source>
+        <translation>модуль</translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypePage.cpp" line="93"/>
+        <source>not found.</source>
+        <translation>не найден.</translation>
+    </message>
+    <message>
+        <location filename="../../view/nodeTypePage.cpp" line="181"/>
         <source>&amp;Remove</source>
         <translation>&amp;Удалить</translation>
     </message>
     <message>
-        <location filename="../../view/nodeTypePage.cpp" line="199"/>
+        <location filename="../../view/nodeTypePage.cpp" line="211"/>
         <source>nodeType has no modules</source>
         <translation>не установлены модули </translation>
     </message>
