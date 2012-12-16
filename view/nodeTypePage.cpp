@@ -14,6 +14,7 @@
 #include "modulesStorage.h"
 #include "nodesStorage.h"
 #include "errorsStorage.h"
+#include "projectStorage.h"
 
 NodeTypePage::NodeTypePage(QString name)
     :m_ui(new Ui::NodeTypePage)
@@ -81,10 +82,16 @@ void NodeTypePage::setNodeType(NodeTypeData nodeType)
     QList<quint16> modules;
     modules += nodeType.hardwareModules;
     modules += nodeType.softwareModules;
+    ModulesStorage& storage = ModulesStorage::instance();
     foreach(quint16 moduleID, modules) {
-        module = ModulesStorage::instance().getModuleFromProject(moduleID);
+        module = storage.getModuleFromProject(moduleID);
         if (!module) {
-            // TODO: errors handling
+            ProjectStorage::instance().addError((tr("Can't add module to node type")
+                                                 + " " + m_name + ": "
+                                                 + tr("module") + " "
+                                                 + storage.getBrokenModuleName(moduleID)
+                                                 + " " + tr("not found.")));
+
             continue;
         }
 

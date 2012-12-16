@@ -27,6 +27,10 @@ public:
 
     ProjectParams& getProject();
 
+    void addError(QString message);
+    bool hasErrors();
+    QStringList& getErrors();
+
 signals:
 
     void libLoadingError(QString errorString);
@@ -35,11 +39,13 @@ signals:
     void loadingProjectError(QString errorString);
 
 private:
-    ProjectStorage();
+    ProjectStorage(){}
     ProjectStorage(ProjectStorage const&);
     void operator=(ProjectStorage const&);
 
     ProjectParams m_project;
+
+    QStringList m_errors;
 };
 
 #endif // PROJECTSTORAGE_H

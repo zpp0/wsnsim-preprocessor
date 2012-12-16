@@ -9,10 +9,6 @@
 
 #include "projectStorage.h"
 
-ProjectStorage::ProjectStorage()
-{
-}
-
 ProjectParams& ProjectStorage::getProject()
 {
     return m_project;
@@ -49,6 +45,8 @@ ProjectParams& ProjectStorage::loadXML(QString file)
 {
     QString errorMessage = "";
 
+    m_errors.clear();
+
     ProjectData data;
     m_project = data.load(file, &errorMessage);
 
@@ -56,4 +54,19 @@ ProjectParams& ProjectStorage::loadXML(QString file)
         emit loadingProjectError(errorMessage);
 
     return getProject();
+}
+
+void ProjectStorage::addError(QString message)
+{
+    m_errors += message;
+}
+
+bool ProjectStorage::hasErrors()
+{
+    return !(m_errors.isEmpty());
+}
+
+QStringList& ProjectStorage::getErrors()
+{
+    return m_errors;
 }

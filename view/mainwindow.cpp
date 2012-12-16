@@ -167,6 +167,12 @@ void MainWindow::loadProject(QString file)
     m_modulesPage->setModules(project.modules);
     m_modulesPage->setEvents(project.events.systemEvents);
 
+    if (storage.hasErrors()) {
+        QMessageBox::warning(this, tr("Errors Loading Project"),
+                             storage.getErrors().join("\n"),
+                             QMessageBox::Close);
+    }
+
     insertToRecent(file);
     insertActionsRecent();
 }
@@ -292,7 +298,7 @@ void MainWindow::actionScan()
     ModuleScanner scanner;
     ModulesStorage& storage = ModulesStorage::instance();
 
-    storage.clean();
+    storage.clear();
 
     connect(&scanner, SIGNAL(moduleScanError(QString, QString)),
             m_modulesPage, SLOT(moduleScanError(QString, QString)));
@@ -344,6 +350,7 @@ void MainWindow::closeProject()
     m_projectPage->clear();
     m_modulesPage->clear();
     m_nodeTypesPage->clear();
+    ModulesStorage::instance().clean();
 
     setProjectFile("");
 }

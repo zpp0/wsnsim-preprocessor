@@ -35,12 +35,14 @@ public:
 
     QString getModuleFilePath(QString fileName);
 
-    void addBrokenProjectModule(quint16 moduleID);
+    void addBrokenProjectModule(quint16 moduleID, QString name);
+    QString getBrokenModuleName(quint16 moduleID);
 
     void setProjectModuleID(quint16 moduleID, QString file);
     ModuleDescriptionRaw* getModuleFromProject(quint16 moduleID);
     quint16 getModuleFromProject(ModuleDescriptionRaw* module);
 
+    void clear();
     void clean();
 
 signals:
@@ -59,7 +61,7 @@ private:
     QList<ModuleDescriptionRaw*> m_enabled;
     QList<ModuleDescriptionRaw> m_modules;
 
-    QList<quint16> m_brokenModules;
+    QMap<quint16, QString> m_brokenModules;
     QMap<quint16, QString> m_projectModule;
 };
 

@@ -11,6 +11,7 @@
 
 #include "modulesStorage.h"
 #include "errorsStorage.h"
+#include "projectStorage.h"
 
 #include "luaEditor.h"
 #include "moduleScanner.h"
@@ -175,8 +176,11 @@ void ModulesPage::activateModules(QList<ModuleData> modules)
             storage.setProjectModuleID(moduleData.moduleInfo["ID"].toInt(), moduleData.fileName);
         }
         else {
-            storage.addBrokenProjectModule(moduleData.moduleInfo["ID"].toInt());
-            // TODO: errors handling
+            storage.addBrokenProjectModule(moduleData.moduleInfo["ID"].toInt(), moduleData.moduleInfo["name"]);
+            ProjectStorage::instance().addError((tr("Can't load module")
+                                                 + " " + moduleData.moduleInfo["name"] + " "
+                                                 + "(" + moduleData.fileName + "): "
+                                                 + tr("file not found.")));
         }
     }
 }
@@ -185,9 +189,14 @@ void ModulesPage::setModules(QList<ModuleData> modules)
 {
     foreach(ModuleData moduleData, modules) {
         ModuleDescriptionRaw* module = getModuleRaw(moduleData);
-        if (!module)
-            // TODO: errors handling
+        if (!module) {
+            ProjectStorage::instance().addError((tr("Can't set module settings")
+                                                 + " " + moduleData.moduleInfo["name"] + ": "
+                                                 + tr("module not found.")));
+
             continue;
+        }
+
         m_modules[module]->setModule(moduleData);
     }
 }
