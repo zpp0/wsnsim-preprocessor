@@ -39,9 +39,37 @@ ModuleDescriptionRaw* ModulesStorage::getModule(QString fileName)
     return module;
 }
 
+void ModulesStorage::addBrokenProjectModule(quint16 moduleID)
+{
+    m_brokenModules += moduleID;
+}
+
+void ModulesStorage::setProjectModuleID(quint16 moduleID, QString file)
+{
+    m_projectModule[moduleID] = file;
+}
+
+quint16 ModulesStorage::getModuleFromProject(ModuleDescriptionRaw* module)
+{
+    foreach(QString moduleFile, m_projectModule.values())
+        if (module->fileName == moduleFile)
+            return m_projectModule.key(moduleFile);
+}
+
+ModuleDescriptionRaw* ModulesStorage::getModuleFromProject(quint16 moduleID)
+{
+    if (m_brokenModules.contains(moduleID))
+        return NULL;
+    else
+        return getModule(m_projectModule[moduleID]);
+}
+
 ModuleDescriptionRaw* ModulesStorage::getModule(quint16 moduleID)
 {
-    return m_enabled[moduleID];
+    if (m_enabled.size() > moduleID)
+        return m_enabled[moduleID];
+    else
+        return NULL;
 }
 
 quint16 ModulesStorage::getModule(ModuleDescriptionRaw* module)
@@ -64,4 +92,6 @@ void ModulesStorage::clean()
 {
     m_enabled.clear();
     m_modules.clear();
+    m_projectModule.clear();
+    m_brokenModules.clear();
 }

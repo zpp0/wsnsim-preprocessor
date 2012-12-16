@@ -82,7 +82,12 @@ void NodeTypePage::setNodeType(NodeTypeData nodeType)
     modules += nodeType.hardwareModules;
     modules += nodeType.softwareModules;
     foreach(quint16 moduleID, modules) {
-        module = ModulesStorage::instance().getModule(moduleID);
+        module = ModulesStorage::instance().getModuleFromProject(moduleID);
+        if (!module) {
+            // TODO: errors handling
+            continue;
+        }
+
         addModule_toTable(module);
         int row = m_indexes.indexOf(module);
         if (row != -1)

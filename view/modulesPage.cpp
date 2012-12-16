@@ -168,10 +168,14 @@ void ModulesPage::activateModules(QList<ModuleData> modules)
     qSort(modules.begin(), modules.end(), moduleIDLessThan);
 
     foreach(ModuleData moduleData, modules) {
-        ModuleDescriptionRaw* module = ModulesStorage::instance().getModule(moduleData.fileName);
-        if (module)
+        ModulesStorage& storage = ModulesStorage::instance();
+        ModuleDescriptionRaw* module = storage.getModule(moduleData.fileName);
+        if (module) {
             m_modulesInfo->enableModuleInfo(module);
+            storage.setProjectModuleID(moduleData.moduleInfo["ID"].toInt(), moduleData.fileName);
+        }
         else {
+            storage.addBrokenProjectModule(moduleData.moduleInfo["ID"].toInt());
             // TODO: errors handling
         }
     }
@@ -202,8 +206,9 @@ void ModulesPage::setEvents(QList<EventParams> events)
 {
     foreach(ModuleDescriptionRaw* module, m_modules.keys()) {
         QList<EventParams> moduleEvents;
+        quint16 moduleID = ModulesStorage::instance().getModuleFromProject(module);
         foreach(EventParams event, events)
-            if (event.eventInfo["moduleID"].toInt() == ModulesStorage::instance().getModule(module))
+            if (event.eventInfo["moduleID"].toInt() == moduleID)
                 moduleEvents += event;
 
         m_modules[module]->setEvents(moduleEvents);
