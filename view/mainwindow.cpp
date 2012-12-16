@@ -351,6 +351,7 @@ void MainWindow::closeProject()
     m_modulesPage->clear();
     m_nodeTypesPage->clear();
     ModulesStorage::instance().clean();
+    NodesStorage::instance().clean();
 
     setProjectFile("");
 }

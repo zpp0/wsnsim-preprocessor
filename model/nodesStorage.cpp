@@ -83,3 +83,10 @@ QList<QString> NodesStorage::getNodeTypes()
 {
     return m_nodeTypes;
 }
+
+void NodesStorage::clean()
+{
+    m_nodeTypes.clear();
+    m_nodes.clear();
+    nodesTotal();
+}

@@ -18,7 +18,7 @@ void ErrorsStorage::setPossibleError(QWidget* page, QWidget* widget, bool error,
 void ErrorsStorage::addError(QWidget* page, QWidget* widget, QString message)
 {
     m_errors[page][widget] = message;
-    if (m_errors.size() == 1)
+    if (m_errors.size() == 1 && m_errors[page].size() == 1)
         emit hasErrors(true);
 
     emit errorAdded(page, widget, message);
@@ -38,7 +38,10 @@ void ErrorsStorage::removeError(QWidget* page, QWidget* widget)
 
 bool ErrorsStorage::hasError(QWidget* page, QWidget* widget)
 {
-    return m_errors[page].contains(widget);
+    if (!m_errors.contains(page))
+        return false;
+    else
+        return m_errors[page].contains(widget);
 }
 
 void ErrorsStorage::gotoError(QWidget* page, QWidget* widget)

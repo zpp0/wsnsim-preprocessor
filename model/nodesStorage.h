@@ -34,6 +34,8 @@ public:
 
     QList<QString> getNodeTypes();
 
+    void clean();
+
 signals:
     void nodeTypeAdded(QString name);
     void nodeTypeRemoved(QString name);
