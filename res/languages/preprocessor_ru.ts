@@ -223,24 +223,21 @@
         <translation>Редактор проектов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="78"/>
         <source>File</source>
-        <translation>Файл</translation>
+        <translation type="obsolete">Файл</translation>
     </message>
     <message>
         <source>Edit</source>
         <translation type="obsolete">Правка</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="93"/>
         <location filename="../../view/mainwindow.ui" line="234"/>
         <source>Help</source>
         <translation>Помощь</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="102"/>
         <source>Tools</source>
-        <translation>Инструменты</translation>
+        <translation type="obsolete">Инструменты</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="152"/>
@@ -266,14 +263,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="193"/>
         <source>Recent Projects</source>
-        <translation>Последние проекты</translation>
+        <translation type="obsolete">Последние проекты</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="202"/>
         <source>Save</source>
-        <translation>Сохранить</translation>
+        <translation type="obsolete">Сохранить</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="205"/>
@@ -285,14 +280,12 @@
         <translation type="obsolete">Сохранить как</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="173"/>
         <source>New...</source>
-        <translation>Новый...</translation>
+        <translation type="obsolete">Новый...</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="185"/>
         <source>Open...</source>
-        <translation>Открыть...</translation>
+        <translation type="obsolete">Открыть...</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="210"/>
@@ -305,9 +298,48 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="222"/>
         <source>Quit</source>
-        <translation>Выход</translation>
+        <translation type="obsolete">Выход</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="78"/>
+        <source>&amp;File</source>
+        <translation>&amp;Файл</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="93"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Помощь</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="102"/>
+        <source>&amp;Tools</source>
+        <translation>&amp;Инструменты</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="173"/>
+        <source>&amp;New...</source>
+        <translation>&amp;Новый...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="185"/>
+        <source>&amp;Open...</source>
+        <translation>&amp;Открыть...</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="193"/>
+        <source>&amp;Recent Projects</source>
+        <translation>&amp;Последние проекты</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="202"/>
+        <source>&amp;Save</source>
+        <translation>&amp;Сохранить</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="222"/>
+        <source>&amp;Quit</source>
+        <translation>&amp;Выход</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="225"/>
@@ -327,19 +359,31 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="257"/>
+        <source>&amp;Rescan modules</source>
+        <translation>&amp;Пересканировать модули</translation>
+    </message>
+    <message>
         <location filename="../../view/mainwindow.ui" line="260"/>
         <source>Rescan for modules</source>
         <translation>Пересканировать модули</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="269"/>
-        <source>Settings...</source>
-        <translation>Настройки...</translation>
+        <source>&amp;Settings...</source>
+        <translation>&amp;Настройки...</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="278"/>
+        <source>&amp;Close</source>
+        <translation>&amp;Закрыть</translation>
+    </message>
+    <message>
+        <source>Settings...</source>
+        <translation type="obsolete">Настройки...</translation>
+    </message>
+    <message>
         <source>Close</source>
-        <translation>Закрыть</translation>
+        <translation type="obsolete">Закрыть</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="287"/>

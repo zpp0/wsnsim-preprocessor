@@ -223,24 +223,21 @@
         <translation>Project Editor</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="78"/>
         <source>File</source>
-        <translation>File</translation>
+        <translation type="obsolete">File</translation>
     </message>
     <message>
         <source>Edit</source>
         <translation type="obsolete">Edit</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="93"/>
         <location filename="../../view/mainwindow.ui" line="234"/>
         <source>Help</source>
         <translation>Help</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="102"/>
         <source>Tools</source>
-        <translation>Tools</translation>
+        <translation type="obsolete">Tools</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="152"/>
@@ -266,14 +263,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="193"/>
         <source>Recent Projects</source>
-        <translation>Recent Projects</translation>
+        <translation type="obsolete">Recent Projects</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="202"/>
         <source>Save</source>
-        <translation>Save</translation>
+        <translation type="obsolete">Save</translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="205"/>
@@ -283,16 +278,6 @@
     <message>
         <source>Save As</source>
         <translation type="obsolete">Save As</translation>
-    </message>
-    <message>
-        <location filename="../../view/mainwindow.ui" line="173"/>
-        <source>New...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../view/mainwindow.ui" line="185"/>
-        <source>Open...</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="210"/>
@@ -305,9 +290,48 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.ui" line="222"/>
         <source>Quit</source>
-        <translation>Quit</translation>
+        <translation type="obsolete">Quit</translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="78"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="93"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="102"/>
+        <source>&amp;Tools</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="173"/>
+        <source>&amp;New...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="185"/>
+        <source>&amp;Open...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="193"/>
+        <source>&amp;Recent Projects</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="202"/>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../view/mainwindow.ui" line="222"/>
+        <source>&amp;Quit</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="225"/>
@@ -327,18 +351,22 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="257"/>
+        <source>&amp;Rescan modules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../view/mainwindow.ui" line="260"/>
         <source>Rescan for modules</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="269"/>
-        <source>Settings...</source>
+        <source>&amp;Settings...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="278"/>
-        <source>Close</source>
+        <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
