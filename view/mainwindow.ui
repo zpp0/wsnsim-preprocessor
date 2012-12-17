@@ -75,7 +75,7 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
@@ -90,7 +90,7 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionHelp"/>
     <addaction name="separator"/>
@@ -99,7 +99,7 @@
    </widget>
    <widget class="QMenu" name="menuModules">
     <property name="title">
-     <string>Tools</string>
+     <string>&amp;Tools</string>
     </property>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
@@ -170,7 +170,7 @@
      <normaloff>:/icons/document_file.png</normaloff>:/icons/document_file.png</iconset>
    </property>
    <property name="text">
-    <string>New...</string>
+    <string>&amp;New...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
@@ -182,7 +182,7 @@
      <normaloff>:/icons/folder.png</normaloff>:/icons/folder.png</iconset>
    </property>
    <property name="text">
-    <string>Open...</string>
+    <string>&amp;Open...</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -190,7 +190,7 @@
   </action>
   <action name="actionResentProjects">
    <property name="text">
-    <string>Recent Projects</string>
+    <string>&amp;Recent Projects</string>
    </property>
   </action>
   <action name="actionSave">
@@ -199,7 +199,7 @@
      <normaloff>:/icons/save_as.png</normaloff>:/icons/save_as.png</iconset>
    </property>
    <property name="text">
-    <string>Save</string>
+    <string>&amp;Save</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -219,7 +219,7 @@
      <normaloff>:/icons/close_delete_2.png</normaloff>:/icons/close_delete_2.png</iconset>
    </property>
    <property name="text">
-    <string>Quit</string>
+    <string>&amp;Quit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -254,7 +254,7 @@
      <normaloff>:/icons/refresh.png</normaloff>:/icons/refresh.png</iconset>
    </property>
    <property name="text">
-    <string>Rescan for modules</string>
+    <string>&amp;Rescan modules</string>
    </property>
    <property name="toolTip">
     <string>Rescan for modules</string>
@@ -266,7 +266,7 @@
      <normaloff>:/icons/options.png</normaloff>:/icons/options.png</iconset>
    </property>
    <property name="text">
-    <string>Settings...</string>
+    <string>&amp;Settings...</string>
    </property>
   </action>
   <action name="actionClose">
@@ -275,7 +275,7 @@
      <normaloff>:/icons/close_delete.png</normaloff>:/icons/close_delete.png</iconset>
    </property>
    <property name="text">
-    <string>Close</string>
+    <string>&amp;Close</string>
    </property>
   </action>
   <action name="actionAbout_Qt">
