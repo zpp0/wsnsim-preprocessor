@@ -68,9 +68,11 @@ void ErrorsPanel::showMenu()
     foreach(ErrorAction* action, m_actions)
         actions += action;
 
-    QAction* action = QMenu::exec(actions, mapToGlobal(m_ui->b_menu->pos()));
-    if (action)
-        ((ErrorAction*)action)->gotoError();
+    if (!actions.isEmpty()) {
+        QAction* action = QMenu::exec(actions, mapToGlobal(m_ui->b_menu->pos()));
+        if (action)
+            ((ErrorAction*)action)->gotoError();
+    }
 }
 
 ErrorsPanel::~ErrorsPanel()
