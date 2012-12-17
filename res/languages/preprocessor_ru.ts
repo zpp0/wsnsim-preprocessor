@@ -321,7 +321,7 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="248"/>
-        <location filename="../../view/mainwindow.cpp" line="422"/>
+        <location filename="../../view/mainwindow.cpp" line="431"/>
         <source>About</source>
         <translation>О программе</translation>
     </message>
@@ -388,29 +388,30 @@
         <translation>Типы узлов</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="171"/>
+        <location filename="../../view/mainwindow.cpp" line="156"/>
+        <location filename="../../view/mainwindow.cpp" line="178"/>
         <source>Errors Loading Project</source>
         <translation>При загрузке проекта произошли ошибки</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="329"/>
+        <location filename="../../view/mainwindow.cpp" line="336"/>
         <source>Open File</source>
         <translation>Открыть проект</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="362"/>
-        <location filename="../../view/mainwindow.cpp" line="384"/>
+        <location filename="../../view/mainwindow.cpp" line="371"/>
+        <location filename="../../view/mainwindow.cpp" line="393"/>
         <source>Save XML Project file</source>
         <translation>Сохранить файл проекта</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="365"/>
-        <location filename="../../view/mainwindow.cpp" line="387"/>
+        <location filename="../../view/mainwindow.cpp" line="374"/>
+        <location filename="../../view/mainwindow.cpp" line="396"/>
         <source>XML Project file (*.xml)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="427"/>
+        <location filename="../../view/mainwindow.cpp" line="436"/>
         <source>About Qt</source>
         <translation>О Qt</translation>
     </message>
@@ -949,7 +950,7 @@
     <message>
         <location filename="../../settings/settings.ui" line="39"/>
         <source>Directory</source>
-        <translation>Директория</translation>
+        <translation>Каталог с модулями</translation>
     </message>
     <message>
         <location filename="../../settings/settings.ui" line="46"/>

@@ -321,7 +321,7 @@
     </message>
     <message>
         <location filename="../../view/mainwindow.ui" line="248"/>
-        <location filename="../../view/mainwindow.cpp" line="422"/>
+        <location filename="../../view/mainwindow.cpp" line="431"/>
         <source>About</source>
         <translation>About</translation>
     </message>
@@ -380,30 +380,31 @@
         <translation>Node Types</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="171"/>
+        <location filename="../../view/mainwindow.cpp" line="156"/>
+        <location filename="../../view/mainwindow.cpp" line="178"/>
         <source>Errors Loading Project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="329"/>
+        <location filename="../../view/mainwindow.cpp" line="336"/>
         <source>Open File</source>
         <translation>Open File</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="362"/>
-        <location filename="../../view/mainwindow.cpp" line="384"/>
+        <location filename="../../view/mainwindow.cpp" line="371"/>
+        <location filename="../../view/mainwindow.cpp" line="393"/>
         <source>Save XML Project file</source>
         <translation>Save XML Project file</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="365"/>
-        <location filename="../../view/mainwindow.cpp" line="387"/>
+        <location filename="../../view/mainwindow.cpp" line="374"/>
+        <location filename="../../view/mainwindow.cpp" line="396"/>
         <source>XML Project file (*.xml)</source>
         <translatorcomment>XML Файл проекта (*.xml)</translatorcomment>
         <translation>XML Project file (*.xml)</translation>
     </message>
     <message>
-        <location filename="../../view/mainwindow.cpp" line="427"/>
+        <location filename="../../view/mainwindow.cpp" line="436"/>
         <source>About Qt</source>
         <translation type="unfinished"></translation>
     </message>
