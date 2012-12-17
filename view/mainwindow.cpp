@@ -152,6 +152,13 @@ void MainWindow::setProjectFile(QString file)
 
 void MainWindow::loadProject(QString file)
 {
+    if (!(QFile::exists(file))) {
+        QMessageBox::warning(this, tr("Errors Loading Project"),
+                             "File not found",
+                             QMessageBox::Close);
+        return;
+    }
+
     closeProject();
 
     setProjectFile(file);
@@ -329,7 +336,8 @@ void MainWindow::actionOpen()
                                                            tr("Open File"),
                                                            "", "XML Project files (*.xml)");
 
-    openOrCreateProject(projectFileName);
+    if (projectFileName != "")
+        loadProject(projectFileName);
 }
 
 void MainWindow::openOrCreateProject(QString project)
